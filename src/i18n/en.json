@@ -1,0 +1,122 @@
+{
+  "nav": {
+    "offers": "Offers",
+    "solutions": "Solutions",
+    "industries": "Industries",
+    "work": "Work",
+    "trust": "Trust",
+    "resources": "Resources",
+    "bookCall": "Book a 15-min call",
+    "seeAutomations": "See example automations"
+  },
+  "hero": {
+    "headline": "AI & Automation delivered in weeks — not months.",
+    "subheadline": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with a compliance-ready delivery approach.",
+    "deliveryNote": "Typical first delivery in 10 days. Clear scope. Measurable ROI.",
+    "bookCall": "Book a 15-min call",
+    "seeAutomations": "See example automations",
+    "trustPoints": {
+      "outcome": "Outcome-first delivery",
+      "remote": "Remote-first, UK/EU timezone overlap",
+      "team": "Automation + AI + MVP in one team",
+      "compliance": "Compliance-aware (UK GDPR / EU)"
+    }
+  },
+  "booking": {
+    "title": "Book Your Call",
+    "fallbackTitle": "Request a Call",
+    "fallbackDesc": "Leave your details and we'll arrange a convenient time.",
+    "name": "Your name",
+    "email": "Your email",
+    "company": "Company name",
+    "submit": "Request Call",
+    "whatNext": "What happens next",
+    "step1": "15-min fit check",
+    "step2": "Scope in 48h",
+    "step3": "Start date + timeline"
+  },
+  "offers": {
+    "title": "Productised Offers",
+    "subtitle": "Fixed scope. Clear timelines. Predictable outcomes.",
+    "compareOffers": "Compare offers",
+    "getScope": "Get a scope in 48h",
+    "bestFor": "Best for",
+    "deliverables": "Deliverables",
+    "successMetrics": "Success metrics",
+    "sprint": {
+      "title": "AI Ops Sprint",
+      "timeline": "10 business days",
+      "bestFor": "Ops teams drowning in manual steps",
+      "price": "From £5k"
+    },
+    "build": {
+      "title": "Automation Build",
+      "timeline": "4–6 weeks",
+      "bestFor": "Cross-tool automation + approvals + reporting",
+      "price": "£15k–£30k"
+    },
+    "mvp": {
+      "title": "MVP Launch",
+      "timeline": "6–10 weeks",
+      "bestFor": "Startups & SMEs launching a new product",
+      "price": "From £25k"
+    }
+  },
+  "work": {
+    "title": "Our Work",
+    "subtitle": "Real automation projects with measurable outcomes.",
+    "requestBreakdown": "Request full breakdown",
+    "viewCaseStudy": "View full case study",
+    "pilotLabel": "Pilot Case Study",
+    "founderCredibility": {
+      "title": "Built by Engineers",
+      "point1": "10+ years in software delivery & automation",
+      "point2": "Deep technical expertise in AI/ML systems",
+      "point3": "Proven delivery process with UK/EU clients"
+    }
+  },
+  "trust": {
+    "title": "Trust & Compliance",
+    "subtitle": "How we handle your data and deliver with confidence.",
+    "downloadPack": "Download Trust Pack",
+    "viewPolicy": "View full policy"
+  },
+  "contact": {
+    "title": "Ready to remove manual work this month?",
+    "subtitle": "Book a quick call or tell us about your challenges.",
+    "responseTime": "We reply within 24 hours (UK business days).",
+    "bookCall": "Book a call",
+    "emailUs": "Email us",
+    "formTitle": "Or tell us about your project"
+  },
+  "footer": {
+    "tagline": "AI & Automation delivered in weeks. UK/EU focused, compliance-ready.",
+    "remoteFirst": "Remote-first • UK/EU clients",
+    "company": "Company",
+    "resources": "Resources",
+    "legal": "Legal",
+    "cookieSettings": "Cookie settings",
+    "companyDetails": "Innoviaburst Ltd (Company No. XXXXXXXX) — Registered in England and Wales",
+    "copyright": "© {{year}} Innoviaburst. All rights reserved.",
+    "complianceNote": "Built with focus on UK GDPR & EU compliance readiness."
+  },
+  "cookies": {
+    "title": "We value your privacy",
+    "description": "We use cookies to enhance your browsing experience and analyse site traffic. Choose which cookies you'd like to accept.",
+    "necessary": "Necessary",
+    "necessaryDesc": "Essential for the website to function. Cannot be disabled.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Help us understand how visitors interact with our website.",
+    "marketing": "Marketing",
+    "marketingDesc": "Used to deliver relevant advertisements and track campaigns.",
+    "acceptAll": "Accept All",
+    "acceptSelected": "Accept Selected",
+    "rejectAll": "Reject All"
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "getStarted": "Get started",
+    "contactUs": "Contact us",
+    "backToHome": "Back to home"
+  }
+}

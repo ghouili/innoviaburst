@@ -1,0 +1,122 @@
+{
+  "nav": {
+    "offers": "Offres",
+    "solutions": "Solutions",
+    "industries": "Secteurs",
+    "work": "Réalisations",
+    "trust": "Confiance",
+    "resources": "Ressources",
+    "bookCall": "Réserver un appel de 15 min",
+    "seeAutomations": "Voir les automatisations"
+  },
+  "hero": {
+    "headline": "IA & Automatisation livrées en semaines — pas en mois.",
+    "subheadline": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVPs avec une approche conforme.",
+    "deliveryNote": "Première livraison typique en 10 jours. Périmètre clair. ROI mesurable.",
+    "bookCall": "Réserver un appel de 15 min",
+    "seeAutomations": "Voir les automatisations",
+    "trustPoints": {
+      "outcome": "Livraison axée résultats",
+      "remote": "Full remote, fuseau UK/EU",
+      "team": "Automatisation + IA + MVP en une équipe",
+      "compliance": "Conformité RGPD UK/EU"
+    }
+  },
+  "booking": {
+    "title": "Réservez votre appel",
+    "fallbackTitle": "Demander un appel",
+    "fallbackDesc": "Laissez vos coordonnées et nous organiserons un créneau.",
+    "name": "Votre nom",
+    "email": "Votre email",
+    "company": "Nom de l'entreprise",
+    "submit": "Demander un appel",
+    "whatNext": "Et ensuite ?",
+    "step1": "Appel de 15 min",
+    "step2": "Périmètre en 48h",
+    "step3": "Date de démarrage"
+  },
+  "offers": {
+    "title": "Offres Packagées",
+    "subtitle": "Périmètre fixe. Délais clairs. Résultats prévisibles.",
+    "compareOffers": "Comparer les offres",
+    "getScope": "Obtenir un devis en 48h",
+    "bestFor": "Idéal pour",
+    "deliverables": "Livrables",
+    "successMetrics": "Métriques de succès",
+    "sprint": {
+      "title": "Sprint IA Ops",
+      "timeline": "10 jours ouvrés",
+      "bestFor": "Équipes ops noyées sous les tâches manuelles",
+      "price": "À partir de 5k£"
+    },
+    "build": {
+      "title": "Build Automatisation",
+      "timeline": "4–6 semaines",
+      "bestFor": "Automatisation multi-outils + validations + reporting",
+      "price": "15k£–30k£"
+    },
+    "mvp": {
+      "title": "Lancement MVP",
+      "timeline": "6–10 semaines",
+      "bestFor": "Startups & PME lançant un nouveau produit",
+      "price": "À partir de 25k£"
+    }
+  },
+  "work": {
+    "title": "Nos Réalisations",
+    "subtitle": "Projets d'automatisation réels avec résultats mesurables.",
+    "requestBreakdown": "Demander le détail",
+    "viewCaseStudy": "Voir l'étude de cas",
+    "pilotLabel": "Étude de cas pilote",
+    "founderCredibility": {
+      "title": "Conçu par des Ingénieurs",
+      "point1": "10+ ans en delivery logiciel & automatisation",
+      "point2": "Expertise technique approfondie en IA/ML",
+      "point3": "Processus de livraison éprouvé avec clients UK/EU"
+    }
+  },
+  "trust": {
+    "title": "Confiance & Conformité",
+    "subtitle": "Comment nous gérons vos données et livrons en toute confiance.",
+    "downloadPack": "Télécharger le Pack Confiance",
+    "viewPolicy": "Voir la politique complète"
+  },
+  "contact": {
+    "title": "Prêt à éliminer le travail manuel ce mois-ci ?",
+    "subtitle": "Réservez un appel ou parlez-nous de vos défis.",
+    "responseTime": "Nous répondons sous 24h (jours ouvrés UK).",
+    "bookCall": "Réserver un appel",
+    "emailUs": "Nous écrire",
+    "formTitle": "Ou parlez-nous de votre projet"
+  },
+  "footer": {
+    "tagline": "IA & Automatisation livrées en semaines. Focus UK/EU, conforme RGPD.",
+    "remoteFirst": "Full remote • Clients UK/EU",
+    "company": "Entreprise",
+    "resources": "Ressources",
+    "legal": "Légal",
+    "cookieSettings": "Paramètres cookies",
+    "companyDetails": "Innoviaburst Ltd (N° XXXXXXXX) — Enregistrée en Angleterre et Pays de Galles",
+    "copyright": "© {{year}} Innoviaburst. Tous droits réservés.",
+    "complianceNote": "Conçu avec un focus sur la conformité RGPD UK & EU."
+  },
+  "cookies": {
+    "title": "Nous respectons votre vie privée",
+    "description": "Nous utilisons des cookies pour améliorer votre navigation et analyser le trafic. Choisissez les cookies que vous acceptez.",
+    "necessary": "Nécessaires",
+    "necessaryDesc": "Essentiels au fonctionnement du site. Ne peuvent être désactivés.",
+    "analytics": "Analytiques",
+    "analyticsDesc": "Nous aident à comprendre comment les visiteurs interagissent avec notre site.",
+    "marketing": "Marketing",
+    "marketingDesc": "Utilisés pour diffuser des publicités pertinentes et suivre les campagnes.",
+    "acceptAll": "Tout accepter",
+    "acceptSelected": "Accepter la sélection",
+    "rejectAll": "Tout refuser"
+  },
+  "common": {
+    "learnMore": "En savoir plus",
+    "getStarted": "Commencer",
+    "contactUs": "Nous contacter",
+    "backToHome": "Retour à l'accueil"
+  }
+}
