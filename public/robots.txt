@@ -12,3 +12,15 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# AI crawlers guidance (policy not enforced here; uncomment to allow/deny specifically)
+# User-agent: GPTBot
+# Allow: /
+# User-agent: OAI-SearchBot
+# Allow: /
+# User-agent: PerplexityBot
+# Allow: /
+# User-agent: Perplexity-User
+# Allow: /
+
+Sitemap: https://innoviaburst.com/sitemap.xml

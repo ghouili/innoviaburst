@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -9,10 +9,11 @@ import { ArrowLeft } from "lucide-react";
 export default function CookiesPage() {
   return (
     <>
-      <Helmet>
-        <title>Cookie Policy | Innoviaburst</title>
-        <meta name="description" content="Innoviaburst Cookie Policy - How we use cookies and similar technologies." />
-      </Helmet>
+      <SeoHead
+        title="Cookie Policy | Innoviaburst"
+        description="Innoviaburst Cookie Policy - How we use cookies and similar technologies."
+        path="/cookies"
+      />
 
       <SkipLink />
       <Navbar />

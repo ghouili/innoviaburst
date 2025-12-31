@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -142,10 +142,11 @@ export default function IndustriesPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Industries We Serve | Innoviaburst</title>
-        <meta name="description" content="Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness." />
-      </Helmet>
+      <SeoHead
+        title="Industries We Serve | Innoviaburst"
+        description="Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
+        path="/industries"
+      />
 
       <SkipLink />
       <Navbar onBookingClick={() => setBookingOpen(true)} />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -49,10 +49,19 @@ export default function WorkPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Our Work — Case Studies | Innoviaburst</title>
-        <meta name="description" content="Real automation projects with measurable outcomes. See how we've helped UK/EU businesses save time, reduce errors, and scale operations." />
-      </Helmet>
+      <SeoHead
+        title="Our Work — Case Studies | Innoviaburst"
+        description="Real automation projects with measurable outcomes. See how we've helped UK/EU businesses save time, reduce errors, and scale operations."
+        path="/works"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
+            { "@type": "ListItem", position: 2, name: "Work", item: "https://innoviaburst.com/works" },
+          ],
+        }}
+      />
 
       <SkipLink />
       <Navbar onBookingClick={() => setBookingOpen(true)} />

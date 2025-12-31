@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -39,14 +39,12 @@ export default function ComingSoonPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Coming Soon | InnoviaBurst</title>
-        <meta
-          name="description"
-          content="We're building this page to make it easier to pick the right automation or MVP path—fast."
-        />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SeoHead
+        title="Coming Soon | InnoviaBurst"
+        description="We're building this page to make it easier to pick the right automation or MVP path—fast."
+        path="/coming-soon"
+        robots="noindex, nofollow"
+      />
 
       <a
         href="#main-content"

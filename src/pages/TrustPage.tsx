@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -135,6 +135,34 @@ export default function TrustPage() {
     [],
   );
 
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: requestItems.map((q) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Available on request during onboarding.",
+        },
+      })),
+    }),
+    [requestItems]
+  );
+
+  const breadcrumbSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
+        { "@type": "ListItem", position: 2, name: "Trust & Compliance", item: "https://innoviaburst.com/trust" },
+      ],
+    }),
+    []
+  );
+
   const sectionIds = useMemo(() => tocItems.map((item) => item.id), [tocItems]);
 
   useEffect(() => {
@@ -179,13 +207,12 @@ export default function TrustPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Trust & Compliance | Innoviaburst</title>
-        <meta
-          name="description"
-          content="How InnoviaBurst protects your data: Trust Pack, DPA readiness, sub-processors, SCCs/UK Addendum, retention, incident response, and AI oversight for UK/EU buyers."
-        />
-      </Helmet>
+      <SeoHead
+        title="Trust & Compliance | Innoviaburst"
+        description="How InnoviaBurst protects your data: Trust Pack, DPA readiness, sub-processors, SCCs/UK Addendum, retention, incident response, and AI oversight for UK/EU buyers."
+        path="/trust"
+        jsonLd={[faqSchema, breadcrumbSchema]}
+      />
 
       <SkipLink />
       <Navbar onBookingClick={() => setBookingOpen(true)} />
@@ -237,7 +264,7 @@ export default function TrustPage() {
                     (item) => (
                       <div
                         key={item}
-                        className="px-3 py-2 rounded-lg border border-border/70 bg-card text-xs font-semibold text-muted-foreground min-h-[36px] flex items-center"
+                        className="flex justify-center px-3 py-2 rounded-lg border border-border/70 bg-card text-xs font-semibold text-muted-foreground min-h-[36px] items-center"
                       >
                         {item}
                       </div>
@@ -283,8 +310,8 @@ export default function TrustPage() {
         <div className="container mx-auto px-4 lg:px-6 py-14 lg:py-20">
           <div className="lg:grid lg:grid-cols-[280px,1fr] gap-10">
             {/* Sticky Table of Contents */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-28 rounded-2xl border border-border bg-card p-4 shadow-card">
+            <aside className="hidden lg:block border h-fit">
+              <div className="sticky overflow-y-auto top-28 rounded-2xl border border-border bg-card p-4 shadow-card">
                 <p className="text-sm font-semibold text-foreground mb-3">On this page</p>
                 <nav className="space-y-1" aria-label="Trust and Compliance table of contents">
                   {tocItems.map((item) => {
@@ -316,7 +343,7 @@ export default function TrustPage() {
               </div>
             </aside>
 
-            <div className="space-y-16">
+            <div className="space-y-16 min-w-0 ">
               {/* Mobile ToC */}
               <div className="lg:hidden mb-6">
                 <button

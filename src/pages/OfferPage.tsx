@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -190,10 +190,33 @@ export default function OfferPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{offer.title} | {offer.price} | Innoviaburst</title>
-        <meta name="description" content={`${offer.heroDescription} Timeline: ${offer.timeline}. ${offer.price}.`} />
-      </Helmet>
+      <SeoHead
+        title={`${offer.title} | ${offer.price} | Innoviaburst`}
+        description={`${offer.heroDescription} Timeline: ${offer.timeline}. ${offer.price}.`}
+        path={`/${slug}`}
+        ogType="website"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: offer.title,
+          description: offer.heroDescription,
+          areaServed: ["GB", "EU"],
+          provider: {
+            "@type": "Organization",
+            name: "Innoviaburst",
+            url: siteUrl,
+          },
+          offers: {
+            "@type": "Offer",
+            priceSpecification: {
+              "@type": "PriceSpecification",
+              priceCurrency: "GBP",
+              price: offer.price.replace(/[^0-9.]/g, "") || undefined,
+            },
+            availability: "https://schema.org/InStock",
+          },
+        }}
+      />
 
       <SkipLink />
       <Navbar onBookingClick={() => setBookingOpen(true)} />

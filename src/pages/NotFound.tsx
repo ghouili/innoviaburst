@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -16,14 +16,12 @@ const quickLinks = [
 const NotFound = () => {
   return (
     <>
-      <Helmet>
-        <title>Page Not Found | InnoviaBurst</title>
-        <meta
-          name="description"
-          content="The page you're looking for doesn't exist or may have moved."
-        />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SeoHead
+        title="Page Not Found | InnoviaBurst"
+        description="The page you're looking for doesn't exist or may have moved."
+        path="/404"
+        robots="noindex, nofollow"
+      />
 
       <a
         href="#main-content"

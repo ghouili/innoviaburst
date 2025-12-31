@@ -1,7 +1,6 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import type React from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -35,6 +34,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { SeoHead } from "@/components/SeoHead";
 
 const categories = ["All", "Sales", "Ops", "Support", "Finance", "Knowledge"];
 
@@ -735,16 +735,31 @@ export default function AutomationsPage() {
     ]
   );
 
+  const automationListSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Automation Library",
+      itemListOrder: "Unordered",
+      itemListElement: automations.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.title,
+        description: item.outcome,
+      })),
+    }),
+    []
+  );
+
   return (
     <>
       <SkipLink />
-      <Helmet>
-        <title>Automation Library | Innoviaburst</title>
-        <meta
-          name="description"
-          content="Browse 16+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts."
-        />
-      </Helmet>
+      <SeoHead
+        title="Automation Library | Innoviaburst"
+        description="Browse 16+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts."
+        path="/automations"
+        jsonLd={automationListSchema}
+      />
 
       <Navbar onBookingClick={() => setRequestOpen(true)} />
 
@@ -1040,7 +1055,7 @@ export default function AutomationsPage() {
         </section>
 
         {/* Newsletter Banner */}
-        <section className="py-12 lg:py-16 bg-card border-y border-border">
+        {/* <section className="py-12 lg:py-16 bg-card border-y border-border">
           <div className="container mx-auto px-4 lg:px-6">
             <div className="max-w-2xl mx-auto">
               <NewsletterForm
@@ -1052,7 +1067,7 @@ export default function AutomationsPage() {
               />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA */}
         <section className="py-16 bg-gradient-hero">
@@ -1079,12 +1094,12 @@ export default function AutomationsPage() {
 
       <Footer />
       <CookieConsent />
-      <RequestModal
+      {/* <RequestModal
         isOpen={requestOpen}
         onClose={() => setRequestOpen(false)}
         prefilledInterest={selectedAutomation}
         source="automations"
-      />
+      /> */}
       <AutomationQuickView
         automation={quickViewAutomation}
         isOpen={!!quickViewAutomation}
@@ -1095,188 +1110,6 @@ export default function AutomationsPage() {
   );
 }
 
-// function AutomationCard({
-//   automation,
-//   onRequest,
-//   onQuickView,
-// }: {
-//   automation: (typeof automations)[0];
-//   onRequest: () => void;
-//   onQuickView: () => void;
-// }) {
-//   const [stepsOpen, setStepsOpen] = useState(false);
-
-//   const handleCardClick = () => onQuickView();
-
-//   const stop = (e: React.MouseEvent) => {
-//     e.stopPropagation();
-//   };
-
-//   const { primaryTools, extraToolsCount } = useMemo(() => {
-//     const list = automation.tools ?? [];
-//     return {
-//       primaryTools: list.slice(0, 3),
-//       extraToolsCount: Math.max(0, list.length - 3),
-//     };
-//   }, [automation.tools]);
-
-//   return (
-//     <article
-//       className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all
-//                  hover:-translate-y-0.5 hover:shadow-card-hover hover:border-border/70
-//                  focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-//       onClick={handleCardClick}
-//       role="button"
-//       tabIndex={0}
-//       aria-label={`Open quick view for ${automation.title}`}
-//       onKeyDown={(e) => {
-//         if (e.key === "Enter" || e.key === " ") {
-//           e.preventDefault();
-//           handleCardClick();
-//         }
-//       }}
-//     >
-//       {/* subtle top highlight */}
-//       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary/25 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-
-//       <div className="p-5 sm:p-6">
-//         {/* Header */}
-//         <div className="flex items-start justify-between gap-3">
-//           <div className="flex flex-wrap items-center gap-2">
-//             <span className="inline-flex items-center rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold text-accent">
-//               {automation.category}
-//             </span>
-
-//             {automation.industry && (
-//               <span className="inline-flex items-center rounded-full bg-muted px-2.5 py-1 text-[11px] text-muted-foreground">
-//                 {automation.industry}
-//               </span>
-//             )}
-//           </div>
-
-//           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-//             <span className="inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-1">
-//               <Clock className="h-3 w-3" />
-//               {automation.deliveryTime}
-//             </span>
-//           </div>
-//         </div>
-
-//         {/* Title + Outcome */}
-//         <div className="mt-4">
-//           <h3 className="text-[15px] sm:text-base font-bold leading-snug text-foreground">
-//             {automation.title}
-//           </h3>
-//           <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
-//             {automation.outcome}
-//           </p>
-//         </div>
-
-//         {/* Tools */}
-//         <div className="mt-3 flex flex-wrap gap-1.5">
-//           {primaryTools.map((tool) => (
-//             <span
-//               key={tool}
-//               className="inline-flex items-center rounded-full bg-muted/70 px-2.5 py-1 text-[11px] text-muted-foreground"
-//             >
-//               {tool}
-//             </span>
-//           ))}
-//           {extraToolsCount > 0 && (
-//             <span className="inline-flex items-center rounded-full bg-muted/70 px-2.5 py-1 text-[11px] text-muted-foreground">
-//               +{extraToolsCount} tools
-//             </span>
-//           )}
-//         </div>
-
-//         {/* Secondary actions (lighter, less height) */}
-//         <div className="mt-3 flex flex-wrap items-center gap-3">
-//           <button
-//             onClick={onQuickView}
-//             onMouseDown={stop}
-//             className="inline-flex items-center gap-1.5 rounded-md px-1 py-1 text-xs text-secondary
-//                        hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-//             style={{ minHeight: 32 }}
-//           >
-//             <Eye className="h-3.5 w-3.5" />
-//             Quick view
-//           </button>
-
-//           {/* <Collapsible open={stepsOpen} onOpenChange={setStepsOpen}>
-//             <CollapsibleTrigger asChild>
-//               <button
-//                 onMouseDown={stop}
-//                 className="inline-flex items-center gap-1.5 rounded-md px-1 py-1 text-xs text-accent
-//                            hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-//                 aria-expanded={stepsOpen}
-//                 style={{ minHeight: 32 }}
-//               >
-//                 {stepsOpen ? (
-//                   <>
-//                     <ChevronUp className="h-3.5 w-3.5" />
-//                     Hide steps
-//                   </>
-//                 ) : (
-//                   <>
-//                     <ChevronDown className="h-3.5 w-3.5" />
-//                     View {automation.steps.length} steps
-//                   </>
-//                 )}
-//               </button>
-//             </CollapsibleTrigger>
-
-//             <CollapsibleContent className="pt-2">
-//               <ul className="space-y-1.5">
-//                 {automation.steps.map((step, i) => (
-//                   <li
-//                     key={i}
-//                     className="flex items-start gap-2 text-xs text-muted-foreground"
-//                   >
-//                     <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-secondary/15 text-[10px] font-bold text-secondary">
-//                       {i + 1}
-//                     </span>
-//                     <span className="leading-relaxed">{step}</span>
-//                   </li>
-//                 ))}
-//               </ul>
-//             </CollapsibleContent>
-//           </Collapsible> */}
-//         </div>
-
-//         {/* Impact strip (reads like a highlight, not extra content) */}
-//         <div className="mt-4 rounded-xl border border-accent/15 bg-accent/8 px-3 py-2">
-//           <div className="flex items-start gap-2">
-//             <Zap className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
-//             <div className="min-w-0">
-//               <div className="text-[11px] font-semibold tracking-wide text-accent/90">
-//                 EXAMPLE IMPACT
-//               </div>
-//               <div className="text-sm font-semibold text-foreground line-clamp-1">
-//                 {automation.kpi}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Primary CTA */}
-//         <div className="mt-4">
-//           <Button
-//             variant="hero"
-//             size="default"
-//             className="w-full min-h-[44px]"
-//             onClick={(e) => {
-//               e.stopPropagation();
-//               onRequest();
-//             }}
-//           >
-//             Request this build
-//             <ArrowRight className="ml-2 h-4 w-4" />
-//           </Button>
-//         </div>
-//       </div>
-//     </article>
-//   );
-// }
 
 function AutomationCard({
   automation,

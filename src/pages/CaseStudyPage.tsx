@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -92,10 +92,33 @@ export default function CaseStudyPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{study.title} | Case Study | Innoviaburst</title>
-        <meta name="description" content={`${study.problem.slice(0, 150)}... See how we automated this workflow.`} />
-      </Helmet>
+      <SeoHead
+        title={`${study.title} | Case Study | Innoviaburst`}
+        description={`${study.problem.slice(0, 150)}... See how we automated this workflow.`}
+        path={`/work/${slug}`}
+        ogType="article"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
+              { "@type": "ListItem", position: 2, name: "Work", item: "https://innoviaburst.com/work" },
+              { "@type": "ListItem", position: 3, name: study.title, item: `${siteUrl}/work/${slug}` },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: study.title,
+            description: study.problem,
+            articleSection: study.industry,
+            author: { "@type": "Organization", name: "Innoviaburst", url: siteUrl },
+            mainEntityOfPage: `${siteUrl}/work/${slug}`,
+            datePublished: "2025-01-01",
+          },
+        ]}
+      />
 
       <SkipLink />
       <Navbar onBookingClick={() => setBookingOpen(true)} />

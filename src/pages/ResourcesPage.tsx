@@ -1,6 +1,6 @@
 import { useMemo, useState, useId } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -464,13 +464,11 @@ export default function ResourcesPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Resources — Tools & Guides | Innoviaburst</title>
-        <meta
-          name="description"
-          content="Free tools and guides to help you plan your automation journey. ROI calculators, checklists, and compliance guides for UK/EU businesses."
-        />
-      </Helmet>
+      <SeoHead
+        title="Resources — Tools & Guides | Innoviaburst"
+        description="Free tools and guides to help you plan your automation journey. ROI calculators, checklists, and compliance guides for UK/EU businesses."
+        path="/resources"
+      />
 
       <SkipLink />
       <Navbar onBookingClick={() => setBookingOpen(true)} />
@@ -814,7 +812,7 @@ export default function ResourcesPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 We create custom guides and assessments for enterprise clients.
               </p>
-              <Button variant="outline" onClick={() => setBookingOpen(true)}>
+              <Button variant="hero" className="" onClick={() => setBookingOpen(true)}>
                 Request a custom resource
               </Button>
             </div>

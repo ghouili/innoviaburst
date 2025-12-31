@@ -14,7 +14,7 @@ import { RequestModal } from "@/components/RequestModal";
 import { CookieConsent } from "@/components/CookieConsent";
 import { StickyNextStep } from "@/components/StickyNextStep";
 import { SkipLink } from "@/components/SkipLink";
-import { Helmet } from "react-helmet-async";
+import { SeoHead, siteUrl } from "@/components/SeoHead";
 
 const Index = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -41,32 +41,32 @@ const Index = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Innoviaburst | AI & Automation for UK/EU SMEs — Delivered in Weeks</title>
-        <meta
-          name="description"
-          content="We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
-        />
-        <meta property="og:title" content="Innoviaburst | AI & Automation for UK/EU SMEs" />
-        <meta
-          property="og:description"
-          content="Automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks."
-        />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://innoviaburst.com" />
-        <script type="application/ld+json">
-          {JSON.stringify({
+      <SeoHead
+        title="Innoviaburst | AI & Automation for UK/EU SMEs — Delivered in Weeks"
+        description="We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
+        path="/"
+        jsonLd={[
+          {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Innoviaburst",
-            "url": "https://innoviaburst.com",
-            "description": "AI & Automation for UK/EU SMEs — Delivered in Weeks",
-            "areaServed": ["GB", "EU"],
-            "serviceType": ["AI Development", "Workflow Automation", "MVP Development"]
-          })}
-        </script>
-      </Helmet>
+            name: "Innoviaburst",
+            url: siteUrl,
+            description: "AI & Automation for UK/EU SMEs — Delivered in Weeks",
+            areaServed: ["GB", "EU"],
+            serviceType: ["AI Development", "Workflow Automation", "MVP Development"],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            url: siteUrl,
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${siteUrl}/search?q={query}`,
+              queryInput: "required name=query",
+            },
+          },
+        ]}
+      />
 
       <SkipLink />
       <div className="min-h-screen bg-background">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -59,10 +59,11 @@ export default function SubprocessorsPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Sub-Processors | Innoviaburst</title>
-        <meta name="description" content="List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling." />
-      </Helmet>
+      <SeoHead
+        title="Sub-Processors | Innoviaburst"
+        description="List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling."
+        path="/subprocessors"
+      />
 
       <SkipLink />
       <Navbar onBookingClick={() => setBookingOpen(true)} />

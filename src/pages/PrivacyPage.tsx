@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -9,10 +9,11 @@ import { ArrowLeft } from "lucide-react";
 export default function PrivacyPage() {
   return (
     <>
-      <Helmet>
-        <title>Privacy Policy | Innoviaburst</title>
-        <meta name="description" content="Innoviaburst Privacy Policy - How we collect, use, and protect your personal data." />
-      </Helmet>
+      <SeoHead
+        title="Privacy Policy | Innoviaburst"
+        description="Innoviaburst Privacy Policy - How we collect, use, and protect your personal data."
+        path="/privacy"
+      />
 
       <SkipLink />
       <Navbar />

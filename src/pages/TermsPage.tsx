@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -9,10 +9,11 @@ import { ArrowLeft } from "lucide-react";
 export default function TermsPage() {
   return (
     <>
-      <Helmet>
-        <title>Terms of Service | Innoviaburst</title>
-        <meta name="description" content="Innoviaburst Terms of Service - Terms and conditions for using our website and services." />
-      </Helmet>
+      <SeoHead
+        title="Terms of Service | Innoviaburst"
+        description="Innoviaburst Terms of Service - Terms and conditions for using our website and services."
+        path="/terms"
+      />
 
       <SkipLink />
       <Navbar />
