@@ -282,7 +282,7 @@ export default function IndustriesPage() {
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               Our automation patterns often transfer across industries. Let's discuss your specific workflows.
             </p>
-            <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)}>
+            <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto">
               Book a 15-min call
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

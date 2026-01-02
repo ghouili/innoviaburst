@@ -1,6 +1,6 @@
 import { useMemo, useState, useId } from "react";
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -452,6 +452,24 @@ export default function ResourcesPage() {
     );
   };
 
+  const resourceListSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Resources",
+      url: `${siteUrl}/resources`,
+      itemListOrder: "Unordered",
+      itemListElement: resources.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.title,
+        description: item.description,
+        url: `${siteUrl}/resources`,
+      })),
+    }),
+    []
+  );
+
   const formatUpdated = (value?: string) => {
     if (!value) return "";
     const date = new Date(value);
@@ -468,6 +486,7 @@ export default function ResourcesPage() {
         title="Resources — Tools & Guides | Innoviaburst"
         description="Free tools and guides to help you plan your automation journey. ROI calculators, checklists, and compliance guides for UK/EU businesses."
         path="/resources"
+        jsonLd={resourceListSchema}
       />
 
       <SkipLink />
@@ -654,7 +673,7 @@ export default function ResourcesPage() {
                   <button
                     key={cat.id}
                     onClick={() => setActiveCategory(cat.id)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors min-h-[36px] ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors min-h-[44px] ${
                       activeCategory === cat.id
                         ? "bg-secondary text-secondary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"

@@ -251,7 +251,7 @@ export default function OfferPage() {
                   <strong>Best for:</strong> {offer.bestFor}
                 </p>
 
-                <Button variant="hero" size="xl" onClick={() => setBookingOpen(true)}>
+                <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] text-sm sm:text-base px-5 sm:px-8">
                   Book a 15-min call
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -272,9 +272,9 @@ export default function OfferPage() {
             </div>
           </div>
 
-          {/* Sticky CTA for mobile */}
-          <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-card border-t border-border z-50">
-            <Button variant="hero" className="w-full" onClick={() => setBookingOpen(true)}>
+          {/* Sticky CTA for mobile - safe-area aware */}
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-card/95 backdrop-blur-sm border-t border-border z-50 pb-[max(1rem,env(safe-area-inset-bottom))]">
+            <Button variant="hero" className="w-full min-h-[48px]" onClick={() => setBookingOpen(true)}>
               Book a 15-min call
             </Button>
           </div>
@@ -358,7 +358,7 @@ export default function OfferPage() {
                 <div key={i} className="border border-border rounded-xl overflow-hidden">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full p-4 flex items-center justify-between text-left bg-card hover:bg-muted/50 transition-colors"
+                    className="w-full p-4 flex items-center justify-between text-left bg-card hover:bg-muted/50 transition-colors min-h-[48px]"
                   >
                     <span className="font-medium text-foreground">{item.q}</span>
                     {openFaq === i ? (
@@ -405,7 +405,7 @@ export default function OfferPage() {
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
               Book a quick call to discuss your requirements. We'll scope your project and get back to you within 48 hours.
             </p>
-            <Button variant="hero" size="xl" onClick={() => setBookingOpen(true)}>
+            <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] text-sm sm:text-base px-5 sm:px-8">
               Book a 15-min call
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

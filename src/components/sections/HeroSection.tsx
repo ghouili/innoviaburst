@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -11,6 +12,8 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onBookingClick, onRequestClick }: HeroSectionProps) {
+  const { t } = useTranslation();
+
   const handlePrimaryClick = useCallback(() => {
     window.dispatchEvent(new CustomEvent("analytics", { detail: { event: "cta_click", location: "hero_primary" } }));
     if (onRequestClick) {
@@ -24,69 +27,68 @@ export function HeroSection({ onBookingClick, onRequestClick }: HeroSectionProps
     window.dispatchEvent(new CustomEvent("analytics", { detail: { event: "cta_click", location: "hero_secondary" } }));
   }, []);
 
-  return (
+    return (
     <section className="relative min-h-[90vh] pt-20 lg:pt-24 overflow-hidden bg-gradient-hero">
-      {/* Background glow */}
       <div className="absolute inset-0 bg-gradient-glow pointer-events-none" aria-hidden="true" />
 
       <div className="container mx-auto px-4 lg:px-6 py-12 lg:py-16">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Text Content */}
-          <div className="space-y-8 animate-fade-in-up">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          
+          {/* Visual - Hidden on mobile for performance, shown on lg+ (order-2 on desktop = RIGHT side) */}
+          <div className="hidden lg:flex order-2 justify-center lg:justify-end">
+            <HeroVisual className="animate-slide-in-right" />
+          </div>
+
+          {/* Text content - order-1 on desktop = LEFT side */}
+          <div className="order-1 space-y-8 animate-fade-in-up">
             <div className="space-y-6">
-              {/* Single promise headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-foreground">
-                Ship <span className="text-gradient-brand">AI & automation</span> in weeks, not months.
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-foreground">
+                {t("hero.headlinePre", "Ship")} <span className="text-gradient-brand">{t("hero.headlineHighlight", "AI & automation")}</span> {t("hero.headlinePost", "in weeks, not months.")}
               </h1>
-              
-              {/* One proof line */}
-              <p className="text-lg lg:text-xl text-muted-foreground max-w-lg leading-relaxed">
-                We build workflow automations, AI copilots, and MVPs for UK/EU SMEs with clear scope, measurable ROI, and compliance-ready delivery.
+
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-lg leading-relaxed">
+                {t("hero.subheadline")}
               </p>
             </div>
 
-            {/* Two CTAs only */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button 
                 variant="hero" 
-                size="xl" 
-                onClick={handlePrimaryClick}
-                className="min-h-[52px] gap-2"
+                size="lg" 
+                onClick={handlePrimaryClick} 
+                className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] gap-2 text-sm sm:text-base px-5 sm:px-8"
               >
-                Request an automation plan
-                <ArrowRight className="w-5 h-5" />
+                {t("hero.primaryCta", "Request an automation plan")}
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
+
               <Button 
                 variant="hero-outline" 
-                size="xl" 
+                size="lg" 
                 onClick={handleSecondaryClick} 
-                asChild
-                className="min-h-[52px]"
+                asChild 
+                className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] text-sm sm:text-base px-5 sm:px-8"
               >
-                <Link to="/automations">See automations</Link>
+                <Link to="/automations">{t("hero.secondaryCta", "See automations")}</Link>
               </Button>
             </div>
 
-            {/* Proof stats - compact */}
-            <div className="flex flex-wrap gap-6 pt-2 text-sm text-muted-foreground">
+            <div className="flex flex-wrap gap-4 sm:gap-6 pt-2 text-xs sm:text-sm text-muted-foreground">
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent" aria-hidden="true" />
-                First delivery in ~10 days
+                <span className="w-2 h-2 rounded-full bg-accent shrink-0" aria-hidden="true" />
+                {t("hero.trustPoints.delivery", "First delivery in ~10 days")}
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent" aria-hidden="true" />
-                UK GDPR ready
+                <span className="w-2 h-2 rounded-full bg-accent shrink-0" aria-hidden="true" />
+                {t("hero.trustPoints.gdpr", "UK GDPR ready")}
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-accent" aria-hidden="true" />
-                Tool-agnostic
+                <span className="w-2 h-2 rounded-full bg-accent shrink-0" aria-hidden="true" />
+                {t("hero.trustPoints.agnostic", "Tool-agnostic")}
               </span>
             </div>
           </div>
 
-          {/* 3D Hero Visual - Lazy loaded with fallbacks */}
-          {/* <Hero3DVisual className="animate-slide-in-right" /> */}
-          <HeroVisual className="" />
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -6,13 +7,13 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import logo from "@/assets/innoviaburst-logo.png";
 import logoT from "@/assets/Logo-Text.png";
 
-// Outcome-driven navigation labels
+// Navigation links with i18n keys
 const navLinks = [
-  { label: "Automations", href: "/automations" },
-  { label: "Offers", href: "/#offers" },
-  { label: "Work", href: "/work" },
-  { label: "Trust", href: "/trust" },
-  { label: "Resources", href: "/resources" },
+  { labelKey: "nav.automations", href: "/automations" },
+  { labelKey: "nav.offers", href: "/#offers" },
+  { labelKey: "nav.work", href: "/work" },
+  { labelKey: "nav.trust", href: "/trust" },
+  { labelKey: "nav.resources", href: "/resources" },
 ];
 
 interface NavbarProps {
@@ -20,6 +21,7 @@ interface NavbarProps {
 }
 
 export function Navbar({ onBookingClick }: NavbarProps = {}) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -113,7 +115,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-end gap-0.5 shrink-0 focus:outline-none focus:ring-2 focus:ring-ring rounded-lg"
+            className="flex items-end gap-0.5 shrink-0 focus:outline-none focus:ring-0 focus:ring-ring rounded-lg"
           >
             <img src={logo} alt="Innoviaburst - Home" className="h-10 lg:h-16 w-auto " />
             <div className="h-full flex items-end ">
@@ -127,6 +129,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
             {navLinks.map((link) => {
               const isExternal = link.href.includes('#');
               const active = isActive(link.href);
+              const label = t(link.labelKey);
               
               return isExternal ? (
                 <a
@@ -139,7 +142,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                       : "text-foreground/80 hover:text-secondary hover:bg-muted"
                   }`}
                 >
-                  {link.label}
+                  {label}
                 </a>
               ) : (
                 <Link
@@ -151,7 +154,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                       : "text-foreground/80 hover:text-secondary hover:bg-muted"
                   }`}
                 >
-                  {link.label}
+                  {label}
                 </Link>
               );
             })}
@@ -166,7 +169,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
               onClick={handleCTAClick}
               className="min-h-[44px]"
             >
-              Book a call
+              {t("nav.bookCall")}
             </Button>
           </div>
 
@@ -175,7 +178,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
             ref={menuButtonRef}
             className="lg:hidden p-2 text-foreground min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label={isOpen ? t("nav.closeMenu", "Close menu") : t("nav.openMenu", "Open menu")}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
@@ -190,11 +193,12 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
-            aria-label="Navigation menu"
+            aria-label={t("nav.menuLabel", "Navigation menu")}
             className="lg:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-lg animate-fade-in"
           >
             <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
               {navLinks.map((link) => {
+                const label = t(link.labelKey);
                 const isExternal = link.href.includes('#');
                 const active = isActive(link.href);
                 
@@ -209,7 +213,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                         : "text-foreground/80 hover:text-secondary hover:bg-muted"
                     }`}
                   >
-                    {link.label}
+                    {label}
                   </a>
                 ) : (
                   <Link
@@ -221,7 +225,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                         : "text-foreground/80 hover:text-secondary hover:bg-muted"
                     }`}
                   >
-                    {link.label}
+                    {label}
                   </Link>
                 );
               })}
@@ -234,7 +238,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                 className="mt-4 min-h-[48px]" 
                 onClick={handleCTAClick}
               >
-                Book a call
+                {t("nav.bookCall")}
               </Button>
             </div>
           </div>

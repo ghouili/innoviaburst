@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Zap, Settings, Rocket, Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -8,47 +9,11 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
-const offers = [
-  {
-    slug: "ai-ops-sprint",
-    icon: Zap,
-    title: "AI Ops Sprint",
-    timeline: "10 business days",
-    bestFor: "Ops teams drowning in manual steps",
-    deliverables: [
-      "1 workflow automated OR 1 copilot shipped (scoped)",
-      "Lightweight documentation + handover",
-    ],
-    metrics: "Hours saved/week, faster response time",
-    price: "From £3k",
-    cta: "Get a scope in 48h",
-  },
-  {
-    slug: "automation-build",
-    icon: Settings,
-    title: "Automation Build",
-    timeline: "4–6 weeks",
-    bestFor: "Cross-tool automation + approvals + reporting",
-    deliverables: [
-      "Multi-system workflow (CRM/helpdesk/invoicing)",
-      "Logging + alerts + retry strategy",
-    ],
-    metrics: "Cycle-time reduction, fewer errors",
-    price: "From £7k",
-    cta: "Get a scope in 48h",
-    featured: true,
-  },
-  {
-    slug: "mvp-launch",
-    icon: Rocket,
-    title: "MVP Launch",
-    timeline: "6–10 weeks",
-    bestFor: "Startups & SMEs launching a new product",
-    deliverables: ["MVP build + deploy + analytics", "Basic security + roles"],
-    metrics: "Time-to-market, activation rate",
-    price: "From £13k",
-    cta: "Get a scope in 48h",
-  },
+// Offer keys for i18n lookup
+const offerKeys = [
+  { slug: "ai-ops-sprint", key: "sprint", icon: Zap, featured: false },
+  { slug: "automation-build", key: "build", icon: Settings, featured: true },
+  { slug: "mvp-launch", key: "mvp", icon: Rocket, featured: false },
 ];
 
 interface OffersSectionProps {
@@ -57,89 +22,68 @@ interface OffersSectionProps {
 
 const featuredIndex = Math.max(
   0,
-  offers.findIndex((o) => o.featured)
+  offerKeys.findIndex((o) => o.featured)
 );
 
-const getMultiSystemLabel = (offer) => {
-  // derived ONLY from offer data (deliverables/titles), no extra hardcoding
-  const text = [offer.title, ...(offer.deliverables || [])]
-    .join(" ")
-    .toLowerCase();
-  if (text.includes("multi-system") || text.includes("multi system"))
-    return "Multiple";
-  if (
-    text.includes("crm/") ||
-    text.includes("helpdesk/") ||
-    text.includes("invoicing")
-  )
-    return "Multiple";
-  return "1 system";
-};
-
-const getDocumentationLabel = (offer) => {
-  const text = (offer.deliverables || []).join(" ").toLowerCase();
-  if (text.includes("lightweight documentation")) return "Lightweight";
-  if (text.includes("documentation")) return "Full";
-  // fallback based on scope implied by deliverables length
-  return (offer.deliverables?.length || 0) >= 2 ? "Full" : "Lightweight";
-};
-
-const rows = [
-  { label: "Timeline", value: (o) => o.timeline },
-  { label: "Starting price", value: (o) => o.price },
-  { label: "Multi-system integration", value: (o) => getMultiSystemLabel(o) },
-  { label: "Documentation", value: (o) => getDocumentationLabel(o) },
-  { label: "Best for", value: (o) => o.bestFor },
+// Row keys for comparison table
+const rowKeys = [
+  { labelKey: "offers.table.timeline", valueKey: "timeline" },
+  { labelKey: "offers.table.startingPrice", valueKey: "price" },
+  { labelKey: "offers.table.multiSystem", valueKey: "multiSystem" },
+  { labelKey: "offers.table.documentation", valueKey: "documentation" },
+  { labelKey: "offers.table.bestFor", valueKey: "bestForShort" },
 ];
 
 function OffersComparisonTable() {
+  const { t } = useTranslation();
+  
   return (
-    <div className="min-w-[600px]">
+    <div className="min-w-[560px]">
       <table className="w-full text-sm">
       <thead className="bg-muted/30">
         <tr className="border-b border-border">
           <th
             scope="col"
-            className="py-4 px-4 text-left font-semibold text-foreground"
+            className="py-3 px-3 sm:py-4 sm:px-4 text-left font-semibold text-foreground text-xs sm:text-sm"
           >
-            Feature
+            {t("offers.table.feature", "Feature")}
           </th>
 
-          {offers.map((offer, idx) => (
+          {offerKeys.map((offer, idx) => (
             <th
               key={offer.slug}
               scope="col"
               className={[
-                "py-4 px-4 text-center font-semibold",
+                "py-3 px-2 sm:py-4 sm:px-4 text-center font-semibold text-xs sm:text-sm",
                 idx === featuredIndex ? "text-accent" : "text-foreground",
               ].join(" ")}
             >
-              {offer.title}
+              {t(`offers.${offer.key}.title`)}
             </th>
           ))}
         </tr>
       </thead>
 
       <tbody className="text-muted-foreground">
-        {rows.map((row, rowIdx) => (
+        {rowKeys.map((row, rowIdx) => (
           <tr
-            key={row.label}
+            key={row.labelKey}
             className={
-              rowIdx < rows.length - 1 ? "border-b border-border/50" : ""
+              rowIdx < rowKeys.length - 1 ? "border-b border-border/50" : ""
             }
           >
-            <td className="py-3 px-4 text-foreground/90">{row.label}</td>
+            <td className="py-2 px-3 sm:py-3 sm:px-4 text-foreground/90 text-xs sm:text-sm">{t(row.labelKey)}</td>
 
-            {offers.map((offer, idx) => (
+            {offerKeys.map((offer, idx) => (
               <td
-                key={`${row.label}-${offer.slug}`}
+                key={`${row.labelKey}-${offer.slug}`}
                 className={[
-                  "py-3 px-4 text-center",
-                  row.label === "Best for" ? "text-xs" : "",
+                  "py-2 px-2 sm:py-3 sm:px-4 text-center text-xs sm:text-sm",
+                  row.valueKey === "bestForShort" ? "text-xs" : "",
                   idx === featuredIndex ? "text-foreground" : "",
                 ].join(" ")}
               >
-                {row.value(offer)}
+                {t(`offers.${offer.key}.${row.valueKey}`)}
               </td>
             ))}
           </tr>
@@ -151,6 +95,7 @@ function OffersComparisonTable() {
 }
 
 export function OffersSection({ onBookingClick }: OffersSectionProps) {
+  const { t } = useTranslation();
   const [isCompareOpen, setIsCompareOpen] = useState(false);
 
   const handleOfferClick = (offerTitle: string) => {
@@ -166,17 +111,21 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
       <div className="container mx-auto px-4 lg:px-6">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            Productised <span className="text-gradient-brand">Offers</span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            {t("offers.title", "Productised")} <span className="text-gradient-brand">{t("offers.titleHighlight", "Offers")}</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Fixed scope. Clear timelines. Predictable outcomes.
+          <p className="text-base sm:text-lg text-muted-foreground">
+            {t("offers.subtitle", "Fixed scope. Clear timelines. Predictable outcomes.")}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
-          {offers.map((offer, index) => (
+          {offerKeys.map((offer, index) => {
+            const IconComponent = offer.icon;
+            const deliverables = t(`offers.${offer.key}.deliverables`, { returnObjects: true }) as string[];
+            
+            return (
             <div
-              key={index}
+              key={offer.slug}
               className={`relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
                 offer.featured
                   ? "bg-card border-accent shadow-glow"
@@ -185,12 +134,12 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
             >
               {offer.featured && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent text-accent-foreground text-xs font-semibold rounded-full">
-                  Most Popular
+                  {t("offers.mostPopular")}
                 </div>
               )}
 
-              <div className=" flex flex-col justify-between h-full gap-6">
-                <div className=" space-y-6">
+              <div className="flex flex-col justify-between h-full gap-6">
+                <div className="space-y-6">
                   {/* Icon & Title */}
                   <div className="flex items-center gap-4">
                     <div
@@ -198,7 +147,7 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                         offer.featured ? "bg-accent/20" : "bg-muted"
                       }`}
                     >
-                      <offer.icon
+                      <IconComponent
                         className={`w-6 h-6 ${
                           offer.featured ? "text-accent" : "text-secondary"
                         }`}
@@ -206,10 +155,10 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-foreground">
-                        {offer.title}
+                        {t(`offers.${offer.key}.title`)}
                       </h3>
                       <p className="text-sm text-accent font-medium">
-                        {offer.timeline}
+                        {t(`offers.${offer.key}.timeline`)}
                       </p>
                     </div>
                   </div>
@@ -218,19 +167,19 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                   <div className="py-3 px-4 bg-muted rounded-lg">
                     <p className="text-sm text-muted-foreground">
                       <span className="font-semibold text-foreground">
-                        Best for:
+                        {t("offers.bestFor")}:
                       </span>{" "}
-                      {offer.bestFor}
+                      {t(`offers.${offer.key}.bestFor`)}
                     </p>
                   </div>
 
                   {/* Deliverables */}
                   <div className="space-y-3">
                     <p className="text-sm font-semibold text-foreground">
-                      Deliverables:
+                      {t("offers.deliverables")}:
                     </p>
                     <ul className="space-y-2">
-                      {offer.deliverables.map((item, i) => (
+                      {Array.isArray(deliverables) && deliverables.map((item, i) => (
                         <li
                           key={i}
                           className="flex items-start gap-2 text-sm text-muted-foreground"
@@ -245,18 +194,18 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                   {/* Success Metrics */}
                   <div className="text-sm">
                     <span className="font-semibold text-foreground">
-                      Success metrics:{" "}
+                      {t("offers.successMetrics")}:{" "}
                     </span>
                     <span className="text-muted-foreground">
-                      {offer.metrics}
+                      {t(`offers.${offer.key}.metrics`)}
                     </span>
                   </div>
                 </div>
-                <div className=" space-y-6">
+                <div className="space-y-6">
                   {/* Price */}
                   <div className="pt-2 border-t border-border">
                     <p className="text-2xl font-bold text-gradient-orange">
-                      {offer.price}
+                      {t(`offers.${offer.key}.price`)}
                     </p>
                   </div>
 
@@ -265,20 +214,19 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                     variant={offer.featured ? "hero" : "outline"}
                     size="lg"
                     className="w-full min-h-[48px]"
-                    onClick={() => handleOfferClick(offer.title)}
+                    onClick={() => handleOfferClick(t(`offers.${offer.key}.title`))}
                     asChild
                   >
-                    <Link to={`/${offer.slug}`}>{offer.cta}</Link>
+                    <Link to={`/${offer.slug}`}>{t("offers.getScope")}</Link>
                   </Button>
                 </div>
               </div>
             </div>
-          ))}
+          )})}
         </div>
         {/* Disclaimer under the pricing cards */}
         <p className="mt-4 text-center text-sm text-muted-foreground">
-          All costs subject to scope — priced from £450/day (tools &amp;
-          subscriptions billed separately).
+          {t("offers.disclaimer", "All costs subject to scope — priced from £450/day (tools & subscriptions billed separately).")}
         </p>
 
         {/* Comparison Accordion */}
@@ -292,7 +240,7 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
               variant="ghost"
               className="w-full flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground"
             >
-              Compare offers
+              {t("offers.compareOffers")}
               <ChevronDown
                 className={`w-4 h-4 transition-transform duration-200 ${
                   isCompareOpen ? "rotate-180" : ""
@@ -301,7 +249,11 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
             </Button>
           </CollapsibleTrigger>
           <CollapsibleContent className="mt-4">
-            <div className="overflow-x-auto bg-card rounded-xl border border-border p-4">
+            {/* Scroll hint for mobile users */}
+            <p className="text-xs text-muted-foreground text-center mb-2 sm:hidden">
+              {t("offers.swipeHint", "← Swipe to compare →")}
+            </p>
+            <div className="overflow-x-auto bg-card rounded-xl border border-border p-4 scrollbar-hide">
               {/* <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border">

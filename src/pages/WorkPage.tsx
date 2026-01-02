@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -47,20 +47,41 @@ const caseStudies = [
 export default function WorkPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
+  const breadcrumbSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
+        { "@type": "ListItem", position: 2, name: "Work", item: "https://innoviaburst.com/works" },
+      ],
+    }),
+    []
+  );
+
+  const workListSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Case Studies",
+      itemListOrder: "Unordered",
+      itemListElement: caseStudies.map((study, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: study.title,
+        url: `${siteUrl}/work/${study.slug}`,
+      })),
+    }),
+    []
+  );
+
   return (
     <>
       <SeoHead
         title="Our Work — Case Studies | Innoviaburst"
         description="Real automation projects with measurable outcomes. See how we've helped UK/EU businesses save time, reduce errors, and scale operations."
         path="/works"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
-            { "@type": "ListItem", position: 2, name: "Work", item: "https://innoviaburst.com/works" },
-          ],
-        }}
+        jsonLd={[breadcrumbSchema, workListSchema]}
       />
 
       <SkipLink />
@@ -207,7 +228,7 @@ export default function WorkPage() {
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
               Let's discuss how we can help you achieve similar results.
             </p>
-            <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)}>
+            <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto">
               Book a 15-min call
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

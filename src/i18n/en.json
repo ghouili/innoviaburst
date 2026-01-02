@@ -1,5 +1,6 @@
 {
   "nav": {
+    "automations": "Automations",
     "offers": "Offers",
     "solutions": "Solutions",
     "industries": "Industries",
@@ -7,20 +8,32 @@
     "trust": "Trust",
     "resources": "Resources",
     "bookCall": "Book a 15-min call",
-    "seeAutomations": "See example automations"
+    "seeAutomations": "See automations",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "menuLabel": "Navigation menu"
   },
   "hero": {
-    "headline": "AI & Automation delivered in weeks — not months.",
-    "subheadline": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with a compliance-ready delivery approach.",
-    "deliveryNote": "Typical first delivery in 10 days. Clear scope. Measurable ROI.",
-    "bookCall": "Book a 15-min call",
-    "seeAutomations": "See example automations",
+    "headlinePre": "Ship",
+    "headlineHighlight": "AI & automation",
+    "headlinePost": "in weeks, not months.",
+    "headline": "Ship AI & automation in weeks, not months.",
+    "subheadline": "We build workflow automations, AI copilots, and MVPs for UK/EU SMEs — with clear scope, measurable ROI, and compliance-ready delivery.",
+    "deliveryNote": "First delivery in ~10 days. Clear scope. Measurable ROI.",
+    "primaryCta": "Request an automation plan",
+    "secondaryCta": "See automations",
     "trustPoints": {
-      "outcome": "Outcome-first delivery",
-      "remote": "Remote-first, UK/EU timezone overlap",
-      "team": "Automation + AI + MVP in one team",
-      "compliance": "Compliance-aware (UK GDPR / EU)"
+      "delivery": "First delivery in ~10 days",
+      "gdpr": "UK GDPR ready",
+      "agnostic": "Tool-agnostic"
     }
+  },
+  "proofStrip": {
+    "delivery": "Delivery in weeks, not months",
+    "roi": "Measurable ROI from day one",
+    "compliance": "UK/EU data compliance built-in",
+    "tools": "Works with your existing tools",
+    "oversight": "Human oversight on every project"
   },
   "booking": {
     "title": "Book Your Call",
@@ -36,30 +49,66 @@
     "step3": "Start date + timeline"
   },
   "offers": {
-    "title": "Productised Offers",
+    "title": "Productised",
+    "titleHighlight": "Offers",
     "subtitle": "Fixed scope. Clear timelines. Predictable outcomes.",
     "compareOffers": "Compare offers",
     "getScope": "Get a scope in 48h",
     "bestFor": "Best for",
     "deliverables": "Deliverables",
     "successMetrics": "Success metrics",
+    "mostPopular": "Most Popular",
+    "disclaimer": "All costs subject to scope — priced from £450/day (tools & subscriptions billed separately).",
+    "swipeHint": "← Swipe to compare →",
+    "table": {
+      "feature": "Feature",
+      "timeline": "Timeline",
+      "startingPrice": "Starting price",
+      "multiSystem": "Multi-system",
+      "documentation": "Documentation",
+      "bestFor": "Best for"
+    },
     "sprint": {
       "title": "AI Ops Sprint",
       "timeline": "10 business days",
-      "bestFor": "Ops teams drowning in manual steps",
-      "price": "From £5k"
+      "bestFor": "Ops teams drowning in manual tasks",
+      "bestForShort": "Quick wins",
+      "deliverables": [
+        "1 workflow automated OR 1 AI copilot deployed",
+        "Lightweight documentation + handover session"
+      ],
+      "metrics": "Hours saved/week, faster response time",
+      "price": "From £3k",
+      "multiSystem": "1 system",
+      "documentation": "Lightweight"
     },
     "build": {
       "title": "Automation Build",
       "timeline": "4–6 weeks",
-      "bestFor": "Cross-tool automation + approvals + reporting",
-      "price": "£15k–£30k"
+      "bestFor": "Cross-tool automation with approvals & reporting",
+      "bestForShort": "Complex workflows",
+      "deliverables": [
+        "Multi-system workflow (CRM, helpdesk, invoicing)",
+        "Logging, alerts, and retry strategy included"
+      ],
+      "metrics": "Cycle-time reduction, fewer manual errors",
+      "price": "From £7k",
+      "multiSystem": "Multiple",
+      "documentation": "Full"
     },
     "mvp": {
       "title": "MVP Launch",
       "timeline": "6–10 weeks",
       "bestFor": "Startups & SMEs launching a new product",
-      "price": "From £25k"
+      "bestForShort": "New products",
+      "deliverables": [
+        "MVP build, deploy, and analytics dashboard",
+        "Security, user roles, and compliance-ready setup"
+      ],
+      "metrics": "Time-to-market, user activation rate",
+      "price": "From £13k",
+      "multiSystem": "Multiple",
+      "documentation": "Full"
     }
   },
   "work": {
@@ -76,18 +125,54 @@
     }
   },
   "trust": {
-    "title": "Trust & Compliance",
-    "subtitle": "How we handle your data and deliver with confidence.",
-    "downloadPack": "Download Trust Pack",
-    "viewPolicy": "View full policy"
+    "title": "Trust &",
+    "titleHighlight": "Compliance",
+    "subtitle": "Security and compliance aren't afterthoughts — they're built in from day one.",
+    "downloadPack": "Download Trust Pack (PDF)",
+    "viewPage": "View full Trust & Compliance page",
+    "viewPolicy": "View full policy",
+    "disclaimer": "Not legal advice. For compliance questions, consult a qualified legal professional.",
+    "items": {
+      "access": {
+        "title": "Least-privilege access",
+        "description": "Role-based access by default. We only request the permissions essential to your scoped delivery."
+      },
+      "subprocessors": {
+        "title": "Sub-processor transparency",
+        "description": "Full visibility into tools and services involved. Material changes notified with reasonable notice."
+      },
+      "retention": {
+        "title": "Retention & deletion",
+        "description": "Project data retained only for delivery + 30 days. Returned or deleted on request."
+      },
+      "incident": {
+        "title": "Incident readiness",
+        "description": "Documented incident response process. Client notification for any events affecting your data."
+      },
+      "dpa": {
+        "title": "DPA-ready",
+        "description": "UK/EU-friendly Data Processing Agreement available for processor engagements."
+      },
+      "ai": {
+        "title": "AI transparency",
+        "description": "Clear disclosure where AI is used. Human review checkpoints for sensitive or high-impact outputs."
+      }
+    }
   },
   "contact": {
-    "title": "Ready to remove manual work this month?",
-    "subtitle": "Book a quick call or tell us about your challenges.",
-    "responseTime": "We reply within 24 hours (UK business days).",
+    "title": "Ready to automate",
+    "titleHighlight": "this month",
+    "subtitle": "Tell us about your workflow challenge. We'll respond with a clear scope within 48 hours.",
+    "responseTime": "We reply within 24 hours (UK business days)",
+    "primaryCta": "Request an automation plan",
+    "emailCta": "Email us directly",
     "bookCall": "Book a call",
     "emailUs": "Email us",
     "formTitle": "Or tell us about your project"
+  },
+  "stickyBar": {
+    "primaryCta": "Request an automation plan",
+    "secondaryCta": "Book a 15-min call"
   },
   "footer": {
     "tagline": "AI & Automation delivered in weeks. UK/EU focused, compliance-ready.",
@@ -99,6 +184,53 @@
     "companyDetails": "Innoviaburst Ltd (Company No. XXXXXXXX) — Registered in England and Wales",
     "copyright": "© {{year}} Innoviaburst. All rights reserved.",
     "complianceNote": "Built with focus on UK GDPR & EU compliance readiness."
+  },
+  "solutions": {
+    "title": "Top",
+    "titleHighlight": "Workflows",
+    "subtitle": "Proven automation patterns that deliver measurable ROI.",
+    "whatItFixes": "What it fixes",
+    "typicalTools": "Typical tools",
+    "exampleKpi": "Example KPI",
+    "cta": "See full Automations Library",
+    "items": {
+      "leadToMeeting": {
+        "title": "Lead-to-Meeting in 60 Seconds",
+        "fixes": "Hot leads sit unassigned, follow-ups are delayed, and prospects go cold.",
+        "tools": "HubSpot, Slack, Calendly, Webhook",
+        "kpi": "Response time: hours → minutes"
+      },
+      "demoQualification": {
+        "title": "Demo Request Qualification & Routing",
+        "fixes": "Low-context requests waste sales time; good-fit leads wait too long.",
+        "tools": "HubSpot, Slack, Calendly, Gmail",
+        "kpi": "More qualified calls, fewer no-shows"
+      },
+      "supportTriage": {
+        "title": "AI Support Triage + Draft Reply",
+        "fixes": "Repetitive tickets and manual routing slow teams and break SLAs.",
+        "tools": "Zendesk, Slack, OpenAI, Notion",
+        "kpi": "30–60% faster first response"
+      },
+      "dunning": {
+        "title": "Smart Dunning + CRM Sync",
+        "fixes": "Failed payments cause churn and revenue leakage; follow-up is manual.",
+        "tools": "Stripe, HubSpot, Gmail, Slack",
+        "kpi": "Higher recovery rate, fewer manual chases"
+      },
+      "onboarding": {
+        "title": "Sales-to-Onboarding Handoff",
+        "fixes": "Post-sale steps get missed, delaying time-to-value and increasing churn.",
+        "tools": "HubSpot, Notion, Slack, Gmail",
+        "kpi": "Zero onboarding misses, faster activation"
+      },
+      "knowledgeBase": {
+        "title": "AI Knowledge Base Builder",
+        "fixes": "Knowledge is scattered, answers repeat, and onboarding is painfully slow.",
+        "tools": "Notion, Zendesk, OpenAI, Slack",
+        "kpi": "50% fewer repetitive tickets"
+      }
+    }
   },
   "cookies": {
     "title": "We value your privacy",
@@ -118,5 +250,451 @@
     "getStarted": "Get started",
     "contactUs": "Contact us",
     "backToHome": "Back to home"
+  },
+  "automationsPage": {
+    "title": "Automation",
+    "titleHighlight": "Library",
+    "subtitle": "Example workflows we build for UK/EU businesses. Each shows delivery time, tools, and expected impact.",
+    "metaTitle": "Automation Library | Innoviaburst",
+    "metaDescription": "Browse 10+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts.",
+    "backToHome": "Back to home",
+    "searchPlaceholder": "Search automations...",
+    "sort": "Sort",
+    "sortOptions": {
+      "impact": "Most ROI",
+      "fastest": "Fastest delivery",
+      "popular": "Most requested",
+      "newest": "Newest"
+    },
+    "filters": "Filters",
+    "filterTools": "Tools",
+    "filterDelivery": "Delivery time",
+    "filterIndustry": "Industry",
+    "weeks": "weeks",
+    "weeksPlus": "4+ weeks",
+    "close": "Close",
+    "clearFilters": "Clear filters",
+    "clearAll": "Clear all",
+    "resultsCount": "{{count}} automation found",
+    "resultsCountPlural": "{{count}} automations found",
+    "noResults": "No automations match your filters.",
+    "categories": {
+      "all": "All",
+      "sales": "Sales",
+      "ops": "Ops",
+      "support": "Support",
+      "finance": "Finance",
+      "knowledge": "Knowledge"
+    },
+    "industries": {
+      "all": "All",
+      "b2b": "B2B",
+      "b2c": "B2C",
+      "saas": "SaaS",
+      "services": "Services",
+      "retail": "Retail"
+    },
+    "card": {
+      "quickView": "Quick view",
+      "requestBuild": "Request this build",
+      "exampleImpact": "EXAMPLE IMPACT"
+    },
+    "quickView": {
+      "close": "Close",
+      "outcome": "Outcome",
+      "problem": "The Problem",
+      "workflowSteps": "Workflow Steps",
+      "toolsInvolved": "Tools Involved",
+      "typicalInputs": "Typical Inputs",
+      "outputs": "Outputs",
+      "inputs": ["Trigger event/form", "Source data", "Rules/criteria"],
+      "outputsList": ["Automated actions", "Notifications", "Updated records"]
+    },
+    "cta": {
+      "title": "Don't see your workflow?",
+      "subtitle": "We build custom automations tailored to your exact tools and processes.",
+      "button": "Request a custom build"
+    },
+    "items": {
+      "leadToMeeting": {
+        "title": "Lead-to-Meeting in 60 Seconds",
+        "outcome": "Route leads instantly + book meetings faster",
+        "problem": "Leads sit unassigned, follow-ups are slow, and hot prospects drop before a rep responds.",
+        "steps": [
+          "Lead captured (website form / Typeform)",
+          "Enrich lead (company + role + region) via API",
+          "Create/update contact + deal in CRM (HubSpot)",
+          "Assign owner by rules (territory/segment/round-robin)",
+          "Send Slack alert to owner with lead summary",
+          "Send booking link + smart follow-up email",
+          "Start SLA timer + create follow-up task"
+        ],
+        "kpi": "EXAMPLE: response time reduced from hours to minutes"
+      },
+      "aiSupportTriage": {
+        "title": "AI Support Triage + Draft Reply",
+        "outcome": "Auto-prioritise tickets + draft responses with AI",
+        "problem": "Support teams waste time reading, routing, and replying to repetitive tickets while SLAs slip.",
+        "steps": [
+          "New ticket/email received",
+          "AI classifies topic + urgency + sentiment",
+          "Route to correct queue/owner",
+          "Generate draft reply + knowledge suggestions",
+          "Post summary in Slack + request approval for high-risk cases",
+          "Start SLA tracking + escalate if overdue"
+        ],
+        "kpi": "EXAMPLE: 30–60% faster first response"
+      },
+      "stripeDunning": {
+        "title": "Stripe Payment Failed → Smart Dunning + CRM Update",
+        "outcome": "Recover revenue automatically when payments fail",
+        "problem": "Failed payments cause churn and revenue leakage; teams follow up manually and inconsistently.",
+        "steps": [
+          "Stripe event received (payment failed / requires action)",
+          "Check customer + invoice context",
+          "Update CRM deal/subscription status",
+          "Send dunning email sequence (step 1/2/3)",
+          "Escalate to Slack + assign task if not resolved",
+          "Retry logic + stop sequence on success",
+          "Weekly recovery report generated"
+        ],
+        "kpi": "EXAMPLE: reduce failed-payment churn and save hours of manual chasing"
+      },
+      "shopifyFulfillment": {
+        "title": "Shopify Order → Fulfillment + Ops Dashboard",
+        "outcome": "Automate fulfillment steps and keep ops visible",
+        "problem": "Orders require manual coordination across fulfillment, notifications, and internal tracking.",
+        "steps": [
+          "New order created in Shopify",
+          "Validate address + flags (fraud/high value/backorder)",
+          "Notify ops/warehouse in Slack with packing notes",
+          "Create fulfillment task + update status tracking table",
+          "Send customer notification (shipping/processing)",
+          "Update dashboard + exceptions list",
+          "Escalate if fulfillment SLA breached"
+        ],
+        "kpi": "EXAMPLE: fewer fulfillment mistakes + faster internal coordination"
+      },
+      "invoiceReminder": {
+        "title": "Invoice & Reminder Automation + Weekly Finance Report",
+        "outcome": "Automate reminders + give founders weekly cash visibility",
+        "problem": "Invoices go unpaid because reminders and status tracking are manual and inconsistent.",
+        "steps": [
+          "Daily scan of unpaid invoices",
+          "Segment by age (7/14/30+ days)",
+          "Send reminder email with payment link",
+          "Escalate to Slack/account owner at 30+ days",
+          "Update CRM status + next action date",
+          "Generate weekly finance summary report"
+        ],
+        "kpi": "EXAMPLE: save 3–8 hrs/week and reduce overdue invoices"
+      },
+      "recruitmentPipeline": {
+        "title": "Recruitment Pipeline Automation",
+        "outcome": "From candidate form → scheduling → team updates",
+        "problem": "Hiring coordination is slow: CVs scattered, scheduling takes forever, and updates get missed.",
+        "steps": [
+          "Candidate submitted via form",
+          "Create candidate record (Notion/ATS sheet)",
+          "Auto-email candidate with next steps",
+          "Schedule interview (Calendly) + create calendar event",
+          "Notify hiring channel in Slack",
+          "Generate interview kit + scoring template",
+          "Track status changes + reminders"
+        ],
+        "kpi": "EXAMPLE: cut scheduling time and keep pipeline consistent"
+      },
+      "salesHandoff": {
+        "title": "Sales Handoff → Onboarding Checklist Automation",
+        "outcome": "Prevent churn by making handoffs deterministic",
+        "problem": "After a deal closes, onboarding steps are missed, causing delays and early churn risk.",
+        "steps": [
+          "Deal marked Closed Won in CRM",
+          "Create onboarding project/checklist",
+          "Assign tasks to owner + team",
+          "Send welcome email + kickoff scheduling link",
+          "Post kickoff brief in Slack",
+          "Start onboarding SLA + escalate blockers",
+          "Weekly onboarding status digest"
+        ],
+        "kpi": "EXAMPLE: fewer onboarding misses + faster time-to-value"
+      },
+      "demoQualification": {
+        "title": "Website Demo Requests → Qualification → Routing",
+        "outcome": "Qualify requests instantly and route to the right person",
+        "problem": "Demo requests arrive with low context; teams waste time on unqualified calls or slow response.",
+        "steps": [
+          "Demo request submitted",
+          "Auto-enrich + score lead (industry/size/intent)",
+          "Route to correct rep/queue",
+          "Send confirmation email + booking link",
+          "Create deal + add notes + next steps",
+          "Notify Slack with score + suggested agenda",
+          "No-show follow-up automation"
+        ],
+        "kpi": "EXAMPLE: increase qualified calls and reduce no-shows"
+      },
+      "execOpsDigest": {
+        "title": "Weekly Exec Ops Digest (KPIs + Blockers) to Slack/Email",
+        "outcome": "Leadership visibility without manual reporting",
+        "problem": "Managers spend hours compiling updates; leadership lacks a single weekly view of ops health.",
+        "steps": [
+          "Pull KPIs from sources (CRM/Support/Finance/PM tool)",
+          "Aggregate weekly deltas + top issues",
+          "Highlight blockers + overdue items",
+          "Send digest to Slack + email",
+          "Create follow-up tasks for top blockers",
+          "Archive report for audit trail"
+        ],
+        "kpi": "EXAMPLE: save 2–6 hrs/week of reporting time"
+      },
+      "aiKnowledgeBase": {
+        "title": "AI Knowledge Base Builder (Tickets/Docs → FAQ Suggestions)",
+        "outcome": "Keep docs fresh and reduce repetitive support load",
+        "problem": "Knowledge is scattered and outdated; support answers repeat; onboarding is slow.",
+        "steps": [
+          "Ingest tickets + internal docs on a schedule",
+          "Cluster topics + detect new recurring questions",
+          "Generate FAQ/article suggestions",
+          "Create draft pages + assign reviewers",
+          "Publish after approval",
+          "Notify team + track usage/feedback"
+        ],
+        "kpi": "EXAMPLE: reduce repetitive tickets and speed onboarding"
+      }
+    }
+  },
+  "comingSoon": {
+    "seo": {
+      "title": "Coming Soon | InnoviaBurst",
+      "description": "We're building this page to help you pick the right automation faster."
+    },
+    "skipLink": "Skip to main content",
+    "badge": "InnoviaBurst — Shipping weekly",
+    "headline": "This page is",
+    "headlineHighlight": "coming soon",
+    "subheadline": "We're building this section to help you choose the right workflow faster. In the meantime, explore what we can already deliver.",
+    "primaryCta": "Book a call",
+    "secondaryCta": "See automations",
+    "visual": {
+      "title": "Something great is in progress",
+      "subtitle": "Check back soon"
+    },
+    "features": {
+      "title": "What you'll find here",
+      "subtitle": "We're designing this page to make automation decisions easier.",
+      "clearOptions": {
+        "title": "Clear options",
+        "description": "Shortlists by team size, tools, and urgency so you find what fits."
+      },
+      "realExamples": {
+        "title": "Real examples",
+        "description": "Workflows with steps + expected impact — no guesswork."
+      },
+      "fastScoping": {
+        "title": "Fast scoping",
+        "description": "We confirm scope in 48h, delivery in weeks not months."
+      }
+    },
+    "cta": {
+      "title": "Want this sooner?",
+      "subtitle": "Tell us what you're trying to automate and we'll prioritise the right workflows.",
+      "primaryLabel": "Book a call",
+      "secondaryLabel": "See automations"
+    }
+  },
+  "trustPage": {
+    "seo": {
+      "title": "Trust & Compliance | InnoviaBurst",
+      "description": "How InnoviaBurst protects your data: Trust Pack, DPA readiness, sub-processors, SCCs/UK Addendum, retention, incident response, and AI oversight for UK/EU buyers."
+    },
+    "backToHome": "Back to home",
+    "badge": "UK/EU focused",
+    "title": "Trust &",
+    "titleHighlight": "Compliance",
+    "subtitle": "How we protect your data and deliver with confidence — plain English, no legal jargon.",
+    "trustPackAvailable": "We can share a Trust Pack (PDF), DPA, and sub-processor list on request.",
+    "primaryCta": "Book a call",
+    "downloadTrustPack": "Download Trust Pack (PDF)",
+    "requestDpa": "Request DPA / Security questionnaire",
+    "heroTags": [
+      "DPA readiness",
+      "Sub-processors",
+      "Retention",
+      "Breach readiness",
+      "SCCs + UK Addendum",
+      "AI oversight"
+    ],
+    "trustPackHighlights": {
+      "title": "Trust pack highlights",
+      "items": [
+        "DPA available for processor engagements",
+        "Sub-processor list and change notifications",
+        "EU SCCs + UK Addendum when applicable",
+        "Retention and deletion on completion unless agreed otherwise",
+        "AI transparency with human oversight"
+      ]
+    },
+    "toc": {
+      "title": "On this page",
+      "trustPack": "Trust Pack at a glance",
+      "security": "Security posture",
+      "subprocessors": "Sub-processors",
+      "contracts": "Contracts & DPA",
+      "transfers": "International transfers",
+      "ai": "AI oversight",
+      "dpia": "DPIA support",
+      "contact": "Contact"
+    },
+    "trustPack": {
+      "title": "Trust Pack at a glance",
+      "subtitle": "Fast overview of the essentials buyers ask for within the first 10 seconds.",
+      "items": {
+        "dpa": {
+          "title": "DPA available",
+          "subtitle": "We sign a UK GDPR-ready DPA for processor work.",
+          "detail": "Available on request during onboarding."
+        },
+        "subprocessors": {
+          "title": "Sub-processor transparency",
+          "subtitle": "We disclose tools that may process data and notify material changes.",
+          "detail": "Sub-processor list available."
+        },
+        "transfers": {
+          "title": "International transfers safeguarded",
+          "subtitle": "EU SCCs + UK Addendum where applicable.",
+          "detail": "Supports EU/UK buyer requirements."
+        },
+        "retention": {
+          "title": "Retention & deletion",
+          "subtitle": "We delete or return project data on completion unless agreed otherwise.",
+          "detail": "Clear retention expectations."
+        },
+        "incident": {
+          "title": "Incident response",
+          "subtitle": "Documented incident handling and client notification approach.",
+          "detail": "Breach reporting readiness."
+        },
+        "ai": {
+          "title": "AI transparency",
+          "subtitle": "Human oversight for sensitive decisions and clear disclosure when AI is used.",
+          "detail": "Logging and review where needed."
+        }
+      }
+    },
+    "security": {
+      "title": "Security posture",
+      "subtitle": "We apply practical security controls aligned with modern delivery for UK/EU clients:",
+      "items": {
+        "leastPrivilege": {
+          "title": "Least-privilege access",
+          "bullets": [
+            "Access limited to people working on your project",
+            "Credentials rotated / revoked when work ends"
+          ]
+        },
+        "accessControl": {
+          "title": "Access control",
+          "bullets": [
+            "Role-based access where supported",
+            "MFA enabled on key systems where available"
+          ]
+        },
+        "auditLogging": {
+          "title": "Audit & logging",
+          "bullets": [
+            "Operational logs to support troubleshooting and accountability",
+            "We can share logging approach in the Trust Pack"
+          ]
+        },
+        "secureEnvs": {
+          "title": "Secure environments",
+          "bullets": [
+            "Separated environments for dev/test/prod where relevant",
+            "Secrets handled via environment variables / secret storage patterns"
+          ]
+        },
+        "retention": {
+          "title": "Retention & deletion",
+          "bullets": [
+            "Delete or return client data after completion (unless agreed otherwise)",
+            "Full deletion available on request"
+          ]
+        },
+        "incident": {
+          "title": "Incident response",
+          "bullets": [
+            "Documented incident response process",
+            "Client notification for security incidents affecting your data"
+          ]
+        }
+      }
+    },
+    "subprocessors": {
+      "title": "Sub-processors",
+      "subtitle": "We're transparent about tools and services that may process data:",
+      "bullets": [
+        "Sub-processor list available on request",
+        "We notify clients of material changes with reasonable notice"
+      ],
+      "card": {
+        "title": "Sub-processor transparency",
+        "subtitle": "View the current list and stay notified of updates.",
+        "link": "View full list"
+      }
+    },
+    "contracts": {
+      "title": "Contracts & DPA",
+      "subtitle": "We sign a Data Processing Agreement (DPA) when acting as a processor for your data.",
+      "items": [
+        "Confidentiality commitments for those handling data",
+        "Security measures appropriate to the processing",
+        "Support for data subject requests where relevant",
+        "Breach notification terms and cooperation",
+        "Sub-processor controls and transparency",
+        "Deletion or return of data on completion"
+      ]
+    },
+    "transfers": {
+      "title": "International transfers",
+      "subtitle": "For cross-border transfers, we can use modern standard safeguards when applicable:",
+      "sccs": "EU Standard Contractual Clauses (Decision (EU) 2021/914)",
+      "ukAddendum": "UK Addendum for UK GDPR scenarios",
+      "note": "We'll align transfer safeguards with your contractual and regulatory context."
+    },
+    "ai": {
+      "title": "AI transparency & human oversight",
+      "subtitle": "We design AI features with appropriate oversight and clear disclosure:",
+      "items": [
+        "Clear disclosure when AI is involved in processing or decision support",
+        "Human review for high-impact or sensitive use cases",
+        "Logging/audit trails for review where appropriate"
+      ]
+    },
+    "dpia": {
+      "title": "DPIA support",
+      "subtitle": "If your project requires a DPIA, we can provide the technical details you need:",
+      "items": [
+        "System architecture overview",
+        "Data flows and processing purposes",
+        "Sub-processor and transfer details",
+        "Security measures and retention approach"
+      ]
+    },
+    "requests": {
+      "title": "What you can request",
+      "subtitle": "You can request these documents during onboarding to speed up your review:",
+      "items": [
+        "DPA for processor work",
+        "Current sub-processor list",
+        "Security questionnaire responses",
+        "DPIA support details"
+      ]
+    },
+    "contact": {
+      "title": "Need more details?",
+      "subtitle": "We're happy to support your security or compliance review."
+    },
+    "disclaimer": "This page provides general information and is not legal advice. For specific legal requirements, consult your legal counsel."
   }
 }

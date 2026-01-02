@@ -74,7 +74,7 @@ export function ResourcesSection() {
 
         {/* CTA */}
         <div className="text-center">
-          <Button variant="outline" size="lg" asChild>
+          <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
             <Link to="/resources">
               Browse all resources
               <ArrowRight className="w-4 h-4 ml-2" />

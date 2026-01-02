@@ -75,7 +75,7 @@ export function IndustriesSection() {
 
         {/* CTA */}
         <div className="text-center mt-12 space-y-3">
-          <Button variant="outline" size="lg" asChild>
+          <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
             <Link to="/industries">
               View all industries
               <ArrowRight className="w-4 h-4 ml-2" />

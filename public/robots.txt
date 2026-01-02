@@ -13,14 +13,19 @@ Allow: /
 User-agent: *
 Allow: /
 
-# AI crawlers guidance (policy not enforced here; uncomment to allow/deny specifically)
-# User-agent: GPTBot
-# Allow: /
-# User-agent: OAI-SearchBot
-# Allow: /
-# User-agent: PerplexityBot
-# Allow: /
-# User-agent: Perplexity-User
-# Allow: /
+# AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# AI usage note: content may be indexed for search/snippets; please do not use for model training without permission. See /llms.txt.
 
 Sitemap: https://innoviaburst.com/sitemap.xml

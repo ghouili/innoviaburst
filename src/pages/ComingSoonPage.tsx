@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -16,32 +17,34 @@ import { CTABox } from "@/components/ui/cta-box";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, ListChecks, Clock, Rocket } from "lucide-react";
 
-const featureCards = [
-  {
-    icon: ListChecks,
-    title: "Clear options",
-    description: "Shortlists by team, tools, and urgency so you find what fits.",
-  },
-  {
-    icon: Sparkles,
-    title: "Real examples",
-    description: "Workflows with steps + expected impact—no guesswork.",
-  },
-  {
-    icon: Clock,
-    title: "Fast scoping",
-    description: "We confirm scope in 48h, delivery in weeks not months.",
-  },
+type FeatureKey = "clearOptions" | "realExamples" | "fastScoping";
+
+const featureKeys: { key: FeatureKey; icon: typeof ListChecks }[] = [
+  { key: "clearOptions", icon: ListChecks },
+  { key: "realExamples", icon: Sparkles },
+  { key: "fastScoping", icon: Clock },
 ];
 
 export default function ComingSoonPage() {
+  const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
+
+  const featureCards = useMemo(
+    () =>
+      featureKeys.map((item) => ({
+        key: item.key,
+        icon: item.icon,
+        title: t(`comingSoon.features.${item.key}.title`),
+        description: t(`comingSoon.features.${item.key}.description`),
+      })),
+    [t]
+  );
 
   return (
     <>
       <SeoHead
-        title="Coming Soon | InnoviaBurst"
-        description="We're building this page to make it easier to pick the right automation or MVP path—fast."
+        title={t("comingSoon.seo.title")}
+        description={t("comingSoon.seo.description")}
         path="/coming-soon"
         robots="noindex, nofollow"
       />
@@ -50,7 +53,7 @@ export default function ComingSoonPage() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg"
       >
-        Skip to main content
+        {t("comingSoon.skipLink")}
       </a>
 
       <Navbar onBookingClick={() => setBookingOpen(true)} />
@@ -69,37 +72,35 @@ export default function ComingSoonPage() {
               {/* Text Content */}
               <div className="space-y-6 animate-fade-in-up">
                 <p className="text-sm font-semibold uppercase tracking-wider text-accent">
-                  InnoviaBurst — Shipping weekly
+                  {t("comingSoon.badge")}
                 </p>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-foreground">
-                  This page is{" "}
-                  <span className="text-gradient-brand">coming soon</span>
+                  {t("comingSoon.headline")}{" "}
+                  <span className="text-gradient-brand">{t("comingSoon.headlineHighlight")}</span>
                 </h1>
 
                 <p className="text-lg lg:text-xl text-muted-foreground max-w-lg leading-relaxed">
-                  We're building this section to help you choose the right
-                  workflow faster. In the meantime, explore what we can already
-                  deliver.
+                  {t("comingSoon.subheadline")}
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
                   <Button
                     variant="hero"
-                    size="xl"
+                    size="lg"
                     onClick={() => setBookingOpen(true)}
-                    className="min-h-[52px] gap-2"
+                    className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] gap-2 text-sm sm:text-base px-5 sm:px-8"
                   >
-                    Book a call
-                    <ArrowRight className="w-5 h-5" />
+                    {t("comingSoon.primaryCta")}
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                   </Button>
                   <Button
                     variant="hero-outline"
-                    size="xl"
+                    size="lg"
                     asChild
-                    className="min-h-[52px]"
+                    className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] text-sm sm:text-base px-5 sm:px-8"
                   >
-                    <Link to="/automations">See automations</Link>
+                    <Link to="/automations">{t("comingSoon.secondaryCta")}</Link>
                   </Button>
                 </div>
               </div>
@@ -114,10 +115,10 @@ export default function ComingSoonPage() {
                         <Rocket className="h-10 w-10 text-accent" />
                       </div>
                       <p className="text-lg font-medium text-foreground">
-                        Something great is brewing
+                        {t("comingSoon.visual.title")}
                       </p>
                       <p className="mt-2 text-sm text-muted-foreground">
-                        Check back soon
+                        {t("comingSoon.visual.subtitle")}
                       </p>
                     </div>
                   </div>
@@ -131,8 +132,8 @@ export default function ComingSoonPage() {
         <section className="section-padding-sm">
           <div className="container mx-auto px-4 lg:px-6">
             <SectionHeader
-              title="What you'll find here"
-              subtitle="We're designing this page to make automation decisions easier."
+              title={t("comingSoon.features.title")}
+              subtitle={t("comingSoon.features.subtitle")}
               align="center"
               className="mb-12"
             />
@@ -140,7 +141,7 @@ export default function ComingSoonPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {featureCards.map((card) => (
                 <UnifiedCard
-                  key={card.title}
+                  key={card.key}
                   variant="interactive"
                   className="text-center"
                 >
@@ -165,14 +166,14 @@ export default function ComingSoonPage() {
         <section className="section-padding">
           <div className="container mx-auto px-4 lg:px-6">
             <CTABox
-              title="Want this sooner?"
-              subtitle="Tell us what you're trying to automate and we'll prioritise the right workflows."
+              title={t("comingSoon.cta.title")}
+              subtitle={t("comingSoon.cta.subtitle")}
               primaryCta={{
-                label: "Book a call",
+                label: t("comingSoon.cta.primaryLabel"),
                 onClick: () => setBookingOpen(true),
               }}
               secondaryCta={{
-                label: "See automations",
+                label: t("comingSoon.cta.secondaryLabel"),
                 href: "/automations",
               }}
             />

@@ -1,0 +1,249 @@
+{
+  "summary": {
+    "scanned": 17,
+    "passed": 0,
+    "failed": 17,
+    "baseUrl": "http://localhost:5173",
+    "timestamp": "2025-12-31T12:44:38.126Z"
+  },
+  "results": [
+    {
+      "path": "/",
+      "url": "http://localhost:5173/",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/automations",
+      "url": "http://localhost:5173/automations",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/resources",
+      "url": "http://localhost:5173/resources",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/industries",
+      "url": "http://localhost:5173/industries",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/trust",
+      "url": "http://localhost:5173/trust",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/subprocessors",
+      "url": "http://localhost:5173/subprocessors",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/privacy",
+      "url": "http://localhost:5173/privacy",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/cookies",
+      "url": "http://localhost:5173/cookies",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/terms",
+      "url": "http://localhost:5173/terms",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/works",
+      "url": "http://localhost:5173/works",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/work",
+      "url": "http://localhost:5173/work",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/coming-soon",
+      "url": "http://localhost:5173/coming-soon",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/ai-ops-sprint",
+      "url": "http://localhost:5173/ai-ops-sprint",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/automation-build",
+      "url": "http://localhost:5173/automation-build",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/mvp-launch",
+      "url": "http://localhost:5173/mvp-launch",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/work/professional-services-client-onboarding",
+      "url": "http://localhost:5173/work/professional-services-client-onboarding",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    },
+    {
+      "path": "/work/saas-support-ticket-triage",
+      "url": "http://localhost:5173/work/saas-support-ticket-triage",
+      "status": 0,
+      "ok": false,
+      "title": "",
+      "description": "",
+      "canonical": "",
+      "robots": "",
+      "jsonLdCount": 0,
+      "issues": [
+        "fetch failed"
+      ]
+    }
+  ]
+}

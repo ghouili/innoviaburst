@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import type React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -36,9 +37,9 @@ import {
 } from "@/components/ui/drawer";
 import { SeoHead } from "@/components/SeoHead";
 
-const categories = ["All", "Sales", "Ops", "Support", "Finance", "Knowledge"];
+const categoryKeys = ["all", "sales", "ops", "support", "finance", "knowledge"] as const;
 
-const industries = ["All", "B2B", "B2C", "SaaS", "Services", "Retail"];
+const industryKeys = ["all", "b2b", "b2c", "saas", "services", "retail"] as const;
 
 const tools = [
   "HubSpot",
@@ -52,290 +53,14 @@ const tools = [
   "Zapier/Make",
 ];
 
-const sortOptions = [
-  { value: "impact", label: "Most ROI" },
-  { value: "fastest", label: "Fastest delivery" },
-  { value: "popular", label: "Most requested" },
-  { value: "newest", label: "Newest" },
-];
+const sortOptionKeys = ["impact", "fastest", "popular", "newest"] as const;
 
-// const automations = [
-//   {
-//     title: "Lead-to-Quote Automation",
-//     category: "Sales",
-//     outcome: "Auto-generate quotes from form submissions",
-//     problem: "Sales reps manually copying lead data from forms to CRM and generating quotes in spreadsheets.",
-//     steps: ["Form submission captured", "Lead enriched via API", "CRM deal created automatically", "Quote generated from template", "Email sent to lead", "Follow-up task created"],
-//     tools: ["HubSpot", "Google Sheets", "Zapier"],
-//     kpi: "~4–8 hrs/week saved per rep",
-//     deliveryTime: "2–3 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 3,
-//     impactScore: 8,
-//     popularityScore: 9,
-//     createdAt: "2024-10-05",
-//     industry: "B2B",
-//   },
-//   {
-//     title: "Invoice Follow-up Workflow",
-//     category: "Finance",
-//     outcome: "Automated overdue invoice reminders",
-//     problem: "Accounting team manually tracking overdue invoices and sending reminder emails.",
-//     steps: ["Invoice status checked daily", "Overdue items identified", "Reminder email sent", "Escalation to account manager", "Slack alert if 30+ days"],
-//     tools: ["Xero", "Gmail", "Slack"],
-//     kpi: "~5–10 hrs/week saved",
-//     deliveryTime: "1–2 weeks",
-//     deliveryWeeksMin: 1,
-//     deliveryWeeksMax: 2,
-//     impactScore: 7,
-//     popularityScore: 8,
-//     createdAt: "2024-11-12",
-//     industry: "Services",
-//   },
-//   {
-//     title: "Support Ticket Triage",
-//     category: "Support",
-//     outcome: "AI-powered ticket routing and prioritisation",
-//     problem: "Support agents spending time reading and routing tickets manually.",
-//     steps: ["Ticket received", "AI categorises content", "Priority assigned", "Routed to specialist", "Auto-response sent", "SLA timer started"],
-//     tools: ["Zendesk", "OpenAI", "Slack"],
-//     kpi: "60% faster first response",
-//     deliveryTime: "2–4 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 4,
-//     impactScore: 9,
-//     popularityScore: 10,
-//     createdAt: "2024-12-01",
-//     industry: "SaaS",
-//   },
-//   {
-//     title: "Employee Onboarding Flow",
-//     category: "Ops",
-//     outcome: "Automated new hire setup across all systems",
-//     problem: "HR manually creating accounts, sending welcome emails, and assigning training.",
-//     steps: ["New hire added to HRIS", "Google/Microsoft account created", "Welcome email sent", "Training assigned in LMS", "Equipment request triggered", "Manager notified"],
-//     tools: ["BambooHR", "Google Workspace", "Notion"],
-//     kpi: "~6–12 hrs saved per hire",
-//     deliveryTime: "3–4 weeks",
-//     deliveryWeeksMin: 3,
-//     deliveryWeeksMax: 4,
-//     impactScore: 8,
-//     popularityScore: 7,
-//     createdAt: "2024-09-15",
-//     industry: "Services",
-//   },
-//   {
-//     title: "Meeting Notes to Tasks",
-//     category: "Knowledge",
-//     outcome: "Auto-extract action items from meetings",
-//     problem: "Action items from meetings lost or manually entered into task management.",
-//     steps: ["Meeting recorded", "AI transcribes audio", "Action items extracted", "Tasks created in project tool", "Assigned to attendees", "Summary shared in Slack"],
-//     tools: ["Zoom", "OpenAI", "Asana", "Slack"],
-//     kpi: "~2–4 hrs/week saved",
-//     deliveryTime: "2–3 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 3,
-//     impactScore: 7,
-//     popularityScore: 8,
-//     createdAt: "2024-12-10",
-//     industry: "B2B",
-//   },
-//   {
-//     title: "HubSpot Lead Routing",
-//     category: "Sales",
-//     outcome: "Instant territory-based lead assignment",
-//     problem: "Leads sitting unassigned or routed to wrong sales reps based on territory.",
-//     steps: ["New lead enters HubSpot", "Territory/segment identified", "Owner assigned via rules", "Task created for follow-up", "Slack notification sent", "SLA tracking started"],
-//     tools: ["HubSpot", "Slack"],
-//     kpi: "90% faster lead assignment",
-//     deliveryTime: "1–2 weeks",
-//     deliveryWeeksMin: 1,
-//     deliveryWeeksMax: 2,
-//     impactScore: 9,
-//     popularityScore: 9,
-//     createdAt: "2024-11-28",
-//     industry: "B2B",
-//   },
-//   {
-//     title: "Expense Report Workflow",
-//     category: "Finance",
-//     outcome: "Receipt upload to reimbursement in one flow",
-//     problem: "Employees submitting expenses via email, finance manually entering and approving.",
-//     steps: ["Receipt uploaded via form", "Data extracted via AI", "Expense record created", "Manager approval requested", "Finance notified on approval", "Reimbursement triggered"],
-//     tools: ["Google Forms", "Xero", "Slack"],
-//     kpi: "~8–15 hrs/week saved",
-//     deliveryTime: "2–3 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 3,
-//     impactScore: 8,
-//     popularityScore: 7,
-//     createdAt: "2024-10-25",
-//     industry: "Services",
-//   },
-//   {
-//     title: "Customer Feedback Loop",
-//     category: "Support",
-//     outcome: "Centralised feedback with sentiment analysis",
-//     problem: "Customer feedback scattered across surveys, reviews, and support tickets.",
-//     steps: ["Feedback collected from sources", "Sentiment analysed", "Categorised by theme", "Dashboard updated", "Product team alerted", "Response triggered if negative"],
-//     tools: ["Typeform", "OpenAI", "Notion", "Slack"],
-//     kpi: "100% feedback captured",
-//     deliveryTime: "2–4 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 4,
-//     impactScore: 7,
-//     popularityScore: 6,
-//     createdAt: "2024-11-05",
-//     industry: "B2B",
-//   },
-//   {
-//     title: "Contract Renewal Alerts",
-//     category: "Ops",
-//     outcome: "Never miss a renewal deadline",
-//     problem: "Contracts expiring without timely renewal discussions.",
-//     steps: ["Contract dates tracked", "90-day alert triggered", "Account manager notified", "Customer check-in scheduled", "Renewal proposal generated", "Follow-up sequence started"],
-//     tools: ["HubSpot", "Google Calendar", "Gmail"],
-//     kpi: "25% fewer missed renewals",
-//     deliveryTime: "1–2 weeks",
-//     deliveryWeeksMin: 1,
-//     deliveryWeeksMax: 2,
-//     impactScore: 8,
-//     popularityScore: 8,
-//     createdAt: "2024-08-30",
-//     industry: "SaaS",
-//   },
-//   {
-//     title: "Knowledge Base Auto-Update",
-//     category: "Knowledge",
-//     outcome: "Keep docs current as products evolve",
-//     problem: "Documentation becoming outdated as products evolve.",
-//     steps: ["Product changes detected", "Relevant docs identified", "Update suggestions generated", "Assigned for review", "Published after approval", "Team notified of changes"],
-//     tools: ["Notion", "GitHub", "Slack"],
-//     kpi: "~4–6 hrs/week saved",
-//     deliveryTime: "3–4 weeks",
-//     deliveryWeeksMin: 3,
-//     deliveryWeeksMax: 4,
-//     impactScore: 6,
-//     popularityScore: 5,
-//     createdAt: "2024-07-12",
-//     industry: "B2B",
-//   },
-//   {
-//     title: "Sales Commission Calculator",
-//     category: "Finance",
-//     outcome: "Automated commission calculations from CRM",
-//     problem: "Finance manually calculating variable commissions from CRM data.",
-//     steps: ["Closed deals pulled from CRM", "Commission rules applied", "Calculations verified", "Report generated", "Manager approval obtained", "Payroll notified"],
-//     tools: ["HubSpot", "Google Sheets", "Slack"],
-//     kpi: "~10–20 hrs/month saved",
-//     deliveryTime: "2–3 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 3,
-//     impactScore: 7,
-//     popularityScore: 6,
-//     createdAt: "2024-10-02",
-//     industry: "B2B",
-//   },
-//   {
-//     title: "Inventory Reorder Alerts",
-//     category: "Ops",
-//     outcome: "Proactive stock replenishment",
-//     problem: "Stock running low without timely reorders.",
-//     steps: ["Inventory levels monitored", "Threshold breach detected", "Reorder alert sent", "Purchase order drafted", "Supplier notified", "Receipt logged on delivery"],
-//     tools: ["Airtable", "Gmail", "Slack"],
-//     kpi: "Zero stockouts in 6 months",
-//     deliveryTime: "1–2 weeks",
-//     deliveryWeeksMin: 1,
-//     deliveryWeeksMax: 2,
-//     impactScore: 8,
-//     popularityScore: 5,
-//     createdAt: "2024-09-02",
-//     industry: "Retail",
-//   },
-//   {
-//     title: "Social Media Monitoring",
-//     category: "Support",
-//     outcome: "Track and respond to brand mentions",
-//     problem: "Brand mentions going unnoticed across social platforms.",
-//     steps: ["Mentions tracked across platforms", "Sentiment analysed", "Priority assigned", "Routed to appropriate team", "Response drafted", "Escalation if urgent"],
-//     tools: ["Mention", "OpenAI", "Slack"],
-//     kpi: "95% mentions addressed",
-//     deliveryTime: "2–3 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 3,
-//     impactScore: 6,
-//     popularityScore: 5,
-//     createdAt: "2024-10-18",
-//     industry: "B2C",
-//   },
-//   {
-//     title: "Document Request Workflow",
-//     category: "Knowledge",
-//     outcome: "Self-serve document delivery",
-//     problem: "Clients requesting documents that require manual retrieval and sending.",
-//     steps: ["Request received via form", "Document located in storage", "Access verified", "Secure link generated", "Email sent to client", "Download tracked"],
-//     tools: ["Google Drive", "Gmail", "Zapier"],
-//     kpi: "~3–5 hrs/week saved",
-//     deliveryTime: "1–2 weeks",
-//     deliveryWeeksMin: 1,
-//     deliveryWeeksMax: 2,
-//     impactScore: 5,
-//     popularityScore: 4,
-//     createdAt: "2024-07-28",
-//     industry: "Services",
-//   },
-//   {
-//     title: "Webinar Follow-up Sequence",
-//     category: "Sales",
-//     outcome: "Personalised post-webinar nurture",
-//     problem: "Webinar attendees not receiving timely, personalised follow-up.",
-//     steps: ["Attendance data synced", "Attendees segmented", "Personalised email sent", "Demo link included for engaged", "Sales notified of hot leads", "CRM updated with engagement"],
-//     tools: ["Zoom", "HubSpot", "Gmail"],
-//     kpi: "35% higher demo bookings",
-//     deliveryTime: "1–2 weeks",
-//     deliveryWeeksMin: 1,
-//     deliveryWeeksMax: 2,
-//     impactScore: 8,
-//     popularityScore: 7,
-//     createdAt: "2024-11-01",
-//     industry: "B2B",
-//   },
-//   {
-//     title: "Project Status Reporting",
-//     category: "Ops",
-//     outcome: "Auto-generated weekly status reports",
-//     problem: "Managers manually compiling project status updates from multiple tools.",
-//     steps: ["Task data pulled from PM tool", "Status aggregated", "Report generated", "Charts created", "Stakeholders notified", "Archive stored for reference"],
-//     tools: ["Asana", "Google Sheets", "Slack"],
-//     kpi: "~4–8 hrs/week saved",
-//     deliveryTime: "2–3 weeks",
-//     deliveryWeeksMin: 2,
-//     deliveryWeeksMax: 3,
-//     impactScore: 6,
-//     popularityScore: 6,
-//     createdAt: "2024-09-22",
-//     industry: "SaaS",
-//   },
-// ];
-
-const automations = [
+// Automation metadata (non-translatable fields)
+const automationKeys = [
   {
-    title: "Lead-to-Meeting in 60 Seconds",
+    key: "leadToMeeting",
     category: "Sales",
-    outcome: "Route leads instantly + book meetings faster",
-    problem:
-      "Leads sit unassigned, follow-ups are slow, and hot prospects drop before a rep responds.",
-    steps: [
-      "Lead captured (website form / Typeform)",
-      "Enrich lead (company + role + region) via API",
-      "Create/update contact + deal in CRM (HubSpot)",
-      "Assign owner by rules (territory/segment/round-robin)",
-      "Send Slack alert to owner with lead summary",
-      "Send booking link + smart follow-up email",
-      "Start SLA timer + create follow-up task",
-    ],
     tools: ["HubSpot", "Slack", "Calendly", "Webhook"],
-    kpi: "EXAMPLE: response time reduced from hours to minutes",
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -344,23 +69,10 @@ const automations = [
     createdAt: "2025-01-05",
     industry: "B2B / SaaS",
   },
-
   {
-    title: "AI Support Triage + Draft Reply",
+    key: "aiSupportTriage",
     category: "Support",
-    outcome: "Auto-prioritise tickets + draft responses with AI",
-    problem:
-      "Support teams waste time reading, routing, and replying to repetitive tickets while SLAs slip.",
-    steps: [
-      "New ticket/email received",
-      "AI classifies topic + urgency + sentiment",
-      "Route to correct queue/owner",
-      "Generate draft reply + knowledge suggestions",
-      "Post summary in Slack + request approval for high-risk cases",
-      "Start SLA tracking + escalate if overdue",
-    ],
     tools: ["Zendesk (or Gmail)", "Slack", "OpenAI", "Notion (KB)"],
-    kpi: "EXAMPLE: 30–60% faster first response",
     deliveryTime: "2–4 weeks",
     deliveryWeeksMin: 2,
     deliveryWeeksMax: 4,
@@ -369,24 +81,10 @@ const automations = [
     createdAt: "2025-01-06",
     industry: "SaaS / Services",
   },
-
   {
-    title: "Stripe Payment Failed → Smart Dunning + CRM Update",
+    key: "stripeDunning",
     category: "Finance",
-    outcome: "Recover revenue automatically when payments fail",
-    problem:
-      "Failed payments cause churn and revenue leakage; teams follow up manually and inconsistently.",
-    steps: [
-      "Stripe event received (payment failed / requires action)",
-      "Check customer + invoice context",
-      "Update CRM deal/subscription status",
-      "Send dunning email sequence (step 1/2/3)",
-      "Escalate to Slack + assign task if not resolved",
-      "Retry logic + stop sequence on success",
-      "Weekly recovery report generated",
-    ],
     tools: ["Stripe", "HubSpot", "Gmail", "Slack", "Google Sheets"],
-    kpi: "EXAMPLE: reduce failed-payment churn and save hours of manual chasing",
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -394,26 +92,11 @@ const automations = [
     popularityScore: 9,
     createdAt: "2025-01-07",
     industry: "SaaS / E-commerce",
-    // Stripe demo uses test mode + test cards. :contentReference[oaicite:2]{index=2}
   },
-
   {
-    title: "Shopify Order → Fulfillment + Ops Dashboard",
+    key: "shopifyFulfillment",
     category: "Ops",
-    outcome: "Automate fulfillment steps and keep ops visible",
-    problem:
-      "Orders require manual coordination across fulfillment, notifications, and internal tracking.",
-    steps: [
-      "New order created in Shopify",
-      "Validate address + flags (fraud/high value/backorder)",
-      "Notify ops/warehouse in Slack with packing notes",
-      "Create fulfillment task + update status tracking table",
-      "Send customer notification (shipping/processing)",
-      "Update dashboard + exceptions list",
-      "Escalate if fulfillment SLA breached",
-    ],
     tools: ["Shopify", "Slack", "Google Sheets (or Airtable)", "Gmail"],
-    kpi: "EXAMPLE: fewer fulfillment mistakes + faster internal coordination",
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -421,25 +104,11 @@ const automations = [
     popularityScore: 8,
     createdAt: "2025-01-08",
     industry: "Retail / E-commerce",
-    // Demo can use Shopify test orders / Bogus Gateway. :contentReference[oaicite:3]{index=3}
   },
-
   {
-    title: "Invoice & Reminder Automation + Weekly Finance Report",
+    key: "invoiceReminder",
     category: "Finance",
-    outcome: "Automate reminders + give founders weekly cash visibility",
-    problem:
-      "Invoices go unpaid because reminders and status tracking are manual and inconsistent.",
-    steps: [
-      "Daily scan of unpaid invoices",
-      "Segment by age (7/14/30+ days)",
-      "Send reminder email with payment link",
-      "Escalate to Slack/account owner at 30+ days",
-      "Update CRM status + next action date",
-      "Generate weekly finance summary report",
-    ],
     tools: ["Stripe (or Xero)", "Gmail", "Slack", "Google Sheets"],
-    kpi: "EXAMPLE: save 3–8 hrs/week and reduce overdue invoices",
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -448,31 +117,10 @@ const automations = [
     createdAt: "2025-01-09",
     industry: "Services / B2B",
   },
-
   {
-    title: "Recruitment Pipeline Automation",
+    key: "recruitmentPipeline",
     category: "Ops",
-    outcome: "From candidate form → scheduling → team updates",
-    problem:
-      "Hiring coordination is slow: CVs scattered, scheduling takes forever, and updates get missed.",
-    steps: [
-      "Candidate submitted via form",
-      "Create candidate record (Notion/ATS sheet)",
-      "Auto-email candidate with next steps",
-      "Schedule interview (Calendly) + create calendar event",
-      "Notify hiring channel in Slack",
-      "Generate interview kit + scoring template",
-      "Track status changes + reminders",
-    ],
-    tools: [
-      "Typeform (or Webform)",
-      "Notion",
-      "Calendly",
-      "Google Calendar",
-      "Slack",
-      "Gmail",
-    ],
-    kpi: "EXAMPLE: cut scheduling time and keep pipeline consistent",
+    tools: ["Typeform (or Webform)", "Notion", "Calendly", "Google Calendar", "Slack", "Gmail"],
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -481,24 +129,10 @@ const automations = [
     createdAt: "2025-01-10",
     industry: "Startups / SMEs",
   },
-
   {
-    title: "Sales Handoff → Onboarding Checklist Automation",
+    key: "salesHandoff",
     category: "Ops",
-    outcome: "Prevent churn by making handoffs deterministic",
-    problem:
-      "After a deal closes, onboarding steps are missed, causing delays and early churn risk.",
-    steps: [
-      "Deal marked Closed Won in CRM",
-      "Create onboarding project/checklist",
-      "Assign tasks to owner + team",
-      "Send welcome email + kickoff scheduling link",
-      "Post kickoff brief in Slack",
-      "Start onboarding SLA + escalate blockers",
-      "Weekly onboarding status digest",
-    ],
     tools: ["HubSpot", "Notion (or Asana)", "Slack", "Gmail", "Calendly"],
-    kpi: "EXAMPLE: fewer onboarding misses + faster time-to-value",
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -507,24 +141,10 @@ const automations = [
     createdAt: "2025-01-11",
     industry: "B2B / SaaS",
   },
-
   {
-    title: "Website Demo Requests → Qualification → Routing",
+    key: "demoQualification",
     category: "Sales",
-    outcome: "Qualify requests instantly and route to the right person",
-    problem:
-      "Demo requests arrive with low context; teams waste time on unqualified calls or slow response.",
-    steps: [
-      "Demo request submitted",
-      "Auto-enrich + score lead (industry/size/intent)",
-      "Route to correct rep/queue",
-      "Send confirmation email + booking link",
-      "Create deal + add notes + next steps",
-      "Notify Slack with score + suggested agenda",
-      "No-show follow-up automation",
-    ],
     tools: ["HubSpot", "Slack", "Calendly", "Gmail", "Webhook"],
-    kpi: "EXAMPLE: increase qualified calls and reduce no-shows",
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -533,29 +153,10 @@ const automations = [
     createdAt: "2025-01-12",
     industry: "B2B / Agencies",
   },
-
   {
-    title: "Weekly Exec Ops Digest (KPIs + Blockers) to Slack/Email",
+    key: "execOpsDigest",
     category: "Ops",
-    outcome: "Leadership visibility without manual reporting",
-    problem:
-      "Managers spend hours compiling updates; leadership lacks a single weekly view of ops health.",
-    steps: [
-      "Pull KPIs from sources (CRM/Support/Finance/PM tool)",
-      "Aggregate weekly deltas + top issues",
-      "Highlight blockers + overdue items",
-      "Send digest to Slack + email",
-      "Create follow-up tasks for top blockers",
-      "Archive report for audit trail",
-    ],
-    tools: [
-      "Google Sheets",
-      "Slack",
-      "Gmail",
-      "HubSpot (optional)",
-      "Asana/Jira (optional)",
-    ],
-    kpi: "EXAMPLE: save 2–6 hrs/week of reporting time",
+    tools: ["Google Sheets", "Slack", "Gmail", "HubSpot (optional)", "Asana/Jira (optional)"],
     deliveryTime: "1–2 weeks",
     deliveryWeeksMin: 1,
     deliveryWeeksMax: 2,
@@ -564,23 +165,10 @@ const automations = [
     createdAt: "2025-01-13",
     industry: "Startups / SMEs",
   },
-
   {
-    title: "AI Knowledge Base Builder (Tickets/Docs → FAQ Suggestions)",
+    key: "aiKnowledgeBase",
     category: "Knowledge",
-    outcome: "Keep docs fresh and reduce repetitive support load",
-    problem:
-      "Knowledge is scattered and outdated; support answers repeat; onboarding is slow.",
-    steps: [
-      "Ingest tickets + internal docs on a schedule",
-      "Cluster topics + detect new recurring questions",
-      "Generate FAQ/article suggestions",
-      "Create draft pages + assign reviewers",
-      "Publish after approval",
-      "Notify team + track usage/feedback",
-    ],
     tools: ["Notion", "Zendesk (or Gmail)", "OpenAI", "Slack"],
-    kpi: "EXAMPLE: reduce repetitive tickets and speed onboarding",
     deliveryTime: "2–4 weeks",
     deliveryWeeksMin: 2,
     deliveryWeeksMax: 4,
@@ -589,22 +177,61 @@ const automations = [
     createdAt: "2025-01-14",
     industry: "SaaS / Services",
   },
-];
+] as const;
+
+// Type for resolved automation with translations
+interface Automation {
+  key: string;
+  title: string;
+  category: string;
+  outcome: string;
+  problem: string;
+  steps: string[];
+  tools: string[];
+  kpi: string;
+  deliveryTime: string;
+  deliveryWeeksMin: number;
+  deliveryWeeksMax: number;
+  impactScore: number;
+  popularityScore: number;
+  createdAt: string;
+  industry: string;
+}
 
 export default function AutomationsPage() {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("popular");
   const [searchQuery, setSearchQuery] = useState("");
   const [requestOpen, setRequestOpen] = useState(false);
   const [selectedAutomation, setSelectedAutomation] = useState("");
   const [showFilters, setShowFilters] = useState(false);
-  const [quickViewAutomation, setQuickViewAutomation] = useState<
-    (typeof automations)[0] | null
-  >(null);
+  const [quickViewAutomation, setQuickViewAutomation] = useState<Automation | null>(null);
   const [selectedDelivery, setSelectedDelivery] = useState<string>("");
-  const [selectedIndustry, setSelectedIndustry] = useState("All");
+  const [selectedIndustry, setSelectedIndustry] = useState("all");
+
+  // Resolve automation translations
+  const automations: Automation[] = useMemo(() => {
+    return automationKeys.map((item) => ({
+      key: item.key,
+      title: t(`automationsPage.items.${item.key}.title`),
+      category: item.category,
+      outcome: t(`automationsPage.items.${item.key}.outcome`),
+      problem: t(`automationsPage.items.${item.key}.problem`),
+      steps: t(`automationsPage.items.${item.key}.steps`, { returnObjects: true }) as string[],
+      tools: [...item.tools],
+      kpi: t(`automationsPage.items.${item.key}.kpi`),
+      deliveryTime: item.deliveryTime,
+      deliveryWeeksMin: item.deliveryWeeksMin,
+      deliveryWeeksMax: item.deliveryWeeksMax,
+      impactScore: item.impactScore,
+      popularityScore: item.popularityScore,
+      createdAt: item.createdAt,
+      industry: item.industry,
+    }));
+  }, [t]);
 
   // Simulated load - in production this would be data fetching
   useEffect(() => {
@@ -628,8 +255,10 @@ export default function AutomationsPage() {
     }
 
     // Category filter
-    if (selectedCategory !== "All") {
-      results = results.filter((a) => a.category === selectedCategory);
+    if (selectedCategory !== "all") {
+      // Map internal key to display value for comparison
+      const displayCategory = selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
+      results = results.filter((a) => a.category === displayCategory || a.category.toLowerCase() === selectedCategory);
     }
 
     // Tools filter
@@ -656,8 +285,8 @@ export default function AutomationsPage() {
     }
 
     // Industry filter
-    if (selectedIndustry !== "All") {
-      results = results.filter((a) => (a.industry ?? "") === selectedIndustry);
+    if (selectedIndustry !== "all") {
+      results = results.filter((a) => (a.industry ?? "").toLowerCase().includes(selectedIndustry));
     }
 
     // Sort
@@ -677,6 +306,7 @@ export default function AutomationsPage() {
 
     return results;
   }, [
+    automations,
     selectedCategory,
     selectedTools,
     sortBy,
@@ -696,7 +326,7 @@ export default function AutomationsPage() {
     );
   };
 
-  const handleQuickView = (automation: (typeof automations)[0]) => {
+  const handleQuickView = (automation: Automation) => {
     setQuickViewAutomation(automation);
     window.dispatchEvent(
       new CustomEvent("analytics", {
@@ -713,18 +343,18 @@ export default function AutomationsPage() {
 
   const clearAll = useCallback(() => {
     setSelectedTools([]);
-    setSelectedCategory("All");
+    setSelectedCategory("all");
     setSelectedDelivery("");
-    setSelectedIndustry("All");
+    setSelectedIndustry("all");
     setSearchQuery("");
   }, []);
 
   const hasActiveFilters = useMemo(
     () =>
-      selectedCategory !== "All" ||
+      selectedCategory !== "all" ||
       selectedTools.length > 0 ||
       Boolean(selectedDelivery) ||
-      selectedIndustry !== "All" ||
+      selectedIndustry !== "all" ||
       Boolean(searchQuery.trim()),
     [
       selectedCategory,
@@ -739,7 +369,7 @@ export default function AutomationsPage() {
     () => ({
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "Automation Library",
+      name: t("automationsPage.title") + " " + t("automationsPage.titleHighlight"),
       itemListOrder: "Unordered",
       itemListElement: automations.map((item, index) => ({
         "@type": "ListItem",
@@ -748,15 +378,15 @@ export default function AutomationsPage() {
         description: item.outcome,
       })),
     }),
-    []
+    [automations, t]
   );
 
   return (
     <>
       <SkipLink />
       <SeoHead
-        title="Automation Library | Innoviaburst"
-        description="Browse 16+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts."
+        title={t("automationsPage.metaTitle")}
+        description={t("automationsPage.metaDescription")}
         path="/automations"
         jsonLd={automationListSchema}
       />
@@ -772,14 +402,13 @@ export default function AutomationsPage() {
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring rounded-lg px-2 -ml-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to home
+              {t("automationsPage.backToHome")}
             </Link>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Automation <span className="text-gradient-brand">Library</span>
+              {t("automationsPage.title")} <span className="text-gradient-brand">{t("automationsPage.titleHighlight")}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Example workflows we build for UK/EU businesses. Each shows
-              delivery time, tools, and expected impact.
+              {t("automationsPage.subtitle")}
             </p>
           </div>
         </section>
@@ -796,11 +425,11 @@ export default function AutomationsPage() {
                 />
                 <input
                   type="search"
-                  placeholder="Search automations..."
+                  placeholder={t("automationsPage.searchPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-12 pr-4 py-3 rounded-xl bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring min-h-[48px]"
-                  aria-label="Search automations"
+                  aria-label={t("automationsPage.searchPlaceholder")}
                 />
               </div>
               <div className="mt-3 md:mt-0 flex items-center gap-2">
@@ -808,7 +437,7 @@ export default function AutomationsPage() {
                   className="text-sm text-foreground"
                   htmlFor="sort-select"
                 >
-                  Sort
+                  {t("automationsPage.sort")}
                 </label>
                 <select
                   id="sort-select"
@@ -816,9 +445,9 @@ export default function AutomationsPage() {
                   onChange={(e) => setSortBy(e.target.value)}
                   className="px-3 py-2 rounded-lg border border-border bg-muted text-sm min-h-[40px]"
                 >
-                  {sortOptions.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
+                  {sortOptionKeys.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {t(`automationsPage.sortOptions.${opt}`)}
                     </option>
                   ))}
                 </select>
@@ -828,11 +457,11 @@ export default function AutomationsPage() {
             {/* Category chips + filter toggle */}
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2 overflow-x-auto pb-1 flex-1 scrollbar-hide scroll-smooth snap-x snap-mandatory -mx-1 px-1">
-                {categories.map((cat) => (
+                {categoryKeys.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors min-h-[40px] snap-start focus:outline-none focus:ring-2 focus:ring-ring ${
+                    className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors min-h-[44px] snap-start focus:outline-none focus:ring-2 focus:ring-ring ${
                       selectedCategory === cat
                         ? "bg-secondary text-secondary-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -840,7 +469,7 @@ export default function AutomationsPage() {
                     aria-pressed={selectedCategory === cat}
                     aria-current={selectedCategory === cat ? "true" : undefined}
                   >
-                    {cat}
+                    {t(`automationsPage.categories.${cat}`)}
                   </button>
                 ))}
               </div>
@@ -848,7 +477,7 @@ export default function AutomationsPage() {
               <Drawer open={showFilters} onOpenChange={setShowFilters}>
                 <DrawerTrigger asChild>
                   <button
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium min-h-[40px] transition-colors shrink-0 focus:outline-none focus:ring-2 focus:ring-ring ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium min-h-[44px] transition-colors shrink-0 focus:outline-none focus:ring-2 focus:ring-ring ${
                       hasActiveFilters
                         ? "bg-accent text-accent-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -857,7 +486,7 @@ export default function AutomationsPage() {
                     aria-controls="filters-panel"
                   >
                     <SlidersHorizontal className="w-4 h-4" />
-                    Filters
+                    {t("automationsPage.filters")}
                   </button>
                 </DrawerTrigger>
                 <DrawerContent
@@ -865,19 +494,19 @@ export default function AutomationsPage() {
                   className="max-h-[80vh] overflow-y-auto"
                 >
                   <DrawerHeader>
-                    <DrawerTitle>Filters</DrawerTitle>
+                    <DrawerTitle>{t("automationsPage.filters")}</DrawerTitle>
                   </DrawerHeader>
                   <div className="px-6 pb-6 space-y-6">
                     <div>
                       <p className="text-sm font-semibold text-foreground mb-2">
-                        Tools
+                        {t("automationsPage.filterTools")}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {tools.map((tool) => (
                           <button
                             key={tool}
                             onClick={() => toggleTool(tool)}
-                            className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors min-h-[36px] focus:outline-none focus:ring-2 focus:ring-ring ${
+                            className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring ${
                               selectedTools.includes(tool)
                                 ? "bg-accent text-accent-foreground"
                                 : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -892,14 +521,14 @@ export default function AutomationsPage() {
 
                     <div>
                       <p className="text-sm font-semibold text-foreground mb-2">
-                        Delivery time
+                        {t("automationsPage.filterDelivery")}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {["1-2", "2-3", "3-4", "4-999"].map((range) => {
                           const label =
                             range === "4-999"
-                              ? "4+ weeks"
-                              : `${range.replace("-", "–")} weeks`;
+                              ? t("automationsPage.weeksPlus")
+                              : `${range.replace("-", "–")} ${t("automationsPage.weeks")}`;
                           return (
                             <button
                               key={range}
@@ -908,7 +537,7 @@ export default function AutomationsPage() {
                                   selectedDelivery === range ? "" : range
                                 )
                               }
-                              className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors min-h-[36px] focus:outline-none focus:ring-2 focus:ring-ring ${
+                              className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring ${
                                 selectedDelivery === range
                                   ? "bg-secondary text-secondary-foreground"
                                   : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -924,21 +553,21 @@ export default function AutomationsPage() {
 
                     <div>
                       <p className="text-sm font-semibold text-foreground mb-2">
-                        Industry
+                        {t("automationsPage.filterIndustry")}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {industries.map((ind) => (
+                        {industryKeys.map((ind) => (
                           <button
                             key={ind}
                             onClick={() => setSelectedIndustry(ind)}
-                            className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors min-h-[36px] focus:outline-none focus:ring-2 focus:ring-ring ${
+                            className={`px-3 py-2 rounded-lg text-xs font-medium transition-colors min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring ${
                               selectedIndustry === ind
                                 ? "bg-secondary text-secondary-foreground"
                                 : "bg-muted text-muted-foreground hover:bg-muted/80"
                             }`}
                             aria-pressed={selectedIndustry === ind}
                           >
-                            {ind}
+                            {t(`automationsPage.industries.${ind}`)}
                           </button>
                         ))}
                       </div>
@@ -948,17 +577,17 @@ export default function AutomationsPage() {
                       <Button
                         variant="secondary"
                         onClick={() => setShowFilters(false)}
-                        className="min-h-[40px]"
+                        className="min-h-[44px]"
                       >
-                        Close
+                        {t("automationsPage.close")}
                       </Button>
                       {hasActiveFilters && (
                         <Button
                           variant="ghost"
                           onClick={clearAll}
-                          className="min-h-[40px] text-accent"
+                          className="min-h-[44px] text-accent"
                         >
-                          Clear filters
+                          {t("automationsPage.clearFilters")}
                         </Button>
                       )}
                     </div>
@@ -971,16 +600,16 @@ export default function AutomationsPage() {
             {hasActiveFilters && (
               <div className="flex items-center flex-wrap gap-2 text-sm">
                 {[
-                  selectedCategory !== "All" && `Category: ${selectedCategory}`,
-                  selectedIndustry !== "All" && `Industry: ${selectedIndustry}`,
+                  selectedCategory !== "all" && `${t("automationsPage.categories." + selectedCategory)}`,
+                  selectedIndustry !== "all" && `${t("automationsPage.industries." + selectedIndustry)}`,
                   selectedDelivery &&
-                    `Delivery: ${
+                    `${
                       selectedDelivery === "4-999"
-                        ? "4+ weeks"
-                        : selectedDelivery.replace("-", "–") + " weeks"
+                        ? t("automationsPage.weeksPlus")
+                        : selectedDelivery.replace("-", "–") + " " + t("automationsPage.weeks")
                     }`,
-                  ...selectedTools.map((t) => `Tool: ${t}`),
-                  searchQuery && `Search: ${searchQuery}`,
+                  ...selectedTools.map((t) => t),
+                  searchQuery && `"${searchQuery}"`,
                 ]
                   .filter(Boolean)
                   .map((chip) => (
@@ -995,7 +624,7 @@ export default function AutomationsPage() {
                   onClick={clearAll}
                   className="text-sm text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded px-2 min-h-[32px]"
                 >
-                  Clear all
+                  {t("automationsPage.clearAll")}
                 </button>
               </div>
             )}
@@ -1009,8 +638,9 @@ export default function AutomationsPage() {
               <Skeleton className="h-4 w-32 inline-block" />
             ) : (
               <>
-                {filteredAndSorted.length} automation
-                {filteredAndSorted.length !== 1 ? "s" : ""} found
+                {filteredAndSorted.length === 1 
+                  ? t("automationsPage.resultsCount", { count: filteredAndSorted.length })
+                  : t("automationsPage.resultsCountPlural", { count: filteredAndSorted.length })}
               </>
             )}
           </p>
@@ -1029,14 +659,14 @@ export default function AutomationsPage() {
             ) : filteredAndSorted.length === 0 ? (
               <div className="text-center py-16">
                 <p className="text-lg text-muted-foreground mb-4">
-                  No automations match your filters.
+                  {t("automationsPage.noResults")}
                 </p>
                 <Button
                   variant="outline"
                   onClick={clearAll}
                   className="min-h-[44px]"
                 >
-                  Clear filters
+                  {t("automationsPage.clearFilters")}
                 </Button>
               </div>
             ) : (
@@ -1073,19 +703,18 @@ export default function AutomationsPage() {
         <section className="py-16 bg-gradient-hero">
           <div className="container mx-auto px-4 lg:px-6 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Don't see your workflow?
+              {t("automationsPage.cta.title")}
             </h2>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              We build custom automations tailored to your exact tools and
-              processes.
+              {t("automationsPage.cta.subtitle")}
             </p>
             <Button
               variant="hero"
               size="lg"
               onClick={() => setRequestOpen(true)}
-              className="min-h-[48px]"
+              className="w-full sm:w-auto min-h-[48px]"
             >
-              Request a custom build
+              {t("automationsPage.cta.button")}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
@@ -1116,10 +745,11 @@ function AutomationCard({
   onRequest,
   onQuickView,
 }: {
-  automation: (typeof automations)[0];
+  automation: Automation;
   onRequest: () => void;
   onQuickView: () => void;
 }) {
+  const { t } = useTranslation();
   const [stepsOpen, setStepsOpen] = useState(false);
 
   const handleCardClick = () => {
@@ -1214,7 +844,7 @@ function AutomationCard({
               style={{ minHeight: 32 }}
             >
               <Eye className="h-3.5 w-3.5" />
-              Quick view
+              {t("automationsPage.card.quickView")}
             </button>
           </div>
         </div>
@@ -1228,7 +858,7 @@ function AutomationCard({
             <Zap className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
             <div className="min-w-0">
               <div className="text-[11px] font-semibold tracking-wide text-accent/90">
-                EXAMPLE IMPACT
+                {t("automationsPage.card.exampleImpact")}
               </div>
               <div className="text-sm font-semibold text-muted-foreground line-clamp-1">
                 {automation.kpi}
@@ -1246,7 +876,7 @@ function AutomationCard({
             onRequest();
           }}
         >
-          Request this build
+          {t("automationsPage.card.requestBuild")}
           <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/button:translate-x-0.5" />
         </Button>
       </div>

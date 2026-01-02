@@ -1,26 +1,39 @@
 {
   "nav": {
+    "automations": "Automatisations",
     "offers": "Offres",
     "solutions": "Solutions",
     "industries": "Secteurs",
     "work": "Réalisations",
     "trust": "Confiance",
     "resources": "Ressources",
-    "bookCall": "Réserver un appel de 15 min",
-    "seeAutomations": "Voir les automatisations"
+    "bookCall": "Réserver un appel (15 min)",
+    "seeAutomations": "Voir les automatisations",
+    "closeMenu": "Fermer le menu",
+    "openMenu": "Ouvrir le menu",
+    "menuLabel": "Menu de navigation"
   },
   "hero": {
+    "headlinePre": "Livrez",
+    "headlineHighlight": "IA & automatisation",
+    "headlinePost": "en semaines, pas en mois.",
     "headline": "IA & Automatisation livrées en semaines — pas en mois.",
-    "subheadline": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVPs avec une approche conforme.",
-    "deliveryNote": "Première livraison typique en 10 jours. Périmètre clair. ROI mesurable.",
-    "bookCall": "Réserver un appel de 15 min",
-    "seeAutomations": "Voir les automatisations",
+    "subheadline": "Nous créons des automatisations de workflows, des copilotes IA et des MVPs pour les PME UK/EU — avec un périmètre clair, un ROI mesurable et une livraison conforme.",
+    "deliveryNote": "Première livraison en ~10 jours. Périmètre clair. ROI mesurable.",
+    "primaryCta": "Demander un plan d'automatisation",
+    "secondaryCta": "Voir les automatisations",
     "trustPoints": {
-      "outcome": "Livraison axée résultats",
-      "remote": "Full remote, fuseau UK/EU",
-      "team": "Automatisation + IA + MVP en une équipe",
-      "compliance": "Conformité RGPD UK/EU"
+      "delivery": "Première livraison en ~10 jours",
+      "gdpr": "Conforme RGPD UK",
+      "agnostic": "Compatible tous outils"
     }
+  },
+  "proofStrip": {
+    "delivery": "Livraison en semaines, pas en mois",
+    "roi": "ROI mesurable dès le premier jour",
+    "compliance": "Conformité UK/EU intégrée",
+    "tools": "Fonctionne avec vos outils existants",
+    "oversight": "Supervision humaine sur chaque projet"
   },
   "booking": {
     "title": "Réservez votre appel",
@@ -36,30 +49,66 @@
     "step3": "Date de démarrage"
   },
   "offers": {
-    "title": "Offres Packagées",
+    "title": "Nos",
+    "titleHighlight": "Offres",
     "subtitle": "Périmètre fixe. Délais clairs. Résultats prévisibles.",
     "compareOffers": "Comparer les offres",
     "getScope": "Obtenir un devis en 48h",
     "bestFor": "Idéal pour",
     "deliverables": "Livrables",
     "successMetrics": "Métriques de succès",
+    "mostPopular": "Plus populaire",
+    "disclaimer": "Tarifs selon périmètre — à partir de 450£/jour (outils et abonnements facturés séparément).",
+    "swipeHint": "← Glisser pour comparer →",
+    "table": {
+      "feature": "Caractéristique",
+      "timeline": "Délai",
+      "startingPrice": "Prix de départ",
+      "multiSystem": "Multi-système",
+      "documentation": "Documentation",
+      "bestFor": "Idéal pour"
+    },
     "sprint": {
       "title": "Sprint IA Ops",
       "timeline": "10 jours ouvrés",
-      "bestFor": "Équipes ops noyées sous les tâches manuelles",
-      "price": "À partir de 5k£"
+      "bestFor": "Équipes ops submergées par les tâches manuelles",
+      "bestForShort": "Gains rapides",
+      "deliverables": [
+        "1 workflow automatisé OU 1 copilote IA déployé",
+        "Documentation légère + session de passation"
+      ],
+      "metrics": "Heures économisées/semaine, temps de réponse",
+      "price": "À partir de 3k£",
+      "multiSystem": "1 système",
+      "documentation": "Légère"
     },
     "build": {
       "title": "Build Automatisation",
       "timeline": "4–6 semaines",
-      "bestFor": "Automatisation multi-outils + validations + reporting",
-      "price": "15k£–30k£"
+      "bestFor": "Automatisation multi-outils avec validations et reporting",
+      "bestForShort": "Workflows complexes",
+      "deliverables": [
+        "Workflow multi-systèmes (CRM, helpdesk, facturation)",
+        "Logs, alertes et stratégie de retry inclus"
+      ],
+      "metrics": "Réduction des délais, moins d'erreurs manuelles",
+      "price": "À partir de 7k£",
+      "multiSystem": "Multiple",
+      "documentation": "Complète"
     },
     "mvp": {
       "title": "Lancement MVP",
       "timeline": "6–10 semaines",
       "bestFor": "Startups & PME lançant un nouveau produit",
-      "price": "À partir de 25k£"
+      "bestForShort": "Nouveaux produits",
+      "deliverables": [
+        "MVP construit, déployé avec dashboard analytics",
+        "Sécurité, rôles utilisateurs et conformité inclus"
+      ],
+      "metrics": "Time-to-market, taux d'activation utilisateur",
+      "price": "À partir de 13k£",
+      "multiSystem": "Multiple",
+      "documentation": "Complète"
     }
   },
   "work": {
@@ -76,18 +125,54 @@
     }
   },
   "trust": {
-    "title": "Confiance & Conformité",
-    "subtitle": "Comment nous gérons vos données et livrons en toute confiance.",
-    "downloadPack": "Télécharger le Pack Confiance",
-    "viewPolicy": "Voir la politique complète"
+    "title": "Confiance &",
+    "titleHighlight": "Conformité",
+    "subtitle": "Sécurité et conformité ne sont pas des options — elles sont intégrées dès le départ.",
+    "downloadPack": "Télécharger le Pack Confiance (PDF)",
+    "viewPage": "Voir la page Confiance & Conformité",
+    "viewPolicy": "Voir la politique complète",
+    "disclaimer": "Ceci n'est pas un avis juridique. Pour toute question de conformité, consultez un professionnel qualifié.",
+    "items": {
+      "access": {
+        "title": "Accès privilège minimal",
+        "description": "Accès basé sur les rôles par défaut. Nous ne demandons que les permissions essentielles à votre livraison."
+      },
+      "subprocessors": {
+        "title": "Transparence sous-traitants",
+        "description": "Visibilité complète sur les outils et services utilisés. Notification des changements significatifs avec préavis."
+      },
+      "retention": {
+        "title": "Conservation & suppression",
+        "description": "Données conservées uniquement pour la livraison + 30 jours. Retournées ou supprimées sur demande."
+      },
+      "incident": {
+        "title": "Gestion des incidents",
+        "description": "Processus de réponse aux incidents documenté. Notification client pour tout événement affectant vos données."
+      },
+      "dpa": {
+        "title": "DPA disponible",
+        "description": "Accord de traitement des données compatible UK/EU disponible pour les engagements de sous-traitance."
+      },
+      "ai": {
+        "title": "Transparence IA",
+        "description": "Communication claire sur l'utilisation de l'IA. Contrôle humain pour les sorties sensibles ou à fort impact."
+      }
+    }
   },
   "contact": {
-    "title": "Prêt à éliminer le travail manuel ce mois-ci ?",
-    "subtitle": "Réservez un appel ou parlez-nous de vos défis.",
-    "responseTime": "Nous répondons sous 24h (jours ouvrés UK).",
+    "title": "Prêt à automatiser",
+    "titleHighlight": "ce mois-ci",
+    "subtitle": "Parlez-nous de votre défi. Nous vous répondons avec un périmètre clair sous 48 heures.",
+    "responseTime": "Nous répondons sous 24h (jours ouvrés UK)",
+    "primaryCta": "Demander un plan d'automatisation",
+    "emailCta": "Nous écrire directement",
     "bookCall": "Réserver un appel",
     "emailUs": "Nous écrire",
     "formTitle": "Ou parlez-nous de votre projet"
+  },
+  "stickyBar": {
+    "primaryCta": "Demander un plan d'automatisation",
+    "secondaryCta": "Réserver un appel (15 min)"
   },
   "footer": {
     "tagline": "IA & Automatisation livrées en semaines. Focus UK/EU, conforme RGPD.",
@@ -99,6 +184,53 @@
     "companyDetails": "Innoviaburst Ltd (N° XXXXXXXX) — Enregistrée en Angleterre et Pays de Galles",
     "copyright": "© {{year}} Innoviaburst. Tous droits réservés.",
     "complianceNote": "Conçu avec un focus sur la conformité RGPD UK & EU."
+  },
+  "solutions": {
+    "title": "Top",
+    "titleHighlight": "Workflows",
+    "subtitle": "Patterns d'automatisation éprouvés avec un ROI mesurable.",
+    "whatItFixes": "Ce que ça résout",
+    "typicalTools": "Outils typiques",
+    "exampleKpi": "Exemple de KPI",
+    "cta": "Voir toutes les automatisations",
+    "items": {
+      "leadToMeeting": {
+        "title": "Lead-to-Meeting en 60 secondes",
+        "fixes": "Les leads chauds restent non assignés, les relances tardent, et les prospects se refroidissent.",
+        "tools": "HubSpot, Slack, Calendly, Webhook",
+        "kpi": "Temps de réponse : heures → minutes"
+      },
+      "demoQualification": {
+        "title": "Qualification & routage des demandes de démo",
+        "fixes": "Les demandes sans contexte font perdre du temps ; les bons leads attendent trop.",
+        "tools": "HubSpot, Slack, Calendly, Gmail",
+        "kpi": "Plus d'appels qualifiés, moins de no-shows"
+      },
+      "supportTriage": {
+        "title": "Triage IA Support + brouillon de réponse",
+        "fixes": "Tickets répétitifs et routage manuel ralentissent l'équipe et cassent les SLAs.",
+        "tools": "Zendesk, Slack, OpenAI, Notion",
+        "kpi": "30–60% plus rapide en première réponse"
+      },
+      "dunning": {
+        "title": "Dunning intelligent + sync CRM",
+        "fixes": "Les paiements échoués causent du churn et des pertes de revenus ; le suivi est manuel.",
+        "tools": "Stripe, HubSpot, Gmail, Slack",
+        "kpi": "Meilleur taux de récupération, moins de relances"
+      },
+      "onboarding": {
+        "title": "Handoff Ventes → Onboarding",
+        "fixes": "Les étapes post-vente sont oubliées, retardant la valeur et augmentant le churn.",
+        "tools": "HubSpot, Notion, Slack, Gmail",
+        "kpi": "Zéro oubli d'onboarding, activation plus rapide"
+      },
+      "knowledgeBase": {
+        "title": "Constructeur de base de connaissances IA",
+        "fixes": "Le savoir est dispersé, les réponses se répètent, et l'onboarding est lent.",
+        "tools": "Notion, Zendesk, OpenAI, Slack",
+        "kpi": "50% de tickets répétitifs en moins"
+      }
+    }
   },
   "cookies": {
     "title": "Nous respectons votre vie privée",
@@ -118,5 +250,451 @@
     "getStarted": "Commencer",
     "contactUs": "Nous contacter",
     "backToHome": "Retour à l'accueil"
+  },
+  "automationsPage": {
+    "title": "Bibliothèque",
+    "titleHighlight": "d'Automatisations",
+    "subtitle": "Exemples de workflows que nous construisons pour les entreprises UK/EU. Chacun montre le délai, les outils et l'impact attendu.",
+    "metaTitle": "Bibliothèque d'Automatisations | Innoviaburst",
+    "metaDescription": "Parcourez 10+ exemples d'automatisations pour les équipes Sales, Ops, Support, Finance et Knowledge. Voir workflows, outils, délais et impacts KPI.",
+    "backToHome": "Retour à l'accueil",
+    "searchPlaceholder": "Rechercher des automatisations...",
+    "sort": "Trier",
+    "sortOptions": {
+      "impact": "Meilleur ROI",
+      "fastest": "Livraison la plus rapide",
+      "popular": "Plus demandées",
+      "newest": "Plus récentes"
+    },
+    "filters": "Filtres",
+    "filterTools": "Outils",
+    "filterDelivery": "Délai de livraison",
+    "filterIndustry": "Secteur",
+    "weeks": "semaines",
+    "weeksPlus": "4+ semaines",
+    "close": "Fermer",
+    "clearFilters": "Effacer les filtres",
+    "clearAll": "Tout effacer",
+    "resultsCount": "{{count}} automatisation trouvée",
+    "resultsCountPlural": "{{count}} automatisations trouvées",
+    "noResults": "Aucune automatisation ne correspond à vos filtres.",
+    "categories": {
+      "all": "Tout",
+      "sales": "Ventes",
+      "ops": "Ops",
+      "support": "Support",
+      "finance": "Finance",
+      "knowledge": "Knowledge"
+    },
+    "industries": {
+      "all": "Tout",
+      "b2b": "B2B",
+      "b2c": "B2C",
+      "saas": "SaaS",
+      "services": "Services",
+      "retail": "Retail"
+    },
+    "card": {
+      "quickView": "Aperçu rapide",
+      "requestBuild": "Demander ce build",
+      "exampleImpact": "EXEMPLE D'IMPACT"
+    },
+    "quickView": {
+      "close": "Fermer",
+      "outcome": "Résultat",
+      "problem": "Le problème",
+      "workflowSteps": "Étapes du workflow",
+      "toolsInvolved": "Outils utilisés",
+      "typicalInputs": "Entrées typiques",
+      "outputs": "Sorties",
+      "inputs": ["Événement/formulaire déclencheur", "Données sources", "Règles/critères"],
+      "outputsList": ["Actions automatisées", "Notifications", "Enregistrements mis à jour"]
+    },
+    "cta": {
+      "title": "Vous ne trouvez pas votre workflow ?",
+      "subtitle": "Nous construisons des automatisations sur mesure adaptées à vos outils et processus.",
+      "button": "Demander un build personnalisé"
+    },
+    "items": {
+      "leadToMeeting": {
+        "title": "Lead vers RDV en 60 secondes",
+        "outcome": "Routez les leads instantanément + réservez des RDV plus vite",
+        "problem": "Les leads restent non assignés, les suivis sont lents et les prospects chauds abandonnent avant qu'un commercial ne réponde.",
+        "steps": [
+          "Lead capturé (formulaire web / Typeform)",
+          "Enrichissement du lead (entreprise + rôle + région) via API",
+          "Création/mise à jour du contact + deal dans le CRM (HubSpot)",
+          "Assignation au propriétaire selon les règles (territoire/segment/round-robin)",
+          "Envoi d'alerte Slack au propriétaire avec résumé du lead",
+          "Envoi du lien de réservation + email de suivi intelligent",
+          "Démarrage du timer SLA + création de tâche de suivi"
+        ],
+        "kpi": "EXEMPLE : temps de réponse réduit de plusieurs heures à quelques minutes"
+      },
+      "aiSupportTriage": {
+        "title": "Triage Support IA + Brouillon de réponse",
+        "outcome": "Priorisation automatique des tickets + brouillons de réponses avec l'IA",
+        "problem": "Les équipes support perdent du temps à lire, router et répondre aux tickets répétitifs pendant que les SLA dérapent.",
+        "steps": [
+          "Nouveau ticket/email reçu",
+          "L'IA classifie le sujet + urgence + sentiment",
+          "Routage vers la bonne file/propriétaire",
+          "Génération du brouillon de réponse + suggestions de la base de connaissances",
+          "Publication du résumé dans Slack + demande d'approbation pour les cas à risque",
+          "Démarrage du suivi SLA + escalade si dépassé"
+        ],
+        "kpi": "EXEMPLE : première réponse 30–60% plus rapide"
+      },
+      "stripeDunning": {
+        "title": "Paiement Stripe échoué → Relance intelligente + MAJ CRM",
+        "outcome": "Récupérez le revenu automatiquement quand les paiements échouent",
+        "problem": "Les paiements échoués causent du churn et des fuites de revenus ; les équipes relancent manuellement et de façon incohérente.",
+        "steps": [
+          "Événement Stripe reçu (paiement échoué / action requise)",
+          "Vérification du contexte client + facture",
+          "Mise à jour du statut deal/abonnement CRM",
+          "Envoi de la séquence de relance (étape 1/2/3)",
+          "Escalade vers Slack + assignation de tâche si non résolu",
+          "Logique de réessai + arrêt de la séquence en cas de succès",
+          "Rapport hebdomadaire de récupération généré"
+        ],
+        "kpi": "EXEMPLE : réduire le churn dû aux paiements échoués et économiser des heures de relance manuelle"
+      },
+      "shopifyFulfillment": {
+        "title": "Commande Shopify → Fulfillment + Dashboard Ops",
+        "outcome": "Automatisez les étapes de fulfillment et gardez les ops visibles",
+        "problem": "Les commandes nécessitent une coordination manuelle entre fulfillment, notifications et suivi interne.",
+        "steps": [
+          "Nouvelle commande créée dans Shopify",
+          "Validation de l'adresse + flags (fraude/haute valeur/rupture)",
+          "Notification ops/entrepôt dans Slack avec notes de préparation",
+          "Création de tâche de fulfillment + mise à jour du tableau de suivi",
+          "Envoi de notification client (expédition/traitement)",
+          "Mise à jour du dashboard + liste des exceptions",
+          "Escalade si SLA de fulfillment dépassé"
+        ],
+        "kpi": "EXEMPLE : moins d'erreurs de fulfillment + coordination interne plus rapide"
+      },
+      "invoiceReminder": {
+        "title": "Automatisation Factures & Relances + Rapport Finance hebdo",
+        "outcome": "Automatisez les relances + donnez aux fondateurs une visibilité hebdo sur la trésorerie",
+        "problem": "Les factures restent impayées car les relances et le suivi des statuts sont manuels et incohérents.",
+        "steps": [
+          "Scan quotidien des factures impayées",
+          "Segmentation par ancienneté (7/14/30+ jours)",
+          "Envoi d'email de relance avec lien de paiement",
+          "Escalade vers Slack/propriétaire du compte à 30+ jours",
+          "Mise à jour du statut CRM + date de prochaine action",
+          "Génération du rapport financier hebdomadaire"
+        ],
+        "kpi": "EXEMPLE : économie de 3–8 h/semaine et réduction des factures en retard"
+      },
+      "recruitmentPipeline": {
+        "title": "Automatisation Pipeline de Recrutement",
+        "outcome": "Du formulaire candidat → planification → mises à jour équipe",
+        "problem": "La coordination du recrutement est lente : CV éparpillés, planification interminable et mises à jour manquées.",
+        "steps": [
+          "Candidat soumis via formulaire",
+          "Création du dossier candidat (Notion/feuille ATS)",
+          "Email automatique au candidat avec prochaines étapes",
+          "Planification de l'entretien (Calendly) + création d'événement calendrier",
+          "Notification du canal recrutement dans Slack",
+          "Génération du kit d'entretien + grille d'évaluation",
+          "Suivi des changements de statut + rappels"
+        ],
+        "kpi": "EXEMPLE : réduction du temps de planification et pipeline cohérent"
+      },
+      "salesHandoff": {
+        "title": "Handoff Ventes → Automatisation Checklist Onboarding",
+        "outcome": "Prévenez le churn en rendant les handoffs déterministes",
+        "problem": "Après la signature d'un deal, des étapes d'onboarding sont manquées, causant des retards et des risques de churn précoce.",
+        "steps": [
+          "Deal marqué Closed Won dans le CRM",
+          "Création du projet/checklist d'onboarding",
+          "Assignation des tâches au propriétaire + équipe",
+          "Envoi de l'email de bienvenue + lien de planification kickoff",
+          "Publication du brief kickoff dans Slack",
+          "Démarrage du SLA d'onboarding + escalade des blocages",
+          "Digest hebdo du statut d'onboarding"
+        ],
+        "kpi": "EXEMPLE : moins d'oublis d'onboarding + time-to-value plus rapide"
+      },
+      "demoQualification": {
+        "title": "Demandes de démo → Qualification → Routage",
+        "outcome": "Qualifiez les demandes instantanément et routez vers la bonne personne",
+        "problem": "Les demandes de démo arrivent avec peu de contexte ; les équipes perdent du temps sur des appels non qualifiés ou répondent lentement.",
+        "steps": [
+          "Demande de démo soumise",
+          "Enrichissement auto + scoring du lead (industrie/taille/intention)",
+          "Routage vers le bon commercial/file",
+          "Envoi de l'email de confirmation + lien de réservation",
+          "Création du deal + ajout de notes + prochaines étapes",
+          "Notification Slack avec score + agenda suggéré",
+          "Automatisation de suivi no-show"
+        ],
+        "kpi": "EXEMPLE : augmentation des appels qualifiés et réduction des no-shows"
+      },
+      "execOpsDigest": {
+        "title": "Digest Ops Exec hebdo (KPIs + Blocages) vers Slack/Email",
+        "outcome": "Visibilité leadership sans reporting manuel",
+        "problem": "Les managers passent des heures à compiler les mises à jour ; la direction manque d'une vue hebdo unique de la santé des ops.",
+        "steps": [
+          "Extraction des KPIs des sources (CRM/Support/Finance/outil PM)",
+          "Agrégation des deltas hebdo + principaux problèmes",
+          "Mise en avant des blocages + éléments en retard",
+          "Envoi du digest vers Slack + email",
+          "Création de tâches de suivi pour les principaux blocages",
+          "Archivage du rapport pour piste d'audit"
+        ],
+        "kpi": "EXEMPLE : économie de 2–6 h/semaine de temps de reporting"
+      },
+      "aiKnowledgeBase": {
+        "title": "Builder de Base de Connaissances IA (Tickets/Docs → Suggestions FAQ)",
+        "outcome": "Gardez les docs à jour et réduisez la charge de support répétitif",
+        "problem": "Les connaissances sont éparpillées et obsolètes ; les réponses support se répètent ; l'onboarding est lent.",
+        "steps": [
+          "Ingestion des tickets + docs internes selon un planning",
+          "Clustering des sujets + détection des nouvelles questions récurrentes",
+          "Génération de suggestions FAQ/articles",
+          "Création de brouillons de pages + assignation aux réviseurs",
+          "Publication après approbation",
+          "Notification de l'équipe + suivi de l'utilisation/feedback"
+        ],
+        "kpi": "EXEMPLE : réduction des tickets répétitifs et accélération de l'onboarding"
+      }
+    }
+  },
+  "comingSoon": {
+    "seo": {
+      "title": "Bientôt disponible | InnoviaBurst",
+      "description": "Nous construisons cette page pour vous aider à choisir la bonne automatisation plus rapidement."
+    },
+    "skipLink": "Aller au contenu principal",
+    "badge": "InnoviaBurst — Livraison hebdomadaire",
+    "headline": "Cette page est",
+    "headlineHighlight": "bientôt disponible",
+    "subheadline": "Nous construisons cette section pour vous aider à choisir le bon workflow plus vite. En attendant, découvrez ce que nous pouvons déjà livrer.",
+    "primaryCta": "Réserver un appel",
+    "secondaryCta": "Voir les automatisations",
+    "visual": {
+      "title": "Quelque chose d'ambitieux est en cours",
+      "subtitle": "Revenez bientôt"
+    },
+    "features": {
+      "title": "Ce que vous y trouverez",
+      "subtitle": "Nous concevons cette page pour simplifier vos décisions d'automatisation.",
+      "clearOptions": {
+        "title": "Options claires",
+        "description": "Présélection par taille d'équipe, outils et urgence pour trouver ce qui vous convient."
+      },
+      "realExamples": {
+        "title": "Exemples concrets",
+        "description": "Workflows avec étapes + impact attendu — sans approximation."
+      },
+      "fastScoping": {
+        "title": "Cadrage rapide",
+        "description": "Nous confirmons le périmètre en 48h, livraison en semaines pas en mois."
+      }
+    },
+    "cta": {
+      "title": "Vous le voulez plus tôt ?",
+      "subtitle": "Dites-nous ce que vous cherchez à automatiser et nous prioriserons les bons workflows.",
+      "primaryLabel": "Réserver un appel",
+      "secondaryLabel": "Voir les automatisations"
+    }
+  },
+  "trustPage": {
+    "seo": {
+      "title": "Confiance & Conformité | InnoviaBurst",
+      "description": "Comment InnoviaBurst protège vos données : Trust Pack, DPA, sous-traitants, SCCs/Avenant UK, rétention, gestion des incidents et supervision IA pour les clients UK/EU."
+    },
+    "backToHome": "Retour à l'accueil",
+    "badge": "Focus UK/EU",
+    "title": "Confiance &",
+    "titleHighlight": "Conformité",
+    "subtitle": "Comment nous protégeons vos données et livrons en toute confiance — en langage clair, sans jargon juridique.",
+    "trustPackAvailable": "Nous pouvons partager un Trust Pack (PDF), DPA et liste de sous-traitants sur demande.",
+    "primaryCta": "Réserver un appel",
+    "downloadTrustPack": "Télécharger le Trust Pack (PDF)",
+    "requestDpa": "Demander DPA / Questionnaire sécurité",
+    "heroTags": [
+      "DPA disponible",
+      "Sous-traitants",
+      "Rétention",
+      "Gestion des incidents",
+      "SCCs + Avenant UK",
+      "Supervision IA"
+    ],
+    "trustPackHighlights": {
+      "title": "Points clés du Trust Pack",
+      "items": [
+        "DPA disponible pour les engagements de sous-traitance",
+        "Liste des sous-traitants et notifications de changement",
+        "SCCs EU + Avenant UK le cas échéant",
+        "Rétention et suppression à la fin du projet sauf accord contraire",
+        "Transparence IA avec supervision humaine"
+      ]
+    },
+    "toc": {
+      "title": "Sur cette page",
+      "trustPack": "Trust Pack en bref",
+      "security": "Posture sécurité",
+      "subprocessors": "Sous-traitants",
+      "contracts": "Contrats & DPA",
+      "transfers": "Transferts internationaux",
+      "ai": "Supervision IA",
+      "dpia": "Support AIPD",
+      "contact": "Contact"
+    },
+    "trustPack": {
+      "title": "Trust Pack en bref",
+      "subtitle": "Aperçu rapide des essentiels que les acheteurs demandent dans les 10 premières secondes.",
+      "items": {
+        "dpa": {
+          "title": "DPA disponible",
+          "subtitle": "Nous signons un DPA conforme RGPD UK pour les travaux de sous-traitance.",
+          "detail": "Disponible sur demande lors de l'onboarding."
+        },
+        "subprocessors": {
+          "title": "Transparence sous-traitants",
+          "subtitle": "Nous divulguons les outils pouvant traiter des données et notifions les changements importants.",
+          "detail": "Liste des sous-traitants disponible."
+        },
+        "transfers": {
+          "title": "Transferts internationaux sécurisés",
+          "subtitle": "SCCs EU + Avenant UK le cas échéant.",
+          "detail": "Répond aux exigences des acheteurs EU/UK."
+        },
+        "retention": {
+          "title": "Rétention & suppression",
+          "subtitle": "Nous supprimons ou restituons les données projet à la fin, sauf accord contraire.",
+          "detail": "Attentes de rétention claires."
+        },
+        "incident": {
+          "title": "Gestion des incidents",
+          "subtitle": "Processus documenté de gestion des incidents et notification client.",
+          "detail": "Préparation à la notification de violation."
+        },
+        "ai": {
+          "title": "Transparence IA",
+          "subtitle": "Supervision humaine pour les décisions sensibles et divulgation claire de l'utilisation de l'IA.",
+          "detail": "Journalisation et revue si nécessaire."
+        }
+      }
+    },
+    "security": {
+      "title": "Posture sécurité",
+      "subtitle": "Nous appliquons des contrôles de sécurité pratiques alignés sur les standards UK/EU :",
+      "items": {
+        "leastPrivilege": {
+          "title": "Accès au moindre privilège",
+          "bullets": [
+            "Accès limité aux personnes travaillant sur votre projet",
+            "Identifiants révoqués ou renouvelés à la fin des travaux"
+          ]
+        },
+        "accessControl": {
+          "title": "Contrôle d'accès",
+          "bullets": [
+            "Accès basé sur les rôles où supporté",
+            "MFA activé sur les systèmes clés si disponible"
+          ]
+        },
+        "auditLogging": {
+          "title": "Audit & journalisation",
+          "bullets": [
+            "Logs opérationnels pour le dépannage et la responsabilisation",
+            "Approche de journalisation partageable dans le Trust Pack"
+          ]
+        },
+        "secureEnvs": {
+          "title": "Environnements sécurisés",
+          "bullets": [
+            "Environnements séparés dev/test/prod où pertinent",
+            "Secrets gérés via variables d'environnement / patterns de stockage sécurisé"
+          ]
+        },
+        "retention": {
+          "title": "Rétention & suppression",
+          "bullets": [
+            "Suppression ou restitution des données client après achèvement (sauf accord contraire)",
+            "Suppression complète disponible sur demande"
+          ]
+        },
+        "incident": {
+          "title": "Gestion des incidents",
+          "bullets": [
+            "Processus documenté de réponse aux incidents",
+            "Notification client pour les incidents de sécurité affectant vos données"
+          ]
+        }
+      }
+    },
+    "subprocessors": {
+      "title": "Sous-traitants",
+      "subtitle": "Nous sommes transparents sur les outils et services pouvant traiter des données :",
+      "bullets": [
+        "Liste des sous-traitants disponible sur demande",
+        "Nous notifions les clients des changements importants avec un préavis raisonnable"
+      ],
+      "card": {
+        "title": "Transparence sous-traitants",
+        "subtitle": "Consultez la liste actuelle et restez informé des mises à jour.",
+        "link": "Voir la liste complète"
+      }
+    },
+    "contracts": {
+      "title": "Contrats & DPA",
+      "subtitle": "Nous signons un Accord de Traitement des Données (DPA) lorsque nous agissons comme sous-traitant.",
+      "items": [
+        "Engagements de confidentialité pour les personnes traitant les données",
+        "Mesures de sécurité appropriées au traitement",
+        "Support pour les demandes des personnes concernées",
+        "Conditions de notification de violation et coopération",
+        "Contrôles et transparence des sous-traitants",
+        "Suppression ou restitution des données à la fin"
+      ]
+    },
+    "transfers": {
+      "title": "Transferts internationaux",
+      "subtitle": "Pour les transferts transfrontaliers, nous utilisons des garanties standard modernes :",
+      "sccs": "Clauses Contractuelles Types UE (Décision (UE) 2021/914)",
+      "ukAddendum": "Avenant UK pour les scénarios RGPD UK",
+      "note": "Nous alignerons les garanties de transfert avec votre contexte contractuel et réglementaire."
+    },
+    "ai": {
+      "title": "Transparence IA & supervision humaine",
+      "subtitle": "Nous concevons les fonctionnalités IA avec une supervision appropriée et une divulgation claire :",
+      "items": [
+        "Divulgation claire quand l'IA est impliquée dans le traitement ou l'aide à la décision",
+        "Revue humaine pour les cas à fort impact ou sensibles",
+        "Pistes d'audit/journalisation pour revue si approprié"
+      ]
+    },
+    "dpia": {
+      "title": "Support AIPD",
+      "subtitle": "Si votre projet nécessite une AIPD, nous pouvons fournir les détails techniques nécessaires :",
+      "items": [
+        "Aperçu de l'architecture système",
+        "Flux de données et finalités de traitement",
+        "Détails des sous-traitants et transferts",
+        "Mesures de sécurité et approche de rétention"
+      ]
+    },
+    "requests": {
+      "title": "Ce que vous pouvez demander",
+      "subtitle": "Vous pouvez demander ces documents lors de l'onboarding pour accélérer votre évaluation :",
+      "items": [
+        "DPA pour travaux de sous-traitance",
+        "Liste actuelle des sous-traitants",
+        "Réponses au questionnaire sécurité",
+        "Détails du support AIPD"
+      ]
+    },
+    "contact": {
+      "title": "Besoin de plus de détails ?",
+      "subtitle": "Nous sommes à votre disposition pour soutenir votre évaluation sécurité ou conformité."
+    },
+    "disclaimer": "Cette page fournit des informations générales et ne constitue pas un avis juridique. Pour des exigences légales spécifiques, consultez votre conseiller juridique."
   }
 }

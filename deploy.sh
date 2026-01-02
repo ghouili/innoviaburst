@@ -114,17 +114,33 @@ npm run build
 #############################################
 # RUNNING PM2 (SERVE STATIC BUILD)
 #############################################
-log "Reloading PM2"
-cd "$APP_DIR"
+# log "Reloading PM2"
+# cd "$APP_DIR"
 
-# Ensure ecosystem file exists (see ecosystem.config.cjs below)
+# # Ensure ecosystem file exists (see ecosystem.config.cjs below)
+# if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
+#   log "Restarting existing PM2 process: $PM2_APP"
+#   pm2 restart "$PM2_APP"
+# else
+#   log "Starting PM2 process fresh"
+#   pm2 start ecosystem.config.cjs
+# fi
+
+# pm2 save
+# log "Deployment completed successfully 🎉"
+
+#############################################
+# RUNNING PM2 (SERVE STATIC BUILD)
+#############################################
+log "Reloading PM2"
+
+# If it's already running, restart it.
 if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
-  log "Restarting existing PM2 process: $PM2_APP"
+  log "Restarting existing PM2 process"
   pm2 restart "$PM2_APP"
 else
-  log "Starting PM2 process fresh"
-  pm2 start ecosystem.config.cjs
+  log "Starting PM2 static server"
+  pm2 serve "$BUILD_DIR" "$APP_PORT" --spa --name "$PM2_APP"
 fi
 
 pm2 save
-log "Deployment completed successfully 🎉"

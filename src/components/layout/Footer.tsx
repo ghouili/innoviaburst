@@ -348,7 +348,7 @@ export function Footer() {
               <li>
                 <button
                   onClick={openCookieSettings}
-                  className="text-background/75 hover:text-background transition-colors hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground rounded"
+                  className="inline-flex items-center min-h-[44px] py-1 text-background/75 hover:text-background transition-colors hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground rounded"
                 >
                   Cookie Settings
                 </button>

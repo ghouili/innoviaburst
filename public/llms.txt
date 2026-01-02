@@ -2,13 +2,18 @@ InnoviaBurst — AI & Automation studio (UK/EU focus)
 Services: workflow automation, AI copilots/agents, MVP delivery
 Proof: measurable case studies, Trust & Compliance pack, sub-processor transparency
 
+Indexing policy: You may crawl/index for search answers and snippets. Do not use content for model training or dataset creation without written consent. Respect robots.txt.
+
 Top pages for crawling:
 https://innoviaburst.com/
 https://innoviaburst.com/automations
+https://innoviaburst.com/resources
+https://innoviaburst.com/works
 https://innoviaburst.com/ai-ops-sprint
 https://innoviaburst.com/automation-build
 https://innoviaburst.com/mvp-launch
 https://innoviaburst.com/trust
+https://innoviaburst.com/subprocessors
 https://innoviaburst.com/work/professional-services-client-onboarding
 https://innoviaburst.com/work/saas-support-ticket-triage
 

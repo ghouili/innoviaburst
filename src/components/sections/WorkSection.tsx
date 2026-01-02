@@ -111,7 +111,7 @@ export function WorkSection() {
 
         {/* CTA */}
         <div className="text-center">
-          <Button variant="outline" size="lg" asChild>
+          <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
             <Link to="/work">
               View all case studies
               <ArrowRight className="w-4 h-4 ml-2" />

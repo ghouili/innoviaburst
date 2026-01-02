@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowRight, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -11,6 +12,7 @@ interface StickyNextStepProps {
 }
 
 export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepProps) {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [cookieBannerVisible, setCookieBannerVisible] = useState(false);
 
@@ -53,7 +55,7 @@ export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepPr
     <div 
       className={`fixed left-0 right-0 z-[80] bg-card/95 backdrop-blur-md border-t border-border shadow-lg animate-fade-in transition-all duration-300 ${bottomOffset}`}
       role="navigation"
-      aria-label="Quick actions"
+      aria-label={t("stickyBar.label", "Quick actions")}
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-center gap-3">
@@ -63,7 +65,7 @@ export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepPr
             onClick={onRequestClick}
             className="min-h-[44px] gap-2"
           >
-            Request an automation plan
+            {t("stickyBar.primaryCta", "Request an automation plan")}
             <ArrowRight className="w-4 h-4" />
           </Button>
           <Button 
@@ -73,7 +75,7 @@ export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepPr
             className="min-h-[44px] gap-2 hidden sm:inline-flex"
           >
             <Calendar className="w-4 h-4" />
-            Book a 15-min call
+            {t("stickyBar.secondaryCta", "Book a 15-min call")}
           </Button>
         </div>
       </div>

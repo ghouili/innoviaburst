@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SeoHead } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -22,117 +23,64 @@ import {
   ClipboardList,
 } from "lucide-react";
 
+type TocKey = "trustPack" | "security" | "subprocessors" | "contracts" | "transfers" | "ai" | "dpia" | "contact";
+
+const tocKeys: { id: string; key: TocKey }[] = [
+  { id: "trust-pack", key: "trustPack" },
+  { id: "security", key: "security" },
+  { id: "subprocessors", key: "subprocessors" },
+  { id: "contracts", key: "contracts" },
+  { id: "transfers", key: "transfers" },
+  { id: "ai", key: "ai" },
+  { id: "dpia", key: "dpia" },
+  { id: "contact", key: "contact" },
+];
+
+type TrustPackItemKey = "dpa" | "subprocessors" | "transfers" | "retention" | "incident" | "ai";
+const trustPackItemKeys: TrustPackItemKey[] = ["dpa", "subprocessors", "transfers", "retention", "incident", "ai"];
+
+type SecurityItemKey = "leastPrivilege" | "accessControl" | "auditLogging" | "secureEnvs" | "retention" | "incident";
+const securityItemKeys: SecurityItemKey[] = ["leastPrivilege", "accessControl", "auditLogging", "secureEnvs", "retention", "incident"];
+
 export default function TrustPage() {
+  const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("trust-pack");
   const [mobileTocOpen, setMobileTocOpen] = useState(false);
 
   const tocItems = useMemo(
-    () => [
-      { id: "trust-pack", label: "Trust Pack at a glance" },
-      { id: "security", label: "Security posture" },
-      { id: "subprocessors", label: "Sub-processors" },
-      { id: "contracts", label: "Contracts & DPA" },
-      { id: "transfers", label: "International transfers" },
-      { id: "ai", label: "AI oversight" },
-      { id: "dpia", label: "DPIA support" },
-      { id: "contact", label: "Contact" },
-    ],
-    [],
+    () =>
+      tocKeys.map((item) => ({
+        id: item.id,
+        label: t(`trustPage.toc.${item.key}`),
+      })),
+    [t],
   );
 
   const trustPackItems = useMemo(
-    () => [
-      {
-        title: "DPA available",
-        subtitle: "We sign a UK GDPR-ready DPA for processor work.",
-        detail: "Available on request during onboarding.",
-      },
-      {
-        title: "Sub-processor transparency",
-        subtitle: "We disclose tools that may process data and notify material changes.",
-        detail: "Sub-processor list available.",
-      },
-      {
-        title: "International transfers safeguarded",
-        subtitle: "EU SCCs + UK Addendum where applicable.",
-        detail: "Supports EU/UK buyer requirements.",
-      },
-      {
-        title: "Retention & deletion",
-        subtitle: "We delete or return project data on completion unless agreed otherwise.",
-        detail: "Clear retention expectations.",
-      },
-      {
-        title: "Incident response",
-        subtitle: "Documented incident handling and client notification approach.",
-        detail: "Breach reporting readiness.",
-      },
-      {
-        title: "AI transparency",
-        subtitle: "Human oversight for sensitive decisions and clear disclosure when AI is used.",
-        detail: "Logging and review where needed.",
-      },
-    ],
-    [],
+    () =>
+      trustPackItemKeys.map((key) => ({
+        key,
+        title: t(`trustPage.trustPack.items.${key}.title`),
+        subtitle: t(`trustPage.trustPack.items.${key}.subtitle`),
+        detail: t(`trustPage.trustPack.items.${key}.detail`),
+      })),
+    [t],
   );
 
   const securityItems = useMemo(
-    () => [
-      {
-        title: "Least-privilege access",
-        bullets: [
-          "Access limited to people working on your project",
-          "Credentials rotated / revoked when work ends",
-        ],
-      },
-      {
-        title: "Access control",
-        bullets: [
-          "Role-based access where supported",
-          "MFA enabled on key systems where available",
-        ],
-      },
-      {
-        title: "Audit & logging",
-        bullets: [
-          "Operational logs to support troubleshooting and accountability",
-          "We can share logging approach in the Trust Pack",
-        ],
-      },
-      {
-        title: "Secure environments",
-        bullets: [
-          "Separated environments for dev/test/prod where relevant",
-          "Secrets handled via environment variables / secret storage patterns",
-        ],
-      },
-      {
-        title: "Retention & deletion",
-        bullets: [
-          "Delete or return client data after completion (unless agreed otherwise)",
-          "Full deletion available on request",
-        ],
-      },
-      {
-        title: "Incident response",
-        bullets: [
-          "Documented incident response process",
-          "Client notification for security incidents affecting your data",
-        ],
-      },
-    ],
-    [],
+    () =>
+      securityItemKeys.map((key) => ({
+        key,
+        title: t(`trustPage.security.items.${key}.title`),
+        bullets: t(`trustPage.security.items.${key}.bullets`, { returnObjects: true }) as string[],
+      })),
+    [t],
   );
 
   const requestItems = useMemo(
-    () => [
-      "DPA for processor work",
-      "Current sub-processor list",
-      "Security questionnaire responses",
-      "DPIA support details",
-    ],
-    [],
+    () => t("trustPage.requests.items", { returnObjects: true }) as string[],
+    [t],
   );
 
   const faqSchema = useMemo(
@@ -208,8 +156,8 @@ export default function TrustPage() {
   return (
     <>
       <SeoHead
-        title="Trust & Compliance | Innoviaburst"
-        description="How InnoviaBurst protects your data: Trust Pack, DPA readiness, sub-processors, SCCs/UK Addendum, retention, incident response, and AI oversight for UK/EU buyers."
+        title={t("trustPage.seo.title")}
+        description={t("trustPage.seo.description")}
         path="/trust"
         jsonLd={[faqSchema, breadcrumbSchema]}
       />
@@ -226,41 +174,41 @@ export default function TrustPage() {
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to home
+              {t("trustPage.backToHome")}
             </Link>
 
             <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <p className="text-sm font-semibold text-secondary uppercase tracking-wide">UK/EU focused</p>
+                  <p className="text-sm font-semibold text-secondary uppercase tracking-wide">{t("trustPage.badge")}</p>
                   <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                    Trust & <span className="text-gradient-brand">Compliance</span>
+                    {t("trustPage.title")} <span className="text-gradient-brand">{t("trustPage.titleHighlight")}</span>
                   </h1>
                   <p className="text-lg text-muted-foreground max-w-2xl">
-                    How we protect your data and deliver with confidence — plain English, no legal jargon.
+                    {t("trustPage.subtitle")}
                   </p>
                   <p className="text-muted-foreground max-w-xl">
-                    We can share a Trust Pack (PDF), DPA, and sub-processor list on request.
+                    {t("trustPage.trustPackAvailable")}
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 flex-wrap">
-                  <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="min-h-[44px]">
-                    Book a call
+                  <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto min-h-[44px]">
+                    {t("trustPage.primaryCta")}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
-                  <Button variant="outline" size="lg" asChild className="min-h-[44px]">
+                  <Button variant="outline" size="lg" asChild className="w-full sm:w-auto min-h-[44px]">
                     <a href="/trust-pack.pdf" download>
-                      Download Trust Pack (PDF)
+                      {t("trustPage.downloadTrustPack")}
                     </a>
                   </Button>
-                  <Button variant="ghost" size="lg" asChild className="min-h-[44px] text-foreground">
-                    <a href="mailto:hello@innoviaburst.com">Request DPA / Security questionnaire</a>
+                  <Button variant="ghost" size="lg" asChild className="w-full sm:w-auto min-h-[44px] text-foreground">
+                    <a href="mailto:hello@innoviaburst.com">{t("trustPage.requestDpa")}</a>
                   </Button>
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl">
-                  {["DPA readiness", "Sub-processors", "Retention", "Breach readiness", "SCCs + UK Addendum", "AI oversight"].map(
+                  {(t("trustPage.heroTags", { returnObjects: true }) as string[]).map(
                     (item) => (
                       <div
                         key={item}
@@ -277,28 +225,28 @@ export default function TrustPage() {
                 <div className="p-6 rounded-2xl border border-border bg-card shadow-card">
                   <div className="flex items-center gap-3 mb-4">
                     <Shield className="w-5 h-5 text-secondary" />
-                    <p className="text-sm font-semibold text-foreground">Trust pack highlights</p>
+                    <p className="text-sm font-semibold text-foreground">{t("trustPage.trustPackHighlights.title")}</p>
                   </div>
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li className="flex items-start gap-3">
                       <FileCheck className="w-4 h-4 text-secondary mt-0.5" />
-                      DPA available for processor engagements
+                      {(t("trustPage.trustPackHighlights.items", { returnObjects: true }) as string[])[0]}
                     </li>
                     <li className="flex items-start gap-3">
                       <Users className="w-4 h-4 text-secondary mt-0.5" />
-                      Sub-processor list and change notifications
+                      {(t("trustPage.trustPackHighlights.items", { returnObjects: true }) as string[])[1]}
                     </li>
                     <li className="flex items-start gap-3">
                       <Globe2 className="w-4 h-4 text-secondary mt-0.5" />
-                      EU SCCs + UK Addendum when applicable
+                      {(t("trustPage.trustPackHighlights.items", { returnObjects: true }) as string[])[2]}
                     </li>
                     <li className="flex items-start gap-3">
                       <Trash2 className="w-4 h-4 text-secondary mt-0.5" />
-                      Retention and deletion on completion unless agreed otherwise
+                      {(t("trustPage.trustPackHighlights.items", { returnObjects: true }) as string[])[3]}
                     </li>
                     <li className="flex items-start gap-3">
                       <Bot className="w-4 h-4 text-secondary mt-0.5" />
-                      AI transparency with human oversight
+                      {(t("trustPage.trustPackHighlights.items", { returnObjects: true }) as string[])[4]}
                     </li>
                   </ul>
                 </div>
@@ -308,11 +256,11 @@ export default function TrustPage() {
         </section>
 
         <div className="container mx-auto px-4 lg:px-6 py-14 lg:py-20">
-          <div className="lg:grid lg:grid-cols-[280px,1fr] gap-10">
-            {/* Sticky Table of Contents */}
-            <aside className="hidden lg:block border h-fit">
-              <div className="sticky overflow-y-auto top-28 rounded-2xl border border-border bg-card p-4 shadow-card">
-                <p className="text-sm font-semibold text-foreground mb-3">On this page</p>
+          <div className="lg:grid lg:grid-cols-[280px,1fr] gap-10 items-start">
+            {/* Sticky Table of Contents - Desktop */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-border bg-card p-4 shadow-card scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+                <p className="text-sm font-semibold text-foreground mb-3">{t("trustPage.toc.title")}</p>
                 <nav className="space-y-1" aria-label="Trust and Compliance table of contents">
                   {tocItems.map((item) => {
                     const isActive = activeSection === item.id;
@@ -343,9 +291,9 @@ export default function TrustPage() {
               </div>
             </aside>
 
-            <div className="space-y-16 min-w-0 ">
+            <div className="space-y-16 min-w-0">
               {/* Mobile ToC */}
-              <div className="lg:hidden mb-6">
+              <div className="lg:hidden mb-2">
                 <button
                   type="button"
                   aria-expanded={mobileTocOpen}
@@ -353,7 +301,7 @@ export default function TrustPage() {
                   onClick={() => setMobileTocOpen((open) => !open)}
                   className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-border bg-card text-sm font-semibold text-foreground shadow-card min-h-[44px]"
                 >
-                  <span>On this page</span>
+                  <span>{t("trustPage.toc.title")}</span>
                   <ChevronDown
                     className={`w-5 h-5 transition-transform ${mobileTocOpen ? "rotate-180" : "rotate-0"}`}
                     aria-hidden
@@ -396,9 +344,9 @@ export default function TrustPage() {
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-12 bg-secondary rounded-full" aria-hidden />
                   <div className="space-y-2">
-                    <h2 className="text-2xl font-bold text-foreground">Trust Pack at a glance</h2>
+                    <h2 className="text-2xl font-bold text-foreground">{t("trustPage.trustPack.title")}</h2>
                     <p className="text-muted-foreground max-w-2xl">
-                      Fast overview of the essentials buyers ask for within the first 10 seconds.
+                      {t("trustPage.trustPack.subtitle")}
                     </p>
                   </div>
                 </div>
@@ -406,7 +354,7 @@ export default function TrustPage() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {trustPackItems.map((item) => (
                     <div
-                      key={item.title}
+                      key={item.key}
                       className="p-5 bg-card rounded-xl border border-border shadow-card h-full flex flex-col gap-3"
                     >
                       <h3 className="font-semibold text-foreground">{item.title}</h3>
@@ -424,10 +372,10 @@ export default function TrustPage() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
                       <Shield className="w-4 h-4" />
-                      Security posture
+                      {t("trustPage.security.title")}
                     </div>
                     <p className="text-muted-foreground max-w-3xl">
-                      We apply practical security controls aligned with modern delivery for UK/EU clients:
+                      {t("trustPage.security.subtitle")}
                     </p>
                   </div>
                 </div>
@@ -435,13 +383,13 @@ export default function TrustPage() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {securityItems.map((item) => (
                     <div
-                      key={item.title}
+                      key={item.key}
                       className="p-5 bg-card rounded-xl border border-border shadow-card h-full flex flex-col gap-3"
                     >
                       <h3 className="font-semibold text-foreground">{item.title}</h3>
                       <ul className="space-y-2 text-sm text-muted-foreground">
-                        {item.bullets.map((bullet) => (
-                          <li key={bullet} className="flex items-start gap-2">
+                        {item.bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
                             <FileCheck className="w-4 h-4 text-secondary mt-0.5" />
                             <span>{bullet}</span>
                           </li>
@@ -500,16 +448,16 @@ export default function TrustPage() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
                       <Scale className="w-4 h-4" />
-                      Contracts & DPA
+                      {t("trustPage.contracts.title")}
                     </div>
                     <p className="text-muted-foreground max-w-3xl">
-                      We sign a Data Processing Agreement (DPA) when acting as a processor for your data.
+                      {t("trustPage.contracts.subtitle")}
                     </p>
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {["Confidentiality commitments for those handling data", "Security measures appropriate to the processing", "Support for data subject requests where relevant", "Breach notification terms and cooperation", "Sub-processor controls and transparency", "Deletion or return of data on completion"].map(
+                  {(t("trustPage.contracts.items", { returnObjects: true }) as string[]).map(
                     (item) => (
                       <div key={item} className="flex items-start gap-2 p-3 bg-card rounded-lg border border-border">
                         <FileText className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
@@ -527,24 +475,24 @@ export default function TrustPage() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
                       <Globe2 className="w-4 h-4" />
-                      International transfers
+                      {t("trustPage.transfers.title")}
                     </div>
                     <p className="text-muted-foreground max-w-3xl">
-                      For cross-border transfers, we can use modern standard safeguards when applicable:
+                      {t("trustPage.transfers.subtitle")}
                     </p>
                   </div>
                 </div>
                 <div className="p-5 bg-card rounded-xl border border-border max-w-3xl space-y-3">
                   <div className="flex items-start gap-3">
                     <FileCheck className="w-4 h-4 text-secondary mt-1" />
-                    <p className="text-sm text-foreground font-semibold">EU Standard Contractual Clauses (Decision (EU) 2021/914)</p>
+                    <p className="text-sm text-foreground font-semibold">{t("trustPage.transfers.sccs")}</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <FileCheck className="w-4 h-4 text-secondary mt-1" />
-                    <p className="text-sm text-foreground font-semibold">UK Addendum for UK GDPR scenarios</p>
+                    <p className="text-sm text-foreground font-semibold">{t("trustPage.transfers.ukAddendum")}</p>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    We’ll align transfer safeguards with your contractual and regulatory context.
+                    {t("trustPage.transfers.note")}
                   </p>
                 </div>
               </section>
@@ -556,18 +504,18 @@ export default function TrustPage() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
                       <Bot className="w-4 h-4" />
-                      AI transparency & human oversight
+                      {t("trustPage.ai.title")}
                     </div>
                     <p className="text-muted-foreground max-w-3xl">
-                      We design AI features with appropriate oversight and clear disclosure:
+                      {t("trustPage.ai.subtitle")}
                     </p>
                   </div>
                 </div>
 
                 <ul className="space-y-3 max-w-3xl">
-                  {["Clear disclosure when AI is involved in processing or decision support", "Human review for high-impact or sensitive use cases", "Logging/audit trails for review where appropriate"].map(
+                  {(t("trustPage.ai.items", { returnObjects: true }) as string[]).map(
                     (item, index) => (
-                      <li key={item} className="flex items-start gap-3">
+                      <li key={index} className="flex items-start gap-3">
                         <div className="w-6 h-6 rounded-full bg-accent/20 text-accent flex items-center justify-center text-xs font-bold shrink-0">
                           {index + 1}
                         </div>
@@ -585,16 +533,16 @@ export default function TrustPage() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
                       <ClipboardList className="w-4 h-4" />
-                      DPIA support
+                      {t("trustPage.dpia.title")}
                     </div>
                     <p className="text-muted-foreground max-w-3xl">
-                      If your project requires a DPIA, we can provide the technical details you need:
+                      {t("trustPage.dpia.subtitle")}
                     </p>
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {["System architecture overview", "Data flows and processing purposes", "Sub-processor and transfer details", "Security measures and retention approach"].map(
+                  {(t("trustPage.dpia.items", { returnObjects: true }) as string[]).map(
                     (item) => (
                       <div key={item} className="flex items-start gap-2 p-3 bg-card rounded-lg border border-border">
                         <FileText className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
@@ -612,10 +560,10 @@ export default function TrustPage() {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
                       <FileCheck className="w-4 h-4" />
-                      What you can request
+                      {t("trustPage.requests.title")}
                     </div>
                     <p className="text-muted-foreground max-w-3xl">
-                      You can request these documents during onboarding to speed up your review:
+                      {t("trustPage.requests.subtitle")}
                     </p>
                   </div>
                 </div>
@@ -632,22 +580,22 @@ export default function TrustPage() {
               {/* Contact */}
               <section id="contact" className="scroll-mt-24 space-y-6">
                 <div className="p-6 rounded-2xl border border-border bg-gradient-hero shadow-card text-center">
-                  <h2 className="text-2xl font-bold text-foreground mb-3">Need more details?</h2>
+                  <h2 className="text-2xl font-bold text-foreground mb-3">{t("trustPage.contact.title")}</h2>
                   <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                    We’re happy to support your security or compliance review.
+                    {t("trustPage.contact.subtitle")}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="min-h-[44px]">
-                      Book a call
+                    <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto min-h-[44px]">
+                      {t("trustPage.primaryCta")}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                    <Button variant="outline" size="lg" asChild className="min-h-[44px]">
+                    <Button variant="outline" size="lg" asChild className="w-full sm:w-auto min-h-[44px]">
                       <a href="/trust-pack.pdf" download>
-                        Download Trust Pack (PDF)
+                        {t("trustPage.downloadTrustPack")}
                       </a>
                     </Button>
-                    <Button variant="ghost" size="lg" asChild className="min-h-[44px] text-foreground">
-                      <a href="mailto:hello@innoviaburst.com">Request DPA / Security questionnaire</a>
+                    <Button variant="ghost" size="lg" asChild className="w-full sm:w-auto min-h-[44px] text-foreground">
+                      <a href="mailto:hello@innoviaburst.com">{t("trustPage.requestDpa")}</a>
                     </Button>
                   </div>
                 </div>
@@ -660,7 +608,7 @@ export default function TrustPage() {
         <section className="py-6 border-t border-border">
           <div className="container mx-auto px-4 lg:px-6">
             <p className="text-xs text-muted-foreground text-center">
-              This page provides general information and is not legal advice. For specific legal requirements, consult your legal counsel.
+              {t("trustPage.disclaimer")}
             </p>
           </div>
         </section>

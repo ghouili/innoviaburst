@@ -1,44 +1,32 @@
+import { useTranslation } from "react-i18next";
 import { Clock, TrendingUp, Shield, Layers, Users } from "lucide-react";
 
-// Anonymised proof points - no customer claims without permission
-const proofPoints = [
-  {
-    icon: Clock,
-    text: "Delivery in weeks, not months",
-  },
-  {
-    icon: TrendingUp,
-    text: "Measurable ROI from day one",
-  },
-  {
-    icon: Shield,
-    text: "UK/EU data compliance built-in",
-  },
-  {
-    icon: Layers,
-    text: "Works with your existing tools",
-  },
-  {
-    icon: Users,
-    text: "Human oversight on every project",
-  },
+// Proof points with i18n keys
+const proofPointKeys = [
+  { icon: Clock, key: "proofStrip.delivery" },
+  { icon: TrendingUp, key: "proofStrip.roi" },
+  { icon: Shield, key: "proofStrip.compliance" },
+  { icon: Layers, key: "proofStrip.tools" },
+  { icon: Users, key: "proofStrip.oversight" },
 ];
 
 export function ProofStrip() {
+  const { t } = useTranslation();
+
   return (
     <section 
       className="py-6 lg:py-8 bg-card border-y border-border"
-      aria-label="Key benefits"
+      aria-label={t("proofStrip.label", "Key benefits")}
     >
       <div className="container mx-auto px-4 lg:px-6">
-        <ul className="flex flex-wrap justify-center gap-3 lg:gap-6" role="list">
-          {proofPoints.map((point, index) => (
+        <ul className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-6" role="list">
+          {proofPointKeys.map((point, index) => (
             <li
               key={index}
-              className="flex items-center gap-2 px-4 py-2.5 bg-muted rounded-full text-sm font-medium text-foreground"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-muted rounded-full text-xs sm:text-sm font-medium text-foreground"
             >
               <point.icon className="w-4 h-4 text-accent shrink-0" aria-hidden="true" />
-              <span>{point.text}</span>
+              <span>{t(point.key)}</span>
             </li>
           ))}
         </ul>
