@@ -25,6 +25,19 @@ import {
   TrustBadge,
   RadioCardGroup,
 } from "@/components/ui/modal-primitives";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -233,7 +246,8 @@ export function RequestModal({
     } catch {
       toast({
         title: "Something went wrong",
-        description: "Please try again or email us directly at hello@innoviaburst.com",
+        description:
+          "Please try again or email us directly at hello@innoviaburst.com",
         variant: "destructive",
       });
     } finally {
@@ -263,7 +277,7 @@ export function RequestModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="sm:max-w-2xl max-h-[85vh] mt-8 overflow-y-auto p-0 [scrollbar-gutter:stable]">
         {step === "success" ? (
           <div className="p-6 lg:p-8">
             <SuccessState
@@ -304,7 +318,7 @@ export function RequestModal({
         ) : (
           <div className="p-6 lg:p-8">
             {/* Header */}
-            <DialogHeader className="mb-6">
+            <DialogHeader className="mb-4">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2.5 rounded-xl bg-secondary/20">
                   <FileText className="w-6 h-6 text-secondary" />
@@ -345,7 +359,10 @@ export function RequestModal({
                     required
                     value={formData.email}
                     onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, email: e.target.value }))
+                      setFormData((prev) => ({
+                        ...prev,
+                        email: e.target.value,
+                      }))
                     }
                     onBlur={() => {
                       setTouched((prev) => ({ ...prev, email: true }));
@@ -353,8 +370,12 @@ export function RequestModal({
                     }}
                     className={inputClasses(!!errors.email && !!touched.email)}
                     placeholder="john@company.com"
-                    aria-invalid={errors.email && touched.email ? "true" : "false"}
-                    aria-describedby={errors.email ? "request-email-error" : undefined}
+                    aria-invalid={
+                      errors.email && touched.email ? "true" : "false"
+                    }
+                    aria-describedby={
+                      errors.email ? "request-email-error" : undefined
+                    }
                   />
                 </FormField>
 
@@ -368,14 +389,21 @@ export function RequestModal({
                     type="text"
                     value={formData.company}
                     onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, company: e.target.value }))
+                      setFormData((prev) => ({
+                        ...prev,
+                        company: e.target.value,
+                      }))
                     }
                     className={inputClasses(false)}
                     placeholder="Acme Ltd"
                   />
                 </FormField>
 
-                <FormField label="Your role" htmlFor="request-role" hint="Optional">
+                <FormField
+                  label="Your role"
+                  htmlFor="request-role"
+                  hint="Optional"
+                >
                   <input
                     id="request-role"
                     type="text"
@@ -389,7 +417,7 @@ export function RequestModal({
                 </FormField>
 
                 {prefilledInterest && (
-                  <div className="p-3 bg-secondary/10 rounded-xl border border-secondary/20">
+                  <div className=" ">
                     <p className="text-sm font-medium text-secondary">
                       Interested in: {prefilledInterest}
                     </p>
@@ -411,7 +439,9 @@ export function RequestModal({
               </div>
             ) : (
               /* Step 2: Goal Selection */
-              <div className="space-y-5">
+
+              <div className="space-y-6">
+                {/* Primary outcome (keep as the only “required” big choice) */}
                 <FormField
                   label="What's your primary outcome?"
                   required
@@ -426,74 +456,104 @@ export function RequestModal({
                       setFormData((prev) => ({ ...prev, primaryGoal: value }));
                       setTouched((prev) => ({ ...prev, primaryGoal: true }));
                     }}
-                    columns={2}
+                    // calmer density on mobile, still 2 cols on desktop
+                    columns={1}
+                    className="sm:[&_[data-card]]:max-w-none sm:[&_[data-grid]]:grid-cols-2"
                   />
                 </FormField>
 
-                {/* Tools - optional multi-select */}
-                <FormField label="Tools you use" hint="Optional, select all that apply">
-                  <div className="flex flex-wrap gap-2">
-                    {toolOptions.map((tool) => (
-                      <button
-                        key={tool}
-                        type="button"
-                        onClick={() => toggleTool(tool)}
-                        className={cn(
-                          "px-3 py-2 rounded-lg text-xs font-medium border transition-colors min-h-[36px]",
-                          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                          formData.tools.includes(tool)
-                            ? "bg-accent text-accent-foreground border-accent"
-                            : "bg-muted text-muted-foreground border-border hover:border-accent/50"
-                        )}
-                        aria-pressed={formData.tools.includes(tool)}
-                      >
-                        {tool}
-                      </button>
-                    ))}
-                  </div>
-                </FormField>
-
-                {/* Timeline - optional */}
-                <FormField label="Timeline" hint="Optional">
-                  <div className="grid grid-cols-2 gap-2">
-                    {timelineOptions.map((t) => (
-                      <button
-                        key={t.value}
-                        type="button"
-                        onClick={() =>
-                          setFormData((prev) => ({ ...prev, timeline: t.value }))
-                        }
-                        className={cn(
-                          "px-4 py-3 rounded-xl text-sm font-medium border transition-colors min-h-[44px]",
-                          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                          formData.timeline === t.value
-                            ? "bg-secondary text-secondary-foreground border-secondary"
-                            : "bg-muted text-muted-foreground border-border hover:border-secondary/50"
-                        )}
-                      >
-                        {t.label}
-                      </button>
-                    ))}
-                  </div>
-                </FormField>
-
-                {/* Notes - optional */}
-                <FormField
-                  label="Anything else?"
-                  htmlFor="request-notes"
-                  hint="Optional"
+                {/* Advanced (optional) — collapsible so Step 2 feels smaller */}
+                <Accordion
+                  type="single"
+                  collapsible
+                  className="rounded-2xl border border-border bg-muted/20"
                 >
-                  <textarea
-                    id="request-notes"
-                    value={formData.notes}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, notes: e.target.value }))
-                    }
-                    rows={3}
-                    className={cn(inputClasses(false), "resize-none min-h-[80px]")}
-                    placeholder="Describe your workflow challenge or what you'd like to automate..."
-                  />
-                </FormField>
+                  <AccordionItem value="optional" className="border-none">
+                    <AccordionTrigger className="px-4 py-3 text-sm font-semibold">
+                      Optional details (recommended)
+                    </AccordionTrigger>
+
+                    <AccordionContent className="px-4 pb-4 space-y-5">
+                      {/* Tools (chips, but visually lighter) */}
+                      <FormField
+                        label="Tools you use"
+                        hint="Optional — select any"
+                      >
+                        <div className="flex flex-wrap gap-2">
+                          {toolOptions.map((tool) => {
+                            const active = formData.tools.includes(tool);
+                            return (
+                              <button
+                                key={tool}
+                                type="button"
+                                onClick={() => toggleTool(tool)}
+                                className={cn(
+                                  "h-9 px-3 rounded-full text-xs font-medium border transition-colors",
+                                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                                  active
+                                    ? "bg-accent/15 text-foreground border-accent/30"
+                                    : "bg-background/40 text-muted-foreground border-border hover:border-accent/40 hover:text-foreground"
+                                )}
+                                aria-pressed={active}
+                              >
+                                {tool}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </FormField>
+
+                      {/* Timeline (dropdown = less visual noise) */}
+                      <FormField label="Timeline" hint="Optional">
+                        <Select
+                          value={formData.timeline || "none"}
+                          onValueChange={(val) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              timeline: val === "none" ? "" : val,
+                            }))
+                          }
+                        >
+                          <SelectTrigger className="h-11 rounded-xl bg-background/40">
+                            <SelectValue placeholder="Select a timeline (optional)" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="none">No preference</SelectItem>
+                            {timelineOptions.map((t) => (
+                              <SelectItem key={t.value} value={t.value}>
+                                {t.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormField>
+
+                      {/* Notes (still optional, but calmer) */}
+                      <FormField
+                        label="Anything else?"
+                        htmlFor="request-notes"
+                        hint="Optional — one sentence is enough"
+                      >
+                        <textarea
+                          id="request-notes"
+                          value={formData.notes}
+                          onChange={(e) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              notes: e.target.value,
+                            }))
+                          }
+                          rows={3}
+                          className={cn(
+                            inputClasses(false),
+                            "resize-none min-h-[96px]"
+                          )}
+                          placeholder="e.g. We want to automate support triage + draft replies using Zendesk + Slack."
+                        />
+                      </FormField>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
 
                 <NavigationButtons
                   onBack={handleBack}

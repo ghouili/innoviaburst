@@ -188,14 +188,14 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
 
   const inputClasses = (hasError: boolean) =>
     cn(
-      "w-full px-4 py-3 rounded-xl bg-muted border text-foreground placeholder:text-muted-foreground",
-      "focus:outline-none focus:ring-2 focus:ring-ring min-h-[48px] transition-colors",
+      "w-full px-4 py-1.5 rounded-xl bg-muted border text-foreground placeholder:text-muted-foreground",
+      "focus:outline-none focus:ring-0 focus:ring-ring min-h-[48px] transition-colors",
       hasError ? "border-destructive" : "border-border"
     );
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="sm:max-w-2xl mt-3  max-h-[80vh] overflow-y-auto p-0 [scrollbar-gutter:stable] pb-6">
         {step === "success" ? (
           <div className="p-6 lg:p-8">
             <SuccessState
@@ -228,7 +228,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
           </div>
         ) : BOOKING_URL ? (
           <>
-            <DialogHeader className="p-6 pb-0">
+            <DialogHeader className="px-6 pb-0">
               <DialogTitle className="text-2xl font-bold flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-accent/20">
                   <Calendar className="w-6 h-6 text-accent" />
@@ -248,7 +248,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
             </div>
           </>
         ) : (
-          <div className="p-6 lg:p-8">
+          <div className="p-6 lg:px-8">
             {/* Header */}
             <DialogHeader className="mb-6">
               <div className="flex items-center gap-3 mb-2">
@@ -274,17 +274,17 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
             </div>
 
             {/* Call benefits - always visible */}
-            <div className="mb-6 p-4 bg-accent/5 rounded-xl border border-accent/10">
+            <div className="mb-6  w-full ">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-                <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <Clock className="w-4 h-4 text-accent" />
                   <span>25 min call</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <MapPin className="w-4 h-4 text-accent" />
                   <span>UK/EU timezone</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <Mail className="w-4 h-4 text-accent" />
                   <span>No spam, ever</span>
                 </div>

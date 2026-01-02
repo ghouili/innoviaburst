@@ -141,17 +141,63 @@ export default function TrustPage() {
     };
   }, [sectionIds]);
 
-  const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
-    event.preventDefault();
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setActiveSection(id);
-    }
-    if (window.innerWidth < 1024) {
-      setMobileTocOpen(false);
-    }
-  };
+  // const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+  //   event.preventDefault();
+  //   const el = document.getElementById(id);
+  //   if (el) {
+  //     el.scrollIntoView({ behavior: "smooth", block: "start" });
+  //     setActiveSection(id);
+  //   }
+  //   if (window.innerWidth < 1024) {
+  //     setMobileTocOpen(false);
+  //   }
+  // };
+
+  const getScrollableParent = (node: HTMLElement | null) => {
+  let el: HTMLElement | null = node;
+  while (el) {
+    const style = window.getComputedStyle(el);
+    const overflowY = style.overflowY;
+    const isScrollableY =
+      (overflowY === "auto" || overflowY === "scroll") && el.scrollHeight > el.clientHeight;
+
+    if (isScrollableY) return el;
+    el = el.parentElement;
+  }
+  return null;
+};
+
+const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+  event.preventDefault();
+
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  // Find the scroll container (e.g., your right column scroll area)
+  const scrollParent = getScrollableParent(target);
+
+  // If we found a scrollable container, scroll *it* (not the full page)
+  if (scrollParent) {
+    const headerOffset = 12; // adjust if you have sticky header inside the panel
+    const parentRect = scrollParent.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    const nextTop =
+      scrollParent.scrollTop + (targetRect.top - parentRect.top) - headerOffset;
+
+    scrollParent.scrollTo({ top: nextTop, behavior: "smooth" });
+  } else {
+    // Fallback: scroll the window if no scroll container exists
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  setActiveSection(id);
+
+  if (window.innerWidth < 1024) {
+    setMobileTocOpen(false);
+  }
+};
+
 
   return (
     <>
@@ -255,13 +301,13 @@ export default function TrustPage() {
           </div>
         </section>
 
-        <div className="container mx-auto px-4 lg:px-6 py-14 lg:py-20">
-          <div className="lg:grid lg:grid-cols-[280px,1fr] gap-10 items-start">
+        <div className="container mx-auto px-4 lg:px-6 pt-14 pb-6 lg:pt-20 lg:pb-10">
+          <div className="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] gap-6 lg:gap-10 lg:items-start">
             {/* Sticky Table of Contents - Desktop */}
             <aside className="hidden lg:block">
-              <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-2xl border border-border bg-card p-4 shadow-card scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+              <nav className="lg:sticky lg:top-[88px] max-h-[calc(100vh-104px)] overflow-y-auto rounded-lg border border-border bg-card px-6 py-8 shadow-card scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
                 <p className="text-sm font-semibold text-foreground mb-3">{t("trustPage.toc.title")}</p>
-                <nav className="space-y-1" aria-label="Trust and Compliance table of contents">
+                <div className="space-y-1" aria-label="Trust and Compliance table of contents">
                   {tocItems.map((item) => {
                     const isActive = activeSection === item.id;
                     return (
@@ -287,11 +333,11 @@ export default function TrustPage() {
                       </a>
                     );
                   })}
-                </nav>
-              </div>
+                </div>
+              </nav>
             </aside>
 
-            <div className="space-y-16 min-w-0">
+            <div className="flex flex-col gap-16 pt-0 min-w-0 w-fit -mt-[15px] h-[calc(100vh-200px)] overflow-y-auto scrollbar-hide" id="trust-content-scroll">
               {/* Mobile ToC */}
               <div className="lg:hidden mb-2">
                 <button
@@ -600,7 +646,7 @@ export default function TrustPage() {
                   </div>
                 </div>
               </section>
-            </div>
+            </div> 
           </div>
         </div>
 

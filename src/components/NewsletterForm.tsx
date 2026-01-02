@@ -1,6 +1,12 @@
 import { useEffect, useRef, useId } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle, AlertCircle, Loader2, Mail } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+  Mail,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   useNewsletterSignup,
@@ -29,7 +35,10 @@ interface NewsletterFormProps {
 }
 
 // Analytics helper for view tracking
-function fireAnalyticsEvent(eventName: string, properties: Record<string, unknown>) {
+function fireAnalyticsEvent(
+  eventName: string,
+  properties: Record<string, unknown>
+) {
   window.dispatchEvent(
     new CustomEvent("analytics", {
       detail: { event: eventName, ...properties },
@@ -50,7 +59,7 @@ export function NewsletterForm({
   const formRef = useRef<HTMLFormElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const hasTrackedView = useRef(false);
-  
+
   // Generate unique IDs for accessibility
   const formId = useId();
   const emailId = `${formId}-email`;
@@ -59,21 +68,16 @@ export function NewsletterForm({
   const errorId = `${formId}-error`;
   const successId = `${formId}-success`;
 
-  const consentText = shortConsent ? NEWSLETTER_CONSENT_TEXT_SHORT : NEWSLETTER_CONSENT_TEXT;
+  const consentText = shortConsent
+    ? NEWSLETTER_CONSENT_TEXT_SHORT
+    : NEWSLETTER_CONSENT_TEXT;
 
-  const {
-    formData,
-    setFormData,
-    isLoading,
-    isSuccess,
-    error,
-    submit,
-    reset,
-  } = useNewsletterSignup({
-    placement,
-    leadMagnet,
-    consentText,
-  });
+  const { formData, setFormData, isLoading, isSuccess, error, submit, reset } =
+    useNewsletterSignup({
+      placement,
+      leadMagnet,
+      consentText,
+    });
 
   // Track form view when it enters viewport
   useEffect(() => {
@@ -133,22 +137,33 @@ export function NewsletterForm({
         aria-live="polite"
         id={successId}
       >
-        <div className={`flex items-start gap-3 ${
-          placement === "footer" ? "text-background" : "text-foreground"
-        }`}>
-          <CheckCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
+        <div
+          className={`flex items-start gap-3 ${
+            placement === "footer" ? "text-background" : "text-foreground"
+          }`}
+        >
+          <CheckCircle
+            className="w-5 h-5 text-accent shrink-0 mt-0.5"
+            aria-hidden="true"
+          />
           <div className="space-y-1">
             <p className="font-semibold">Thanks for subscribing!</p>
-            <p className={`text-sm ${
-              placement === "footer" ? "text-background/70" : "text-muted-foreground"
-            }`}>
+            <p
+              className={`text-sm ${
+                placement === "footer"
+                  ? "text-background/70"
+                  : "text-muted-foreground"
+              }`}
+            >
               Check your inbox to confirm your subscription.
             </p>
             <button
               type="button"
               onClick={reset}
               className={`text-sm underline underline-offset-4 hover:no-underline ${
-                placement === "footer" ? "text-background/70 hover:text-background" : "text-muted-foreground hover:text-foreground"
+                placement === "footer"
+                  ? "text-background/70 hover:text-background"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Subscribe another email
@@ -189,7 +204,9 @@ export function NewsletterForm({
                 autoComplete="email"
                 required
                 value={formData.email}
-                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, email: e.target.value }))
+                }
                 onFocus={handleEmailFocus}
                 placeholder="you@company.com"
                 aria-describedby={error ? errorId : undefined}
@@ -207,7 +224,10 @@ export function NewsletterForm({
             >
               {isLoading ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                  <Loader2
+                    className="w-4 h-4 animate-spin"
+                    aria-hidden="true"
+                  />
                   <span>Subscribing...</span>
                 </>
               ) : (
@@ -220,7 +240,7 @@ export function NewsletterForm({
           </div>
 
           {/* Consent checkbox */}
-          <div className="flex items-start gap-3">
+          {/* <div className="flex items-start gap-3">
             <input
               id={consentId}
               type="checkbox"
@@ -235,6 +255,46 @@ export function NewsletterForm({
                 Privacy Policy
               </Link>
             </label>
+          </div> */}
+          {/* Consent checkbox */}
+          <div className="pt-1">
+            <label
+              htmlFor={consentId}
+              className="flex items-start gap-2 cursor-pointer select-none"
+            >
+              {/* 24×24 hit area (good UX) but checkbox stays 16×16 visually */}
+              <span className="-mt-2.5 inline-flex h-6 w-6 items-start justify-start shrink-0 ">
+                <input
+                  id={consentId}
+                  type="checkbox"
+                  checked={formData.consent}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      consent: e.target.checked,
+                    }))
+                  }
+                  disabled={isLoading}
+                  className={[
+                    "h-4 w-4",
+                    "rounded border border-background/30 bg-background/10",
+                    "text-primary",
+                    "focus:outline-none focus:ring-0 focus:ring-background/60 focus:ring-offset-0",
+                    "disabled:opacity-50",
+                  ].join(" ")}
+                />
+              </span>
+
+              <span className="text-xs leading-snug text-background/70 ">
+                Send me automation tips and updates. Unsubscribe anytime.{" "}
+                <Link
+                  to="/privacy"
+                  className="underline underline-offset-2 hover:text-background"
+                >
+                  Privacy Policy
+                </Link>
+              </span>
+            </label>
           </div>
 
           {/* Error message */}
@@ -244,7 +304,10 @@ export function NewsletterForm({
               role="alert"
               className="flex items-start gap-2 text-sm text-orange-light"
             >
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
+              <AlertCircle
+                className="w-4 h-4 shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <span>{error}</span>
             </div>
           )}
@@ -269,8 +332,12 @@ export function NewsletterForm({
             <Mail className="w-5 h-5 text-accent" aria-hidden="true" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-semibold text-foreground">{content.headline}</h3>
-            <p className="text-sm text-muted-foreground">{content.description}</p>
+            <h3 className="font-semibold text-foreground">
+              {content.headline}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {content.description}
+            </p>
           </div>
         </div>
 
@@ -287,7 +354,9 @@ export function NewsletterForm({
                 type="text"
                 autoComplete="name"
                 value={formData.name || ""}
-                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, name: e.target.value }))
+                }
                 placeholder="Name (optional)"
                 disabled={isLoading}
                 className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent disabled:opacity-50"
@@ -308,7 +377,9 @@ export function NewsletterForm({
               autoComplete="email"
               required
               value={formData.email}
-              onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
               onFocus={handleEmailFocus}
               placeholder="you@company.com"
               aria-describedby={error ? errorId : undefined}
@@ -319,7 +390,7 @@ export function NewsletterForm({
           </div>
 
           {/* Consent checkbox */}
-          <div className="flex items-start gap-3">
+          {/* <div className="flex items-start gap-3">
             <input
               id={consentId}
               type="checkbox"
@@ -334,7 +405,7 @@ export function NewsletterForm({
                 Privacy Policy
               </Link>
             </label>
-          </div>
+          </div> */}
 
           {/* Error message */}
           {error && (
@@ -343,7 +414,10 @@ export function NewsletterForm({
               role="alert"
               className="flex items-start gap-2 text-sm text-destructive"
             >
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
+              <AlertCircle
+                className="w-4 h-4 shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <span>{error}</span>
             </div>
           )}

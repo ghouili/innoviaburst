@@ -14,7 +14,7 @@ interface StepperProps {
 
 export function Stepper({ currentStep, totalSteps, labels, className }: StepperProps) {
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn("flex items-center justify-between w-full px-8 gap-2", className)}>
       {Array.from({ length: totalSteps }, (_, i) => {
         const step = i + 1;
         const isActive = step === currentStep;
@@ -47,7 +47,7 @@ export function Stepper({ currentStep, totalSteps, labels, className }: StepperP
             {step < totalSteps && (
               <div
                 className={cn(
-                  "flex-1 h-0.5 min-w-4 max-w-12 rounded-full transition-colors",
+                  "flex-1 h-0.5 min-w-4 max-w-full rounded-full transition-colors",
                   isCompleted ? "bg-accent" : "bg-border"
                 )}
               />

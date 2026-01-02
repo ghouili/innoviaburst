@@ -11,10 +11,24 @@ interface StickyNextStepProps {
   onBookClick: () => void;
 }
 
-export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepProps) {
+export function StickyNextStep({
+  onRequestClick,
+  onBookClick,
+}: StickyNextStepProps) {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [cookieBannerVisible, setCookieBannerVisible] = useState(false);
+
+  const [cookiesOpen, setCookiesOpen] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
+    if (!stored) {
+      setCookiesOpen(true);
+    } else {
+      setCookiesOpen(false);
+    }
+  }, [localStorage.getItem(COOKIE_CONSENT_KEY)]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +52,7 @@ export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepPr
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("cookie_consent", handleCookieConsent);
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("cookie_consent", handleCookieConsent);
@@ -49,18 +63,20 @@ export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepPr
 
   // When cookie banner is visible, add extra bottom padding to avoid focus obstruction
   // Cookie banner is approximately 200px tall on mobile, 160px on desktop
-  const bottomOffset = cookieBannerVisible ? "bottom-[180px] lg:bottom-[140px]" : "bottom-0";
-
+  const bottomOffset = cookieBannerVisible
+    ? "bottom-[180px] lg:bottom-[140px]"
+    : "bottom-0";
+  if (cookiesOpen) return null;
   return (
-    <div 
+    <div
       className={`fixed left-0 right-0 z-[80] bg-card/95 backdrop-blur-md border-t border-border shadow-lg animate-fade-in transition-all duration-300 ${bottomOffset}`}
       role="navigation"
       aria-label={t("stickyBar.label", "Quick actions")}
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-center gap-3">
-          <Button 
-            variant="hero" 
+          <Button
+            variant="hero"
             size="default"
             onClick={onRequestClick}
             className="min-h-[44px] gap-2"
@@ -68,8 +84,8 @@ export function StickyNextStep({ onRequestClick, onBookClick }: StickyNextStepPr
             {t("stickyBar.primaryCta", "Request an automation plan")}
             <ArrowRight className="w-4 h-4" />
           </Button>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="default"
             onClick={onBookClick}
             className="min-h-[44px] gap-2 hidden sm:inline-flex"

@@ -80,6 +80,33 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
     setIsOpen(false);
   }, [location]);
 
+  // Close mobile menu on outside click/touch
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node;
+      // Check if click is outside menu and menu button
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(target) &&
+        menuButtonRef.current &&
+        !menuButtonRef.current.contains(target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    // Use both mousedown and touchstart for iOS + desktop compatibility
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [isOpen]);
+
   const handleCTAClick = () => {
     window.dispatchEvent(new CustomEvent("analytics", { detail: { event: "cta_click", location: "navbar" } }));
     if (onBookingClick) {
@@ -186,6 +213,15 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
           </button>
         </div>
 
+        {/* Mobile Navigation Overlay */}
+        {isOpen && (
+          <div
+            className="lg:hidden fixed inset-0 top-16 bg-black/40 z-40 animate-fade-in"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         {/* Mobile Navigation */}
         {isOpen && (
           <div
@@ -194,7 +230,8 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
             role="dialog"
             aria-modal="true"
             aria-label={t("nav.menuLabel", "Navigation menu")}
-            className="lg:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-lg animate-fade-in"
+            className="lg:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-lg animate-fade-in z-50"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
               {navLinks.map((link) => {
@@ -219,6 +256,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                   <Link
                     key={link.href}
                     to={link.href}
+                    onClick={() => setIsOpen(false)}
                     className={`text-base font-medium py-3 px-4 rounded-lg min-h-[48px] flex items-center focus:outline-none focus:ring-2 focus:ring-ring ${
                       active 
                         ? "text-secondary bg-secondary/10" 
@@ -236,7 +274,10 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                 variant="hero" 
                 size="lg" 
                 className="mt-4 min-h-[48px]" 
-                onClick={handleCTAClick}
+                onClick={() => {
+                  setIsOpen(false);
+                  handleCTAClick();
+                }}
               >
                 {t("nav.bookCall")}
               </Button>

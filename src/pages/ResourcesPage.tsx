@@ -1,5 +1,6 @@
 import { useMemo, useState, useId } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { SeoHead, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -39,43 +40,39 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+type CategoryKey = "all" | "roi" | "ai" | "crm" | "ops" | "compliance";
+type ResourceKey = "roiCalculator" | "aiChecklist" | "hubspotHygiene" | "complianceRoadmap" | "apiPlaybook" | "ragGuide" | "workflowAudit" | "dpaReference" | "euAiAct" | "icoFairness" | "vendorSecurity" | "monitoringPlaybook" | "revopsScorecard" | "businessCase";
+type ResourceType = "Guide" | "Checklist" | "Template" | "Calculator" | "Playbook" | "Reference";
+type ResourceTypeKey = "guide" | "checklist" | "template" | "calculator" | "playbook" | "reference";
+
+const typeToKey: Record<ResourceType, ResourceTypeKey> = {
+  Guide: "guide",
+  Checklist: "checklist",
+  Template: "template",
+  Calculator: "calculator",
+  Playbook: "playbook",
+  Reference: "reference",
+};
+
 type Resource = {
   icon: LucideIcon;
-  title: string;
-  description: string;
-  type:
-    | "Guide"
-    | "Checklist"
-    | "Template"
-    | "Calculator"
-    | "Playbook"
-    | "Reference";
-  category: string;
+  key: ResourceKey;
+  type: ResourceType;
+  category: CategoryKey;
   tags: string[];
   featured?: boolean;
   updatedAt?: string;
   timeToComplete?: string;
   usefulness?: number;
-  ctaLabel: string;
   href: string;
 };
 
-const categories = [
-  { id: "all", label: "All" },
-  { id: "roi", label: "Automation ROI" },
-  { id: "ai", label: "AI Copilots" },
-  { id: "crm", label: "HubSpot/CRM" },
-  { id: "ops", label: "Operations" },
-  { id: "compliance", label: "Compliance" },
-];
+const categoryKeys: CategoryKey[] = ["all", "roi", "ai", "crm", "ops", "compliance"];
 
-const resources: Resource[] = [
-  // ===== Updated (your existing 8) =====
+const resourcesData: Resource[] = [
   {
     icon: Calculator,
-    title: "Automation ROI Assessment Tool",
-    description:
-      "Quantify savings from automations using time, volume, and error inputs—built for UK/EU SMEs.",
+    key: "roiCalculator",
     type: "Calculator",
     category: "roi",
     featured: true,
@@ -83,14 +80,11 @@ const resources: Resource[] = [
     updatedAt: "2025-12-30",
     timeToComplete: "15 min",
     usefulness: 9,
-    ctaLabel: "Calculate ROI",
     href: "#contact",
   },
   {
     icon: CheckSquare,
-    title: "AI Copilot Deployment Checklist",
-    description:
-      "A practical rollout checklist from pilot to monitoring—data prep, testing, governance, and launch.",
+    key: "aiChecklist",
     type: "Checklist",
     category: "ai",
     featured: true,
@@ -98,14 +92,11 @@ const resources: Resource[] = [
     updatedAt: "2025-12-30",
     timeToComplete: "30 min",
     usefulness: 10,
-    ctaLabel: "Get checklist",
     href: "#contact",
   },
   {
     icon: RefreshCw,
-    title: "HubSpot Data Quality Checklist",
-    description:
-      "Monthly CRM hygiene tasks (dedupe, standardise, validate) so automations + AI inputs stay reliable.",
+    key: "hubspotHygiene",
     type: "Checklist",
     category: "crm",
     featured: true,
@@ -113,14 +104,11 @@ const resources: Resource[] = [
     updatedAt: "2025-12-30",
     timeToComplete: "25 min",
     usefulness: 8,
-    ctaLabel: "Get checklist",
     href: "#contact",
   },
   {
     icon: Shield,
-    title: "UK/EU AI Compliance Roadmap",
-    description:
-      "Plain-English roadmap for GDPR + AI compliance decisions—what to check before shipping AI features.",
+    key: "complianceRoadmap",
     type: "Guide",
     category: "compliance",
     featured: true,
@@ -128,72 +116,55 @@ const resources: Resource[] = [
     updatedAt: "2025-12-30",
     timeToComplete: "40 min",
     usefulness: 9,
-    ctaLabel: "Open roadmap",
     href: "#contact",
   },
   {
     icon: Plug,
-    title: "API Integration Reliability Playbook",
-    description:
-      "Patterns for Zapier/Make/API integrations with monitoring, retries, and practical failure handling.",
+    key: "apiPlaybook",
     type: "Playbook",
     category: "ops",
     tags: ["integration", "api", "reliability", "playbook"],
     updatedAt: "2025-12-30",
     timeToComplete: "45 min",
     usefulness: 8,
-    ctaLabel: "Open playbook",
     href: "#contact",
   },
   {
     icon: Brain,
-    title: "RAG KB Implementation Guide",
-    description:
-      "How to build a knowledge base assistant that’s actually useful—data prep, structure, governance, deployment.",
+    key: "ragGuide",
     type: "Guide",
     category: "ai",
     tags: ["knowledge-base", "rag", "governance"],
     updatedAt: "2025-12-30",
     timeToComplete: "1 hour",
     usefulness: 9,
-    ctaLabel: "Open guide",
     href: "#contact",
   },
   {
     icon: Settings,
-    title: "Workflow Efficiency Audit Template",
-    description:
-      "Score your workflows to find the highest-impact automation opportunities—includes a prioritisation matrix.",
+    key: "workflowAudit",
     type: "Template",
     category: "ops",
     tags: ["audit", "template", "efficiency", "workflow"],
     updatedAt: "2025-12-30",
     timeToComplete: "30 min",
     usefulness: 8,
-    ctaLabel: "Get template",
     href: "#contact",
   },
   {
     icon: FileText,
-    title: "DPA + AI Data Processing Reference",
-    description:
-      "A quick-scan reference for DPAs + AI data processing expectations (sub-processors, retention, incidents, transparency).",
+    key: "dpaReference",
     type: "Reference",
     category: "compliance",
     tags: ["dpa", "privacy", "edpb", "reference"],
     updatedAt: "2025-12-30",
     timeToComplete: "10 min",
     usefulness: 8,
-    ctaLabel: "Open reference",
     href: "#contact",
   },
-
-  // ===== New (from Perplexity recommendations) =====
   {
     icon: ShieldCheck,
-    title: "EU AI Act Readiness Checklist",
-    description:
-      "Fast checklist to sanity-check AI features against EU AI Act obligations before rollout.",
+    key: "euAiAct",
     type: "Checklist",
     category: "compliance",
     featured: true,
@@ -201,84 +172,61 @@ const resources: Resource[] = [
     updatedAt: "2025-12-30",
     timeToComplete: "30 min",
     usefulness: 10,
-    ctaLabel: "Download checklist",
     href: "#contact",
   },
   {
     icon: Scale,
-    title: "UK ICO AI Fairness Audit Template",
-    description:
-      "A structured template to assess fairness and bias risks in AI-supported decisions (UK GDPR-aligned).",
+    key: "icoFairness",
     type: "Template",
     category: "compliance",
     tags: ["ico", "fairness", "gdpr", "bias", "audit", "transparency"],
     updatedAt: "2025-12-30",
     timeToComplete: "45 min",
     usefulness: 9,
-    ctaLabel: "Get template",
     href: "#contact",
   },
   {
     icon: ClipboardList,
-    title: "Vendor Security Review Questionnaire",
-    description:
-      "A lightweight DDQ-style checklist to review AI/automation vendors: sub-processors, retention, incidents, access controls.",
+    key: "vendorSecurity",
     type: "Template",
     category: "compliance",
     tags: ["vendor", "security", "ddq", "dpa", "procurement", "sub-processors"],
     updatedAt: "2025-12-30",
     timeToComplete: "20 min",
     usefulness: 9,
-    ctaLabel: "Get questionnaire",
     href: "#contact",
   },
   {
     icon: Activity,
-    title: "Automation Monitoring & Retry Playbook (Zapier/Make)",
-    description:
-      "A practical playbook for reliability: logging, retry strategy, webhook resiliency, and failure alerts.",
+    key: "monitoringPlaybook",
     type: "Playbook",
     category: "ops",
-    tags: [
-      "zapier",
-      "make",
-      "error-handling",
-      "monitoring",
-      "retries",
-      "webhooks",
-    ],
+    tags: ["zapier", "make", "error-handling", "monitoring", "retries", "webhooks"],
     updatedAt: "2025-12-30",
     timeToComplete: "40 min",
     usefulness: 9,
-    ctaLabel: "Open playbook",
     href: "#contact",
   },
   {
     icon: BarChart3,
-    title: "RevOps CRM Hygiene Scorecard (HubSpot)",
-    description:
-      "Score your CRM data quality in minutes and get a clear improvement plan to make automations + reporting trustworthy.",
+    key: "revopsScorecard",
     type: "Checklist",
     category: "crm",
     tags: ["hubspot", "crm", "hygiene", "data-quality", "revops", "scorecard"],
     updatedAt: "2025-12-30",
     timeToComplete: "25 min",
     usefulness: 8,
-    ctaLabel: "Get scorecard",
     href: "#contact",
   },
   {
     icon: FileSpreadsheet,
-    title: "AI Business Case Builder Template",
-    description:
-      "Simple template to build an internal ROI case: time saved, errors reduced, payback, and rollout assumptions.",
+    key: "businessCase",
     type: "Template",
     category: "roi",
     tags: ["roi", "business-case", "template", "savings", "automation"],
     updatedAt: "2025-12-30",
     timeToComplete: "30 min",
     usefulness: 8,
-    ctaLabel: "Get template",
     href: "#contact",
   },
 ];
@@ -396,10 +344,32 @@ const resources: Resource[] = [
 // ];
 
 export default function ResourcesPage() {
+  const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("featured");
+
+  // Translate categories
+  const categories = useMemo(() => 
+    categoryKeys.map(key => ({
+      id: key,
+      label: t(`resourcesPage.categories.${key}`)
+    })),
+    [t]
+  );
+
+  // Translate resources
+  const resources = useMemo(() =>
+    resourcesData.map(resource => ({
+      ...resource,
+      title: t(`resourcesPage.resources.${resource.key}.title`),
+      description: t(`resourcesPage.resources.${resource.key}.description`),
+      ctaLabel: t(`resourcesPage.resources.${resource.key}.ctaLabel`),
+      translatedType: t(`resourcesPage.types.${typeToKey[resource.type]}`)
+    })),
+    [t]
+  );
 
   const filteredResources = useMemo(() => {
     const byCategory =
@@ -414,7 +384,7 @@ export default function ResourcesPage() {
         .toLowerCase();
       return haystack.includes(query);
     });
-  }, [activeCategory, searchTerm]);
+  }, [activeCategory, searchTerm, resources]);
 
   const sortedResources = useMemo(() => {
     const copy = [...filteredResources];
@@ -435,13 +405,13 @@ export default function ResourcesPage() {
     () => sortedResources.filter((r) => r.featured).slice(0, 3),
     [sortedResources]
   );
-  const startHereTitles = useMemo(
-    () => new Set(startHere.map((r) => r.title)),
+  const startHereKeys = useMemo(
+    () => new Set(startHere.map((r) => r.key)),
     [startHere]
   );
   const mainResources = useMemo(
-    () => sortedResources.filter((r) => !startHereTitles.has(r.title)),
-    [sortedResources, startHereTitles]
+    () => sortedResources.filter((r) => !startHereKeys.has(r.key)),
+    [sortedResources, startHereKeys]
   );
 
   const handleResourceClick = (resourceTitle: string) => {
@@ -467,7 +437,7 @@ export default function ResourcesPage() {
         url: `${siteUrl}/resources`,
       })),
     }),
-    []
+    [resources]
   );
 
   const formatUpdated = (value?: string) => {
@@ -483,8 +453,8 @@ export default function ResourcesPage() {
   return (
     <>
       <SeoHead
-        title="Resources — Tools & Guides | Innoviaburst"
-        description="Free tools and guides to help you plan your automation journey. ROI calculators, checklists, and compliance guides for UK/EU businesses."
+        title={t("resourcesPage.seo.title")}
+        description={t("resourcesPage.seo.description")}
         path="/resources"
         jsonLd={resourceListSchema}
       />
@@ -504,7 +474,7 @@ export default function ResourcesPage() {
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-ring rounded-lg px-2 -ml-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to home
+              {t("resourcesPage.hero.backToHome")}
             </Link>
             
             <div className="grid lg:grid-cols-[1fr,420px] gap-10 lg:gap-16 items-start">
@@ -513,18 +483,17 @@ export default function ResourcesPage() {
                 {/* Title + Subtitle */}
                 <div className="space-y-4">
                   <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                    <span className="text-gradient-brand">Resources</span> for UK/EU teams
+                    <span className="text-gradient-brand">{t("resourcesPage.hero.title")}</span> {t("resourcesPage.hero.titleHighlight")}
                   </h1>
                   <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-                    Practical tools to plan, implement, and improve your automation projects. 
-                    Most resources are free—no signup required.
+                    {t("resourcesPage.hero.subtitle")}
                   </p>
                 </div>
 
                 {/* What you'll find here - 4 bullets */}
                 <div className="space-y-3">
                   <p className="text-sm font-semibold text-foreground uppercase tracking-wide">
-                    What you'll find
+                    {t("resourcesPage.whatYouFind.title")}
                   </p>
                   <div className="grid grid-cols-1 xs:grid-cols-2 gap-3">
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-card/60 border border-border/50">
@@ -532,8 +501,8 @@ export default function ResourcesPage() {
                         <BookOpen className="w-4 h-4 text-secondary" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-foreground">Playbooks</p>
-                        <p className="text-xs text-muted-foreground">Step-by-step guides</p>
+                        <p className="text-sm font-medium text-foreground">{t("resourcesPage.whatYouFind.playbooks.title")}</p>
+                        <p className="text-xs text-muted-foreground">{t("resourcesPage.whatYouFind.playbooks.description")}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-card/60 border border-border/50">
@@ -541,8 +510,8 @@ export default function ResourcesPage() {
                         <LayoutTemplate className="w-4 h-4 text-secondary" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-foreground">Templates</p>
-                        <p className="text-xs text-muted-foreground">Notion & Sheets</p>
+                        <p className="text-sm font-medium text-foreground">{t("resourcesPage.whatYouFind.templates.title")}</p>
+                        <p className="text-xs text-muted-foreground">{t("resourcesPage.whatYouFind.templates.description")}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-card/60 border border-border/50">
@@ -550,8 +519,8 @@ export default function ResourcesPage() {
                         <ListChecks className="w-4 h-4 text-secondary" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-foreground">Checklists</p>
-                        <p className="text-xs text-muted-foreground">Ops & compliance</p>
+                        <p className="text-sm font-medium text-foreground">{t("resourcesPage.whatYouFind.checklists.title")}</p>
+                        <p className="text-xs text-muted-foreground">{t("resourcesPage.whatYouFind.checklists.description")}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 rounded-xl bg-card/60 border border-border/50">
@@ -559,8 +528,8 @@ export default function ResourcesPage() {
                         <Workflow className="w-4 h-4 text-secondary" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-foreground">Examples</p>
-                        <p className="text-xs text-muted-foreground">Real automations</p>
+                        <p className="text-sm font-medium text-foreground">{t("resourcesPage.whatYouFind.examples.title")}</p>
+                        <p className="text-xs text-muted-foreground">{t("resourcesPage.whatYouFind.examples.description")}</p>
                       </div>
                     </div>
                   </div>
@@ -571,7 +540,7 @@ export default function ResourcesPage() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Star className="w-4 h-4 text-primary" />
-                      <p className="text-sm font-semibold text-foreground">Featured this month</p>
+                      <p className="text-sm font-semibold text-foreground">{t("resourcesPage.featured.title")}</p>
                     </div>
                     {(() => {
                       const featured = startHere[0];
@@ -632,7 +601,7 @@ export default function ResourcesPage() {
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div className="flex flex-col gap-1.5 w-full md:max-w-md">
                   <label htmlFor="resources-search" className="text-sm font-medium text-foreground sr-only md:not-sr-only">
-                    Search resources
+                    {t("resourcesPage.filters.searchLabel")}
                   </label>
                   <div className="relative w-full">
                     <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true" />
@@ -641,7 +610,7 @@ export default function ResourcesPage() {
                       type="search"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      placeholder="Search by title, topic, or tag..."
+                      placeholder={t("resourcesPage.filters.searchPlaceholder")}
                       className="w-full pl-10 pr-3 py-3 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary min-h-[44px]"
                     />
                   </div>
@@ -651,18 +620,18 @@ export default function ResourcesPage() {
                     className="text-sm text-muted-foreground"
                     aria-live="polite"
                   >
-                    {sortedResources.length} resources found
+                    {t("resourcesPage.filters.resultsCount", { count: sortedResources.length })}
                   </div>
                   <label className="flex items-center gap-2 text-sm text-foreground">
-                    Sort
+                    {t("resourcesPage.filters.sortLabel")}
                     <select
                       value={sortOption}
                       onChange={(e) => setSortOption(e.target.value)}
                       className="px-3 py-2 rounded-lg border border-border bg-card text-sm min-h-[36px]"
                     >
-                      <option value="featured">Featured</option>
-                      <option value="newest">Newest</option>
-                      <option value="useful">Most useful</option>
+                      <option value="featured">{t("resourcesPage.filters.sortFeatured")}</option>
+                      <option value="newest">{t("resourcesPage.filters.sortNewest")}</option>
+                      <option value="useful">{t("resourcesPage.filters.sortUseful")}</option>
                     </select>
                   </label>
                 </div>
@@ -672,7 +641,7 @@ export default function ResourcesPage() {
                 {categories.map((cat) => (
                   <button
                     key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
+                    onClick={() => setActiveCategory(cat.id as CategoryKey)}
                     className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors min-h-[44px] ${
                       activeCategory === cat.id
                         ? "bg-secondary text-secondary-foreground"
@@ -695,13 +664,13 @@ export default function ResourcesPage() {
                 <div className="flex items-center gap-2 mb-4">
                   <Star className="w-4 h-4 text-secondary" />
                   <p className="text-sm font-semibold text-secondary">
-                    Start here (recommended)
+                    {t("resourcesPage.startHere.title")}
                   </p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-6">
                   {startHere.map((resource) => (
                     <div
-                      key={resource.title}
+                      key={resource.key}
                       className="group p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300"
                     >
                       <div className="flex items-center justify-between mb-4">
@@ -709,7 +678,7 @@ export default function ResourcesPage() {
                           <resource.icon className="w-5 h-5 text-secondary group-hover:text-accent transition-colors" />
                         </div>
                         <span className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full">
-                          Featured
+                          {t("resourcesPage.featured.badge")}
                         </span>
                       </div>
                       <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-secondary transition-colors">
@@ -720,11 +689,11 @@ export default function ResourcesPage() {
                       </p>
                       <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
                         <span className="px-2 py-1 rounded-full bg-muted font-semibold text-black/70">
-                          {resource.type}
+                          {resource.translatedType}
                         </span>
                         {resource.updatedAt && (
                           <span>
-                            Updated {formatUpdated(resource.updatedAt)}
+                            {t("resourcesPage.resourceCard.updated")} {formatUpdated(resource.updatedAt)}
                           </span>
                         )}
                         {resource.timeToComplete && (
@@ -758,7 +727,7 @@ export default function ResourcesPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
               {mainResources.map((resource) => (
                 <div
-                  key={resource.title}
+                  key={resource.key}
                   className="group p-6 bg-card rounded-2xl border border-border shadow-card hover:shadow-card-hover transition-all duration-300"
                 >
                   <div className="flex items-center justify-between mb-4">
@@ -768,11 +737,11 @@ export default function ResourcesPage() {
                     <div className="flex items-center gap-2">
                       {resource.featured && (
                         <span className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full">
-                          Featured
+                          {t("resourcesPage.featured.badge")}
                         </span>
                       )}
                       <span className="text-xs font-semibold text-black/70 bg-muted px-3 py-1 rounded-full">
-                        {resource.type}
+                        {resource.translatedType}
                       </span>
                     </div>
                   </div>
@@ -784,7 +753,7 @@ export default function ResourcesPage() {
                   </p>
                   <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
                     {resource.updatedAt && (
-                      <span>Updated {formatUpdated(resource.updatedAt)}</span>
+                      <span>{t("resourcesPage.resourceCard.updated")} {formatUpdated(resource.updatedAt)}</span>
                     )}
                     {resource.timeToComplete && (
                       <span className="flex items-center gap-1">
@@ -815,10 +784,10 @@ export default function ResourcesPage() {
             {sortedResources.length === 0 && (
               <div className="p-8 border border-border rounded-2xl bg-card text-center text-muted-foreground">
                 <p className="font-semibold text-foreground mb-2">
-                  No resources match your filters.
+                  {t("resourcesPage.empty.title")}
                 </p>
                 <p className="text-sm">
-                  Try clearing search or choosing a different category.
+                  {t("resourcesPage.empty.subtitle")}
                 </p>
               </div>
             )}
@@ -826,13 +795,13 @@ export default function ResourcesPage() {
             {/* Request custom */}
             <div className="text-center p-8 bg-muted/30 rounded-2xl">
               <h3 className="text-lg font-bold text-foreground mb-2">
-                Need something specific?
+                {t("resourcesPage.customRequest.title")}
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
-                We create custom guides and assessments for enterprise clients.
+                {t("resourcesPage.customRequest.subtitle")}
               </p>
               <Button variant="hero" className="" onClick={() => setBookingOpen(true)}>
-                Request a custom resource
+                {t("resourcesPage.customRequest.cta")}
               </Button>
             </div>
           </div>
@@ -868,6 +837,7 @@ export default function ResourcesPage() {
  * Premium design with value prop, benefits list, trust signals
  */
 function ResourcesNewsletterCard() {
+  const { t } = useTranslation();
   const formId = useId();
   const emailId = `${formId}-email`;
   const consentId = `${formId}-consent`;
@@ -881,8 +851,8 @@ function ResourcesNewsletterCard() {
   const [touched, setTouched] = useState(false);
 
   const validateEmail = (value: string) => {
-    if (!value.trim()) return "Email is required";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Please enter a valid email";
+    if (!value.trim()) return t("resourcesPage.newsletter.errorRequired");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return t("resourcesPage.newsletter.errorInvalid");
     return null;
   };
 
@@ -897,7 +867,7 @@ function ResourcesNewsletterCard() {
     }
     
     if (!consent) {
-      setError("Please confirm you'd like to receive updates");
+      setError(t("resourcesPage.newsletter.errorConsent"));
       return;
     }
 
@@ -925,7 +895,7 @@ function ResourcesNewsletterCard() {
         })
       );
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t("resourcesPage.newsletter.errorGeneric"));
     } finally {
       setIsLoading(false);
     }
@@ -948,21 +918,23 @@ function ResourcesNewsletterCard() {
             <CheckCircle className="w-6 h-6 text-green-600" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-foreground mb-1">You're subscribed!</h3>
+            <h3 className="text-lg font-bold text-foreground mb-1">{t("resourcesPage.newsletter.successTitle")}</h3>
             <p className="text-sm text-muted-foreground">
-              We'll send you new playbooks and templates as they're published.
+              {t("resourcesPage.newsletter.successSubtitle")}
             </p>
           </div>
           <button
             onClick={handleReset}
             className="text-sm text-secondary hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded px-2"
           >
-            Subscribe another email
+            {t("resourcesPage.newsletter.successReset")}
           </button>
         </div>
       </div>
     );
   }
+
+  const benefits = t("resourcesPage.newsletter.benefits", { returnObjects: true }) as string[];
 
   return (
     <div className="p-6 rounded-2xl bg-card border border-border shadow-card space-y-5">
@@ -970,27 +942,21 @@ function ResourcesNewsletterCard() {
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <Mail className="w-5 h-5 text-primary" />
-          <h3 className="text-lg font-bold text-foreground">Get templates + playbooks monthly</h3>
+          <h3 className="text-lg font-bold text-foreground">{t("resourcesPage.newsletter.title")}</h3>
         </div>
         <p className="text-sm text-muted-foreground">
-          New resources delivered to your inbox—practical tools for UK/EU ops teams.
+          {t("resourcesPage.newsletter.subtitle")}
         </p>
       </div>
 
       {/* What you'll get - 3 benefits */}
       <ul className="space-y-2.5">
-        <li className="flex items-start gap-3 text-sm">
-          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-          <span className="text-foreground">New playbooks + templates (monthly)</span>
-        </li>
-        <li className="flex items-start gap-3 text-sm">
-          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-          <span className="text-foreground">Automation opportunities for UK/EU ops</span>
-        </li>
-        <li className="flex items-start gap-3 text-sm">
-          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-          <span className="text-foreground">Security & privacy notes (plain English)</span>
-        </li>
+        {benefits.map((benefit, index) => (
+          <li key={index} className="flex items-start gap-3 text-sm">
+            <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+            <span className="text-foreground">{benefit}</span>
+          </li>
+        ))}
       </ul>
 
       {/* Form */}
@@ -998,7 +964,7 @@ function ResourcesNewsletterCard() {
         {/* Email field with visible label */}
         <div className="space-y-1.5">
           <label htmlFor={emailId} className="block text-sm font-medium text-foreground">
-            Work email
+            {t("resourcesPage.newsletter.emailLabel")}
           </label>
           <input
             id={emailId}
@@ -1009,7 +975,7 @@ function ResourcesNewsletterCard() {
               if (touched) setError(validateEmail(e.target.value));
             }}
             onBlur={() => setTouched(true)}
-            placeholder="you@company.com"
+            placeholder={t("resourcesPage.newsletter.emailPlaceholder")}
             disabled={isLoading}
             aria-invalid={!!error && touched}
             aria-describedby={error ? errorId : undefined}
@@ -1020,7 +986,7 @@ function ResourcesNewsletterCard() {
         </div>
 
         {/* Consent checkbox with clickable label */}
-        <div className="flex items-start gap-3">
+        <div className="flex flex-row items-start gap-3 border">
           <input
             id={consentId}
             type="checkbox"
@@ -1030,14 +996,14 @@ function ResourcesNewsletterCard() {
               if (error && e.target.checked) setError(null);
             }}
             disabled={isLoading}
-            className="mt-1 w-4 h-4 rounded border-border bg-muted text-primary focus:ring-2 focus:ring-secondary focus:ring-offset-0 disabled:opacity-50"
+            className="-mt-2.5 w-4 h-4 rounded border-border bg-muted text-primary focus:ring-2 focus:ring-secondary focus:ring-offset-0 disabled:opacity-50"
           />
           <label htmlFor={consentId} className="text-xs text-muted-foreground leading-relaxed cursor-pointer">
-            Yes, send me new playbooks & templates. I can{" "}
+            {t("resourcesPage.newsletter.consent")}{" "}
             <Link to="/privacy" className="underline underline-offset-2 hover:text-foreground">
-              unsubscribe
+              {t("resourcesPage.newsletter.consentLink")}
             </Link>{" "}
-            anytime.
+            {t("resourcesPage.newsletter.consentEnd")}
           </label>
         </div>
 
@@ -1064,11 +1030,11 @@ function ResourcesNewsletterCard() {
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Subscribing...</span>
+              <span>{t("resourcesPage.newsletter.submitting")}</span>
             </>
           ) : (
             <>
-              <span>Send me playbooks</span>
+              <span>{t("resourcesPage.newsletter.submit")}</span>
               <ArrowRight className="w-4 h-4" />
             </>
           )}
@@ -1077,9 +1043,9 @@ function ResourcesNewsletterCard() {
 
       {/* Trust line */}
       <p className="text-xs text-muted-foreground text-center">
-        No spam. Unsubscribe anytime.{" "}
+        {t("resourcesPage.newsletter.trustLine")}{" "}
         <Link to="/privacy" className="underline underline-offset-2 hover:text-foreground">
-          Privacy Policy
+          {t("resourcesPage.newsletter.privacyLink")}
         </Link>
       </p>
     </div>
@@ -1091,6 +1057,7 @@ function ResourcesNewsletterCard() {
  * Inline horizontal layout optimised for mobile screens
  */
 function ResourcesNewsletterCardMobile() {
+  const { t } = useTranslation();
   const formId = useId();
   const emailId = `${formId}-email-mobile`;
 
@@ -1100,8 +1067,8 @@ function ResourcesNewsletterCardMobile() {
   const [error, setError] = useState<string | null>(null);
 
   const validateEmail = (value: string) => {
-    if (!value.trim()) return "Email required";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Invalid email";
+    if (!value.trim()) return t("resourcesPage.newsletter.errorRequiredShort");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return t("resourcesPage.newsletter.errorInvalidShort");
     return null;
   };
 
@@ -1127,7 +1094,7 @@ function ResourcesNewsletterCardMobile() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setIsSuccess(true);
     } catch {
-      setError("Try again");
+      setError(t("resourcesPage.newsletter.errorRetry"));
     } finally {
       setIsLoading(false);
     }
@@ -1140,8 +1107,8 @@ function ResourcesNewsletterCardMobile() {
           <CheckCircle className="w-5 h-5 text-green-600" />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-foreground">You're subscribed!</p>
-          <p className="text-xs text-muted-foreground">New resources → your inbox.</p>
+          <p className="text-sm font-semibold text-foreground">{t("resourcesPage.newsletter.mobileSuccessTitle")}</p>
+          <p className="text-xs text-muted-foreground">{t("resourcesPage.newsletter.mobileSuccessSubtitle")}</p>
         </div>
       </div>
     );
@@ -1151,13 +1118,13 @@ function ResourcesNewsletterCardMobile() {
     <div className="p-4 rounded-xl bg-card border border-border space-y-3">
       <div className="flex items-center gap-2">
         <Mail className="w-4 h-4 text-primary shrink-0" />
-        <p className="text-sm font-semibold text-foreground">Get templates monthly</p>
+        <p className="text-sm font-semibold text-foreground">{t("resourcesPage.newsletter.mobileTitle")}</p>
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-3" noValidate>
         <div className="flex gap-2">
           <div className="flex-1 min-w-0">
-            <label htmlFor={emailId} className="sr-only">Work email</label>
+            <label htmlFor={emailId} className="sr-only">{t("resourcesPage.newsletter.emailLabel")}</label>
             <input
               id={emailId}
               type="email"
@@ -1166,7 +1133,7 @@ function ResourcesNewsletterCardMobile() {
                 setEmail(e.target.value);
                 if (error) setError(null);
               }}
-              placeholder="you@company.com"
+              placeholder={t("resourcesPage.newsletter.emailPlaceholder")}
               disabled={isLoading}
               className={`w-full px-3 py-2.5 rounded-lg border text-sm bg-muted placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary min-h-[44px] ${
                 error ? "border-destructive" : "border-border"
@@ -1192,8 +1159,8 @@ function ResourcesNewsletterCardMobile() {
         )}
         
         <p className="text-xs text-muted-foreground">
-          No spam.{" "}
-          <Link to="/privacy" className="underline underline-offset-2">Privacy</Link>
+          {t("resourcesPage.newsletter.trustLine").split(".")[0]}.{" "}
+          <Link to="/privacy" className="underline underline-offset-2">{t("resourcesPage.newsletter.mobilePrivacy")}</Link>
         </p>
       </form>
     </div>

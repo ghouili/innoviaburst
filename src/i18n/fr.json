@@ -696,5 +696,185 @@
       "subtitle": "Nous sommes à votre disposition pour soutenir votre évaluation sécurité ou conformité."
     },
     "disclaimer": "Cette page fournit des informations générales et ne constitue pas un avis juridique. Pour des exigences légales spécifiques, consultez votre conseiller juridique."
+  },
+  "resourcesPage": {
+    "seo": {
+      "title": "Ressources — Guides, Modèles & Checklists | InnoviaBurst",
+      "description": "Guides pratiques, modèles et checklists pour les équipes UK/EU automatisant leurs opérations et déployant l'IA de manière responsable."
+    },
+    "hero": {
+      "backToHome": "Retour à l'accueil",
+      "title": "Ressources pour les",
+      "titleHighlight": "équipes UK/EU",
+      "subtitle": "Guides pratiques, modèles et checklists pour les opérations, l'IA et la conformité—conçus pour les équipes qui doivent livrer, pas étudier."
+    },
+    "whatYouFind": {
+      "title": "Ce que vous trouverez",
+      "playbooks": {
+        "title": "Guides",
+        "description": "Étape par étape"
+      },
+      "templates": {
+        "title": "Modèles",
+        "description": "Formats prêts à l'emploi"
+      },
+      "checklists": {
+        "title": "Checklists",
+        "description": "Ops & conformité"
+      },
+      "examples": {
+        "title": "Exemples",
+        "description": "Automatisations réelles"
+      }
+    },
+    "featured": {
+      "title": "À la une ce mois-ci",
+      "badge": "À la une"
+    },
+    "categories": {
+      "all": "Tout",
+      "roi": "ROI Automatisation",
+      "ai": "Copilotes IA",
+      "crm": "HubSpot/CRM",
+      "ops": "Opérations",
+      "compliance": "Conformité"
+    },
+    "filters": {
+      "searchLabel": "Rechercher des ressources",
+      "searchPlaceholder": "Rechercher par titre, sujet ou tag...",
+      "resultsCount": "{{count}} ressources trouvées",
+      "sortLabel": "Trier",
+      "sortFeatured": "À la une",
+      "sortNewest": "Plus récent",
+      "sortUseful": "Plus utile"
+    },
+    "startHere": {
+      "title": "Commencez ici (recommandé)"
+    },
+    "resourceCard": {
+      "updated": "Mis à jour",
+      "featured": "À la une"
+    },
+    "empty": {
+      "title": "Aucune ressource ne correspond à vos filtres.",
+      "subtitle": "Essayez d'effacer la recherche ou de choisir une autre catégorie."
+    },
+    "customRequest": {
+      "title": "Besoin de quelque chose de spécifique ?",
+      "subtitle": "Nous créons des guides et évaluations sur mesure pour les clients entreprise.",
+      "cta": "Demander une ressource personnalisée"
+    },
+    "newsletter": {
+      "title": "Recevez modèles + guides chaque mois",
+      "subtitle": "Nouvelles ressources dans votre boîte mail—outils pratiques pour les équipes ops UK/EU.",
+      "benefits": [
+        "Nouveaux guides + modèles (mensuel)",
+        "Opportunités d'automatisation pour ops UK/EU",
+        "Notes sécurité & confidentialité (langage simple)"
+      ],
+      "emailLabel": "Email professionnel",
+      "emailPlaceholder": "vous@entreprise.com",
+      "consent": "Oui, envoyez-moi les nouveaux guides & modèles. Je peux me",
+      "consentLink": "désabonner",
+      "consentEnd": "à tout moment.",
+      "submit": "Recevoir les guides",
+      "submitting": "Inscription...",
+      "successTitle": "Vous êtes inscrit !",
+      "successSubtitle": "Nous vous enverrons les nouveaux guides et modèles dès leur publication.",
+      "successReset": "Inscrire une autre adresse",
+      "trustLine": "Pas de spam. Désabonnement à tout moment.",
+      "privacyLink": "Politique de confidentialité",
+      "mobileTitle": "Recevez les modèles chaque mois",
+      "mobileSuccessTitle": "Vous êtes inscrit !",
+      "mobileSuccessSubtitle": "Nouvelles ressources → votre boîte mail.",
+      "mobilePrivacy": "Confidentialité",
+      "errorRequired": "L'email est requis",
+      "errorInvalid": "Veuillez entrer un email valide",
+      "errorConsent": "Veuillez confirmer que vous souhaitez recevoir les mises à jour",
+      "errorGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+      "errorRequiredShort": "Email requis",
+      "errorInvalidShort": "Email invalide",
+      "errorRetry": "Réessayer"
+    },
+    "resources": {
+      "roiCalculator": {
+        "title": "Outil d'évaluation du ROI d'automatisation",
+        "description": "Quantifiez les économies grâce aux automatisations en utilisant le temps, le volume et les erreurs—conçu pour les PME UK/EU.",
+        "ctaLabel": "Calculer le ROI"
+      },
+      "aiChecklist": {
+        "title": "Checklist de déploiement Copilote IA",
+        "description": "Une checklist pratique du pilote au monitoring—préparation des données, tests, gouvernance et lancement.",
+        "ctaLabel": "Obtenir la checklist"
+      },
+      "hubspotHygiene": {
+        "title": "Checklist qualité données HubSpot",
+        "description": "Tâches mensuelles d'hygiène CRM (déduplication, standardisation, validation) pour que vos automatisations + entrées IA restent fiables.",
+        "ctaLabel": "Obtenir la checklist"
+      },
+      "complianceRoadmap": {
+        "title": "Feuille de route conformité IA UK/EU",
+        "description": "Feuille de route en langage simple pour les décisions RGPD + conformité IA—ce qu'il faut vérifier avant de livrer des fonctionnalités IA.",
+        "ctaLabel": "Ouvrir la feuille de route"
+      },
+      "apiPlaybook": {
+        "title": "Guide de fiabilité des intégrations API",
+        "description": "Patterns pour intégrations Zapier/Make/API avec monitoring, retries et gestion pratique des erreurs.",
+        "ctaLabel": "Ouvrir le guide"
+      },
+      "ragGuide": {
+        "title": "Guide d'implémentation RAG KB",
+        "description": "Comment construire un assistant base de connaissances vraiment utile—préparation des données, structure, gouvernance, déploiement.",
+        "ctaLabel": "Ouvrir le guide"
+      },
+      "workflowAudit": {
+        "title": "Modèle d'audit d'efficacité des workflows",
+        "description": "Évaluez vos workflows pour identifier les opportunités d'automatisation à fort impact—inclut une matrice de priorisation.",
+        "ctaLabel": "Obtenir le modèle"
+      },
+      "dpaReference": {
+        "title": "Référence DPA + traitement données IA",
+        "description": "Référence rapide pour les DPA + attentes de traitement données IA (sous-traitants, rétention, incidents, transparence).",
+        "ctaLabel": "Ouvrir la référence"
+      },
+      "euAiAct": {
+        "title": "Checklist de préparation EU AI Act",
+        "description": "Checklist rapide pour vérifier vos fonctionnalités IA par rapport aux obligations EU AI Act avant le déploiement.",
+        "ctaLabel": "Télécharger la checklist"
+      },
+      "icoFairness": {
+        "title": "Modèle d'audit équité IA UK ICO",
+        "description": "Un modèle structuré pour évaluer les risques d'équité et de biais dans les décisions assistées par IA (conforme UK GDPR).",
+        "ctaLabel": "Obtenir le modèle"
+      },
+      "vendorSecurity": {
+        "title": "Questionnaire d'évaluation sécurité fournisseurs",
+        "description": "Checklist légère style DDQ pour évaluer les fournisseurs IA/automatisation : sous-traitants, rétention, incidents, contrôles d'accès.",
+        "ctaLabel": "Obtenir le questionnaire"
+      },
+      "monitoringPlaybook": {
+        "title": "Guide monitoring & retry d'automatisation (Zapier/Make)",
+        "description": "Guide pratique pour la fiabilité : logging, stratégie de retry, résilience webhook et alertes d'échec.",
+        "ctaLabel": "Ouvrir le guide"
+      },
+      "revopsScorecard": {
+        "title": "Scorecard hygiène CRM RevOps (HubSpot)",
+        "description": "Évaluez la qualité de vos données CRM en quelques minutes et obtenez un plan d'amélioration clair pour des automatisations + rapports fiables.",
+        "ctaLabel": "Obtenir le scorecard"
+      },
+      "businessCase": {
+        "title": "Modèle de business case IA",
+        "description": "Modèle simple pour construire un cas ROI interne : temps économisé, erreurs réduites, retour sur investissement et hypothèses de déploiement.",
+        "ctaLabel": "Obtenir le modèle"
+      }
+    },
+    "types": {
+      "guide": "Guide",
+      "checklist": "Checklist",
+      "template": "Modèle",
+      "calculator": "Calculateur",
+      "playbook": "Guide pratique",
+      "reference": "Référence"
+    }
   }
 }

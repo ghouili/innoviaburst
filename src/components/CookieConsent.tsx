@@ -361,7 +361,7 @@ function PreferenceToggle({
       onClick={() => !disabled && onChange?.(!checked)}
       className={[
         // bigger hit area + "py-2" feel
-        "relative inline-flex h-10 w-16 items-center justify-center p-1",
+        "relative inline-flex min-h-[35px] w-14 items-center justify-center p-2",
         // less-round than pill
         "rounded-xl border",
         // colors + transitions
@@ -375,7 +375,7 @@ function PreferenceToggle({
       ].join(" ")}
     >
       {/* track labels (subtle) */}
-      <span
+      {/* <span
         className={[
           "absolute inset-y-0 flex items-center text-[10px] font-semibold tracking-wide",
           "text-muted-foreground select-none",
@@ -398,12 +398,12 @@ function PreferenceToggle({
         ].join(" ")}
       >
         ON
-      </span>
+      </span> */}
 
       {/* thumb */}
       <span
         className={[
-          "absolute top-1 start-1 h-8 w-8",
+          "absolute top-1 start-1 h-6 w-6",
           // less-rounded thumb
           "rounded-lg bg-background shadow",
           "transition-transform duration-200 ease-out",
@@ -504,7 +504,7 @@ export function CookieConsent() {
       aria-describedby="cookie-banner-desc"
     >
       {/* Full-width shell */}
-      <div className="w-full bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 border-t border-border shadow-2xl">
+      <div className="w-full bg-white backdrop-blur supports-[backdrop-filter]:bg-card border-t border-border shadow-2xl">
         {/* Side padding only (no max-width container) */}
         <div className="w-full px-4 py-4 sm:px-6 lg:px-8">
           <div className="w-full">

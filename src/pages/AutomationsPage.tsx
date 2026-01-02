@@ -633,7 +633,7 @@ export default function AutomationsPage() {
 
         {/* Results count */}
         <div className="container mx-auto px-4 lg:px-6 py-4">
-          <p className="text-sm text-muted-foreground" aria-live="polite">
+          <div className="text-sm text-muted-foreground" aria-live="polite">
             {isLoading ? (
               <Skeleton className="h-4 w-32 inline-block" />
             ) : (
@@ -643,7 +643,7 @@ export default function AutomationsPage() {
                   : t("automationsPage.resultsCountPlural", { count: filteredAndSorted.length })}
               </>
             )}
-          </p>
+          </div>
         </div>
 
         {/* Grid */}
@@ -723,12 +723,12 @@ export default function AutomationsPage() {
 
       <Footer />
       <CookieConsent />
-      {/* <RequestModal
+      <RequestModal
         isOpen={requestOpen}
         onClose={() => setRequestOpen(false)}
         prefilledInterest={selectedAutomation}
         source="automations"
-      /> */}
+      />
       <AutomationQuickView
         automation={quickViewAutomation}
         isOpen={!!quickViewAutomation}

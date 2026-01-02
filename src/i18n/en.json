@@ -696,5 +696,185 @@
       "subtitle": "We're happy to support your security or compliance review."
     },
     "disclaimer": "This page provides general information and is not legal advice. For specific legal requirements, consult your legal counsel."
+  },
+  "resourcesPage": {
+    "seo": {
+      "title": "Resources — Playbooks, Templates & Checklists | InnoviaBurst",
+      "description": "Practical guides, templates, and checklists for UK/EU teams automating operations and deploying AI responsibly."
+    },
+    "hero": {
+      "backToHome": "Back to home",
+      "title": "Resources for",
+      "titleHighlight": "UK/EU teams",
+      "subtitle": "Practical playbooks, templates, and checklists for operations, AI, and compliance—built for teams that need to ship, not study."
+    },
+    "whatYouFind": {
+      "title": "What you'll find",
+      "playbooks": {
+        "title": "Playbooks",
+        "description": "Step-by-step guides"
+      },
+      "templates": {
+        "title": "Templates",
+        "description": "Ready-to-use formats"
+      },
+      "checklists": {
+        "title": "Checklists",
+        "description": "Ops & compliance"
+      },
+      "examples": {
+        "title": "Examples",
+        "description": "Real automations"
+      }
+    },
+    "featured": {
+      "title": "Featured this month",
+      "badge": "Featured"
+    },
+    "categories": {
+      "all": "All",
+      "roi": "Automation ROI",
+      "ai": "AI Copilots",
+      "crm": "HubSpot/CRM",
+      "ops": "Operations",
+      "compliance": "Compliance"
+    },
+    "filters": {
+      "searchLabel": "Search resources",
+      "searchPlaceholder": "Search by title, topic, or tag...",
+      "resultsCount": "{{count}} resources found",
+      "sortLabel": "Sort",
+      "sortFeatured": "Featured",
+      "sortNewest": "Newest",
+      "sortUseful": "Most useful"
+    },
+    "startHere": {
+      "title": "Start here (recommended)"
+    },
+    "resourceCard": {
+      "updated": "Updated",
+      "featured": "Featured"
+    },
+    "empty": {
+      "title": "No resources match your filters.",
+      "subtitle": "Try clearing search or choosing a different category."
+    },
+    "customRequest": {
+      "title": "Need something specific?",
+      "subtitle": "We create custom guides and assessments for enterprise clients.",
+      "cta": "Request a custom resource"
+    },
+    "newsletter": {
+      "title": "Get templates + playbooks monthly",
+      "subtitle": "New resources delivered to your inbox—practical tools for UK/EU ops teams.",
+      "benefits": [
+        "New playbooks + templates (monthly)",
+        "Automation opportunities for UK/EU ops",
+        "Security & privacy notes (plain English)"
+      ],
+      "emailLabel": "Work email",
+      "emailPlaceholder": "you@company.com",
+      "consent": "Yes, send me new playbooks & templates. I can",
+      "consentLink": "unsubscribe",
+      "consentEnd": "anytime.",
+      "submit": "Send me playbooks",
+      "submitting": "Subscribing...",
+      "successTitle": "You're subscribed!",
+      "successSubtitle": "We'll send you new playbooks and templates as they're published.",
+      "successReset": "Subscribe another email",
+      "trustLine": "No spam. Unsubscribe anytime.",
+      "privacyLink": "Privacy Policy",
+      "mobileTitle": "Get templates monthly",
+      "mobileSuccessTitle": "You're subscribed!",
+      "mobileSuccessSubtitle": "New resources → your inbox.",
+      "mobilePrivacy": "Privacy",
+      "errorRequired": "Email is required",
+      "errorInvalid": "Please enter a valid email",
+      "errorConsent": "Please confirm you'd like to receive updates",
+      "errorGeneric": "Something went wrong. Please try again.",
+      "errorRequiredShort": "Email required",
+      "errorInvalidShort": "Invalid email",
+      "errorRetry": "Try again"
+    },
+    "resources": {
+      "roiCalculator": {
+        "title": "Automation ROI Assessment Tool",
+        "description": "Quantify savings from automations using time, volume, and error inputs—built for UK/EU SMEs.",
+        "ctaLabel": "Calculate ROI"
+      },
+      "aiChecklist": {
+        "title": "AI Copilot Deployment Checklist",
+        "description": "A practical rollout checklist from pilot to monitoring—data prep, testing, governance, and launch.",
+        "ctaLabel": "Get checklist"
+      },
+      "hubspotHygiene": {
+        "title": "HubSpot Data Quality Checklist",
+        "description": "Monthly CRM hygiene tasks (dedupe, standardise, validate) so automations + AI inputs stay reliable.",
+        "ctaLabel": "Get checklist"
+      },
+      "complianceRoadmap": {
+        "title": "UK/EU AI Compliance Roadmap",
+        "description": "Plain-English roadmap for GDPR + AI compliance decisions—what to check before shipping AI features.",
+        "ctaLabel": "Open roadmap"
+      },
+      "apiPlaybook": {
+        "title": "API Integration Reliability Playbook",
+        "description": "Patterns for Zapier/Make/API integrations with monitoring, retries, and practical failure handling.",
+        "ctaLabel": "Open playbook"
+      },
+      "ragGuide": {
+        "title": "RAG KB Implementation Guide",
+        "description": "How to build a knowledge base assistant that's actually useful—data prep, structure, governance, deployment.",
+        "ctaLabel": "Open guide"
+      },
+      "workflowAudit": {
+        "title": "Workflow Efficiency Audit Template",
+        "description": "Score your workflows to find the highest-impact automation opportunities—includes a prioritisation matrix.",
+        "ctaLabel": "Get template"
+      },
+      "dpaReference": {
+        "title": "DPA + AI Data Processing Reference",
+        "description": "A quick-scan reference for DPAs + AI data processing expectations (sub-processors, retention, incidents, transparency).",
+        "ctaLabel": "Open reference"
+      },
+      "euAiAct": {
+        "title": "EU AI Act Readiness Checklist",
+        "description": "Fast checklist to sanity-check AI features against EU AI Act obligations before rollout.",
+        "ctaLabel": "Download checklist"
+      },
+      "icoFairness": {
+        "title": "UK ICO AI Fairness Audit Template",
+        "description": "A structured template to assess fairness and bias risks in AI-supported decisions (UK GDPR-aligned).",
+        "ctaLabel": "Get template"
+      },
+      "vendorSecurity": {
+        "title": "Vendor Security Review Questionnaire",
+        "description": "A lightweight DDQ-style checklist to review AI/automation vendors: sub-processors, retention, incidents, access controls.",
+        "ctaLabel": "Get questionnaire"
+      },
+      "monitoringPlaybook": {
+        "title": "Automation Monitoring & Retry Playbook (Zapier/Make)",
+        "description": "A practical playbook for reliability: logging, retry strategy, webhook resiliency, and failure alerts.",
+        "ctaLabel": "Open playbook"
+      },
+      "revopsScorecard": {
+        "title": "RevOps CRM Hygiene Scorecard (HubSpot)",
+        "description": "Score your CRM data quality in minutes and get a clear improvement plan to make automations + reporting trustworthy.",
+        "ctaLabel": "Get scorecard"
+      },
+      "businessCase": {
+        "title": "AI Business Case Builder Template",
+        "description": "Simple template to build an internal ROI case: time saved, errors reduced, payback, and rollout assumptions.",
+        "ctaLabel": "Get template"
+      }
+    },
+    "types": {
+      "guide": "Guide",
+      "checklist": "Checklist",
+      "template": "Template",
+      "calculator": "Calculator",
+      "playbook": "Playbook",
+      "reference": "Reference"
+    }
   }
 }
