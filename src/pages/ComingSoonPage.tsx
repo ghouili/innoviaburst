@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -16,6 +16,7 @@ import {
 import { CTABox } from "@/components/ui/cta-box";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, ListChecks, Clock, Rocket } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 type FeatureKey = "clearOptions" | "realExamples" | "fastScoping";
 
@@ -26,7 +27,7 @@ const featureKeys: { key: FeatureKey; icon: typeof ListChecks }[] = [
 ];
 
 export default function ComingSoonPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const featureCards = useMemo(
@@ -45,7 +46,17 @@ export default function ComingSoonPage() {
       <SeoHead
         title={t("comingSoon.seo.title")}
         description={t("comingSoon.seo.description")}
-        path="/coming-soon"
+        canonicalPath="/coming-soon"
+        alternates={buildAlternates("/coming-soon")}
+        lang={i18n.language}
+        jsonLd={[
+          orgJsonLd(),
+          websiteJsonLd(),
+          breadcrumbJsonLd([
+            { name: "Home", url: siteUrl },
+            { name: "Coming Soon", url: `${siteUrl}/coming-soon` },
+          ]),
+        ]}
         robots="noindex, nofollow"
       />
 

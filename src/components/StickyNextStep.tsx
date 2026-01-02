@@ -23,12 +23,14 @@ export function StickyNextStep({
 
   useEffect(() => {
     const stored = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (!stored) {
-      setCookiesOpen(true);
-    } else {
+    setCookiesOpen(!stored);
+
+    const handleConsent = () => {
       setCookiesOpen(false);
-    }
-  }, [localStorage.getItem(COOKIE_CONSENT_KEY)]);
+    };
+    window.addEventListener("cookie_consent", handleConsent);
+    return () => window.removeEventListener("cookie_consent", handleConsent);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +73,7 @@ export function StickyNextStep({
     <div
       className={`fixed left-0 right-0 z-[80] bg-card/95 backdrop-blur-md border-t border-border shadow-lg animate-fade-in transition-all duration-300 ${bottomOffset}`}
       role="navigation"
-      aria-label={t("stickyBar.label", "Quick actions")}
+      aria-label={t("stickyBar.label")}
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-center gap-3">
@@ -81,7 +83,7 @@ export function StickyNextStep({
             onClick={onRequestClick}
             className="min-h-[44px] gap-2"
           >
-            {t("stickyBar.primaryCta", "Request an automation plan")}
+            {t("stickyBar.primaryCta")}
             <ArrowRight className="w-4 h-4" />
           </Button>
           <Button
@@ -91,7 +93,7 @@ export function StickyNextStep({
             className="min-h-[44px] gap-2 hidden sm:inline-flex"
           >
             <Calendar className="w-4 h-4" />
-            {t("stickyBar.secondaryCta", "Book a 15-min call")}
+            {t("stickyBar.secondaryCta")}
           </Button>
         </div>
       </div>

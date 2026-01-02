@@ -35,7 +35,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const categoryKeys = ["all", "sales", "ops", "support", "finance", "knowledge"] as const;
 
@@ -199,7 +200,7 @@ interface Automation {
 }
 
 export default function AutomationsPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
@@ -376,9 +377,22 @@ export default function AutomationsPage() {
         position: index + 1,
         name: item.title,
         description: item.outcome,
+        url: `${siteUrl}/automations#${item.key}`,
       })),
     }),
     [automations, t]
+  );
+
+  const baseJsonLd = useMemo(
+    () => [
+      orgJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Home", url: siteUrl },
+        { name: t("automationsPage.metaTitle"), url: `${siteUrl}/automations` },
+      ]),
+    ],
+    [t]
   );
 
   return (
@@ -387,8 +401,10 @@ export default function AutomationsPage() {
       <SeoHead
         title={t("automationsPage.metaTitle")}
         description={t("automationsPage.metaDescription")}
-        path="/automations"
-        jsonLd={automationListSchema}
+        canonicalPath="/automations"
+        alternates={buildAlternates("/automations")}
+        lang={i18n.language}
+        jsonLd={[...baseJsonLd, automationListSchema]}
       />
 
       <Navbar onBookingClick={() => setRequestOpen(true)} />
@@ -410,6 +426,14 @@ export default function AutomationsPage() {
             <p className="text-lg text-muted-foreground max-w-2xl">
               {t("automationsPage.subtitle")}
             </p>
+            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mt-3">
+              <Link to="/works" className="text-secondary hover:underline">
+                {t("work.viewCaseStudy")}
+              </Link>
+              <Link to="/trust" className="text-secondary hover:underline">
+                {t("trust.viewPage")}
+              </Link>
+            </div>
           </div>
         </section>
 

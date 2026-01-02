@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
 // Consent configuration - update version when consent text changes
@@ -60,6 +61,7 @@ export function useNewsletterSignup({
   leadMagnet,
   consentText = NEWSLETTER_CONSENT_TEXT,
 }: UseNewsletterSignupOptions): UseNewsletterSignupReturn {
+  const { t } = useTranslation();
   const location = useLocation();
   
   const [formData, setFormData] = useState<NewsletterFormData>({
@@ -82,16 +84,16 @@ export function useNewsletterSignup({
 
   const validate = useCallback((): string | null => {
     if (!formData.email.trim()) {
-      return "Please enter your email address.";
+      return t("newsletter.errors.emailRequired");
     }
     if (!EMAIL_REGEX.test(formData.email)) {
-      return "That doesn't look like a valid email.";
+      return t("newsletter.errors.emailInvalid");
     }
     if (!formData.consent) {
-      return "Please agree to receive emails to continue.";
+      return t("newsletter.errors.consentRequired");
     }
     return null;
-  }, [formData.email, formData.consent]);
+  }, [formData.email, formData.consent, t]);
 
   const submit = useCallback(async (e?: React.FormEvent) => {
     if (e) {
@@ -166,11 +168,11 @@ export function useNewsletterSignup({
 
       const errorMessage = err instanceof Error ? err.message : "server_error";
       
-      let userMessage = "Something went wrong. Please try again.";
+      let userMessage = t("newsletter.errors.generic");
       if (errorMessage === "already_subscribed") {
-        userMessage = "You're already on the list!";
+        userMessage = t("newsletter.errors.alreadySubscribed");
       } else if (errorMessage === "invalid_email") {
-        userMessage = "Please enter a valid email address.";
+        userMessage = t("newsletter.errors.emailInvalid");
       }
       
       setError(userMessage);
@@ -183,7 +185,7 @@ export function useNewsletterSignup({
     } finally {
       setIsLoading(false);
     }
-  }, [formData, validate, placement, leadMagnet, consentText, location.pathname]);
+  }, [formData, validate, placement, leadMagnet, consentText, location.pathname, t]);
 
   return {
     formData,

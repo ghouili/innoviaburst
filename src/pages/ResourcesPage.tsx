@@ -1,7 +1,7 @@
 import { useMemo, useState, useId } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { SeoHead, siteUrl } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -39,6 +39,7 @@ import {
   Mail,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 type CategoryKey = "all" | "roi" | "ai" | "crm" | "ops" | "compliance";
 type ResourceKey = "roiCalculator" | "aiChecklist" | "hubspotHygiene" | "complianceRoadmap" | "apiPlaybook" | "ragGuide" | "workflowAudit" | "dpaReference" | "euAiAct" | "icoFairness" | "vendorSecurity" | "monitoringPlaybook" | "revopsScorecard" | "businessCase";
@@ -344,7 +345,7 @@ const resourcesData: Resource[] = [
 // ];
 
 export default function ResourcesPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -426,7 +427,7 @@ export default function ResourcesPage() {
     () => ({
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "Resources",
+      name: "Automation and AI resources",
       url: `${siteUrl}/resources`,
       itemListOrder: "Unordered",
       itemListElement: resources.map((item, index) => ({
@@ -438,6 +439,18 @@ export default function ResourcesPage() {
       })),
     }),
     [resources]
+  );
+
+  const baseJsonLd = useMemo(
+    () => [
+      orgJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Home", url: siteUrl },
+        { name: t("resourcesPage.seo.title"), url: `${siteUrl}/resources` },
+      ]),
+    ],
+    [t]
   );
 
   const formatUpdated = (value?: string) => {
@@ -455,8 +468,10 @@ export default function ResourcesPage() {
       <SeoHead
         title={t("resourcesPage.seo.title")}
         description={t("resourcesPage.seo.description")}
-        path="/resources"
-        jsonLd={resourceListSchema}
+        canonicalPath="/resources"
+        alternates={buildAlternates("/resources")}
+        lang={i18n.language}
+        jsonLd={[...baseJsonLd, resourceListSchema]}
       />
 
       <SkipLink />

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -8,6 +8,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const subprocessors = [
   {
@@ -57,12 +58,27 @@ const subprocessors = [
 export default function SubprocessorsPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
+  const jsonLd = useMemo(
+    () => [
+      orgJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Home", url: siteUrl },
+        { name: "Trust", url: `${siteUrl}/trust` },
+        { name: "Sub-processors", url: `${siteUrl}/subprocessors` },
+      ]),
+    ],
+    []
+  );
+
   return (
     <>
       <SeoHead
         title="Sub-Processors | Innoviaburst"
         description="List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling."
-        path="/subprocessors"
+        canonicalPath="/subprocessors"
+        alternates={buildAlternates("/subprocessors")}
+        jsonLd={jsonLd}
       />
 
       <SkipLink />

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { SeoHead, siteUrl } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -8,6 +8,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, FileText, TrendingUp, Briefcase, Rocket, User, Linkedin } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const caseStudies = [
   {
@@ -48,14 +49,11 @@ export default function WorkPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const breadcrumbSchema = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
-        { "@type": "ListItem", position: 2, name: "Work", item: "https://innoviaburst.com/works" },
-      ],
-    }),
+    () =>
+      breadcrumbJsonLd([
+        { name: "Home", url: siteUrl },
+        { name: "Work", url: `${siteUrl}/works` },
+      ]),
     []
   );
 
@@ -80,8 +78,9 @@ export default function WorkPage() {
       <SeoHead
         title="Our Work — Case Studies | Innoviaburst"
         description="Real automation projects with measurable outcomes. See how we've helped UK/EU businesses save time, reduce errors, and scale operations."
-        path="/works"
-        jsonLd={[breadcrumbSchema, workListSchema]}
+        canonicalPath="/works"
+        alternates={buildAlternates("/works")}
+        jsonLd={[orgJsonLd(), websiteJsonLd(), breadcrumbSchema, workListSchema]}
       />
 
       <SkipLink />
@@ -101,6 +100,14 @@ export default function WorkPage() {
             <p className="text-lg text-muted-foreground max-w-2xl">
               Real automation projects with measurable outcomes. We believe in showing, not telling.
             </p>
+            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mt-4">
+              <Link to="/automations" className="text-secondary hover:underline">
+                Explore the automation library
+              </Link>
+              <Link to="/trust" className="text-secondary hover:underline">
+                Review trust & compliance approach
+              </Link>
+            </div>
           </div>
         </section>
 

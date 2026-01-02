@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -22,6 +22,7 @@ import {
   Globe2,
   ClipboardList,
 } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 type TocKey = "trustPack" | "security" | "subprocessors" | "contracts" | "transfers" | "ai" | "dpia" | "contact";
 
@@ -43,7 +44,7 @@ type SecurityItemKey = "leastPrivilege" | "accessControl" | "auditLogging" | "se
 const securityItemKeys: SecurityItemKey[] = ["leastPrivilege", "accessControl", "auditLogging", "secureEnvs", "retention", "incident"];
 
 export default function TrustPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("trust-pack");
   const [mobileTocOpen, setMobileTocOpen] = useState(false);
@@ -83,32 +84,29 @@ export default function TrustPage() {
     [t],
   );
 
-  const faqSchema = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: requestItems.map((q) => ({
-        "@type": "Question",
-        name: q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Available on request during onboarding.",
-        },
-      })),
-    }),
-    [requestItems]
+  const breadcrumbSchema = useMemo(
+    () =>
+      breadcrumbJsonLd([
+        { name: "Home", url: siteUrl },
+        { name: "Trust & Compliance", url: `${siteUrl}/trust` },
+      ]),
+    []
   );
 
-  const breadcrumbSchema = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
-        { "@type": "ListItem", position: 2, name: "Trust & Compliance", item: "https://innoviaburst.com/trust" },
-      ],
-    }),
-    []
+  const pageJsonLd = useMemo(
+    () => [
+      orgJsonLd(),
+      websiteJsonLd(),
+      breadcrumbSchema,
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: t("trustPage.seo.title"),
+        description: t("trustPage.seo.description"),
+        url: `${siteUrl}/trust`,
+      },
+    ],
+    [breadcrumbSchema, t]
   );
 
   const sectionIds = useMemo(() => tocItems.map((item) => item.id), [tocItems]);
@@ -204,8 +202,10 @@ const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
       <SeoHead
         title={t("trustPage.seo.title")}
         description={t("trustPage.seo.description")}
-        path="/trust"
-        jsonLd={[faqSchema, breadcrumbSchema]}
+        canonicalPath="/trust"
+        alternates={buildAlternates("/trust")}
+        lang={i18n.language}
+        jsonLd={pageJsonLd}
       />
 
       <SkipLink />

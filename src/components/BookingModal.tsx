@@ -111,13 +111,13 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
     const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Please enter your name";
+      newErrors.name = t("booking.errors.nameRequired");
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Please enter your work email";
+      newErrors.email = t("booking.errors.emailRequired");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("booking.errors.emailInvalid");
     }
 
     setErrors(newErrors);
@@ -161,8 +161,8 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
       setStep("success");
     } catch {
       toast({
-        title: "Something went wrong",
-        description: "Please try again or email us directly at hello@innoviaburst.com",
+        title: t("booking.toast.errorTitle"),
+        description: t("booking.toast.errorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -199,19 +199,15 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
         {step === "success" ? (
           <div className="p-6 lg:p-8">
             <SuccessState
-              title="You're booked!"
-              description="We've received your request and will confirm your 25-minute call shortly."
-              details={[
-                "Check your inbox for confirmation",
-                "We'll send a calendar invite",
-                "Come with questions ready",
-              ]}
+              title={t("booking.success.title")}
+              description={t("booking.success.description")}
+              details={t("booking.success.checklist", { returnObjects: true }) as string[]}
               actions={
                 <>
                   <Button variant="hero" size="lg" className="min-h-[48px]" asChild>
                     <a href="mailto:hello@innoviaburst.com">
                       <CalendarPlus className="w-4 h-4 mr-2" />
-                      Add to calendar
+                      {t("booking.cta.addToCalendar")}
                     </a>
                   </Button>
                   <Button
@@ -220,7 +216,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                     className="min-h-[48px]"
                     onClick={handleClose}
                   >
-                    Back to site
+                    {t("booking.cta.back")}
                   </Button>
                 </>
               }
@@ -236,14 +232,14 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                 {t("booking.title")}
               </DialogTitle>
               <DialogDescription className="text-muted-foreground">
-                Schedule your 25-minute discovery call
+                {t("booking.description")}
               </DialogDescription>
             </DialogHeader>
             <div className="p-6 pt-4">
               <iframe
                 src={BOOKING_URL}
                 className="w-full h-[500px] rounded-xl border border-border"
-                title="Schedule a call"
+                title={t("booking.title")}
               />
             </div>
           </>
@@ -260,7 +256,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                 </DialogTitle>
               </div>
               <DialogDescription className="text-muted-foreground">
-                25-minute call to map your automation opportunities
+                {t("booking.description")}
               </DialogDescription>
             </DialogHeader>
 
@@ -269,7 +265,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
               <Stepper
                 currentStep={step as number}
                 totalSteps={2}
-                labels={["Your details", "Optional info"]}
+                labels={[t("booking.stepper.step1"), t("booking.stepper.step2")]}
               />
             </div>
 
@@ -278,15 +274,15 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <Clock className="w-4 h-4 text-accent" />
-                  <span>25 min call</span>
+                  <span>{t("booking.benefits.duration")}</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <MapPin className="w-4 h-4 text-accent" />
-                  <span>UK/EU timezone</span>
+                  <span>{t("booking.benefits.timezone")}</span>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                   <Mail className="w-4 h-4 text-accent" />
-                  <span>No spam, ever</span>
+                  <span>{t("booking.benefits.privacy")}</span>
                 </div>
               </div>
             </div>
@@ -295,7 +291,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
               /* Step 1: Essential Info */
               <div className="space-y-5">
                 <FormField
-                  label="Your name"
+                  label={t("booking.fields.nameLabel")}
                   htmlFor="booking-name"
                   required
                   error={errors.name}
@@ -310,14 +306,14 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     onBlur={() => handleBlur("name")}
                     className={inputClasses(!!errors.name && !!touched.name)}
-                    placeholder="John Smith"
+                    placeholder={t("booking.fields.namePlaceholder")}
                     aria-invalid={errors.name && touched.name ? "true" : "false"}
                     aria-describedby={errors.name ? "booking-name-error" : undefined}
                   />
                 </FormField>
 
                 <FormField
-                  label="Work email"
+                  label={t("booking.fields.emailLabel")}
                   htmlFor="booking-email"
                   required
                   error={errors.email}
@@ -331,7 +327,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     onBlur={() => handleBlur("email")}
                     className={inputClasses(!!errors.email && !!touched.email)}
-                    placeholder="john@company.com"
+                    placeholder={t("booking.fields.emailPlaceholder")}
                     aria-invalid={errors.email && touched.email ? "true" : "false"}
                     aria-describedby={errors.email ? "booking-email-error" : undefined}
                   />
@@ -340,7 +336,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                 {prefilledAutomation && (
                   <div className="p-3 bg-secondary/10 rounded-xl border border-secondary/20">
                     <p className="text-sm font-medium text-secondary">
-                      Interested in: {prefilledAutomation}
+                      {t("booking.fields.interestedIn", { topic: prefilledAutomation })}
                     </p>
                   </div>
                 )}
@@ -348,13 +344,13 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                 <NavigationButtons
                   onNext={handleNext}
                   showBack={false}
-                  nextLabel="Continue"
+                  nextLabel={t("booking.cta.continue")}
                 />
               </div>
             ) : (
               /* Step 2: Optional Details */
               <div className="space-y-5">
-                <FormField label="Company" htmlFor="booking-company" hint="Optional">
+                <FormField label={t("booking.fields.companyLabel")} htmlFor="booking-company" hint={t("common.optional", "Optional")}>
                   <input
                     ref={firstStep2InputRef}
                     id="booking-company"
@@ -362,29 +358,29 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                     value={formData.company}
                     onChange={(e) => handleInputChange("company", e.target.value)}
                     className={inputClasses(false)}
-                    placeholder="Acme Ltd"
+                    placeholder={t("booking.fields.companyPlaceholder")}
                   />
                 </FormField>
 
-                <FormField label="Your role" htmlFor="booking-role" hint="Optional">
+                <FormField label={t("booking.fields.roleLabel")} htmlFor="booking-role" hint={t("common.optional", "Optional")}>
                   <input
                     id="booking-role"
                     type="text"
                     value={formData.role}
                     onChange={(e) => handleInputChange("role", e.target.value)}
                     className={inputClasses(false)}
-                    placeholder="Head of Operations"
+                    placeholder={t("booking.fields.rolePlaceholder")}
                   />
                 </FormField>
 
-                <FormField label="What's your main goal?" htmlFor="booking-goal" hint="Optional">
+                <FormField label={t("booking.fields.goalLabel")} htmlFor="booking-goal" hint={t("common.optional", "Optional")}>
                   <textarea
                     id="booking-goal"
                     value={formData.goal}
                     onChange={(e) => handleInputChange("goal", e.target.value)}
                     rows={3}
                     className={cn(inputClasses(false), "resize-none min-h-[80px]")}
-                    placeholder="E.g., Automate lead follow-ups, reduce manual reporting..."
+                    placeholder={t("booking.fields.goalPlaceholder")}
                   />
                 </FormField>
 
@@ -394,7 +390,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                   loading={isSubmitting}
                   showBack={true}
                   isLastStep={true}
-                  submitLabel="Book my call"
+                  submitLabel={t("booking.cta.submit")}
                 />
               </div>
             )}
@@ -403,19 +399,15 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
             {step === 1 && (
               <div className="mt-8 pt-6 border-t border-border">
                 <h3 className="text-sm font-semibold text-foreground mb-4">
-                  What happens next?
+                  {t("booking.whatNext.title")}
                 </h3>
                 <div className="grid sm:grid-cols-3 gap-4">
-                  {[
-                    { step: "1", label: "15-min fit check" },
-                    { step: "2", label: "Scope in 48h" },
-                    { step: "3", label: "Start date + timeline" },
-                  ].map((item) => (
-                    <div key={item.step} className="flex items-center gap-3">
+                  {(t("booking.whatNext.steps", { returnObjects: true }) as string[]).map((label, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-sm font-bold text-accent">
-                        {item.step}
+                        {idx + 1}
                       </div>
-                      <p className="text-sm text-muted-foreground">{item.label}</p>
+                      <p className="text-sm text-muted-foreground">{label}</p>
                     </div>
                   ))}
                 </div>
@@ -425,7 +417,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
             {/* Trust badges - visible on step 2 */}
             {step === 2 && (
               <div className="mt-6 pt-4 border-t border-border">
-                <TrustBadge items={["Reply in 24h", "No pressure", "UK/EU focus"]} />
+                <TrustBadge items={t("booking.trustBadges", { returnObjects: true }) as string[]} />
               </div>
             )}
           </div>

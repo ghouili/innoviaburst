@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SkipLink } from "@/components/SkipLink";
 import { ArrowLeft } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 export default function CookiesPage() {
   return (
@@ -12,7 +13,23 @@ export default function CookiesPage() {
       <SeoHead
         title="Cookie Policy | Innoviaburst"
         description="Innoviaburst Cookie Policy - How we use cookies and similar technologies."
-        path="/cookies"
+        canonicalPath="/cookies"
+        alternates={buildAlternates("/cookies")}
+        jsonLd={[
+          orgJsonLd(),
+          websiteJsonLd(),
+          breadcrumbJsonLd([
+            { name: "Home", url: siteUrl },
+            { name: "Cookie Policy", url: `${siteUrl}/cookies` },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Cookie Policy",
+            description: "Details on cookie consent, analytics opt-in, and PECR compliance for Innoviaburst.",
+            url: `${siteUrl}/cookies`,
+          },
+        ]}
       />
 
       <SkipLink />

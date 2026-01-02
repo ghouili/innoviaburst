@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { SeoHead, siteUrl } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -9,6 +9,7 @@ import { RequestModal } from "@/components/RequestModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check, X, Clock, ChevronDown, ChevronUp, CreditCard } from "lucide-react";
+import { breadcrumbJsonLd, faqJsonLd, orgJsonLd, serviceJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const offers: Record<string, {
   title: string;
@@ -172,6 +173,37 @@ export default function OfferPage() {
 
   const offer = slug ? offers[slug] : null;
 
+  const canonicalPath = offer ? `/${slug}` : undefined;
+
+  const faqSchema = offer
+    ? faqJsonLd(
+        offer.faq.map((item) => ({
+          question: item.q,
+          answer: item.a,
+        }))
+      )
+    : null;
+
+  const serviceSchema = offer
+    ? (() => {
+        const parsedPrice = Number.parseFloat(offer.price.replace(/[^0-9.]/g, ""));
+        return serviceJsonLd({
+          name: offer.title,
+          description: offer.heroDescription,
+          url: `${siteUrl}/${slug}`,
+          price: Number.isFinite(parsedPrice) ? parsedPrice : undefined,
+        });
+      })()
+    : null;
+
+  const breadcrumbSchema = offer
+    ? breadcrumbJsonLd([
+        { name: "Home", url: siteUrl },
+        { name: "Offers", url: `${siteUrl}/#offers` },
+        { name: offer.title, url: `${siteUrl}/${slug}` },
+      ])
+    : null;
+
   if (!offer) {
     return (
       <>
@@ -193,29 +225,16 @@ export default function OfferPage() {
       <SeoHead
         title={`${offer.title} | ${offer.price} | Innoviaburst`}
         description={`${offer.heroDescription} Timeline: ${offer.timeline}. ${offer.price}.`}
-        path={`/${slug}`}
+        canonicalPath={canonicalPath}
+        alternates={canonicalPath ? buildAlternates(canonicalPath) : undefined}
         ogType="website"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: offer.title,
-          description: offer.heroDescription,
-          areaServed: ["GB", "EU"],
-          provider: {
-            "@type": "Organization",
-            name: "Innoviaburst",
-            url: siteUrl,
-          },
-          offers: {
-            "@type": "Offer",
-            priceSpecification: {
-              "@type": "PriceSpecification",
-              priceCurrency: "GBP",
-              price: offer.price.replace(/[^0-9.]/g, "") || undefined,
-            },
-            availability: "https://schema.org/InStock",
-          },
-        }}
+        jsonLd={[
+          orgJsonLd(),
+          websiteJsonLd(),
+          ...(breadcrumbSchema ? [breadcrumbSchema] : []),
+          ...(serviceSchema ? [serviceSchema] : []),
+          ...(faqSchema ? [faqSchema] : []),
+        ]}
       />
 
       <SkipLink />
@@ -236,6 +255,17 @@ export default function OfferPage() {
                   {offer.title}
                 </h1>
                 <p className="text-lg text-muted-foreground mb-6">{offer.heroDescription}</p>
+                <p className="text-sm text-muted-foreground mb-4">
+                  A focused package for workflow automations, AI copilots, or MVPs for UK/EU SMEs with GDPR/UK GDPR-ready delivery, optional DPA support, transparent sub-processor use, and agreed data retention.
+                </p>
+                <div className="space-y-2 mb-6">
+                  <p className="text-sm font-semibold text-foreground">How it works (3 quick steps)</p>
+                  <ul className="space-y-1 text-sm text-muted-foreground list-disc list-inside">
+                    <li>Scope the workflow, AI copilot, or MVP you need with measurable outcomes.</li>
+                    <li>Build and test with your live tools, approvals, and compliance checkpoints.</li>
+                    <li>Deploy with documentation, data retention notes, and a trust-ready handover.</li>
+                  </ul>
+                </div>
                 
                 <div className="flex flex-wrap gap-4 mb-8">
                   <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg border border-border">
@@ -255,6 +285,18 @@ export default function OfferPage() {
                   Book a 15-min call
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
+
+                <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
+                  <Link to="/automations" className="text-secondary hover:underline">
+                    Browse automation examples
+                  </Link>
+                  <Link to="/works" className="text-secondary hover:underline">
+                    See case studies with ROI
+                  </Link>
+                  <Link to="/trust" className="text-secondary hover:underline">
+                    Review trust, DPA, and retention details
+                  </Link>
+                </div>
               </div>
 
               {/* Deliverables summary */}

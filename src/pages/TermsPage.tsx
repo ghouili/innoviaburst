@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SkipLink } from "@/components/SkipLink";
 import { ArrowLeft } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 export default function TermsPage() {
   return (
@@ -12,7 +13,23 @@ export default function TermsPage() {
       <SeoHead
         title="Terms of Service | Innoviaburst"
         description="Innoviaburst Terms of Service - Terms and conditions for using our website and services."
-        path="/terms"
+        canonicalPath="/terms"
+        alternates={buildAlternates("/terms")}
+        jsonLd={[
+          orgJsonLd(),
+          websiteJsonLd(),
+          breadcrumbJsonLd([
+            { name: "Home", url: siteUrl },
+            { name: "Terms", url: `${siteUrl}/terms` },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Terms of Service",
+            description: "Terms and conditions for Innoviaburst automation, AI copilot, and MVP services.",
+            url: `${siteUrl}/terms`,
+          },
+        ]}
       />
 
       <SkipLink />

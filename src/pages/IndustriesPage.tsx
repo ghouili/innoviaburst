@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -8,6 +8,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Briefcase, Rocket, Building2, Stethoscope, ShoppingCart, Check } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const industries = [
   {
@@ -140,12 +141,26 @@ export default function IndustriesPage() {
   const primaryIndustries = industries.filter(i => i.primary);
   const comingIndustries = industries.filter(i => !i.primary);
 
+  const jsonLd = useMemo(
+    () => [
+      orgJsonLd(),
+      websiteJsonLd(),
+      breadcrumbJsonLd([
+        { name: "Home", url: siteUrl },
+        { name: "Industries", url: `${siteUrl}/industries` },
+      ]),
+    ],
+    []
+  );
+
   return (
     <>
       <SeoHead
         title="Industries We Serve | Innoviaburst"
         description="Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
-        path="/industries"
+        canonicalPath="/industries"
+        alternates={buildAlternates("/industries")}
+        jsonLd={jsonLd}
       />
 
       <SkipLink />

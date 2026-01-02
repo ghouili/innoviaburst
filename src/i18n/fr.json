@@ -13,6 +13,49 @@
     "openMenu": "Ouvrir le menu",
     "menuLabel": "Menu de navigation"
   },
+  "common": {
+    "optional": "Optionnel"
+  },
+  "cookies": {
+    "bannerTitle": "Nous utilisons des cookies",
+    "bannerDesc": "Nous utilisons des cookies pour améliorer votre expérience et analyser l'usage du site. Les cookies non essentiels sont désactivés par défaut.",
+    "readPolicy": "Lire notre politique cookies",
+    "actions": {
+      "acceptAll": "Tout accepter",
+      "reject": "Refuser le non essentiel",
+      "manage": "Gérer les préférences",
+      "confirm": "Valider mes choix",
+      "back": "Retour"
+    },
+    "preferencesTitle": "Préférences cookies",
+    "groups": {
+      "essential": {
+        "title": "Cookies essentiels",
+        "desc": "Nécessaires au fonctionnement du site. Ils ne peuvent pas être désactivés.",
+        "aria": "Cookies essentiels (toujours actifs)"
+      },
+      "functional": {
+        "title": "Cookies fonctionnels",
+        "desc": "Activent des fonctionnalités utiles et améliorent l'expérience.",
+        "aria": "Cookies fonctionnels"
+      },
+      "analytics": {
+        "title": "Cookies d'analyse",
+        "desc": "Aident à comprendre l'usage du site pour l'améliorer.",
+        "aria": "Cookies d'analyse"
+      },
+      "marketing": {
+        "title": "Cookies marketing",
+        "desc": "Utilisés pour diffuser des publicités pertinentes et mesurer leur efficacité.",
+        "aria": "Cookies marketing"
+      }
+    }
+  },
+  "stickyBar": {
+    "label": "Actions rapides",
+    "primaryCta": "Demander un plan d'automatisation",
+    "secondaryCta": "Réserver un appel de 15 min"
+  },
   "hero": {
     "headlinePre": "Livrez",
     "headlineHighlight": "IA & automatisation",
@@ -37,16 +80,182 @@
   },
   "booking": {
     "title": "Réservez votre appel",
+    "description": "Appel de 25 minutes pour cartographier vos opportunités d'automatisation.",
     "fallbackTitle": "Demander un appel",
     "fallbackDesc": "Laissez vos coordonnées et nous organiserons un créneau.",
-    "name": "Votre nom",
-    "email": "Votre email",
-    "company": "Nom de l'entreprise",
-    "submit": "Demander un appel",
-    "whatNext": "Et ensuite ?",
-    "step1": "Appel de 15 min",
-    "step2": "Périmètre en 48h",
-    "step3": "Date de démarrage"
+    "fields": {
+      "nameLabel": "Votre nom",
+      "namePlaceholder": "Jean Dupont",
+      "emailLabel": "Email professionnel",
+      "emailPlaceholder": "jean@entreprise.com",
+      "companyLabel": "Entreprise",
+      "companyPlaceholder": "Acme SA",
+      "roleLabel": "Votre rôle",
+      "rolePlaceholder": "Head of Operations",
+      "goalLabel": "Quel est votre objectif principal ?",
+      "goalPlaceholder": "Ex. Automatiser le suivi des leads, réduire le reporting manuel...",
+      "interestedIn": "Intéressé par : {{topic}}"
+    },
+    "errors": {
+      "nameRequired": "Veuillez entrer votre nom",
+      "emailRequired": "Veuillez entrer votre email professionnel",
+      "emailInvalid": "Veuillez entrer un email valide"
+    },
+    "stepper": {
+      "step1": "Vos informations",
+      "step2": "Infos optionnelles"
+    },
+    "benefits": {
+      "duration": "Appel de 25 min",
+      "timezone": "Fuseau UK/EU",
+      "privacy": "Pas de spam"
+    },
+    "cta": {
+      "continue": "Continuer",
+      "submit": "Réserver mon appel",
+      "back": "Retour au site",
+      "addToCalendar": "Ajouter au calendrier"
+    },
+    "success": {
+      "title": "Réservation reçue !",
+      "description": "Nous confirmons votre appel de 25 minutes dans quelques instants.",
+      "checklist": [
+        "Vérifiez votre email de confirmation",
+        "Nous envoyons une invitation calendrier",
+        "Préparez vos questions"
+      ]
+    },
+    "toast": {
+      "errorTitle": "Un problème est survenu",
+      "errorDesc": "Merci de réessayer ou de nous écrire à hello@innoviaburst.com"
+    },
+    "whatNext": {
+      "title": "Et ensuite ?",
+      "steps": [
+        "Appel de 15 min",
+        "Périmètre en 48h",
+        "Date de démarrage + planning"
+      ]
+    },
+    "trustBadges": [
+      "Réponse sous 24h",
+      "Sans pression",
+      "Focus UK/EU"
+    ]
+  },
+  "request": {
+    "title": "Demander un plan d'automatisation",
+    "description": "Dites-nous ce que vous voulez automatiser — nous répondons avec un plan adapté.",
+    "stepper": {
+      "step1": "Vos informations",
+      "step2": "Votre objectif"
+    },
+    "fields": {
+      "emailLabel": "Email professionnel",
+      "emailPlaceholder": "jean@entreprise.com",
+      "companyLabel": "Entreprise",
+      "companyPlaceholder": "Acme SA",
+      "roleLabel": "Votre rôle",
+      "rolePlaceholder": "Responsable des opérations",
+      "primaryGoalLabel": "Quel est votre résultat principal ?",
+      "toolsLabel": "Outils que vous utilisez",
+      "toolsHint": "Optionnel — en sélectionner plusieurs",
+      "timelineLabel": "Délai",
+      "timelineHint": "Optionnel",
+      "timelinePlaceholder": "Choisissez un délai (optionnel)",
+      "notesLabel": "Autre chose ?",
+      "notesHint": "Optionnel — une phrase suffit",
+      "notesPlaceholder": "ex. Automatiser le tri des tickets support + brouillon de réponse via Zendesk + Slack.",
+      "interestedIn": "Intéressé par : {{topic}}"
+    },
+    "errors": {
+      "emailRequired": "Veuillez entrer votre email professionnel",
+      "emailInvalid": "Veuillez entrer un email valide",
+      "primaryGoalRequired": "Veuillez choisir un résultat principal"
+    },
+    "cta": {
+      "continue": "Continuer",
+      "back": "Retour",
+      "submit": "Demander mon plan",
+      "bookCall": "Réserver un appel à la place",
+      "backToSite": "Retour au site"
+    },
+    "success": {
+      "title": "Demande reçue !",
+      "description": "Nous analysons vos besoins et revenons avec des questions ou un lien vers un plan.",
+      "details": [
+        "Réponse sous 24h (jours ouvrés UK)",
+        "Plan d'automatisation sur mesure",
+        "Prochaines étapes claires"
+      ]
+    },
+    "primaryGoals": {
+      "reduceOps": {
+        "title": "Réduire le temps ops",
+        "description": "Automatiser les tâches manuelles répétitives"
+      },
+      "leadHandling": {
+        "title": "Gestion des leads",
+        "description": "Qualifier et router les leads plus vite"
+      },
+      "reporting": {
+        "title": "Reporting & tableaux de bord",
+        "description": "Générer des rapports et insights automatiquement"
+      },
+      "aiAssistant": {
+        "title": "Assistant IA / copilote",
+        "description": "Construire un assistant IA sur mesure"
+      },
+      "mvp": {
+        "title": "MVP / produit",
+        "description": "Livrer un produit fonctionnel rapidement"
+      },
+      "custom": {
+        "title": "Autre",
+        "description": "Expliquez-nous en vos mots"
+      }
+    },
+    "accordion": {
+      "optionalDetails": "Détails optionnels (recommandé)"
+    },
+    "toolOptions": {
+      "hubspot": "HubSpot",
+      "salesforce": "Salesforce",
+      "slack": "Slack",
+      "microsoft365": "Microsoft 365",
+      "googleWorkspace": "Google Workspace",
+      "notion": "Notion",
+      "airtable": "Airtable",
+      "zapierMake": "Zapier/Make",
+      "zendesk": "Zendesk",
+      "intercom": "Intercom",
+      "xero": "Xero",
+      "quickbooks": "QuickBooks",
+      "other": "Autre"
+    },
+    "timelineOptions": {
+      "urgent": "ASAP (sous 2 semaines)",
+      "soon": "Ce trimestre",
+      "planning": "Trimestre prochain",
+      "exploring": "Je découvre",
+      "none": "Pas de préférence"
+    },
+    "trustBadges": [
+      "Réponse sous 24h",
+      "DPA sur demande",
+      "Focus UK/EU"
+    ],
+    "whatNext": {
+      "title": "Et ensuite ?",
+      "items": [
+        "Réponse sous 24h (jours ouvrés UK)",
+        "Accès privilège minimal"
+      ]
+    },
+    "toast": {
+      "errorTitle": "Un problème est survenu",
+      "errorDesc": "Merci de réessayer ou de nous écrire à hello@innoviaburst.com"
+    }
   },
   "offers": {
     "title": "Nos",
@@ -175,14 +384,39 @@
     "secondaryCta": "Réserver un appel (15 min)"
   },
   "footer": {
-    "tagline": "IA & Automatisation livrées en semaines. Focus UK/EU, conforme RGPD.",
+    "tagline": "IA & automatisation livrées en semaines. Focus UK/EU, conformité intégrée.",
+    "description": "IA & automatisation livrées en semaines. Pensé pour les équipes UK/EU avec gouvernance et clarté dès le départ.",
     "remoteFirst": "Full remote • Clients UK/EU",
     "company": "Entreprise",
     "resources": "Ressources",
     "legal": "Légal",
     "cookieSettings": "Paramètres cookies",
+    "links": {
+      "offers": "Offres",
+      "solutions": "Solutions",
+      "industries": "Secteurs",
+      "work": "Réalisations",
+      "automations": "Automatisations",
+      "trust": "Confiance & Conformité",
+      "subprocessors": "Sous-traitants",
+      "resources": "Ressources",
+      "contact": "Contact",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique cookies",
+      "terms": "Conditions d'utilisation",
+      "accessibility": "Accessibilité"
+    },
+    "social": {
+      "email": "Nous écrire",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "twitter": "Twitter / X"
+    },
+    "bottom": {
+      "copyright": "© {{year}} InnoviaBurst. Tous droits réservés.",
+      "privacyNote": "Focus UK/EU — infos confidentialité & sécurité disponibles dans Confiance & Conformité."
+    },
     "companyDetails": "Innoviaburst Ltd (N° XXXXXXXX) — Enregistrée en Angleterre et Pays de Galles",
-    "copyright": "© {{year}} Innoviaburst. Tous droits réservés.",
     "complianceNote": "Conçu avec un focus sur la conformité RGPD UK & EU."
   },
   "solutions": {
@@ -230,6 +464,56 @@
         "tools": "Notion, Zendesk, OpenAI, Slack",
         "kpi": "50% de tickets répétitifs en moins"
       }
+    }
+  },
+  "newsletter": {
+    "aria": {
+      "label": "Inscription à la newsletter"
+    },
+    "default": {
+      "footer": {
+        "headline": "Restez en avance",
+        "description": "Briefs et templates d'automatisation prêts pour les dirigeants. Sans bruit."
+      },
+      "inline": {
+        "headline": "Recevez nos playbooks + templates",
+        "description": "Rejoignez les responsables ops UK/EU pour des updates concises."
+      },
+      "library": {
+        "headline": "Averti des nouveaux templates",
+        "description": "Soyez le premier informé de nos nouvelles automatisations."
+      },
+      "trustSidebar": {
+        "headline": "Mises à jour sous-traitants",
+        "description": "Recevez une alerte quand la liste de sous-traitants change."
+      }
+    },
+    "fields": {
+      "emailLabel": "Adresse email",
+      "emailPlaceholder": "vous@entreprise.com",
+      "nameLabel": "Nom (optionnel)",
+      "namePlaceholder": "Nom (optionnel)"
+    },
+    "consent": {
+      "full": "J'accepte de recevoir des mises à jour sur les insights, templates et services InnoviaBurst. Désabonnement possible à tout moment.",
+      "short": "Envoyez-moi des conseils et actus sur l'automatisation. Désabonnement à tout moment.",
+      "linkLabel": "Politique de confidentialité"
+    },
+    "cta": {
+      "subscribe": "S'abonner",
+      "subscribing": "Abonnement..."
+    },
+    "success": {
+      "title": "Merci pour votre inscription !",
+      "description": "Consultez votre boîte mail pour confirmer votre abonnement.",
+      "subscribeAnother": "Ajouter un autre email"
+    },
+    "errors": {
+      "emailRequired": "Veuillez entrer votre adresse email.",
+      "emailInvalid": "Veuillez entrer une adresse email valide.",
+      "consentRequired": "Merci d'accepter de recevoir nos emails pour continuer.",
+      "generic": "Un problème est survenu. Merci de réessayer.",
+      "alreadySubscribed": "Vous êtes déjà inscrit !"
     }
   },
   "cookies": {

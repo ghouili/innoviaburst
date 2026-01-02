@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FileText,
   Zap,
@@ -66,63 +67,63 @@ interface FormErrors {
 const primaryGoalOptions = [
   {
     value: "reduce-ops",
-    label: "Reduce ops time",
-    description: "Automate repetitive manual tasks",
+    labelKey: "request.primaryGoals.reduceOps.title",
+    descriptionKey: "request.primaryGoals.reduceOps.description",
     icon: <Zap className="w-4 h-4" />,
   },
   {
     value: "lead-handling",
-    label: "Lead handling",
-    description: "Qualify & route leads faster",
+    labelKey: "request.primaryGoals.leadHandling.title",
+    descriptionKey: "request.primaryGoals.leadHandling.description",
     icon: <Sparkles className="w-4 h-4" />,
   },
   {
     value: "reporting",
-    label: "Reporting & dashboards",
-    description: "Auto-generate reports & insights",
+    labelKey: "request.primaryGoals.reporting.title",
+    descriptionKey: "request.primaryGoals.reporting.description",
     icon: <FileText className="w-4 h-4" />,
   },
   {
     value: "ai-assistant",
-    label: "AI assistant / copilot",
-    description: "Build a custom AI helper",
+    labelKey: "request.primaryGoals.aiAssistant.title",
+    descriptionKey: "request.primaryGoals.aiAssistant.description",
     icon: <Bot className="w-4 h-4" />,
   },
   {
     value: "mvp",
-    label: "MVP / product build",
-    description: "Ship a working product fast",
+    labelKey: "request.primaryGoals.mvp.title",
+    descriptionKey: "request.primaryGoals.mvp.description",
     icon: <Rocket className="w-4 h-4" />,
   },
   {
     value: "custom",
-    label: "Something else",
-    description: "Tell us in your own words",
+    labelKey: "request.primaryGoals.custom.title",
+    descriptionKey: "request.primaryGoals.custom.description",
     icon: <Sparkles className="w-4 h-4" />,
   },
 ];
 
-const toolOptions = [
-  "HubSpot",
-  "Salesforce",
-  "Slack",
-  "Microsoft 365",
-  "Google Workspace",
-  "Notion",
-  "Airtable",
-  "Zapier/Make",
-  "Zendesk",
-  "Intercom",
-  "Xero",
-  "QuickBooks",
-  "Other",
+const toolOptionsList = [
+  { value: "HubSpot", translationKey: "request.toolOptions.hubspot" },
+  { value: "Salesforce", translationKey: "request.toolOptions.salesforce" },
+  { value: "Slack", translationKey: "request.toolOptions.slack" },
+  { value: "Microsoft 365", translationKey: "request.toolOptions.microsoft365" },
+  { value: "Google Workspace", translationKey: "request.toolOptions.googleWorkspace" },
+  { value: "Notion", translationKey: "request.toolOptions.notion" },
+  { value: "Airtable", translationKey: "request.toolOptions.airtable" },
+  { value: "Zapier/Make", translationKey: "request.toolOptions.zapierMake" },
+  { value: "Zendesk", translationKey: "request.toolOptions.zendesk" },
+  { value: "Intercom", translationKey: "request.toolOptions.intercom" },
+  { value: "Xero", translationKey: "request.toolOptions.xero" },
+  { value: "QuickBooks", translationKey: "request.toolOptions.quickbooks" },
+  { value: "Other", translationKey: "request.toolOptions.other" },
 ];
 
 const timelineOptions = [
-  { value: "urgent", label: "ASAP (within 2 weeks)" },
-  { value: "soon", label: "This quarter" },
-  { value: "planning", label: "Next quarter" },
-  { value: "exploring", label: "Just exploring" },
+  { value: "urgent", labelKey: "request.timelineOptions.urgent" },
+  { value: "soon", labelKey: "request.timelineOptions.soon" },
+  { value: "planning", labelKey: "request.timelineOptions.planning" },
+  { value: "exploring", labelKey: "request.timelineOptions.exploring" },
 ];
 
 type FormStep = 1 | 2 | "success";
@@ -133,6 +134,7 @@ export function RequestModal({
   prefilledInterest,
   source,
 }: RequestModalProps) {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [step, setStep] = useState<FormStep>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -185,29 +187,68 @@ export function RequestModal({
     }
   }, [prefilledInterest]);
 
+  const goalOptions = useMemo(
+    () =>
+      primaryGoalOptions.map((option) => ({
+        ...option,
+        label: t(option.labelKey),
+        description: t(option.descriptionKey),
+      })),
+    [t]
+  );
+
+  const localizedTimelineOptions = useMemo(
+    () => timelineOptions.map((option) => ({ ...option, label: t(option.labelKey) })),
+    [t]
+  );
+
+  const localizedTools = useMemo(
+    () =>
+      toolOptionsList.map((tool) => ({
+        ...tool,
+        label: t(tool.translationKey),
+      })),
+    [t]
+  );
+
+  const successDetails = useMemo(
+    () => t("request.success.details", { returnObjects: true }) as string[],
+    [t]
+  );
+
+  const trustBadges = useMemo(
+    () => t("request.trustBadges", { returnObjects: true }) as string[],
+    [t]
+  );
+
+  const whatNextItems = useMemo(
+    () => t("request.whatNext.items", { returnObjects: true }) as string[],
+    [t]
+  );
+
   const validateStep1 = useCallback((): boolean => {
     const newErrors: FormErrors = {};
 
     if (!formData.email.trim()) {
-      newErrors.email = "Please enter your work email";
+      newErrors.email = t("request.errors.emailRequired");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t("request.errors.emailInvalid");
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [formData.email]);
+  }, [formData.email, t]);
 
   const validateStep2 = useCallback((): boolean => {
     const newErrors: FormErrors = {};
 
     if (!formData.primaryGoal) {
-      newErrors.primaryGoal = "Please select a primary outcome";
+      newErrors.primaryGoal = t("request.errors.primaryGoalRequired");
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [formData.primaryGoal]);
+  }, [formData.primaryGoal, t]);
 
   const handleNext = () => {
     setTouched({ email: true });
@@ -245,9 +286,8 @@ export function RequestModal({
       setStep("success");
     } catch {
       toast({
-        title: "Something went wrong",
-        description:
-          "Please try again or email us directly at hello@innoviaburst.com",
+        title: t("request.toast.errorTitle"),
+        description: t("request.toast.errorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -281,13 +321,9 @@ export function RequestModal({
         {step === "success" ? (
           <div className="p-6 lg:p-8">
             <SuccessState
-              title="Request received!"
-              description="We'll review your requirements and get back to you with clarifying questions or a plan link."
-              details={[
-                "Response within 24 hours (UK business days)",
-                "Tailored automation plan",
-                "Clear next steps",
-              ]}
+              title={t("request.success.title")}
+              description={t("request.success.description")}
+              details={successDetails}
               actions={
                 <>
                   <Button
@@ -301,7 +337,7 @@ export function RequestModal({
                     }}
                   >
                     <CalendarPlus className="w-4 h-4 mr-2" />
-                    Book a call instead
+                    {t("request.cta.bookCall")}
                   </Button>
                   <Button
                     variant="outline"
@@ -309,7 +345,7 @@ export function RequestModal({
                     className="min-h-[48px]"
                     onClick={handleClose}
                   >
-                    Back to site
+                    {t("request.cta.backToSite")}
                   </Button>
                 </>
               }
@@ -324,12 +360,11 @@ export function RequestModal({
                   <FileText className="w-6 h-6 text-secondary" />
                 </div>
                 <DialogTitle className="text-xl sm:text-2xl font-bold">
-                  Request an automation plan
+                  {t("request.title")}
                 </DialogTitle>
               </div>
               <DialogDescription className="text-muted-foreground">
-                Tell us what you're looking to automate — we'll reply with a
-                tailored plan.
+                {t("request.description")}
               </DialogDescription>
             </DialogHeader>
 
@@ -338,7 +373,7 @@ export function RequestModal({
               <Stepper
                 currentStep={step as number}
                 totalSteps={2}
-                labels={["Your details", "Your goal"]}
+                labels={[t("request.stepper.step1"), t("request.stepper.step2")]}
               />
             </div>
 
@@ -346,7 +381,7 @@ export function RequestModal({
               /* Step 1: Contact Info */
               <div className="space-y-5">
                 <FormField
-                  label="Work email"
+                  label={t("request.fields.emailLabel")}
                   htmlFor="request-email"
                   required
                   error={errors.email}
@@ -369,7 +404,7 @@ export function RequestModal({
                       validateStep1();
                     }}
                     className={inputClasses(!!errors.email && !!touched.email)}
-                    placeholder="john@company.com"
+                    placeholder={t("request.fields.emailPlaceholder")}
                     aria-invalid={
                       errors.email && touched.email ? "true" : "false"
                     }
@@ -380,9 +415,9 @@ export function RequestModal({
                 </FormField>
 
                 <FormField
-                  label="Company"
+                  label={t("request.fields.companyLabel")}
                   htmlFor="request-company"
-                  hint="Optional"
+                  hint={t("common.optional")}
                 >
                   <input
                     id="request-company"
@@ -395,14 +430,14 @@ export function RequestModal({
                       }))
                     }
                     className={inputClasses(false)}
-                    placeholder="Acme Ltd"
+                    placeholder={t("request.fields.companyPlaceholder")}
                   />
                 </FormField>
 
                 <FormField
-                  label="Your role"
+                  label={t("request.fields.roleLabel")}
                   htmlFor="request-role"
-                  hint="Optional"
+                  hint={t("common.optional")}
                 >
                   <input
                     id="request-role"
@@ -412,14 +447,16 @@ export function RequestModal({
                       setFormData((prev) => ({ ...prev, role: e.target.value }))
                     }
                     className={inputClasses(false)}
-                    placeholder="Head of Operations"
+                    placeholder={t("request.fields.rolePlaceholder")}
                   />
                 </FormField>
 
                 {prefilledInterest && (
                   <div className=" ">
                     <p className="text-sm font-medium text-secondary">
-                      Interested in: {prefilledInterest}
+                      {t("request.fields.interestedIn", {
+                        topic: prefilledInterest,
+                      })}
                     </p>
                   </div>
                 )}
@@ -427,14 +464,12 @@ export function RequestModal({
                 <NavigationButtons
                   onNext={handleNext}
                   showBack={false}
-                  nextLabel="Continue"
+                  nextLabel={t("request.cta.continue")}
                 />
 
                 {/* Trust indicators */}
                 <div className="pt-4">
-                  <TrustBadge
-                    items={["Reply in 24h", "DPA on request", "UK/EU focus"]}
-                  />
+                  <TrustBadge items={trustBadges} />
                 </div>
               </div>
             ) : (
@@ -443,14 +478,14 @@ export function RequestModal({
               <div className="space-y-6">
                 {/* Primary outcome (keep as the only “required” big choice) */}
                 <FormField
-                  label="What's your primary outcome?"
+                  label={t("request.fields.primaryGoalLabel")}
                   required
                   error={errors.primaryGoal}
                   touched={touched.primaryGoal}
                 >
                   <RadioCardGroup
                     name="primary-goal"
-                    options={primaryGoalOptions}
+                    options={goalOptions}
                     value={formData.primaryGoal}
                     onChange={(value) => {
                       setFormData((prev) => ({ ...prev, primaryGoal: value }));
@@ -470,23 +505,23 @@ export function RequestModal({
                 >
                   <AccordionItem value="optional" className="border-none">
                     <AccordionTrigger className="px-4 py-3 text-sm font-semibold">
-                      Optional details (recommended)
+                      {t("request.accordion.optionalDetails")}
                     </AccordionTrigger>
 
                     <AccordionContent className="px-4 pb-4 space-y-5">
                       {/* Tools (chips, but visually lighter) */}
                       <FormField
-                        label="Tools you use"
-                        hint="Optional — select any"
+                        label={t("request.fields.toolsLabel")}
+                        hint={t("request.fields.toolsHint")}
                       >
                         <div className="flex flex-wrap gap-2">
-                          {toolOptions.map((tool) => {
-                            const active = formData.tools.includes(tool);
+                          {localizedTools.map((tool) => {
+                            const active = formData.tools.includes(tool.value);
                             return (
                               <button
-                                key={tool}
+                                key={tool.value}
                                 type="button"
-                                onClick={() => toggleTool(tool)}
+                                onClick={() => toggleTool(tool.value)}
                                 className={cn(
                                   "h-9 px-3 rounded-full text-xs font-medium border transition-colors",
                                   "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
@@ -496,7 +531,7 @@ export function RequestModal({
                                 )}
                                 aria-pressed={active}
                               >
-                                {tool}
+                                {tool.label}
                               </button>
                             );
                           })}
@@ -504,7 +539,10 @@ export function RequestModal({
                       </FormField>
 
                       {/* Timeline (dropdown = less visual noise) */}
-                      <FormField label="Timeline" hint="Optional">
+                      <FormField
+                        label={t("request.fields.timelineLabel")}
+                        hint={t("request.fields.timelineHint")}
+                      >
                         <Select
                           value={formData.timeline || "none"}
                           onValueChange={(val) =>
@@ -515,13 +553,20 @@ export function RequestModal({
                           }
                         >
                           <SelectTrigger className="h-11 rounded-xl bg-background/40">
-                            <SelectValue placeholder="Select a timeline (optional)" />
+                            <SelectValue
+                              placeholder={t("request.fields.timelinePlaceholder")}
+                            />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="none">No preference</SelectItem>
-                            {timelineOptions.map((t) => (
-                              <SelectItem key={t.value} value={t.value}>
-                                {t.label}
+                            <SelectItem value="none">
+                              {t("request.timelineOptions.none")}
+                            </SelectItem>
+                            {localizedTimelineOptions.map((timelineOption) => (
+                              <SelectItem
+                                key={timelineOption.value}
+                                value={timelineOption.value}
+                              >
+                                {timelineOption.label}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -530,9 +575,9 @@ export function RequestModal({
 
                       {/* Notes (still optional, but calmer) */}
                       <FormField
-                        label="Anything else?"
+                        label={t("request.fields.notesLabel")}
                         htmlFor="request-notes"
-                        hint="Optional — one sentence is enough"
+                        hint={t("request.fields.notesHint")}
                       >
                         <textarea
                           id="request-notes"
@@ -548,7 +593,7 @@ export function RequestModal({
                             inputClasses(false),
                             "resize-none min-h-[96px]"
                           )}
-                          placeholder="e.g. We want to automate support triage + draft replies using Zendesk + Slack."
+                          placeholder={t("request.fields.notesPlaceholder")}
                         />
                       </FormField>
                     </AccordionContent>
@@ -561,7 +606,8 @@ export function RequestModal({
                   loading={isSubmitting}
                   showBack={true}
                   isLastStep={true}
-                  submitLabel="Request my plan"
+                  backLabel={t("request.cta.back")}
+                  submitLabel={t("request.cta.submit")}
                 />
               </div>
             )}
@@ -569,7 +615,7 @@ export function RequestModal({
             {/* What happens next - visible on both steps */}
             <div className="mt-8 pt-6 border-t border-border">
               <h3 className="text-sm font-semibold text-foreground mb-4">
-                What happens next?
+                {t("request.whatNext.title")}
               </h3>
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex items-center gap-3">
@@ -577,7 +623,7 @@ export function RequestModal({
                     <Clock className="w-4 h-4 text-accent" />
                   </div>
                   <span className="text-sm text-muted-foreground">
-                    Reply within 24h (UK business days)
+                    {whatNextItems[0]}
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -585,7 +631,7 @@ export function RequestModal({
                     <Shield className="w-4 h-4 text-accent" />
                   </div>
                   <span className="text-sm text-muted-foreground">
-                    Least-privilege access
+                    {whatNextItems[1]}
                   </span>
                 </div>
               </div>

@@ -13,6 +13,49 @@
     "openMenu": "Open menu",
     "menuLabel": "Navigation menu"
   },
+  "common": {
+    "optional": "Optional"
+  },
+  "cookies": {
+    "bannerTitle": "We use cookies",
+    "bannerDesc": "We use cookies to improve your experience and analyse site usage. Non-essential cookies are off by default.",
+    "readPolicy": "Read our cookie policy",
+    "actions": {
+      "acceptAll": "Accept all",
+      "reject": "Reject non-essential",
+      "manage": "Manage preferences",
+      "confirm": "Confirm my choices",
+      "back": "Back"
+    },
+    "preferencesTitle": "Cookie preferences",
+    "groups": {
+      "essential": {
+        "title": "Essential cookies",
+        "desc": "Required for the website to function. These cannot be disabled.",
+        "aria": "Essential cookies (always enabled)"
+      },
+      "functional": {
+        "title": "Functional cookies",
+        "desc": "Enable helpful features and preferences to improve usability.",
+        "aria": "Functional cookies"
+      },
+      "analytics": {
+        "title": "Analytics cookies",
+        "desc": "Help us understand how visitors use our site so we can improve it.",
+        "aria": "Analytics cookies"
+      },
+      "marketing": {
+        "title": "Marketing cookies",
+        "desc": "Used to deliver relevant advertisements and track campaign effectiveness.",
+        "aria": "Marketing cookies"
+      }
+    }
+  },
+  "stickyBar": {
+    "label": "Quick actions",
+    "primaryCta": "Request an automation plan",
+    "secondaryCta": "Book a 15-min call"
+  },
   "hero": {
     "headlinePre": "Ship",
     "headlineHighlight": "AI & automation",
@@ -36,17 +79,183 @@
     "oversight": "Human oversight on every project"
   },
   "booking": {
-    "title": "Book Your Call",
-    "fallbackTitle": "Request a Call",
+    "title": "Book your call",
+    "description": "25-minute call to map your automation opportunities.",
+    "fallbackTitle": "Request a call",
     "fallbackDesc": "Leave your details and we'll arrange a convenient time.",
-    "name": "Your name",
-    "email": "Your email",
-    "company": "Company name",
-    "submit": "Request Call",
-    "whatNext": "What happens next",
-    "step1": "15-min fit check",
-    "step2": "Scope in 48h",
-    "step3": "Start date + timeline"
+    "fields": {
+      "nameLabel": "Your name",
+      "namePlaceholder": "John Smith",
+      "emailLabel": "Work email",
+      "emailPlaceholder": "john@company.com",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Acme Ltd",
+      "roleLabel": "Your role",
+      "rolePlaceholder": "Head of Operations",
+      "goalLabel": "What's your main goal?",
+      "goalPlaceholder": "E.g., Automate lead follow-ups, reduce manual reporting...",
+      "interestedIn": "Interested in: {{topic}}"
+    },
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "emailRequired": "Please enter your work email",
+      "emailInvalid": "Please enter a valid email address"
+    },
+    "stepper": {
+      "step1": "Your details",
+      "step2": "Optional info"
+    },
+    "benefits": {
+      "duration": "25 min call",
+      "timezone": "UK/EU timezone",
+      "privacy": "No spam, ever"
+    },
+    "cta": {
+      "continue": "Continue",
+      "submit": "Book my call",
+      "back": "Back to site",
+      "addToCalendar": "Add to calendar"
+    },
+    "success": {
+      "title": "You're booked!",
+      "description": "We've received your request and will confirm your 25-minute call shortly.",
+      "checklist": [
+        "Check your inbox for confirmation",
+        "We'll send a calendar invite",
+        "Come with questions ready"
+      ]
+    },
+    "toast": {
+      "errorTitle": "Something went wrong",
+      "errorDesc": "Please try again or email us directly at hello@innoviaburst.com"
+    },
+    "whatNext": {
+      "title": "What happens next?",
+      "steps": [
+        "15-min fit check",
+        "Scope in 48h",
+        "Start date + timeline"
+      ]
+    },
+    "trustBadges": [
+      "Reply in 24h",
+      "No pressure",
+      "UK/EU focus"
+    ]
+  },
+  "request": {
+    "title": "Request an automation plan",
+    "description": "Tell us what you're looking to automate — we'll reply with a tailored plan.",
+    "stepper": {
+      "step1": "Your details",
+      "step2": "Your goal"
+    },
+    "fields": {
+      "emailLabel": "Work email",
+      "emailPlaceholder": "john@company.com",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Acme Ltd",
+      "roleLabel": "Your role",
+      "rolePlaceholder": "Head of Operations",
+      "primaryGoalLabel": "What's your primary outcome?",
+      "toolsLabel": "Tools you use",
+      "toolsHint": "Optional — select any",
+      "timelineLabel": "Timeline",
+      "timelineHint": "Optional",
+      "timelinePlaceholder": "Select a timeline (optional)",
+      "notesLabel": "Anything else?",
+      "notesHint": "Optional — one sentence is enough",
+      "notesPlaceholder": "e.g. We want to automate support triage + draft replies using Zendesk + Slack.",
+      "interestedIn": "Interested in: {{topic}}"
+    },
+    "errors": {
+      "emailRequired": "Please enter your work email",
+      "emailInvalid": "Please enter a valid email address",
+      "primaryGoalRequired": "Please select a primary outcome"
+    },
+    "cta": {
+      "continue": "Continue",
+      "back": "Back",
+      "submit": "Request my plan",
+      "bookCall": "Book a call instead",
+      "backToSite": "Back to site"
+    },
+    "success": {
+      "title": "Request received!",
+      "description": "We'll review your requirements and get back to you with clarifying questions or a plan link.",
+      "details": [
+        "Response within 24 hours (UK business days)",
+        "Tailored automation plan",
+        "Clear next steps"
+      ]
+    },
+    "primaryGoals": {
+      "reduceOps": {
+        "title": "Reduce ops time",
+        "description": "Automate repetitive manual tasks"
+      },
+      "leadHandling": {
+        "title": "Lead handling",
+        "description": "Qualify & route leads faster"
+      },
+      "reporting": {
+        "title": "Reporting & dashboards",
+        "description": "Auto-generate reports & insights"
+      },
+      "aiAssistant": {
+        "title": "AI assistant / copilot",
+        "description": "Build a custom AI helper"
+      },
+      "mvp": {
+        "title": "MVP / product build",
+        "description": "Ship a working product fast"
+      },
+      "custom": {
+        "title": "Something else",
+        "description": "Tell us in your own words"
+      }
+    },
+    "accordion": {
+      "optionalDetails": "Optional details (recommended)"
+    },
+    "toolOptions": {
+      "hubspot": "HubSpot",
+      "salesforce": "Salesforce",
+      "slack": "Slack",
+      "microsoft365": "Microsoft 365",
+      "googleWorkspace": "Google Workspace",
+      "notion": "Notion",
+      "airtable": "Airtable",
+      "zapierMake": "Zapier/Make",
+      "zendesk": "Zendesk",
+      "intercom": "Intercom",
+      "xero": "Xero",
+      "quickbooks": "QuickBooks",
+      "other": "Other"
+    },
+    "timelineOptions": {
+      "urgent": "ASAP (within 2 weeks)",
+      "soon": "This quarter",
+      "planning": "Next quarter",
+      "exploring": "Just exploring",
+      "none": "No preference"
+    },
+    "trustBadges": [
+      "Reply in 24h",
+      "DPA on request",
+      "UK/EU focus"
+    ],
+    "whatNext": {
+      "title": "What happens next?",
+      "items": [
+        "Reply within 24h (UK business days)",
+        "Least-privilege access"
+      ]
+    },
+    "toast": {
+      "errorTitle": "Something went wrong",
+      "errorDesc": "Please try again or email us directly at hello@innoviaburst.com"
+    }
   },
   "offers": {
     "title": "Productised",
@@ -175,14 +384,39 @@
     "secondaryCta": "Book a 15-min call"
   },
   "footer": {
-    "tagline": "AI & Automation delivered in weeks. UK/EU focused, compliance-ready.",
+    "tagline": "AI & automation delivered in weeks. UK/EU focused, compliance-ready.",
+    "description": "AI & automation delivered in weeks. Built for UK/EU teams with governance and clarity from day one.",
     "remoteFirst": "Remote-first • UK/EU clients",
     "company": "Company",
     "resources": "Resources",
     "legal": "Legal",
     "cookieSettings": "Cookie settings",
+    "links": {
+      "offers": "Offers",
+      "solutions": "Solutions",
+      "industries": "Industries",
+      "work": "Work",
+      "automations": "Automations",
+      "trust": "Trust & Compliance",
+      "subprocessors": "Sub-processors",
+      "resources": "Resources",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Policy",
+      "terms": "Terms of Service",
+      "accessibility": "Accessibility"
+    },
+    "social": {
+      "email": "Email us",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "twitter": "Twitter / X"
+    },
+    "bottom": {
+      "copyright": "© {{year}} InnoviaBurst. All rights reserved.",
+      "privacyNote": "UK/EU-focused — privacy & security information available in Trust & Compliance."
+    },
     "companyDetails": "Innoviaburst Ltd (Company No. XXXXXXXX) — Registered in England and Wales",
-    "copyright": "© {{year}} Innoviaburst. All rights reserved.",
     "complianceNote": "Built with focus on UK GDPR & EU compliance readiness."
   },
   "solutions": {
@@ -230,6 +464,56 @@
         "tools": "Notion, Zendesk, OpenAI, Slack",
         "kpi": "50% fewer repetitive tickets"
       }
+    }
+  },
+  "newsletter": {
+    "aria": {
+      "label": "Newsletter subscription"
+    },
+    "default": {
+      "footer": {
+        "headline": "Stay ahead",
+        "description": "CEO-ready automation briefs and templates. No noise."
+      },
+      "inline": {
+        "headline": "Get new playbooks + templates",
+        "description": "Join UK/EU ops leaders receiving concise automation updates."
+      },
+      "library": {
+        "headline": "Get notified of new templates",
+        "description": "Be first to know when we add new automations."
+      },
+      "trustSidebar": {
+        "headline": "Sub-processor updates",
+        "description": "Be notified when our sub-processor list changes."
+      }
+    },
+    "fields": {
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@company.com",
+      "nameLabel": "Name (optional)",
+      "namePlaceholder": "Name (optional)"
+    },
+    "consent": {
+      "full": "I agree to receive occasional updates on automation insights, templates, and InnoviaBurst services. Unsubscribe anytime.",
+      "short": "Send me automation tips and updates. Unsubscribe anytime.",
+      "linkLabel": "Privacy Policy"
+    },
+    "cta": {
+      "subscribe": "Subscribe",
+      "subscribing": "Subscribing..."
+    },
+    "success": {
+      "title": "Thanks for subscribing!",
+      "description": "Check your inbox to confirm your subscription.",
+      "subscribeAnother": "Subscribe another email"
+    },
+    "errors": {
+      "emailRequired": "Please enter your email address.",
+      "emailInvalid": "Please enter a valid email address.",
+      "consentRequired": "Please agree to receive emails to continue.",
+      "generic": "Something went wrong. Please try again.",
+      "alreadySubscribed": "You're already on the list!"
     }
   },
   "cookies": {

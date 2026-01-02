@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { SeoHead, siteUrl } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
@@ -8,6 +8,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, TrendingUp, Clock, Users, Wrench, FileText, Lock } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const caseStudies: Record<string, {
   title: string;
@@ -94,19 +95,18 @@ export default function CaseStudyPage() {
     <>
       <SeoHead
         title={`${study.title} | Case Study | Innoviaburst`}
-        description={`${study.problem.slice(0, 150)}... See how we automated this workflow.`}
-        path={`/work/${slug}`}
+        description={`${study.problem.slice(0, 150)}... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations.`}
+        canonicalPath={`/work/${slug}`}
+        alternates={buildAlternates(`/work/${slug}`)}
         ogType="article"
         jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://innoviaburst.com" },
-              { "@type": "ListItem", position: 2, name: "Work", item: "https://innoviaburst.com/work" },
-              { "@type": "ListItem", position: 3, name: study.title, item: `${siteUrl}/work/${slug}` },
-            ],
-          },
+          orgJsonLd(),
+          websiteJsonLd(),
+          breadcrumbJsonLd([
+            { name: "Home", url: siteUrl },
+            { name: "Work", url: `${siteUrl}/works` },
+            { name: study.title, url: `${siteUrl}/work/${slug}` },
+          ]),
           {
             "@context": "https://schema.org",
             "@type": "Article",

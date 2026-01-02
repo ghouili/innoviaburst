@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SkipLink } from "@/components/SkipLink";
 import { ArrowLeft } from "lucide-react";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 export default function PrivacyPage() {
   return (
@@ -12,7 +13,23 @@ export default function PrivacyPage() {
       <SeoHead
         title="Privacy Policy | Innoviaburst"
         description="Innoviaburst Privacy Policy - How we collect, use, and protect your personal data."
-        path="/privacy"
+        canonicalPath="/privacy"
+        alternates={buildAlternates("/privacy")}
+        jsonLd={[
+          orgJsonLd(),
+          websiteJsonLd(),
+          breadcrumbJsonLd([
+            { name: "Home", url: siteUrl },
+            { name: "Privacy Policy", url: `${siteUrl}/privacy` },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Privacy Policy",
+            description: "How Innoviaburst collects, uses, and protects personal data with GDPR/UK GDPR readiness.",
+            url: `${siteUrl}/privacy`,
+          },
+        ]}
       />
 
       <SkipLink />

@@ -14,7 +14,8 @@ import { RequestModal } from "@/components/RequestModal";
 import { CookieConsent } from "@/components/CookieConsent";
 import { StickyNextStep } from "@/components/StickyNextStep";
 import { SkipLink } from "@/components/SkipLink";
-import { SeoHead, siteUrl } from "@/components/SeoHead";
+import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const Index = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -44,27 +45,14 @@ const Index = () => {
       <SeoHead
         title="Innoviaburst | AI & Automation for UK/EU SMEs — Delivered in Weeks"
         description="We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
-        path="/"
+        canonicalPath="/"
+        alternates={buildAlternates("/")}
         jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Innoviaburst",
-            url: siteUrl,
-            description: "AI & Automation for UK/EU SMEs — Delivered in Weeks",
-            areaServed: ["GB", "EU"],
-            serviceType: ["AI Development", "Workflow Automation", "MVP Development"],
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            url: siteUrl,
-            potentialAction: {
-              "@type": "SearchAction",
-              target: `${siteUrl}/search?q={query}`,
-              queryInput: "required name=query",
-            },
-          },
+          orgJsonLd(),
+          websiteJsonLd(),
+          breadcrumbJsonLd([
+            { name: "Home", url: siteUrl },
+          ]),
         ]}
       />
 

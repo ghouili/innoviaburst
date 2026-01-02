@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SeoHead } from "@/components/SeoHead";
+import { SeoHead, buildAlternates } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -19,7 +19,8 @@ const NotFound = () => {
       <SeoHead
         title="Page Not Found | InnoviaBurst"
         description="The page you're looking for doesn't exist or may have moved."
-        path="/404"
+        canonicalPath="/404"
+        alternates={buildAlternates("/404")}
         robots="noindex, nofollow"
       />
 

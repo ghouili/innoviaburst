@@ -523,19 +523,18 @@ export function CookieConsent() {
                     id="cookie-banner-title"
                     className="text-lg font-bold text-foreground"
                   >
-                    We use cookies
+                    {t("cookies.bannerTitle")}
                   </h2>
                   <p
                     id="cookie-banner-desc"
                     className="text-sm text-muted-foreground"
                   >
-                    We use cookies to improve your experience and analyse site
-                    usage. Non-essential cookies are off by default.{" "}
+                    {t("cookies.bannerDesc")} {" "}
                     <Link
                       to="/cookies"
                       className="text-accent hover:underline font-medium"
                     >
-                      Read our cookie policy
+                      {t("cookies.readPolicy")}
                     </Link>
                   </p>
                 </div>
@@ -550,7 +549,7 @@ export function CookieConsent() {
                     onClick={handleAcceptAll}
                     className="flex-1 min-h-[44px] whitespace-nowrap"
                   >
-                    Accept all
+                    {t("cookies.actions.acceptAll")}
                   </Button>
                   <Button
                     variant="outline"
@@ -558,7 +557,7 @@ export function CookieConsent() {
                     onClick={handleRejectNonEssential}
                     className="flex-1 min-h-[44px] whitespace-nowrap"
                   >
-                    Reject non-essential
+                    {t("cookies.actions.reject")}
                   </Button>
                   <Button
                     variant="ghost"
@@ -567,7 +566,7 @@ export function CookieConsent() {
                     className="flex-1 min-h-[44px] gap-2 whitespace-nowrap"
                   >
                     <Settings2 className="w-4 h-4" />
-                    <span className="hidden xs:inline">Manage</span> preferences
+                    {t("cookies.actions.manage")}
                   </Button>
                 </div>
               )}
@@ -577,7 +576,7 @@ export function CookieConsent() {
             {showPreferences && (
               <div className="mt-5 border-t border-border pt-5 space-y-6">
                 <h3 className="text-base font-semibold text-foreground">
-                  Cookie preferences
+                  {t("cookies.preferencesTitle")}
                 </h3>
 
                 <div className="space-y-4">
@@ -589,11 +588,10 @@ export function CookieConsent() {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-foreground">
-                          Essential cookies
+                          {t("cookies.groups.essential.title")}
                         </p>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Required for the website to function. These cannot be
-                          disabled.
+                          {t("cookies.groups.essential.desc")}
                         </p>
                       </div>
                     </div>
@@ -602,7 +600,7 @@ export function CookieConsent() {
                       <PreferenceToggle
                         checked={true}
                         disabled
-                        ariaLabel="Essential cookies (always enabled)"
+                        ariaLabel={t("cookies.groups.essential.aria")}
                       />
                     </div>
                   </div>
@@ -618,11 +616,10 @@ export function CookieConsent() {
                           htmlFor="functional-toggle"
                           className="text-sm font-semibold text-foreground cursor-pointer"
                         >
-                          Functional cookies
+                          {t("cookies.groups.functional.title")}
                         </label>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Enable helpful features and preferences to improve
-                          usability.
+                          {t("cookies.groups.functional.desc")}
                         </p>
                       </div>
                     </div>
@@ -633,7 +630,7 @@ export function CookieConsent() {
                         onChange={(next) =>
                           setPreferences((p) => ({ ...p, functional: next }))
                         }
-                        ariaLabel="Functional cookies"
+                        ariaLabel={t("cookies.groups.functional.aria")}
                       />
                     </div>
                   </div>
@@ -649,11 +646,10 @@ export function CookieConsent() {
                           htmlFor="analytics-toggle"
                           className="text-sm font-semibold text-foreground cursor-pointer"
                         >
-                          Analytics cookies
+                          {t("cookies.groups.analytics.title")}
                         </label>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Help us understand how visitors use our site so we can
-                          improve it.
+                          {t("cookies.groups.analytics.desc")}
                         </p>
                       </div>
                     </div>
@@ -665,7 +661,7 @@ export function CookieConsent() {
                         onChange={(next) =>
                           setPreferences((p) => ({ ...p, analytics: next }))
                         }
-                        ariaLabel="Analytics cookies"
+                        ariaLabel={t("cookies.groups.analytics.aria")}
                       />
                     </div>
                   </div>
@@ -681,11 +677,10 @@ export function CookieConsent() {
                           htmlFor="marketing-toggle"
                           className="text-sm font-semibold text-foreground cursor-pointer"
                         >
-                          Marketing cookies
+                          {t("cookies.groups.marketing.title")}
                         </label>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Used to deliver relevant advertisements and track
-                          campaign effectiveness.
+                          {t("cookies.groups.marketing.desc")}
                         </p>
                       </div>
                     </div>
@@ -697,7 +692,7 @@ export function CookieConsent() {
                         onChange={(next) =>
                           setPreferences((p) => ({ ...p, marketing: next }))
                         }
-                        ariaLabel="Marketing cookies"
+                        ariaLabel={t("cookies.groups.marketing.aria")}
                       />
                     </div>
                   </div>
@@ -711,7 +706,7 @@ export function CookieConsent() {
                     onClick={handleConfirmChoices}
                     className="flex-1 min-h-[44px]"
                   >
-                    Confirm my choices
+                    {t("cookies.actions.confirm")}
                   </Button>
                   <Button
                     variant="ghost"
@@ -719,7 +714,7 @@ export function CookieConsent() {
                     onClick={() => setShowPreferences(false)}
                     className="min-h-[44px]"
                   >
-                    Back
+                    {t("cookies.actions.back")}
                   </Button>
                 </div>
               </div>

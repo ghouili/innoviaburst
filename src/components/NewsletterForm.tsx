@@ -1,5 +1,6 @@
-import { useEffect, useRef, useId } from "react";
+import { useEffect, useRef, useId, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   ArrowRight,
   CheckCircle,
@@ -53,9 +54,10 @@ export function NewsletterForm({
   showName = false,
   headline,
   description,
-  buttonText = "Subscribe",
+  buttonText = "",
   className = "",
 }: NewsletterFormProps) {
+  const { t } = useTranslation();
   const formRef = useRef<HTMLFormElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const hasTrackedView = useRef(false);
@@ -69,8 +71,8 @@ export function NewsletterForm({
   const successId = `${formId}-success`;
 
   const consentText = shortConsent
-    ? NEWSLETTER_CONSENT_TEXT_SHORT
-    : NEWSLETTER_CONSENT_TEXT;
+    ? t("newsletter.consent.short") || NEWSLETTER_CONSENT_TEXT_SHORT
+    : t("newsletter.consent.full") || NEWSLETTER_CONSENT_TEXT;
 
   const { formData, setFormData, isLoading, isSuccess, error, submit, reset } =
     useNewsletterSignup({
@@ -104,24 +106,27 @@ export function NewsletterForm({
   };
 
   // Default content by placement
-  const defaultContent = {
-    footer: {
-      headline: "Stay updated",
-      description: "Get automation insights and new templates.",
-    },
-    inline: {
-      headline: "Get new playbooks + templates",
-      description: "Join UK/EU ops leaders getting automation insights.",
-    },
-    library: {
-      headline: "Get notified of new templates",
-      description: "Be first to know when we add new automations.",
-    },
-    "trust-sidebar": {
-      headline: "Sub-processor updates",
-      description: "Get notified of changes to our sub-processor list.",
-    },
-  };
+  const defaultContent = useMemo(
+    () => ({
+      footer: {
+        headline: t("newsletter.default.footer.headline"),
+        description: t("newsletter.default.footer.description"),
+      },
+      inline: {
+        headline: t("newsletter.default.inline.headline"),
+        description: t("newsletter.default.inline.description"),
+      },
+      library: {
+        headline: t("newsletter.default.library.headline"),
+        description: t("newsletter.default.library.description"),
+      },
+      "trust-sidebar": {
+        headline: t("newsletter.default.trustSidebar.headline"),
+        description: t("newsletter.default.trustSidebar.description"),
+      },
+    }),
+    [t]
+  );
 
   const content = {
     headline: headline || defaultContent[placement].headline,
@@ -147,7 +152,7 @@ export function NewsletterForm({
             aria-hidden="true"
           />
           <div className="space-y-1">
-            <p className="font-semibold">Thanks for subscribing!</p>
+            <p className="font-semibold">{t("newsletter.success.title")}</p>
             <p
               className={`text-sm ${
                 placement === "footer"
@@ -155,7 +160,7 @@ export function NewsletterForm({
                   : "text-muted-foreground"
               }`}
             >
-              Check your inbox to confirm your subscription.
+              {t("newsletter.success.description")}
             </p>
             <button
               type="button"
@@ -166,7 +171,7 @@ export function NewsletterForm({
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Subscribe another email
+              {t("newsletter.success.subscribeAnother")}
             </button>
           </div>
         </div>
@@ -181,7 +186,7 @@ export function NewsletterForm({
         ref={formRef}
         onSubmit={submit}
         className={`newsletter-form newsletter-form--footer space-y-4 ${className}`}
-        aria-label="Newsletter subscription"
+        aria-label={t("newsletter.aria.label")}
         noValidate
       >
         <div className="space-y-2">
@@ -194,7 +199,7 @@ export function NewsletterForm({
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1">
               <label htmlFor={emailId} className="sr-only">
-                Email address
+                {t("newsletter.fields.emailLabel")}
               </label>
               <input
                 ref={emailInputRef}
@@ -208,7 +213,7 @@ export function NewsletterForm({
                   setFormData((prev) => ({ ...prev, email: e.target.value }))
                 }
                 onFocus={handleEmailFocus}
-                placeholder="you@company.com"
+                placeholder={t("newsletter.fields.emailPlaceholder")}
                 aria-describedby={error ? errorId : undefined}
                 aria-invalid={!!error}
                 disabled={isLoading}
@@ -228,11 +233,11 @@ export function NewsletterForm({
                     className="w-4 h-4 animate-spin"
                     aria-hidden="true"
                   />
-                  <span>Subscribing...</span>
+                  <span>{t("newsletter.cta.subscribing")}</span>
                 </>
               ) : (
                 <>
-                  <span>{buttonText}</span>
+                  <span>{buttonText || t("newsletter.cta.subscribe")}</span>
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </>
               )}
@@ -286,12 +291,12 @@ export function NewsletterForm({
               </span>
 
               <span className="text-xs leading-snug text-background/70 ">
-                Send me automation tips and updates. Unsubscribe anytime.{" "}
+                {t("newsletter.consent.short")}{" "}
                 <Link
                   to="/privacy"
                   className="underline underline-offset-2 hover:text-background"
                 >
-                  Privacy Policy
+                  {t("newsletter.consent.linkLabel")}
                 </Link>
               </span>
             </label>
@@ -322,7 +327,7 @@ export function NewsletterForm({
       ref={formRef}
       onSubmit={submit}
       className={`newsletter-form newsletter-form--${placement} p-6 bg-card rounded-2xl border border-border shadow-card ${className}`}
-      aria-label="Newsletter subscription"
+      aria-label={t("newsletter.aria.label")}
       noValidate
     >
       <div className="space-y-4">
@@ -347,7 +352,7 @@ export function NewsletterForm({
           {showName && (
             <div>
               <label htmlFor={nameId} className="sr-only">
-                Name (optional)
+                {t("newsletter.fields.nameLabel")}
               </label>
               <input
                 id={nameId}
@@ -357,7 +362,7 @@ export function NewsletterForm({
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
                 }
-                placeholder="Name (optional)"
+                placeholder={t("newsletter.fields.namePlaceholder")}
                 disabled={isLoading}
                 className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent disabled:opacity-50"
               />
@@ -367,7 +372,7 @@ export function NewsletterForm({
           {/* Email field */}
           <div>
             <label htmlFor={emailId} className="sr-only">
-              Email address
+              {t("newsletter.fields.emailLabel")}
             </label>
             <input
               ref={emailInputRef}
@@ -381,7 +386,7 @@ export function NewsletterForm({
                 setFormData((prev) => ({ ...prev, email: e.target.value }))
               }
               onFocus={handleEmailFocus}
-              placeholder="you@company.com"
+              placeholder={t("newsletter.fields.emailPlaceholder")}
               aria-describedby={error ? errorId : undefined}
               aria-invalid={!!error}
               disabled={isLoading}
@@ -433,11 +438,11 @@ export function NewsletterForm({
             {isLoading ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-                <span>Subscribing...</span>
+                <span>{t("newsletter.cta.subscribing")}</span>
               </>
             ) : (
               <>
-                <span>{buttonText}</span>
+                <span>{buttonText || t("newsletter.cta.subscribe")}</span>
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </>
             )}

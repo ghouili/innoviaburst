@@ -8,6 +8,7 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "prebuild": "node scripts/generate-sitemap.mjs",
+    "postbuild": "node scripts/verify-static-assets.mjs",
     "generate:hero-images": "node scripts/generate-hero-images.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
     "lint": "eslint .",
