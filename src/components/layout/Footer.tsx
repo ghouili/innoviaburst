@@ -8,17 +8,17 @@ import { openCookieSettings } from "@/components/CookieConsent";
 import { NewsletterForm } from "@/components/NewsletterForm";
 const footerLinkDefinitions = {
   company: [
-    { labelKey: "footer.links.offers", href: "/#offers" },
-    { labelKey: "footer.links.solutions", href: "/#solutions" },
-    { labelKey: "footer.links.industries", href: "/#industries" },
-    { labelKey: "footer.links.work", href: "/#work" },
+    { labelKey: "footer.links.offers", href: "/offers" },
+    { labelKey: "footer.links.solutions", href: "/solutions" },
+    { labelKey: "footer.links.industries", href: "/industries" }, // Crawlable standalone page
+    { labelKey: "footer.links.work", href: "/works" }, // Crawlable standalone page
     { labelKey: "footer.links.automations", href: "/automations" },
   ],
   resources: [
     { labelKey: "footer.links.trust", href: "/trust" },
     { labelKey: "footer.links.subprocessors", href: "/subprocessors" },
-    { labelKey: "footer.links.resources", href: "/#resources" },
-    { labelKey: "footer.links.contact", href: "/#contact" },
+    { labelKey: "footer.links.resources", href: "/resources" }, // Crawlable standalone page
+    { labelKey: "footer.links.contact", href: "/contact" },
   ],
   legal: [
     { labelKey: "footer.links.privacy", href: "/privacy" },

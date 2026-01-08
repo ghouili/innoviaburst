@@ -207,6 +207,11 @@ export default function OfferPage() {
   if (!offer) {
     return (
       <>
+        <SeoHead
+          title="Offer Not Found | Innoviaburst"
+          description="The offer you're looking for doesn't exist or may have moved."
+          robots="noindex, nofollow"
+        />
         <SkipLink />
         <Navbar onBookingClick={() => setBookingOpen(true)} />
         <main id="main-content" className="pt-20 min-h-screen bg-background flex items-center justify-center">

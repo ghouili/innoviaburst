@@ -1,0 +1,824 @@
+{
+  "meta": {
+    "generatedFrom": "InnoviaBurst public site",
+    "sourceRepo": "innovia-burst-spark",
+    "extractedAt": "2026-01-07",
+    "purpose": "Admin Dashboard UI specification for Lovable.dev",
+    "targetFramework": "React + TypeScript + shadcn/ui + Tailwind CSS",
+    "notes": "Extracted from existing InnoviaBurst website to maintain brand consistency"
+  },
+
+  "designTokens": {
+    "colors": {
+      "light": {
+        "background": "200 40% 98%",
+        "foreground": "215 25% 15%",
+        "card": "0 0% 100%",
+        "card-foreground": "215 25% 15%",
+        "primary": "24 95% 53%",
+        "primary-foreground": "0 0% 100%",
+        "secondary": "210 70% 45%",
+        "secondary-foreground": "0 0% 100%",
+        "muted": "200 30% 95%",
+        "muted-foreground": "215 15% 45%",
+        "accent": "192 85% 50%",
+        "accent-foreground": "0 0% 100%",
+        "destructive": "0 84% 60%",
+        "destructive-foreground": "0 0% 100%",
+        "border": "200 25% 90%",
+        "input": "200 25% 90%",
+        "ring": "192 85% 50%",
+        "cyan": "192 85% 50%",
+        "cyan-light": "192 85% 65%",
+        "cyan-dark": "192 85% 40%",
+        "deep-blue": "210 70% 45%",
+        "deep-blue-dark": "215 70% 30%",
+        "orange": "24 95% 53%",
+        "orange-light": "24 95% 60%",
+        "orange-dark": "24 95% 45%"
+      },
+      "dark": {
+        "background": "215 30% 8%",
+        "foreground": "200 20% 95%",
+        "card": "215 30% 12%",
+        "card-foreground": "200 20% 95%",
+        "primary": "24 95% 53%",
+        "secondary": "210 60% 50%",
+        "muted": "215 25% 18%",
+        "muted-foreground": "200 15% 60%",
+        "border": "215 25% 20%",
+        "input": "215 25% 20%",
+        "ring": "192 75% 45%"
+      },
+      "brandPalette": {
+        "description": "Core brand colors: Cyan to Deep Blue gradient with Orange accent",
+        "primaryAction": "Orange (24 95% 53%) - Used for CTAs, primary buttons",
+        "brandCyan": "Cyan (192 85% 50%) - Brand accent, links, highlights",
+        "brandBlue": "Deep Blue (210 70% 45%) - Secondary actions, headings",
+        "neutralLight": "Light gray-blue (200 30% 95%) - Backgrounds, muted areas",
+        "semantic": {
+          "success": "Use accent (cyan) for positive outcomes",
+          "warning": "Use orange-light for caution",
+          "error": "Use destructive (red) for errors",
+          "info": "Use deep-blue for informational"
+        }
+      }
+    },
+
+    "typography": {
+      "fontFamily": {
+        "sans": ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Arial", "sans-serif"]
+      },
+      "fontImport": "Inter from Google Fonts (weights: 300,400,500,600,700,800)",
+      "scale": {
+        "heading1": "text-4xl md:text-5xl font-bold tracking-tight",
+        "heading2": "text-3xl md:text-4xl font-bold tracking-tight",
+        "heading3": "text-2xl font-semibold tracking-tight",
+        "heading4": "text-xl font-semibold",
+        "heading5": "text-lg font-semibold",
+        "body": "text-base leading-relaxed",
+        "bodySmall": "text-sm leading-relaxed",
+        "label": "text-sm font-medium",
+        "caption": "text-xs text-muted-foreground"
+      },
+      "weights": {
+        "light": "300",
+        "normal": "400",
+        "medium": "500",
+        "semibold": "600",
+        "bold": "700",
+        "extrabold": "800"
+      }
+    },
+
+    "radius": {
+      "base": "1rem",
+      "sm": "calc(1rem - 8px)",
+      "md": "calc(1rem - 4px)",
+      "lg": "1rem",
+      "xl": "calc(1rem + 8px)",
+      "2xl": "calc(1rem + 16px)",
+      "usage": "Default cards/buttons use lg (1rem). Use xl for hero sections, sm for tight spaces."
+    },
+
+    "shadows": {
+      "sm": "0 1px 2px hsl(215 25% 15% / 0.04)",
+      "md": "0 4px 12px hsl(215 25% 15% / 0.06), 0 1px 3px hsl(215 25% 15% / 0.04)",
+      "lg": "0 10px 40px hsl(215 25% 15% / 0.08), 0 4px 12px hsl(215 25% 15% / 0.04)",
+      "glow": "0 0 60px hsl(192 85% 50% / 0.2)",
+      "orange": "0 4px 20px hsl(24 95% 53% / 0.3)",
+      "card": "Use shadow-sm for subtle elevation, shadow-md for cards, shadow-lg for modals",
+      "ctaGlow": "Use shadow-orange on primary CTAs for premium feel"
+    },
+
+    "spacing": {
+      "container": {
+        "padding": "1.5rem (px-6 on large screens)",
+        "maxWidth": "1280px (2xl breakpoint)",
+        "centered": true
+      },
+      "section": {
+        "paddingY": "py-12 md:py-16 lg:py-20",
+        "description": "Standard vertical spacing for page sections"
+      },
+      "card": {
+        "padding": "p-6",
+        "gap": "space-y-4 for vertical stacking"
+      },
+      "grid": {
+        "gap": "gap-6 (medium), gap-8 (large sections)",
+        "columns": "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 (standard responsive grid)"
+      }
+    },
+
+    "motion": {
+      "durations": {
+        "fast": "200ms",
+        "base": "300ms",
+        "slow": "500ms"
+      },
+      "easings": {
+        "default": "ease-out",
+        "bounce": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      "hoverEffects": {
+        "lift": "hover:-translate-y-0.5 transition-all duration-200",
+        "scale": "hover:scale-105 transition-transform duration-200",
+        "glow": "hover:shadow-lg transition-shadow duration-200",
+        "opacity": "hover:opacity-90 transition-opacity duration-200"
+      },
+      "reducedMotion": "Always respect prefers-reduced-motion media query"
+    },
+
+    "gradients": {
+      "hero": "linear-gradient(135deg, hsl(200 40% 98%) 0%, hsl(192 60% 95%) 50%, hsl(200 40% 98%) 100%)",
+      "card": "linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 30% 99%) 100%)",
+      "cta": "linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(24 95% 45%) 100%)",
+      "blue": "linear-gradient(135deg, hsl(192 85% 50%) 0%, hsl(210 70% 45%) 100%)",
+      "glow": "radial-gradient(ellipse at 50% 0%, hsl(192 85% 50% / 0.15) 0%, transparent 70%)",
+      "usage": {
+        "hero": "bg-gradient-hero for hero sections",
+        "cta": "bg-gradient-cta for primary action buttons",
+        "blue": "bg-gradient-blue for brand highlights"
+      }
+    }
+  },
+
+  "uiPatterns": {
+    "layout": {
+      "navbar": {
+        "component": "src/components/layout/Navbar.tsx",
+        "pattern": "Fixed header with backdrop blur on scroll, responsive mobile menu with focus trap",
+        "height": "h-16 lg:h-20",
+        "sticky": "fixed top-0 z-[90]",
+        "scrollBehavior": "Add bg-card/95 backdrop-blur-md shadow when scrolled",
+        "elements": ["Logo (left)", "Nav links (center on desktop)", "Language switcher", "Primary CTA (right)"],
+        "a11y": ["Focus trap in mobile menu", "ESC key closes menu", "ARIA labels for menu state"]
+      },
+      "footer": {
+        "component": "src/components/layout/Footer.tsx",
+        "pattern": "Multi-column footer with brand, links, newsletter signup",
+        "sections": ["Brand + description", "Quick links", "Resources", "Newsletter CTA", "Social + legal"]
+      },
+      "sectionWrapper": {
+        "pattern": "container mx-auto px-4 lg:px-6 py-12 md:py-16 lg:py-20",
+        "maxWidth": "max-w-7xl",
+        "usage": "Standard wrapper for all page sections"
+      }
+    },
+
+    "cards": {
+      "baseCard": {
+        "component": "src/components/ui/card.tsx",
+        "classes": "rounded-lg border bg-card text-card-foreground shadow-sm",
+        "structure": ["CardHeader (p-6, space-y-1.5)", "CardTitle (text-2xl font-semibold)", "CardDescription (text-sm text-muted-foreground)", "CardContent (p-6 pt-0)", "CardFooter (optional)"],
+        "variants": {
+          "elevated": "Add shadow-md hover:shadow-lg transition-shadow",
+          "interactive": "Add hover:-translate-y-1 transition-all cursor-pointer",
+          "featured": "Add border-2 border-primary or gradient border"
+        }
+      },
+      "statsCard": {
+        "pattern": "Card with large number + label + optional trend indicator",
+        "example": "Used in dashboard KPIs, metrics display"
+      },
+      "featureCard": {
+        "pattern": "Icon + Title + Description + Optional CTA",
+        "iconWrapper": "p-3 rounded-xl bg-muted with icon inside",
+        "example": "Used for automation library, resource cards, offer cards"
+      }
+    },
+
+    "buttons": {
+      "component": "src/components/ui/button.tsx",
+      "variants": {
+        "default": "Orange primary button with shadow-orange",
+        "hero": "Primary with hover lift (-translate-y-0.5)",
+        "hero-outline": "Outlined secondary with backdrop blur",
+        "cta": "Gradient background (bg-gradient-cta)",
+        "secondary": "Deep blue background",
+        "outline": "Border-2 with transparent bg",
+        "ghost": "No background, hover:bg-muted",
+        "link": "Text link with underline"
+      },
+      "sizes": {
+        "default": "h-11 min-h-[44px] px-5",
+        "sm": "h-10 min-h-[44px] px-4 text-xs",
+        "lg": "h-12 min-h-[48px] px-8 text-base",
+        "xl": "h-14 min-h-[52px] px-10 text-base",
+        "icon": "h-11 w-11 min-h-[44px] min-w-[44px]"
+      },
+      "accessibility": "All buttons meet 44px minimum touch target (WCAG 2.5.5)",
+      "usage": {
+        "primaryCTA": "Use variant='hero' or 'cta' for main actions",
+        "secondaryCTA": "Use variant='hero-outline' or 'secondary'",
+        "inlineActions": "Use variant='ghost' or 'link'"
+      }
+    },
+
+    "forms": {
+      "inputComponent": "src/components/ui/input.tsx",
+      "labelComponent": "src/components/ui/label.tsx",
+      "formComponent": "src/components/ui/form.tsx (react-hook-form wrapper)",
+      "pattern": "Label above input, error message below, use react-hook-form + zod validation",
+      "structure": {
+        "fieldWrapper": "space-y-2",
+        "label": "text-sm font-medium leading-none",
+        "input": "h-11 rounded-lg border bg-background px-3",
+        "error": "text-sm text-destructive",
+        "hint": "text-sm text-muted-foreground"
+      },
+      "examples": ["src/components/BookingModal.tsx", "src/components/RequestModal.tsx", "src/components/NewsletterForm.tsx"]
+    },
+
+    "tables": {
+      "component": "src/components/ui/table.tsx",
+      "pattern": "Responsive table with hover states, border-bottom on rows",
+      "classes": {
+        "wrapper": "relative w-full overflow-auto",
+        "table": "w-full caption-bottom text-sm",
+        "header": "border-b font-medium text-muted-foreground",
+        "row": "border-b hover:bg-muted/50 transition-colors",
+        "cell": "p-4 align-middle"
+      },
+      "usage": "For data tables in admin dashboard: orders, users, automations, resources"
+    },
+
+    "dialogs": {
+      "component": "src/components/ui/dialog.tsx",
+      "pattern": "Radix Dialog with overlay, centered modal, close button in top-right",
+      "a11y": ["ESC closes dialog", "Focus trap inside", "Close button has sr-only label", "min-w-[44px] min-h-[44px] touch targets"],
+      "sizes": "max-w-lg default, max-w-[calc(100vw-2rem)] on mobile",
+      "usage": "BookingModal, RequestModal use Dialog for overlays"
+    },
+
+    "badges": {
+      "component": "src/components/ui/badge.tsx",
+      "variants": {
+        "default": "Orange primary",
+        "secondary": "Blue",
+        "outline": "Transparent with border",
+        "destructive": "Red for errors/warnings"
+      },
+      "usage": "Status indicators, tags, feature flags, 'Most Popular' labels"
+    },
+
+    "tabs": {
+      "component": "src/components/ui/tabs.tsx",
+      "pattern": "Radix Tabs with rounded triggers, active state shadow",
+      "classes": "TabsList has bg-muted, TabsTrigger has data-[state=active]:bg-background shadow-sm",
+      "usage": "Category filters (Automations, Resources), settings panels"
+    },
+
+    "accordions": {
+      "component": "src/components/ui/accordion.tsx",
+      "pattern": "Radix Accordion with chevron icon, smooth expand/collapse",
+      "animation": "accordion-down/accordion-up keyframes (200ms ease-out)",
+      "usage": "FAQ sections, expandable details on Offer pages"
+    },
+
+    "skeletonLoaders": {
+      "component": "src/components/ui/skeleton.tsx",
+      "pattern": "animate-pulse rounded-md bg-muted",
+      "usage": "Loading states for cards, tables, lists while fetching data"
+    },
+
+    "emptyStates": {
+      "component": "src/components/ui/empty-state.tsx",
+      "pattern": "Icon in muted circle + heading + description + optional CTAs",
+      "sizes": "default (py-12), large (py-16 md:py-24)",
+      "usage": "No results, empty tables, missing content"
+    },
+
+    "toasts": {
+      "components": ["src/components/ui/toaster.tsx", "src/components/ui/sonner.tsx"],
+      "pattern": "Use sonner for toast notifications, Toaster for form feedback",
+      "placement": "Bottom-right (desktop), bottom-center (mobile)",
+      "duration": "4000ms default"
+    },
+
+    "collapsible": {
+      "component": "src/components/ui/collapsible.tsx",
+      "pattern": "Radix Collapsible for expandable sections",
+      "usage": "Mobile filter panels, advanced settings, optional form fields"
+    },
+
+    "drawer": {
+      "component": "src/components/ui/drawer.tsx (vaul)",
+      "pattern": "Bottom drawer for mobile (alternative to Dialog)",
+      "usage": "Mobile filter panels on Automations/Resources pages"
+    }
+  },
+
+  "siteMap": {
+    "description": "Public routes from the existing InnoviaBurst site (React Router v6)",
+    "router": "src/App.tsx",
+    "publicRoutes": [
+      {
+        "path": "/",
+        "component": "Index",
+        "purpose": "Homepage",
+        "keyComponents": ["HeroSection", "ProofStrip", "OffersSection", "SolutionsSection", "IndustriesSection", "ResourcesSection", "TrustSection", "WorkSection", "ContactSection"]
+      },
+      {
+        "path": "/automations",
+        "component": "AutomationsPage",
+        "purpose": "Library of pre-built automation templates",
+        "features": ["Search/filter by category, industry, tools", "Sort by impact/speed/popularity", "Quick view drawer", "Request modal integration"]
+      },
+      {
+        "path": "/resources",
+        "component": "ResourcesPage",
+        "purpose": "Downloadable resources (guides, checklists, templates, calculators)",
+        "features": ["Category filter (ROI, AI, CRM, Ops, Compliance)", "Resource type badges", "Featured resources", "Gated content (contact form)"]
+      },
+      {
+        "path": "/trust",
+        "component": "TrustPage",
+        "purpose": "Trust & Compliance page (DPA, GDPR, security, sub-processors)",
+        "features": ["Sticky ToC (desktop)", "Collapsible ToC (mobile)", "Trust pack CTA", "Security questionnaire CTA"]
+      },
+      {
+        "path": "/:slug",
+        "component": "OfferPage",
+        "purpose": "Dynamic offer detail pages (ai-ops-sprint, automation-build, mvp-launch)",
+        "features": ["Hero with timeline/price", "Deliverables list", "Week-by-week breakdown", "FAQ accordion", "CTA to book call"]
+      },
+      {
+        "path": "/work",
+        "component": "WorkPage/ComingSoonPage",
+        "purpose": "Case studies (coming soon)"
+      },
+      {
+        "path": "/privacy",
+        "component": "PrivacyPage",
+        "purpose": "Privacy policy"
+      },
+      {
+        "path": "/cookies",
+        "component": "CookiesPage",
+        "purpose": "Cookie policy"
+      },
+      {
+        "path": "/terms",
+        "component": "TermsPage",
+        "purpose": "Terms of service"
+      },
+      {
+        "path": "/subprocessors",
+        "component": "SubprocessorsPage",
+        "purpose": "List of sub-processors for compliance"
+      }
+    ],
+    "adminDashboardRoutes": {
+      "recommended": [
+        "/admin/dashboard (overview KPIs)",
+        "/admin/automations (manage library)",
+        "/admin/resources (manage resources)",
+        "/admin/offers (manage offers)",
+        "/admin/leads (booking/request submissions)",
+        "/admin/content (edit page content)",
+        "/admin/analytics (site metrics)",
+        "/admin/settings (site config, integrations)"
+      ]
+    }
+  },
+
+  "contentModels": {
+    "resources": {
+      "description": "Downloadable resources (guides, checklists, templates, calculators)",
+      "source": "src/pages/ResourcesPage.tsx (currently hardcoded, extract schema)",
+      "schema": {
+        "key": "string (unique identifier, e.g., 'roiCalculator')",
+        "icon": "LucideIcon (from lucide-react, e.g., Calculator, CheckSquare, Brain)",
+        "type": "ResourceType enum ('Guide' | 'Checklist' | 'Template' | 'Calculator' | 'Playbook' | 'Reference')",
+        "category": "CategoryKey enum ('all' | 'roi' | 'ai' | 'crm' | 'ops' | 'compliance')",
+        "tags": "string[] (for search/filter)",
+        "featured": "boolean (optional, show in featured section)",
+        "updatedAt": "string (ISO date, e.g., '2025-12-30')",
+        "timeToComplete": "string (e.g., '15 min', '1 hour')",
+        "usefulness": "number (1-10 rating)",
+        "href": "string (link to resource or '#contact' for gated)",
+        "title_i18n": "Translatable title (from i18n keys)",
+        "description_i18n": "Translatable description (from i18n keys)",
+        "benefits_i18n": "string[] (key benefits, translatable)"
+      },
+      "adminFields": [
+        "All schema fields above",
+        "status (draft | published | archived)",
+        "downloadUrl (if not gated)",
+        "thumbnailUrl (optional preview image)",
+        "createdBy (user ID)",
+        "lastModifiedBy (user ID)",
+        "viewCount (analytics)",
+        "downloadCount (analytics)"
+      ],
+      "exampleKeys": [
+        "roiCalculator",
+        "aiChecklist",
+        "hubspotHygiene",
+        "complianceRoadmap",
+        "apiPlaybook",
+        "ragGuide",
+        "workflowAudit",
+        "dpaReference",
+        "euAiAct",
+        "icoFairness",
+        "vendorSecurity",
+        "monitoringPlaybook"
+      ]
+    },
+
+    "automations": {
+      "description": "Pre-built automation templates in the library",
+      "source": "src/pages/AutomationsPage.tsx",
+      "schema": {
+        "key": "string (unique ID, e.g., 'leadToMeeting')",
+        "category": "string ('Sales' | 'Ops' | 'Support' | 'Finance' | 'Knowledge')",
+        "tools": "string[] (e.g., ['HubSpot', 'Slack', 'Calendly'])",
+        "deliveryTime": "string (e.g., '1-2 weeks')",
+        "deliveryWeeksMin": "number (1)",
+        "deliveryWeeksMax": "number (2)",
+        "impactScore": "number (1-10, for filtering by impact)",
+        "popularityScore": "number (1-10, for sorting by popularity)",
+        "createdAt": "string (ISO date)",
+        "industry": "string (e.g., 'B2B / SaaS', 'Retail / E-commerce')",
+        "title_i18n": "Translatable title",
+        "outcome_i18n": "Translatable outcome description",
+        "problem_i18n": "Translatable problem statement",
+        "steps_i18n": "string[] (workflow steps, translatable)",
+        "kpi_i18n": "Translatable KPI description"
+      },
+      "adminFields": [
+        "All schema fields above",
+        "status (draft | published | archived)",
+        "thumbnailUrl (optional diagram/preview)",
+        "detailsUrl (link to full documentation)",
+        "requiredTools (vs optional tools)",
+        "estimatedHoursSaved (number)",
+        "estimatedCost (number)",
+        "createdBy (user ID)",
+        "lastModifiedBy (user ID)",
+        "viewCount (analytics)",
+        "requestCount (how many times requested)"
+      ],
+      "exampleKeys": [
+        "leadToMeeting",
+        "aiSupportTriage",
+        "stripeDunning",
+        "shopifyFulfillment",
+        "invoiceReminder",
+        "recruitmentPipeline",
+        "salesHandoff",
+        "demoQualification",
+        "execOpsDigest",
+        "aiKnowledgeBase"
+      ]
+    },
+
+    "offers": {
+      "description": "Productised service offerings (fixed scope packages)",
+      "source": "src/pages/OfferPage.tsx",
+      "schema": {
+        "slug": "string (URL slug, e.g., 'ai-ops-sprint')",
+        "title": "string ('AI Ops Sprint', 'Automation Build', 'MVP Launch')",
+        "timeline": "string ('10 business days', '4-6 weeks')",
+        "bestFor": "string (target audience description)",
+        "price": "string ('From £3k', '£15k-£30k')",
+        "heroDescription": "string (1-2 sentence pitch)",
+        "deliverables": "string[] (bullet list of what's included)",
+        "exclusions": "string[] (bullet list of what's NOT included)",
+        "successMetrics": "Array<{ metric: string, example: string }>",
+        "weekByWeek": "Array<{ week: string, activities: string[] }> (timeline breakdown)",
+        "clientInputs": "string[] (what client needs to provide)",
+        "faq": "Array<{ q: string, a: string }>"
+      },
+      "adminFields": [
+        "All schema fields above",
+        "status (draft | published | archived)",
+        "featured (boolean, show on homepage)",
+        "orderIndex (for sorting offers)",
+        "iconName (Lucide icon name)",
+        "ctaLabel (custom CTA text)",
+        "ctaUrl (custom CTA link or default to booking)",
+        "createdBy (user ID)",
+        "lastModifiedBy (user ID)",
+        "viewCount (analytics)",
+        "conversionRate (analytics)"
+      ],
+      "existingOffers": [
+        "ai-ops-sprint",
+        "automation-build",
+        "mvp-launch"
+      ]
+    },
+
+    "leads": {
+      "description": "Booking and request submissions from forms",
+      "sources": ["BookingModal.tsx", "RequestModal.tsx", "NewsletterForm.tsx"],
+      "bookingSchema": {
+        "id": "string (UUID)",
+        "type": "enum ('booking' | 'request' | 'newsletter')",
+        "name": "string",
+        "email": "string",
+        "company": "string (optional)",
+        "role": "string (optional)",
+        "goal": "string (what they want to achieve)",
+        "interestedIn": "string (optional, topic from query param)",
+        "createdAt": "timestamp",
+        "source": "string (page URL where form was submitted)",
+        "status": "enum ('new' | 'contacted' | 'qualified' | 'converted' | 'closed')",
+        "assignedTo": "string (user ID, optional)",
+        "notes": "string (admin notes)"
+      },
+      "requestSchema": {
+        "id": "string (UUID)",
+        "type": "enum ('booking' | 'request' | 'newsletter')",
+        "email": "string",
+        "company": "string (optional)",
+        "role": "string (optional)",
+        "primaryGoal": "string (from dropdown: reduceOps, leadHandling, reporting, aiAssistant, mvp, custom)",
+        "tools": "string[] (selected tools from list)",
+        "timeline": "string (from dropdown: urgent, soon, planning, exploring, none)",
+        "notes": "string (additional details from user)",
+        "interestedIn": "string (optional)",
+        "createdAt": "timestamp",
+        "source": "string",
+        "status": "enum ('new' | 'contacted' | 'qualified' | 'converted' | 'closed')",
+        "assignedTo": "string (user ID, optional)",
+        "adminNotes": "string"
+      },
+      "adminViews": [
+        "All leads (table view with filters)",
+        "Lead detail view (full form submission + timeline)",
+        "Status pipeline (kanban: new -> contacted -> qualified -> converted)",
+        "Assignment (assign to team member)",
+        "Notes & follow-ups"
+      ]
+    },
+
+    "analytics": {
+      "description": "Site metrics and insights (for admin dashboard)",
+      "metrics": [
+        "Page views (per page)",
+        "Automation views/requests",
+        "Resource views/downloads",
+        "Offer views",
+        "Form submission rates",
+        "Bounce rate",
+        "Session duration",
+        "Top traffic sources",
+        "CTA click rates",
+        "Conversion funnel (view -> request -> qualified -> converted)"
+      ],
+      "integrations": {
+        "current": null,
+        "recommended": ["Google Analytics 4", "Plausible Analytics", "PostHog", "Mixpanel"]
+      }
+    }
+  },
+
+  "brandVoice": {
+    "tone": "Short, bold, premium, no-nonsense, conversion-first",
+    "characteristics": [
+      "Direct and actionable (avoid fluff)",
+      "Business-professional (not casual)",
+      "Confident but not arrogant",
+      "Outcome-focused (ROI, timelines, measurable results)",
+      "Plain English/French (avoid jargon unless necessary)",
+      "Scannable (1 sentence intro + bullets preferred)"
+    ],
+
+    "sampleCTAs": {
+      "primary": [
+        "Request an automation plan",
+        "Book a 15-min call",
+        "Get a scope in 48h",
+        "Request my plan"
+      ],
+      "secondary": [
+        "See automations",
+        "Book a call instead",
+        "Read more",
+        "View details"
+      ],
+      "navigation": [
+        "Automations",
+        "Offers",
+        "Work",
+        "Trust",
+        "Resources"
+      ],
+      "forms": [
+        "Continue",
+        "Submit",
+        "Book my call",
+        "Confirm my choices",
+        "Back"
+      ]
+    },
+
+    "copyPatterns": {
+      "headlines": {
+        "structure": "Action verb + outcome + timeframe",
+        "examples": [
+          "Ship AI & automation in weeks, not months",
+          "Get one workflow automated in 10 business days",
+          "Build robust, production-grade automation"
+        ]
+      },
+      "subheadlines": {
+        "structure": "1-2 sentences max, who it's for + what they get + how",
+        "examples": [
+          "We build workflow automations, AI copilots, and MVPs for UK/EU SMEs — with clear scope, measurable ROI, and compliance-ready delivery.",
+          "Perfect for proving ROI before larger investments."
+        ]
+      },
+      "bullets": {
+        "pattern": "Start with outcome/benefit, not feature",
+        "examples": [
+          "First delivery in ~10 days (not 'We deliver fast')",
+          "Measurable ROI from day one (not 'We focus on ROI')",
+          "UK GDPR ready (not 'We care about compliance')"
+        ]
+      },
+      "errorMessages": {
+        "pattern": "Friendly but clear, suggest action",
+        "examples": [
+          "Please enter your work email",
+          "Please select a primary outcome",
+          "Something went wrong — please try again or email us at hello@innoviaburst.com"
+        ]
+      }
+    },
+
+    "writingDoDont": {
+      "DO": [
+        "Use concrete numbers (10 days, 4-6 weeks, £15k-£30k)",
+        "Lead with outcomes (hours saved, faster response, error reduction)",
+        "Use active voice ('We build' not 'Solutions are built')",
+        "Keep sentences short (15-20 words max where possible)",
+        "Use subheadings for scannability"
+      ],
+      "DONT": [
+        "Use buzzwords without context ('innovative', 'cutting-edge', 'revolutionize')",
+        "Make vague promises ('best-in-class', 'world-leading')",
+        "Use passive voice unnecessarily",
+        "Create walls of text (break into bullets)",
+        "Invent compliance claims (only state what's true)"
+      ]
+    },
+
+    "i18nStrategy": {
+      "primaryLanguage": "French (main site default)",
+      "supported": ["French (fr)", "English (en)", "Arabic (ar) if configured"],
+      "structure": "Nested JSON keys (nav.automations, hero.headline, booking.fields.emailLabel)",
+      "adminDashboard": "Default to English for admin UI, optionally support FR for French-speaking admins"
+    }
+  },
+
+  "technicalStack": {
+    "frontend": {
+      "framework": "React 18.3.1",
+      "bundler": "Vite 5.4.19",
+      "language": "TypeScript 5.8.3",
+      "styling": "Tailwind CSS 3.4.17 + PostCSS",
+      "components": "shadcn/ui (Radix UI primitives)",
+      "icons": "lucide-react 0.462.0",
+      "forms": "react-hook-form 7.61.1 + zod 3.25.76 + @hookform/resolvers 3.10.0",
+      "routing": "react-router-dom 6.30.1",
+      "i18n": "react-i18next 16.5.0 + i18next 25.7.3",
+      "dataFetching": "@tanstack/react-query 5.83.0",
+      "seo": "react-helmet-async 2.0.5",
+      "toasts": "sonner 1.7.4",
+      "3dVisuals": "@react-three/fiber 8.17.10 + @react-three/drei 9.115.0 + three 0.182.0"
+    },
+    "backendRecommendation": {
+      "note": "Public site is static (no backend yet). For admin dashboard:",
+      "options": [
+        "Node.js + Express + Prisma + PostgreSQL",
+        "Next.js API routes + Prisma + PostgreSQL",
+        "Supabase (auth + database + storage)",
+        "Firebase (auth + Firestore + storage)"
+      ],
+      "authentication": "Recommended: Auth0, Clerk, or Supabase Auth for admin dashboard",
+      "storage": "Recommended: S3-compatible storage for resource files (Supabase Storage, Cloudflare R2, AWS S3)"
+    },
+    "deployment": {
+      "current": "Static hosting (Vercel, Netlify, Cloudflare Pages recommended)",
+      "adminDashboard": "Separate deployment or /admin route with authentication"
+    }
+  },
+
+  "accessibilityGuidelines": {
+    "wcagLevel": "WCAG 2.1 AA (minimum)",
+    "keyRequirements": [
+      "Semantic HTML (use proper heading hierarchy H1 -> H2 -> H3)",
+      "All interactive elements ≥ 44x44 CSS pixels (implemented in button sizes)",
+      "Focus visible on all interactive elements (ring-2 ring-ring ring-offset-2)",
+      "ARIA labels for icon-only buttons and screen reader context",
+      "Keyboard navigation (focus trap in modals, ESC to close, tab order)",
+      "Skip links for main content navigation",
+      "Alt text for all images",
+      "Color contrast ≥ 4.5:1 for text (current colors meet this)",
+      "Respect prefers-reduced-motion (implemented in index.css)"
+    ],
+    "examples": [
+      "SkipLink component (src/components/SkipLink.tsx)",
+      "Mobile menu focus trap (src/components/layout/Navbar.tsx)",
+      "Dialog close button with sr-only label (src/components/ui/dialog.tsx)",
+      "Minimum touch target sizes in button component"
+    ]
+  },
+
+  "securityConsiderations": {
+    "forAdminDashboard": [
+      "Implement robust authentication (JWT, session-based, or OAuth)",
+      "Role-based access control (admin, editor, viewer roles)",
+      "Input validation and sanitization (use zod for schema validation)",
+      "CSRF protection for forms",
+      "Rate limiting on API endpoints",
+      "Secure file uploads (validate file types, scan for malware)",
+      "Audit logs (track who changed what and when)",
+      "HTTPS only (enforce secure connections)",
+      "Content Security Policy headers",
+      "Regular dependency updates (npm audit)"
+    ]
+  },
+
+  "notes": {
+    "extractionNotes": [
+      "Design tokens extracted from tailwind.config.ts + index.css CSS variables",
+      "Component patterns documented from src/components/ui/* (shadcn/ui components)",
+      "Content models inferred from hardcoded data in pages (AutomationsPage, ResourcesPage, OfferPage)",
+      "Brand voice extracted from i18n/en.json + observed copy patterns",
+      "Routes documented from src/App.tsx React Router config",
+      "Accessibility patterns documented from existing components (Navbar, Dialog, etc.)"
+    ],
+
+    "missingInfo": [
+      {
+        "item": "Backend API endpoints",
+        "howToFind": "Not applicable yet (static site). Design REST/GraphQL API for admin dashboard based on contentModels schemas."
+      },
+      {
+        "item": "Authentication flow",
+        "howToFind": "Not implemented yet. Recommend: Auth0, Clerk, or Supabase Auth. Design login/logout/role-based access."
+      },
+      {
+        "item": "Database schema",
+        "howToFind": "Not implemented yet. Use contentModels as starting point for Prisma schema or SQL tables."
+      },
+      {
+        "item": "File upload/storage",
+        "howToFind": "Not implemented yet. Recommend S3-compatible storage for resource files (Supabase Storage, Cloudflare R2)."
+      },
+      {
+        "item": "Analytics integration",
+        "howToFind": "Not implemented yet. Recommend Google Analytics 4 or Plausible. Track page views, form submissions, CTA clicks."
+      },
+      {
+        "item": "Email notifications",
+        "howToFind": "Not implemented yet. Recommend SendGrid, Mailgun, or Resend for lead notification emails to admin."
+      },
+      {
+        "item": "Deployed site CSS snapshot",
+        "howToFind": "Skipped (not necessary, all design tokens extracted from source). If needed: fetch https://innoviaburst.com and inspect CSS bundle."
+      }
+    ],
+
+    "recommendationsForLovable": [
+      "Start with authentication setup (login page, protected routes)",
+      "Implement dashboard overview (KPIs: total leads, automations, resources)",
+      "Build CRUD interfaces for each content model (resources, automations, offers)",
+      "Create leads management table with filters, status pipeline, and detail view",
+      "Add analytics dashboard (if integrating with GA4/Plausible)",
+      "Implement user management (if multi-user admin)",
+      "Keep design tokens consistent with public site (use same Tailwind config)",
+      "Reuse shadcn/ui components from public site for consistency",
+      "Follow brand voice guidelines for admin UI copy (keep it direct and scannable)"
+    ],
+
+    "lovablePromptTemplate": "I'm building an admin dashboard for InnoviaBurst (a UK/EU AI & automation studio). The dashboard needs to manage content for the public website: automations library, resources, offers, and leads from booking/request forms. Use the design tokens, component patterns, and content models from this JSON spec to maintain brand consistency. Start with: 1) Authentication (login page with Auth0/Clerk/Supabase), 2) Dashboard overview (KPIs), 3) Leads table with filters and status pipeline. Tech stack: React + TypeScript + Vite + Tailwind CSS + shadcn/ui + React Query + React Router. Match the existing InnoviaBurst design system (orange primary, cyan accent, deep blue secondary, Inter font, 1rem border radius, premium card shadows)."
+  }
+}

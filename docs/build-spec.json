@@ -1,0 +1,58 @@
+{
+  "useDesignSpecFromUpload": "lovable-input.json",
+  "backend": { "type": "nestjs", "db": "postgresql", "email": "nodemailer" },
+  "roles": ["super_admin", "admin", "partner", "client"],
+  "clients": { "login": false, "areRecordsOnly": true },
+  "modules": {
+    "projects": {
+      "statuses": ["pending_review", "accepted", "refused"],
+      "phases": ["discovery", "dev", "testing", "deployed", "done", "maintenance"],
+      "workflow": {
+        "suggest": { "by": ["partner", "admin"], "createsClientIfMissingByEmail": true },
+        "accept": {
+          "by": ["admin", "super_admin"],
+          "requiresInitialContactNote": true,
+          "logsActivity": true
+        },
+        "refuse": {
+          "by": ["admin", "super_admin"],
+          "requiresRefusalReason": true,
+          "triggersEmail": { "type": "polite_refusal", "via": "nodemailer" },
+          "logsActivity": true
+        },
+        "phaseChange": { "by": ["admin", "super_admin"], "logsActivity": true }
+      },
+      "partnerVisibility": { "rule": "partner sees only projects where suggestedByUserId == auth.user.id" }
+    },
+    "content": { "types": ["resource", "automation", "offer"], "schema": "from lovable-input.json contentModels" },
+    "leads": { "schema": "from lovable-input.json contentModels.leads", "pipeline": ["new", "contacted", "qualified", "converted", "closed"] }
+  },
+  "routes": [
+    "/admin/overview",
+    "/admin/projects",
+    "/admin/projects/:id",
+    "/admin/partners",
+    "/admin/clients",
+    "/admin/content",
+    "/admin/leads",
+    "/admin/settings"
+  ],
+  "apiContract": {
+    "baseUrlEnv": "VITE_API_BASE_URL",
+    "auth": ["POST /auth/login", "GET /auth/me"],
+    "users": ["GET /users", "PATCH /users/:id/role"],
+    "partners": ["GET /partners", "PATCH /partners/:id"],
+    "clients": ["GET/POST/PATCH /clients", "GET /clients/:id"],
+    "projects": [
+      "GET /projects",
+      "POST /projects/suggest",
+      "POST /projects/:id/accept",
+      "POST /projects/:id/refuse",
+      "PATCH /projects/:id/phase",
+      "GET /projects/:id/activity",
+      "POST /projects/:id/contact-notes"
+    ],
+    "content": ["GET /content?type=", "POST /content", "PATCH /content/:id", "POST /content/:id/publish"],
+    "leads": ["GET /leads", "PATCH /leads/:id/status", "POST /leads/:id/notes"]
+  }
+}
