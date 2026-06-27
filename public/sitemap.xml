@@ -1,103 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://innoviaburst.com/</loc>
+    <loc>https://innoviaburst.com/en/</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/automations</loc>
+    <loc>https://innoviaburst.com/en/automations</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/resources</loc>
+    <loc>https://innoviaburst.com/en/resources</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/industries</loc>
+    <loc>https://innoviaburst.com/en/industries</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/trust</loc>
+    <loc>https://innoviaburst.com/en/trust</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/subprocessors</loc>
+    <loc>https://innoviaburst.com/en/subprocessors</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/privacy</loc>
+    <loc>https://innoviaburst.com/en/privacy</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.40</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/cookies</loc>
+    <loc>https://innoviaburst.com/en/cookies</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.40</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/terms</loc>
+    <loc>https://innoviaburst.com/en/terms</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.40</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/works</loc>
+    <loc>https://innoviaburst.com/en/works</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/work</loc>
+    <loc>https://innoviaburst.com/en/coming-soon</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.30</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/coming-soon</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.30</priority>
-  </url>
-  <url>
-    <loc>https://innoviaburst.com/ai-ops-sprint</loc>
+    <loc>https://innoviaburst.com/en/ai-ops-sprint</loc>
     <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/automation-build</loc>
+    <loc>https://innoviaburst.com/en/automation-build</loc>
     <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/mvp-launch</loc>
+    <loc>https://innoviaburst.com/en/mvp-launch</loc>
     <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/work/professional-services-client-onboarding</loc>
+    <loc>https://innoviaburst.com/en/work/professional-services-client-onboarding</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/work/saas-support-ticket-triage</loc>
+    <loc>https://innoviaburst.com/en/work/saas-support-ticket-triage</loc>
     <lastmod>2026-01-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>

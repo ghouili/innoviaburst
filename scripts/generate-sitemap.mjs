@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { allRoutes, siteUrl } from "./site-content.mjs";
+import { sitemapRoutes, siteUrl } from "./site-content.mjs";
 
 const outPath = path.resolve(process.cwd(), "public", "sitemap.xml");
 
@@ -17,20 +17,22 @@ const resolveLastmod = (sourcePath, fallback) => {
 const today = new Date().toISOString().split("T")[0];
 const seen = new Set();
 
-const routes = allRoutes.filter((route) => {
-  if (seen.has(route.path)) return false;
-  seen.add(route.path);
+const routes = sitemapRoutes().filter((route) => {
+  if (seen.has(route.loc)) return false;
+  seen.add(route.loc);
   return true;
 });
+
+const base = siteUrl.replace(/\/$/, "");
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes
   .map((route) => {
-    const loc = `${siteUrl.replace(/\/$/, "")}${route.path}`;
+    const loc = `${base}${route.loc}`;
     const lastmod = resolveLastmod(route.source, today);
     const changefreq = route.changefreq || "monthly";
-    const priority = route.priority ?? (route.path === "/" ? 1 : 0.8);
+    const priority = route.priority ?? (route.loc.endsWith("/") ? 1 : 0.8);
     return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority.toFixed(2)}</priority>\n  </url>`;
   })
   .join("\n")}

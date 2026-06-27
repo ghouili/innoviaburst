@@ -1,7 +1,8 @@
 import { access, readFile } from 'fs/promises';
 import path from 'path';
 
-const distDir = path.resolve('dist');
+// Vike pre-renders the static site into dist/client (public/ assets are copied there too).
+const distDir = path.resolve('dist', 'client');
 const sitemapPath = path.join(distDir, 'sitemap.xml');
 const robotsPath = path.join(distDir, 'robots.txt');
 
@@ -35,8 +36,9 @@ async function ensureSitemapXml(filePath) {
 
 async function main() {
   await ensureSitemapXml(sitemapPath);
-  await ensureExists(robotsPath, 'dist/robots.txt');
-  console.log('Static assets verified: dist/sitemap.xml and dist/robots.txt present.');
+  await ensureExists(robotsPath, 'dist/client/robots.txt');
+  await ensureExists(path.join(distDir, '404.html'), 'dist/client/404.html');
+  console.log('Static assets verified: dist/client/{sitemap.xml, robots.txt, 404.html} present.');
 }
 
 main().catch((error) => fail('Unexpected error while verifying static assets.', error));
