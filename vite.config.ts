@@ -3,6 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 import vike from "vike/plugin";
 import path from "path";
 
+// TODO(post-launch, standalone task): upgrade to Vite 6 + newest Vike (0.4.26x+)
+// and switch build/dev/preview to the `vike` CLI. Vike is pinned to exactly
+// 0.4.235 (last Vite-5-compatible release) — see package.json (no caret).
+// @vitejs/plugin-react-swc already supports Vite 6/7, so the bump is isolated.
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
