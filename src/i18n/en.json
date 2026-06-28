@@ -14,12 +14,27 @@
     "menuLabel": "Navigation menu"
   },
   "common": {
-    "optional": "Optional"
+    "learnMore": "Learn more",
+    "getStarted": "Get started",
+    "contactUs": "Contact us",
+    "backToHome": "Back to home"
   },
   "cookies": {
+    "title": "We value your privacy",
+    "description": "We use cookies to enhance your browsing experience and analyse site traffic. Choose which cookies you'd like to accept.",
+    "necessary": "Necessary",
+    "necessaryDesc": "Essential for the website to function. Cannot be disabled.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Help us understand how visitors interact with our website.",
+    "marketing": "Marketing",
+    "marketingDesc": "Used to deliver relevant advertisements and track campaigns.",
+    "acceptAll": "Accept All",
+    "acceptSelected": "Accept Selected",
+    "rejectAll": "Reject All",
     "bannerTitle": "We use cookies",
     "bannerDesc": "We use cookies to improve your experience and analyse site usage. Non-essential cookies are off by default.",
     "readPolicy": "Read our cookie policy",
+    "preferencesTitle": "Cookie preferences",
     "actions": {
       "acceptAll": "Accept all",
       "reject": "Reject non-essential",
@@ -27,7 +42,6 @@
       "confirm": "Confirm my choices",
       "back": "Back"
     },
-    "preferencesTitle": "Cookie preferences",
     "groups": {
       "essential": {
         "title": "Essential cookies",
@@ -36,7 +50,7 @@
       },
       "functional": {
         "title": "Functional cookies",
-        "desc": "Enable helpful features and preferences to improve usability.",
+        "desc": "Remember your preferences (such as language) to improve your experience.",
         "aria": "Functional cookies"
       },
       "analytics": {
@@ -46,13 +60,12 @@
       },
       "marketing": {
         "title": "Marketing cookies",
-        "desc": "Used to deliver relevant advertisements and track campaign effectiveness.",
+        "desc": "Used to deliver relevant advertisements and measure campaign effectiveness.",
         "aria": "Marketing cookies"
       }
     }
   },
   "stickyBar": {
-    "label": "Quick actions",
     "primaryCta": "Request an automation plan",
     "secondaryCta": "Book a 15-min call"
   },
@@ -69,6 +82,25 @@
       "delivery": "First delivery in ~10 days",
       "gdpr": "UK GDPR ready",
       "agnostic": "Tool-agnostic"
+    },
+    "eyebrow": "GDPR-by-design AI & automation",
+    "h1Pre": "AI automation your ",
+    "h1Accent": "DPO and your board",
+    "h1Post": " both sign off on.",
+    "lede": "GDPR-by-design workflow automations, AI copilots and MVPs for European SMEs — fixed scope, live in weeks, with the audit trail built in.",
+    "ctaShipped": "See what we've shipped",
+    "ctaScope": "Get a fixed scope in 48h",
+    "chips": {
+      "delivery": "First workflow live in ~10 days",
+      "compliance": "GDPR & EU AI Act-ready",
+      "price": "From €5,000",
+      "residency": "Your data stays in the EU"
+    },
+    "stage": {
+      "tag": "Operations, in order",
+      "stat0": "First delivery in ~10 days",
+      "stat1": "Hours saved every week",
+      "stat2": "EU GDPR-ready"
     }
   },
   "proofStrip": {
@@ -379,10 +411,6 @@
     "emailUs": "Email us",
     "formTitle": "Or tell us about your project"
   },
-  "stickyBar": {
-    "primaryCta": "Request an automation plan",
-    "secondaryCta": "Book a 15-min call"
-  },
   "footer": {
     "tagline": "AI & automation delivered in weeks. UK/EU focused, compliance-ready.",
     "description": "AI & automation delivered in weeks. Built for UK/EU teams with governance and clarity from day one.",
@@ -516,25 +544,6 @@
       "alreadySubscribed": "You're already on the list!"
     }
   },
-  "cookies": {
-    "title": "We value your privacy",
-    "description": "We use cookies to enhance your browsing experience and analyse site traffic. Choose which cookies you'd like to accept.",
-    "necessary": "Necessary",
-    "necessaryDesc": "Essential for the website to function. Cannot be disabled.",
-    "analytics": "Analytics",
-    "analyticsDesc": "Help us understand how visitors interact with our website.",
-    "marketing": "Marketing",
-    "marketingDesc": "Used to deliver relevant advertisements and track campaigns.",
-    "acceptAll": "Accept All",
-    "acceptSelected": "Accept Selected",
-    "rejectAll": "Reject All"
-  },
-  "common": {
-    "learnMore": "Learn more",
-    "getStarted": "Get started",
-    "contactUs": "Contact us",
-    "backToHome": "Back to home"
-  },
   "automationsPage": {
     "title": "Automation",
     "titleHighlight": "Library",
@@ -591,8 +600,16 @@
       "toolsInvolved": "Tools Involved",
       "typicalInputs": "Typical Inputs",
       "outputs": "Outputs",
-      "inputs": ["Trigger event/form", "Source data", "Rules/criteria"],
-      "outputsList": ["Automated actions", "Notifications", "Updated records"]
+      "inputs": [
+        "Trigger event/form",
+        "Source data",
+        "Rules/criteria"
+      ],
+      "outputsList": [
+        "Automated actions",
+        "Notifications",
+        "Updated records"
+      ]
     },
     "cta": {
       "title": "Don't see your workflow?",

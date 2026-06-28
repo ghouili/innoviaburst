@@ -36,6 +36,9 @@ export const flatRoutes = [
   { path: "/terms", source: "src/pages/TermsPage.tsx", changefreq: "yearly", priority: 0.4 },
   { path: "/works", source: "src/pages/WorkPage.tsx", changefreq: "monthly", priority: 0.7 },
   { path: "/coming-soon", source: "src/pages/ComingSoonPage.tsx", changefreq: "monthly", priority: 0.3 },
+  // Campaign landing page — pre-rendered + indexable-ready, but kept OUT of the
+  // sitemap (noindex flag) until launch is confirmed. Reached via the /en/ URL.
+  { path: "/lp/ai-automation", source: "src/pages/LandingPage.tsx", changefreq: "monthly", priority: 0.5, noindex: true },
   ...offers.map((o) => ({ path: `/${o.slug}`, source: o.source, changefreq: o.changefreq, priority: o.priority })),
   ...caseStudies.map((c) => ({ path: `/work/${c.slug}`, source: c.source, changefreq: c.changefreq, priority: c.priority })),
   // Pre-rendered but noindex — served as the real 404 body (nginx error_page).

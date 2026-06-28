@@ -14,47 +14,60 @@
     "menuLabel": "Menu de navigation"
   },
   "common": {
-    "optional": "Optionnel"
+    "learnMore": "En savoir plus",
+    "getStarted": "Commencer",
+    "contactUs": "Nous contacter",
+    "backToHome": "Retour à l'accueil"
   },
   "cookies": {
+    "title": "Nous respectons votre vie privée",
+    "description": "Nous utilisons des cookies pour améliorer votre navigation et analyser le trafic. Choisissez les cookies que vous acceptez.",
+    "necessary": "Nécessaires",
+    "necessaryDesc": "Essentiels au fonctionnement du site. Ne peuvent être désactivés.",
+    "analytics": "Analytiques",
+    "analyticsDesc": "Nous aident à comprendre comment les visiteurs interagissent avec notre site.",
+    "marketing": "Marketing",
+    "marketingDesc": "Utilisés pour diffuser des publicités pertinentes et suivre les campagnes.",
+    "acceptAll": "Tout accepter",
+    "acceptSelected": "Accepter la sélection",
+    "rejectAll": "Tout refuser",
     "bannerTitle": "Nous utilisons des cookies",
-    "bannerDesc": "Nous utilisons des cookies pour améliorer votre expérience et analyser l'usage du site. Les cookies non essentiels sont désactivés par défaut.",
-    "readPolicy": "Lire notre politique cookies",
+    "bannerDesc": "Nous utilisons des cookies pour améliorer votre expérience et analyser l’utilisation du site. Les cookies non essentiels sont désactivés par défaut.",
+    "readPolicy": "Lire notre politique de cookies",
+    "preferencesTitle": "Préférences de cookies",
     "actions": {
       "acceptAll": "Tout accepter",
-      "reject": "Refuser le non essentiel",
+      "reject": "Refuser les non essentiels",
       "manage": "Gérer les préférences",
-      "confirm": "Valider mes choix",
+      "confirm": "Confirmer mes choix",
       "back": "Retour"
     },
-    "preferencesTitle": "Préférences cookies",
     "groups": {
       "essential": {
         "title": "Cookies essentiels",
         "desc": "Nécessaires au fonctionnement du site. Ils ne peuvent pas être désactivés.",
-        "aria": "Cookies essentiels (toujours actifs)"
+        "aria": "Cookies essentiels (toujours activés)"
       },
       "functional": {
         "title": "Cookies fonctionnels",
-        "desc": "Activent des fonctionnalités utiles et améliorent l'expérience.",
+        "desc": "Mémorisent vos préférences (comme la langue) pour améliorer votre expérience.",
         "aria": "Cookies fonctionnels"
       },
       "analytics": {
-        "title": "Cookies d'analyse",
-        "desc": "Aident à comprendre l'usage du site pour l'améliorer.",
-        "aria": "Cookies d'analyse"
+        "title": "Cookies analytiques",
+        "desc": "Nous aident à comprendre comment les visiteurs utilisent le site afin de l’améliorer.",
+        "aria": "Cookies analytiques"
       },
       "marketing": {
         "title": "Cookies marketing",
-        "desc": "Utilisés pour diffuser des publicités pertinentes et mesurer leur efficacité.",
+        "desc": "Utilisés pour diffuser des publicités pertinentes et mesurer l’efficacité des campagnes.",
         "aria": "Cookies marketing"
       }
     }
   },
   "stickyBar": {
-    "label": "Actions rapides",
     "primaryCta": "Demander un plan d'automatisation",
-    "secondaryCta": "Réserver un appel de 15 min"
+    "secondaryCta": "Réserver un appel (15 min)"
   },
   "hero": {
     "headlinePre": "Livrez",
@@ -69,6 +82,25 @@
       "delivery": "Première livraison en ~10 jours",
       "gdpr": "Conforme RGPD UK",
       "agnostic": "Compatible tous outils"
+    },
+    "eyebrow": "IA & automatisation conformes par conception",
+    "h1Pre": "L'automatisation IA que votre ",
+    "h1Accent": "DPO et votre direction",
+    "h1Post": " approuvent tous les deux.",
+    "lede": "Automatisations de workflows, copilotes IA et MVPs conformes au RGPD dès la conception pour les PME européennes — périmètre fixe, en production en quelques semaines, avec la piste d'audit intégrée.",
+    "ctaShipped": "Voir ce que nous avons livré",
+    "ctaScope": "Obtenez un périmètre fixe en 48h",
+    "chips": {
+      "delivery": "Premier workflow en production en ~10 jours",
+      "compliance": "Prêt RGPD & règlement IA de l'UE",
+      "price": "À partir de 5 000 €",
+      "residency": "Vos données restent dans l'UE"
+    },
+    "stage": {
+      "tag": "Les opérations, en ordre",
+      "stat0": "Première livraison en ~10 jours",
+      "stat1": "Des heures gagnées chaque semaine",
+      "stat2": "Conforme RGPD UE"
     }
   },
   "proofStrip": {
@@ -379,10 +411,6 @@
     "emailUs": "Nous écrire",
     "formTitle": "Ou parlez-nous de votre projet"
   },
-  "stickyBar": {
-    "primaryCta": "Demander un plan d'automatisation",
-    "secondaryCta": "Réserver un appel (15 min)"
-  },
   "footer": {
     "tagline": "IA & automatisation livrées en semaines. Focus UK/EU, conformité intégrée.",
     "description": "IA & automatisation livrées en semaines. Pensé pour les équipes UK/EU avec gouvernance et clarté dès le départ.",
@@ -516,25 +544,6 @@
       "alreadySubscribed": "Vous êtes déjà inscrit !"
     }
   },
-  "cookies": {
-    "title": "Nous respectons votre vie privée",
-    "description": "Nous utilisons des cookies pour améliorer votre navigation et analyser le trafic. Choisissez les cookies que vous acceptez.",
-    "necessary": "Nécessaires",
-    "necessaryDesc": "Essentiels au fonctionnement du site. Ne peuvent être désactivés.",
-    "analytics": "Analytiques",
-    "analyticsDesc": "Nous aident à comprendre comment les visiteurs interagissent avec notre site.",
-    "marketing": "Marketing",
-    "marketingDesc": "Utilisés pour diffuser des publicités pertinentes et suivre les campagnes.",
-    "acceptAll": "Tout accepter",
-    "acceptSelected": "Accepter la sélection",
-    "rejectAll": "Tout refuser"
-  },
-  "common": {
-    "learnMore": "En savoir plus",
-    "getStarted": "Commencer",
-    "contactUs": "Nous contacter",
-    "backToHome": "Retour à l'accueil"
-  },
   "automationsPage": {
     "title": "Bibliothèque",
     "titleHighlight": "d'Automatisations",
@@ -591,8 +600,16 @@
       "toolsInvolved": "Outils utilisés",
       "typicalInputs": "Entrées typiques",
       "outputs": "Sorties",
-      "inputs": ["Événement/formulaire déclencheur", "Données sources", "Règles/critères"],
-      "outputsList": ["Actions automatisées", "Notifications", "Enregistrements mis à jour"]
+      "inputs": [
+        "Événement/formulaire déclencheur",
+        "Données sources",
+        "Règles/critères"
+      ],
+      "outputsList": [
+        "Actions automatisées",
+        "Notifications",
+        "Enregistrements mis à jour"
+      ]
     },
     "cta": {
       "title": "Vous ne trouvez pas votre workflow ?",

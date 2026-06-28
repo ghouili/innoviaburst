@@ -25,6 +25,7 @@ import WorkPage from "./pages/WorkPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import IndustriesPage from "./pages/IndustriesPage";
 import ComingSoonPage from "./pages/ComingSoonPage";
+import LandingPage from "./pages/LandingPage";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ export function AppShell() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/industries" element={<IndustriesPage />} />
             <Route path="/coming-soon" element={<ComingSoonPage />} />
+            <Route path="/lp/ai-automation" element={<LandingPage />} />
             <Route path="/trust" element={<TrustPage />} />
             <Route path="/subprocessors" element={<SubprocessorsPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />

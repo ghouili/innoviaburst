@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
-import { HeroSection } from "@/components/sections/HeroSection";
+import { HeroShell } from "@/components/sections/heroes/HeroShell";
+import { AutomationLaneVisual } from "@/components/sections/heroes/AutomationLaneVisual";
 import { ProofStrip } from "@/components/sections/ProofStrip";
 import { OffersSection } from "@/components/sections/OffersSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
@@ -60,10 +61,10 @@ const Index = () => {
       <div className="min-h-screen bg-background">
         <Navbar onBookingClick={() => setIsBookingOpen(true)} />
         <main id="main-content">
-          {/* 1. Hero */}
-          <HeroSection 
-            onBookingClick={() => setIsBookingOpen(true)} 
-            onRequestClick={() => setIsRequestOpen(true)}
+          {/* 1. Hero — Design 1 (Automation lane panel) */}
+          <HeroShell
+            visual={<AutomationLaneVisual className="w-full" />}
+            onScopeClick={() => setIsRequestOpen(true)}
           />
           
           {/* 2. Proof bar */}
