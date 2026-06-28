@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -56,6 +57,7 @@ const subprocessors = [
 ];
 
 export default function SubprocessorsPage() {
+  const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const jsonLd = useMemo(
@@ -74,8 +76,8 @@ export default function SubprocessorsPage() {
   return (
     <>
       <SeoHead
-        title="Sub-Processors | Innoviaburst"
-        description="List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling."
+        title={t("seo.subprocessors.title")}
+        description={t("seo.subprocessors.description")}
         canonicalPath="/subprocessors"
         alternates={buildAlternates("/subprocessors")}
         jsonLd={jsonLd}

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -8,11 +9,12 @@ import { ArrowLeft } from "lucide-react";
 import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 export default function TermsPage() {
+  const { t } = useTranslation();
   return (
     <>
       <SeoHead
-        title="Terms of Service | Innoviaburst"
-        description="Innoviaburst Terms of Service - Terms and conditions for using our website and services."
+        title={t("seo.terms.title")}
+        description={t("seo.terms.description")}
         canonicalPath="/terms"
         alternates={buildAlternates("/terms")}
         jsonLd={[

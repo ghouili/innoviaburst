@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -136,6 +137,7 @@ const industries = [
 ];
 
 export default function IndustriesPage() {
+  const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const primaryIndustries = industries.filter(i => i.primary);
@@ -156,8 +158,8 @@ export default function IndustriesPage() {
   return (
     <>
       <SeoHead
-        title="Industries We Serve | Innoviaburst"
-        description="Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
+        title={t("seo.industries.title")}
+        description={t("seo.industries.description")}
         canonicalPath="/industries"
         alternates={buildAlternates("/industries")}
         jsonLd={jsonLd}

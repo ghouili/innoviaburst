@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroShell } from "@/components/sections/heroes/HeroShell";
@@ -19,6 +20,7 @@ import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 const Index = () => {
+  const { t } = useTranslation();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isRequestOpen, setIsRequestOpen] = useState(false);
   const location = useLocation();
@@ -44,8 +46,8 @@ const Index = () => {
   return (
     <>
       <SeoHead
-        title="Innoviaburst | AI & Automation for UK/EU SMEs — Delivered in Weeks"
-        description="We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
+        title={t("seo.home.title")}
+        description={t("seo.home.description")}
         canonicalPath="/"
         alternates={buildAlternates("/")}
         jsonLd={[

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -8,11 +9,12 @@ import { ArrowLeft } from "lucide-react";
 import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 export default function CookiesPage() {
+  const { t } = useTranslation();
   return (
     <>
       <SeoHead
-        title="Cookie Policy | Innoviaburst"
-        description="Innoviaburst Cookie Policy - How we use cookies and similar technologies."
+        title={t("seo.cookies.title")}
+        description={t("seo.cookies.description")}
         canonicalPath="/cookies"
         alternates={buildAlternates("/cookies")}
         jsonLd={[

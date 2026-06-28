@@ -35,8 +35,8 @@ const LandingPage = () => {
   return (
     <>
       <SeoHead
-        title="AI Automation for European SMEs — GDPR-by-design | InnoviaBurst"
-        description="Fixed-scope AI automations, copilots and MVPs for European SMEs — live in weeks, GDPR & EU AI Act-ready, with EU data residency."
+        title={t("seo.lp.title")}
+        description={t("seo.lp.description")}
         canonicalPath="/lp/ai-automation"
         jsonLd={[
           orgJsonLd(),

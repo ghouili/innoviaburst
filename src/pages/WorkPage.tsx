@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -46,6 +47,7 @@ const caseStudies = [
 ];
 
 export default function WorkPage() {
+  const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
 
   const breadcrumbSchema = useMemo(
@@ -76,8 +78,8 @@ export default function WorkPage() {
   return (
     <>
       <SeoHead
-        title="Our Work — Case Studies | Innoviaburst"
-        description="Real automation projects with measurable outcomes. See how we've helped UK/EU businesses save time, reduce errors, and scale operations."
+        title={t("seo.works.title")}
+        description={t("seo.works.description")}
         canonicalPath="/works"
         alternates={buildAlternates("/works")}
         jsonLd={[orgJsonLd(), websiteJsonLd(), breadcrumbSchema, workListSchema]}

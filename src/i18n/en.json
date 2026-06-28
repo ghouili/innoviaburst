@@ -1177,5 +1177,39 @@
       "playbook": "Playbook",
       "reference": "Reference"
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Innoviaburst | AI & Automation for UK/EU SMEs — Delivered in Weeks",
+      "description": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
+    },
+    "industries": {
+      "title": "Industries We Serve | Innoviaburst",
+      "description": "Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
+    },
+    "works": {
+      "title": "Our Work — Case Studies | Innoviaburst",
+      "description": "Real automation projects with measurable outcomes. See how we have helped UK/EU businesses save time, reduce errors, and scale operations."
+    },
+    "lp": {
+      "title": "AI Automation for European SMEs — GDPR-by-design | InnoviaBurst",
+      "description": "Fixed-scope AI automations, copilots and MVPs for European SMEs — live in weeks, GDPR & EU AI Act-ready, with EU data residency."
+    },
+    "cookies": {
+      "title": "Cookie Policy | Innoviaburst",
+      "description": "Innoviaburst Cookie Policy — how we use cookies and similar technologies."
+    },
+    "privacy": {
+      "title": "Privacy Policy | Innoviaburst",
+      "description": "Innoviaburst Privacy Policy — how we collect, use, and protect your personal data."
+    },
+    "terms": {
+      "title": "Terms of Service | Innoviaburst",
+      "description": "Innoviaburst Terms of Service — terms and conditions for using our website and services."
+    },
+    "subprocessors": {
+      "title": "Sub-Processors | Innoviaburst",
+      "description": "List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling."
+    }
   }
 }

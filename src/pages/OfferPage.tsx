@@ -228,8 +228,8 @@ export default function OfferPage() {
   return (
     <>
       <SeoHead
-        title={`${offer.title} | ${offer.price} | Innoviaburst`}
-        description={`${offer.heroDescription} Timeline: ${offer.timeline}. ${offer.price}.`}
+        title={`${offer.title} | Innoviaburst`}
+        description={`${offer.heroDescription} Timeline: ${offer.timeline}.`}
         canonicalPath={canonicalPath}
         alternates={canonicalPath ? buildAlternates(canonicalPath) : undefined}
         ogType="website"

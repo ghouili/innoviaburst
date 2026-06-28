@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -8,11 +9,12 @@ import { ArrowLeft } from "lucide-react";
 import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
 export default function PrivacyPage() {
+  const { t } = useTranslation();
   return (
     <>
       <SeoHead
-        title="Privacy Policy | Innoviaburst"
-        description="Innoviaburst Privacy Policy - How we collect, use, and protect your personal data."
+        title={t("seo.privacy.title")}
+        description={t("seo.privacy.description")}
         canonicalPath="/privacy"
         alternates={buildAlternates("/privacy")}
         jsonLd={[

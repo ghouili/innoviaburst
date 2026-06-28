@@ -1177,5 +1177,39 @@
       "playbook": "Guide pratique",
       "reference": "Référence"
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Innoviaburst | IA & Automatisation pour PME UK/EU — Livré en semaines",
+      "description": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVP avec une livraison conforme. Livraison rapide, en semaines."
+    },
+    "industries": {
+      "title": "Secteurs que nous servons | Innoviaburst",
+      "description": "Expertise en automatisation pour les PME de services professionnels, le SaaS B2B et plus. Livraison axée UK/EU, soucieuse de la conformité."
+    },
+    "works": {
+      "title": "Nos réalisations — Études de cas | Innoviaburst",
+      "description": "Des projets d’automatisation réels aux résultats mesurables. Découvrez comment nous aidons les entreprises UK/EU à gagner du temps et à passer à l’échelle."
+    },
+    "lp": {
+      "title": "Automatisation IA pour les PME européennes — conforme par conception | InnoviaBurst",
+      "description": "Automatisations IA, copilotes et MVP à périmètre fixe pour les PME européennes — en production en semaines, prêts RGPD & règlement IA de l’UE."
+    },
+    "cookies": {
+      "title": "Politique de cookies | Innoviaburst",
+      "description": "Politique de cookies d’Innoviaburst — comment nous utilisons les cookies et technologies similaires."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité | Innoviaburst",
+      "description": "Politique de confidentialité d’Innoviaburst — comment nous collectons, utilisons et protégeons vos données personnelles."
+    },
+    "terms": {
+      "title": "Conditions d’utilisation | Innoviaburst",
+      "description": "Conditions d’utilisation d’Innoviaburst — conditions générales d’utilisation de notre site et de nos services."
+    },
+    "subprocessors": {
+      "title": "Sous-traitants | Innoviaburst",
+      "description": "Liste des sous-traitants tiers utilisés par Innoviaburst pour la prestation de services. Transparence totale sur le traitement des données."
+    }
   }
 }
