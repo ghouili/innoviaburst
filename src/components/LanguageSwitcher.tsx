@@ -111,72 +111,18 @@
 //   );
 // }
 
-import { useTranslation } from "react-i18next";
-import { Globe } from "lucide-react";
-
-const languages = [
-  { code: "fr", label: "FR", full: "Français" }, // ✅ left
-  { code: "en", label: "EN", full: "English" }, // ✅ right
-];
-
+/**
+ * HIDDEN until Phase 5 (returns null).
+ *
+ * The previous implementation was a client-only toggle: it swapped i18n content
+ * but left the URL and <html lang> at /en — a dead/misleading language control
+ * and the exact SEO anti-pattern this rebuild removes. The segmented-control UI
+ * is preserved in the commented blocks above for reference.
+ *
+ * Phase 5 HARD REQUIREMENT: restore a WORKING toggle that navigates real
+ * /en <-> /fr URLs (correct <html lang> + hreflang). FR strings already exist
+ * in fr.json. Do not re-ship a client-only swap.
+ */
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation();
-  const currentLang = i18n.language?.startsWith("fr") ? "fr" : "en";
-
-  const isEN = currentLang === "en"; // EN is on the RIGHT
-
-  const handleChange = (langCode: string) => {
-    i18n.changeLanguage(langCode);
-  };
-
-  return (
-    <div className="inline-flex items-center gap-1 shrink-0 self-center leading-none">
-      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl">
-        <Globe className="h-4 w-4 text-muted-foreground" />
-      </span>
-
-      <div
-        className="relative inline-flex h-9 w-[92px] items-center rounded-xl border border-border bg-muted/60 p-1 overflow-hidden"
-        role="group"
-        aria-label="Language switcher"
-      >
-        {/* Sliding pill */}
-        <span
-          aria-hidden="true"
-          className={[
-            "absolute inset-y-1 start-1 w-[calc(50%-0.25rem)]",
-            "rounded-lg bg-background shadow-sm",
-            "transform transition-transform duration-200 ease-out",
-            "motion-reduce:transition-none",
-            isEN ? "translate-x-full" : "translate-x-0", // ✅ move right when EN
-          ].join(" ")}
-        />
-
-        {languages.map((lang) => {
-          const active = currentLang === lang.code;
-
-          return (
-            <button
-              key={lang.code}
-              type="button"
-              onClick={() => handleChange(lang.code)} // ✅ FIX: click sets that language
-              aria-label={`Switch to ${lang.full}`}
-              aria-pressed={active} // toggle button semantics :contentReference[oaicite:1]{index=1}
-              className={[
-                "relative z-10 flex-1 h-full rounded-lg",
-                "text-xs font-semibold",
-                "transition-colors motion-reduce:transition-none",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background",
-                active
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
-              ].join(" ")}
-            >
-              {lang.label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
+  return null;
 }
