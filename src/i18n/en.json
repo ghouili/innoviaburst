@@ -19,7 +19,8 @@
     "getStarted": "Get started",
     "contactUs": "Contact us",
     "backToHome": "Back to home",
-    "skipLink": "Skip to main content"
+    "skipLink": "Skip to main content",
+    "fixedPriceNote": "Fixed-price · scoped in 48h"
   },
   "cookies": {
     "title": "We value your privacy",
@@ -349,7 +350,8 @@
       "metrics": "Time-to-market, user activation rate",
       "multiSystem": "Multiple",
       "documentation": "Full"
-    }
+    },
+    "noPriceAnswer": "Every project is fixed-price and scoped in 48 hours, with no hourly surprises — we share the exact figure on a short scoping call."
   },
   "work": {
     "title": "Our Work",
@@ -2177,7 +2179,8 @@
       "faq": "Frequently Asked Questions",
       "billing": {
         "title": "Billing & Payment",
-        "body": "Invoices in EUR or GBP. Payment accepted via UK bank transfer or Wise. Typical terms: 50% upfront, 50% on completion."
+        "body": "Invoices in EUR or GBP. Payment accepted via UK bank transfer or Wise. Typical terms: 50% upfront, 50% on completion.",
+        "bodyNoPrice": "Fixed-price engagements, invoiced in EUR or GBP — a deposit to start, then milestone payments."
       },
       "finalCta": {
         "title": "Ready to get started?",

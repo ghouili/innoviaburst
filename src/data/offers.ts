@@ -14,6 +14,20 @@
  *   MVP Launch       from €25,000        / from £22,000
  */
 
+/**
+ * TEMPORARY pricing kill-switch.
+ *
+ * `false` → NO price is displayed anywhere (hero chip, offer cards, comparison
+ * table, offer-page badge, billing figures) and the AEO "how much" answer renders
+ * a no-figure reply; the Service/Offer schema OMITS price/priceCurrency entirely
+ * (no Offer node) — while the price DATA in OFFERS below stays intact.
+ *
+ * `true`  → restores every price AND the priced schema exactly as before.
+ *
+ * This is the ONE switch every price-rendering site reads. Flip and rebuild.
+ */
+export const SHOW_PRICING = false;
+
 export interface Money {
   /** Lower bound, or the single fixed price. */
   min: number;
@@ -82,7 +96,8 @@ export const priceInline = (slug: string): string => {
  */
 export const schemaOffers = (slug: string): { priceCurrency: string; price: number; priceRange?: string }[] => {
   const o = OFFERS[slug];
-  if (!o) return [];
+  // Pricing hidden → omit the Offer node entirely (never emit an empty/zero price).
+  if (!o || !SHOW_PRICING) return [];
   return [
     { priceCurrency: "EUR", price: o.eur.min, priceRange: o.eur.max != null ? formatMoney(o.eur, "EUR") : undefined },
     { priceCurrency: "GBP", price: o.gbp.min, priceRange: o.gbp.max != null ? formatMoney(o.gbp, "GBP") : undefined },

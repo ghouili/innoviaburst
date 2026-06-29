@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check, X, Clock, ChevronDown, ChevronUp, CreditCard } from "lucide-react";
 import { breadcrumbJsonLd, faqJsonLd, orgJsonLd, serviceJsonLd, websiteJsonLd } from "@/seo/jsonld";
 // Phase 8: pricing comes from the single source of truth (EUR primary + GBP).
-import { OFFERS, priceEUR, priceGBP, priceInline, schemaOffers } from "@/data/offers";
+import { OFFERS, priceEUR, priceGBP, priceInline, schemaOffers, SHOW_PRICING } from "@/data/offers";
 
 interface OfferContent {
   title: string;
@@ -51,7 +51,13 @@ export default function OfferPage() {
         // offers.ts. These map 1:1 into the FAQPage schema below.
         aeo: (t(`offerDetails.${slug}.aeo`, { returnObjects: true }) as { q: string; a: string }[]).map((x) => ({
           q: x.q,
-          a: x.a.replace(/\{\{price\}\}/g, priceInline(slug)),
+          // Pricing hidden → swap the {{price}} ("how much") answer for a no-figure
+          // reply (used for BOTH display and the FAQPage schema). Never leak {{price}}.
+          a: SHOW_PRICING
+            ? x.a.replace(/\{\{price\}\}/g, priceInline(slug))
+            : x.a.includes("{{price}}")
+              ? t("offers.noPriceAnswer")
+              : x.a,
         })),
         faq: t(`offerDetails.${slug}.faq`, { returnObjects: true }) as { q: string; a: string }[],
       }
@@ -162,10 +168,13 @@ export default function OfferPage() {
                     <Clock className="w-4 h-4 text-accent" />
                     <span className="text-sm font-medium">{offer.timeline}</span>
                   </div>
-                  <div className="px-4 py-2 bg-accent/20 rounded-lg">
-                    <span className="text-lg font-bold text-gradient-orange">{priceEUR(slug)}</span>
-                    <span className="ml-2 text-sm font-medium text-muted-foreground">{priceGBP(slug)}</span>
-                  </div>
+                  {/* Pricing hidden → hide the price badge; the timeline chip + CTA remain. */}
+                  {SHOW_PRICING && (
+                    <div className="px-4 py-2 bg-accent/20 rounded-lg">
+                      <span className="text-lg font-bold text-gradient-orange">{priceEUR(slug)}</span>
+                      <span className="ml-2 text-sm font-medium text-muted-foreground">{priceGBP(slug)}</span>
+                    </div>
+                  )}
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-6">
@@ -337,7 +346,8 @@ export default function OfferPage() {
               <div>
                 <h3 className="font-semibold text-foreground mb-1">{t("offerPage.ui.billing.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  {t("offerPage.ui.billing.body")}
+                  {/* Pricing hidden → drop the payment-split figures, keep the model. */}
+                  {SHOW_PRICING ? t("offerPage.ui.billing.body") : t("offerPage.ui.billing.bodyNoPrice")}
                 </p>
               </div>
             </div>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Clock, ShieldCheck, Sparkles, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PillBadge } from "@/components/ui/pill-badge";
+import { SHOW_PRICING } from "@/data/offers";
 
 interface HeroShellProps {
   /** Right-column visual (Design 1 panel or Design 2 canvas). Swap this to switch heroes. */
@@ -93,7 +94,8 @@ export function HeroShell({ visual, onScopeClick }: HeroShellProps) {
                 <li key={key}>
                   <PillBadge variant={variant}>
                     <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                    {t(`hero.chips.${key}`)}
+                    {/* Pricing hidden → swap the price chip for a non-price note (no bare "From €…"). */}
+                    {key === "price" && !SHOW_PRICING ? t("common.fixedPriceNote") : t(`hero.chips.${key}`)}
                   </PillBadge>
                 </li>
               ))}

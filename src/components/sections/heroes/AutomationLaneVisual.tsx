@@ -572,7 +572,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
    * and replaces the lane contents with the live (or reduced-motion) state.
    */
   return (
-    <div ref={rootRef} className={`ialane panel ${className}`.trim()}>
+    <div ref={rootRef} className={`bg-white ialane panel ${className}`.trim()}>
       {/* CSS injected raw — a JSX text child gets HTML-escaped (content:"" -> &quot;),
           which mismatches the client on hydration (#425). */}
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />

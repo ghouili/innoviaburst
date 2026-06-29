@@ -17,7 +17,8 @@
     "learnMore": "En savoir plus",
     "getStarted": "Commencer",
     "contactUs": "Nous contacter",
-    "backToHome": "Retour à l'accueil"
+    "backToHome": "Retour à l'accueil",
+    "fixedPriceNote": "Prix fixe · cadré en 48 h"
   },
   "cookies": {
     "title": "Nous respectons votre vie privée",
@@ -346,7 +347,8 @@
       "metrics": "Time-to-market, taux d'activation utilisateur",
       "multiSystem": "Multiple",
       "documentation": "Complète"
-    }
+    },
+    "noPriceAnswer": "Chaque projet est à prix fixe et cadré en 48 heures, sans mauvaise surprise horaire — nous communiquons le montant exact lors d'un court appel de cadrage."
   },
   "work": {
     "title": "Nos Réalisations",
@@ -1206,6 +1208,13 @@
     "subprocessors": {
       "title": "Sous-traitants | Innoviaburst",
       "description": "Liste des sous-traitants tiers utilisés par Innoviaburst pour la prestation de services. Transparence totale sur le traitement des données."
+    }
+  },
+  "offerPage": {
+    "ui": {
+      "billing": {
+        "bodyNoPrice": "Missions à prix fixe, facturées en EUR ou GBP — un acompte pour démarrer, puis des paiements par jalons."
+      }
     }
   }
 }

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/collapsible";
 // Phase 8: prices come from the single source of truth (EUR primary + GBP),
 // not i18n, so the cards / table / offer pages / schema can never disagree.
-import { priceEUR, priceGBP } from "@/data/offers";
+import { priceEUR, priceGBP, SHOW_PRICING } from "@/data/offers";
 
 // Offer keys for i18n lookup
 const offerKeys = [
@@ -39,7 +39,9 @@ const rowKeys = [
 
 function OffersComparisonTable() {
   const { t } = useTranslation();
-  
+  // Pricing hidden → drop the "Starting price" row entirely (no empty cells).
+  const rows = SHOW_PRICING ? rowKeys : rowKeys.filter((r) => r.valueKey !== "price");
+
   return (
     <div className="min-w-[560px]">
       <table className="w-full text-sm">
@@ -68,11 +70,11 @@ function OffersComparisonTable() {
       </thead>
 
       <tbody className="text-muted-foreground">
-        {rowKeys.map((row, rowIdx) => (
+        {rows.map((row, rowIdx) => (
           <tr
             key={row.labelKey}
             className={
-              rowIdx < rowKeys.length - 1 ? "border-b border-border/50" : ""
+              rowIdx < rows.length - 1 ? "border-b border-border/50" : ""
             }
           >
             <td className="py-2 px-3 sm:py-3 sm:px-4 text-foreground/90 text-xs sm:text-sm">{t(row.labelKey)}</td>
@@ -212,10 +214,17 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                   </div>
                 </div>
                 <div className="space-y-6">
-                  {/* Price — EUR primary, explicit GBP (from src/data/offers.ts) */}
+                  {/* Price — EUR primary, explicit GBP (from src/data/offers.ts).
+                      Pricing hidden → no-price note in its place (CTA stays below, no gap). */}
                   <div className="pt-2 border-t border-border">
-                    <p className="text-2xl font-bold text-gradient-orange">{priceEUR(offer.slug)}</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">{priceGBP(offer.slug)}</p>
+                    {SHOW_PRICING ? (
+                      <>
+                        <p className="text-2xl font-bold text-gradient-orange">{priceEUR(offer.slug)}</p>
+                        <p className="text-sm text-muted-foreground mt-0.5">{priceGBP(offer.slug)}</p>
+                      </>
+                    ) : (
+                      <p className="text-base font-semibold text-foreground">{t("common.fixedPriceNote")}</p>
+                    )}
                   </div>
 
                   {/* CTA - Links to offer page */}
