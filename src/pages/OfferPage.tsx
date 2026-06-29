@@ -11,24 +11,13 @@ import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check, X, Clock, ChevronDown, ChevronUp, CreditCard } from "lucide-react";
 import { breadcrumbJsonLd, faqJsonLd, orgJsonLd, serviceJsonLd, websiteJsonLd } from "@/seo/jsonld";
-
-/**
- * Price-only metadata. The localizable offer COPY now lives in i18n
- * (`offerDetails.<slug>.*` — see en.json), so /fr renders French once the FR
- * strings are supplied. Phase 8 replaces this with src/data/offers.ts
- * (EUR-primary + GBP). Keep price OUT of i18n.
- */
-const OFFER_META: Record<string, { price: string }> = {
-  "ai-ops-sprint": { price: "From £5k" },
-  "automation-build": { price: "£15k–£30k" },
-  "mvp-launch": { price: "From £25k" },
-};
+// Phase 8: pricing comes from the single source of truth (EUR primary + GBP).
+import { OFFERS, priceEUR, priceGBP, priceInline, schemaOffers } from "@/data/offers";
 
 interface OfferContent {
   title: string;
   timeline: string;
   bestFor: string;
-  price: string;
   heroDescription: string;
   deliverables: string[];
   exclusions: string[];
@@ -46,24 +35,23 @@ export default function OfferPage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const meta = slug ? OFFER_META[slug] : null;
+  const meta = slug ? OFFERS[slug] : null;
   const offer: OfferContent | null = meta
     ? {
         title: t(`offerDetails.${slug}.title`),
         timeline: t(`offerDetails.${slug}.timeline`),
         bestFor: t(`offerDetails.${slug}.bestFor`),
-        price: meta.price,
         heroDescription: t(`offerDetails.${slug}.heroDescription`),
         deliverables: t(`offerDetails.${slug}.deliverables`, { returnObjects: true }) as string[],
         exclusions: t(`offerDetails.${slug}.exclusions`, { returnObjects: true }) as string[],
         successMetrics: t(`offerDetails.${slug}.successMetrics`, { returnObjects: true }) as { metric: string; example: string }[],
         weekByWeek: t(`offerDetails.${slug}.weekByWeek`, { returnObjects: true }) as { week: string; activities: string[] }[],
         clientInputs: t(`offerDetails.${slug}.clientInputs`, { returnObjects: true }) as string[],
-        // Phase 6 AEO: answer-first Q&A. {{price}} interpolated from OFFER_META
-        // (Phase 8 owns pricing). These map 1:1 into the FAQPage schema below.
+        // Phase 6 AEO: answer-first Q&A. {{price}} -> EUR primary + GBP from
+        // offers.ts. These map 1:1 into the FAQPage schema below.
         aeo: (t(`offerDetails.${slug}.aeo`, { returnObjects: true }) as { q: string; a: string }[]).map((x) => ({
           q: x.q,
-          a: x.a.replace(/\{\{price\}\}/g, meta.price),
+          a: x.a.replace(/\{\{price\}\}/g, priceInline(slug)),
         })),
         faq: t(`offerDetails.${slug}.faq`, { returnObjects: true }) as { q: string; a: string }[],
       }
@@ -83,23 +71,14 @@ export default function OfferPage() {
       )
     : null;
 
+  // EUR-primary Service/Offer schema (EUR + explicit GBP), straight from offers.ts.
   const serviceSchema = offer
-    ? (() => {
-        // Parse the "from"/low value, handling the "k" thousands suffix
-        // ("From £5k" -> 5000, "£15k–£30k" -> 15000). NOTE(Phase 8): replace
-        // this string-parsing with the canonical numbers from offers.ts (EUR).
-        const m = offer.price.match(/(\d+(?:\.\d+)?)\s*(k)?/i);
-        const parsedPrice = m ? Number.parseFloat(m[1]) * (m[2] ? 1000 : 1) : undefined;
-        const isRange = /[–-]/.test(offer.price);
-        return serviceJsonLd({
-          name: offer.title,
-          description: offer.heroDescription,
-          url: `${siteUrl}/${slug}`,
-          price: parsedPrice,
-          priceCurrency: "GBP",
-          priceRange: isRange ? offer.price : undefined,
-        });
-      })()
+    ? serviceJsonLd({
+        name: offer.title,
+        description: offer.heroDescription,
+        url: `${siteUrl}/${slug}`,
+        offers: schemaOffers(slug),
+      })
     : null;
 
   const breadcrumbSchema = offer
@@ -184,7 +163,8 @@ export default function OfferPage() {
                     <span className="text-sm font-medium">{offer.timeline}</span>
                   </div>
                   <div className="px-4 py-2 bg-accent/20 rounded-lg">
-                    <span className="text-lg font-bold text-gradient-orange">{offer.price}</span>
+                    <span className="text-lg font-bold text-gradient-orange">{priceEUR(slug)}</span>
+                    <span className="ml-2 text-sm font-medium text-muted-foreground">{priceGBP(slug)}</span>
                   </div>
                 </div>
 

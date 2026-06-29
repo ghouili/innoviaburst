@@ -21,7 +21,13 @@ const DEFAULT_PAGES = [
   "en/mvp-launch/index.html",
   "en/lp/ai-automation/index.html",
   "en/work/professional-services-client-onboarding/index.html",
+  "en/work/saas-support-ticket-triage/index.html",
+  "en/about/index.html",
   "en/privacy/index.html",
+  // A couple of /fr pages to confirm localized schema validates too.
+  "fr/index.html",
+  "fr/ai-ops-sprint/index.html",
+  "fr/about/index.html",
 ];
 const pages = process.argv.slice(2).length ? process.argv.slice(2) : DEFAULT_PAGES;
 
@@ -54,9 +60,13 @@ function checkNode(node, where, push) {
   if (t.includes("Service")) {
     for (const k of ["name", "provider"]) if (!has(node, k)) push(`${where} [Service]: missing ${k}`);
     if (node.offers) {
-      const off = node.offers;
-      for (const k of ["price", "priceCurrency", "availability"]) if (!has(off, k)) push(`${where} [Offer]: missing ${k}`);
-      if (off.price != null && Number.isNaN(Number(off.price))) push(`${where} [Offer]: price not numeric (${off.price})`);
+      // `offers` may be a single Offer or an array of Offers (e.g. EUR + GBP).
+      const offerList = Array.isArray(node.offers) ? node.offers : [node.offers];
+      offerList.forEach((off, oi) => {
+        const label = offerList.length > 1 ? `[Offer#${oi}]` : "[Offer]";
+        for (const k of ["price", "priceCurrency", "availability"]) if (!has(off, k)) push(`${where} ${label}: missing ${k}`);
+        if (off.price != null && Number.isNaN(Number(off.price))) push(`${where} ${label}: price not numeric (${off.price})`);
+      });
     }
   }
   if (t.includes("FAQPage")) {

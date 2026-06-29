@@ -2,8 +2,8 @@
   "_instructions": "Return native French for every value under en_to_translate (keep the EXACT same key paths) and drop it into src/i18n/fr.json. Also review/replace fr_to_review (FR drafted by the assistant). Do NOT machine-translate. Keep {{price}}/{{lang}} placeholders and the en-dashes/%/& exactly.",
   "_counts": {
     "keysToTranslate": 329,
-    "enLeaves": 1013,
-    "frLeaves": 684
+    "enLeaves": 1010,
+    "frLeaves": 681
   },
   "en_to_translate": {
     "nav": {
@@ -137,7 +137,7 @@
           },
           {
             "q": "How much does the AI Ops Sprint cost?",
-            "a": "Pricing is fixed and agreed before any work begins: {{price}}. There are no hourly rates or surprises — scope is locked at kickoff. Invoices are issued in GBP on 50% upfront, 50% on completion terms, and most clients recover the cost within two to four weeks through the hours saved on manual tasks."
+            "a": "Pricing is fixed and agreed before any work begins: {{price}}. There are no hourly rates or surprises — scope is locked at kickoff. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and most clients recover the cost within two to four weeks through the hours saved on manual tasks."
           }
         ]
       },
@@ -259,7 +259,7 @@
           },
           {
             "q": "How much does the Automation Build cost?",
-            "a": "Pricing is fixed and agreed before any work begins: {{price}}, depending on the number of systems and complexity. There are no hourly rates — scope is locked after the discovery workshop. Invoices are issued in GBP on 50% upfront, 50% on completion terms, with most builds freeing one to two FTE-equivalent of capacity."
+            "a": "Pricing is fixed and agreed before any work begins: {{price}}, depending on the number of systems and complexity. There are no hourly rates — scope is locked after the discovery workshop. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, with most builds freeing one to two FTE-equivalent of capacity."
           }
         ]
       },
@@ -388,7 +388,7 @@
           },
           {
             "q": "How much does the MVP Launch cost?",
-            "a": "Pricing is fixed and agreed before any work begins: {{price}}, set by the scope confirmed in the discovery workshop. There are no hourly rates or surprises. Invoices are issued in GBP on 50% upfront, 50% on completion terms, and you receive full ownership of the codebase on completion."
+            "a": "Pricing is fixed and agreed before any work begins: {{price}}, set by the scope confirmed in the discovery workshop. There are no hourly rates or surprises. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and you receive full ownership of the codebase on completion."
           }
         ]
       }
@@ -984,7 +984,7 @@
         "faq": "Frequently Asked Questions",
         "billing": {
           "title": "Billing & Payment",
-          "body": "Invoices in GBP. Payment accepted via UK bank transfer or Wise. Typical terms: 50% upfront, 50% on completion."
+          "body": "Invoices in EUR or GBP. Payment accepted via UK bank transfer or Wise. Typical terms: 50% upfront, 50% on completion."
         },
         "finalCta": {
           "title": "Ready to get started?",

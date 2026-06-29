@@ -319,7 +319,6 @@
         "Documentation légère + session de passation"
       ],
       "metrics": "Heures économisées/semaine, temps de réponse",
-      "price": "À partir de 3k£",
       "multiSystem": "1 système",
       "documentation": "Légère"
     },
@@ -333,7 +332,6 @@
         "Logs, alertes et stratégie de retry inclus"
       ],
       "metrics": "Réduction des délais, moins d'erreurs manuelles",
-      "price": "À partir de 7k£",
       "multiSystem": "Multiple",
       "documentation": "Complète"
     },
@@ -347,7 +345,6 @@
         "Sécurité, rôles utilisateurs et conformité inclus"
       ],
       "metrics": "Time-to-market, taux d'activation utilisateur",
-      "price": "À partir de 13k£",
       "multiSystem": "Multiple",
       "documentation": "Complète"
     }

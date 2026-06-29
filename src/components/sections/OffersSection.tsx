@@ -8,6 +8,9 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+// Phase 8: prices come from the single source of truth (EUR primary + GBP),
+// not i18n, so the cards / table / offer pages / schema can never disagree.
+import { priceEUR, priceGBP } from "@/data/offers";
 
 // Offer keys for i18n lookup
 const offerKeys = [
@@ -83,7 +86,14 @@ function OffersComparisonTable() {
                   idx === featuredIndex ? "text-foreground" : "",
                 ].join(" ")}
               >
-                {t(`offers.${offer.key}.${row.valueKey}`)}
+                {row.valueKey === "price" ? (
+                  <span className="inline-flex flex-col leading-tight">
+                    <span className="font-medium text-foreground">{priceEUR(offer.slug)}</span>
+                    <span className="text-xs">{priceGBP(offer.slug)}</span>
+                  </span>
+                ) : (
+                  t(`offers.${offer.key}.${row.valueKey}`)
+                )}
               </td>
             ))}
           </tr>
@@ -202,11 +212,10 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                   </div>
                 </div>
                 <div className="space-y-6">
-                  {/* Price */}
+                  {/* Price — EUR primary, explicit GBP (from src/data/offers.ts) */}
                   <div className="pt-2 border-t border-border">
-                    <p className="text-2xl font-bold text-gradient-orange">
-                      {t(`offers.${offer.key}.price`)}
-                    </p>
+                    <p className="text-2xl font-bold text-gradient-orange">{priceEUR(offer.slug)}</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{priceGBP(offer.slug)}</p>
                   </div>
 
                   {/* CTA - Links to offer page */}

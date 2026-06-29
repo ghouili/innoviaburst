@@ -137,33 +137,35 @@ export const serviceJsonLd = (params: {
   url: string;
   areaServed?: string[];
   serviceType?: string[];
-  priceCurrency?: string;
-  price?: string | number;
-  priceRange?: string;
-  priceValidUntil?: string;
-}) => ({
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: params.name,
-  description: params.description,
-  areaServed: params.areaServed ?? ["GB", "EU"],
-  serviceType: params.serviceType ?? ["Workflow automation", "AI copilots", "MVP development"],
-  // Reference the sitewide org entity (emitted on the same page) instead of a
-  // duplicate inline Organization.
-  provider: { "@id": ORG_ID },
-  offers: params.price
-    ? {
-        "@type": "Offer",
-        url: localizeAbs(params.url),
-        priceCurrency: params.priceCurrency ?? "GBP",
-        price: String(params.price),
-        priceValidUntil: params.priceValidUntil ?? "2026-12-31",
-        availability: "https://schema.org/InStock",
-        ...(params.priceRange ? { description: params.priceRange } : {}),
-      }
-    : undefined,
-  url: localizeAbs(params.url),
-});
+  /**
+   * Price points, EUR primary then GBP (from src/data/offers.ts). Emitted as a
+   * single Offer when one currency, or an array of Offers (EUR + GBP) when both.
+   */
+  offers?: { priceCurrency: string; price: number; priceRange?: string; priceValidUntil?: string }[];
+}) => {
+  const offerNodes = (params.offers ?? []).map((o) => ({
+    "@type": "Offer",
+    url: localizeAbs(params.url),
+    priceCurrency: o.priceCurrency,
+    price: String(o.price),
+    priceValidUntil: o.priceValidUntil ?? "2026-12-31",
+    availability: "https://schema.org/InStock",
+    ...(o.priceRange ? { description: o.priceRange } : {}),
+  }));
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: params.name,
+    description: params.description,
+    areaServed: params.areaServed ?? ["GB", "EU"],
+    serviceType: params.serviceType ?? ["Workflow automation", "AI copilots", "MVP development"],
+    // Reference the sitewide org entity (emitted on the same page) instead of a
+    // duplicate inline Organization.
+    provider: { "@id": ORG_ID },
+    ...(offerNodes.length ? { offers: offerNodes.length === 1 ? offerNodes[0] : offerNodes } : {}),
+    url: localizeAbs(params.url),
+  };
+};
 
 export const faqJsonLd = (items: { question: string; answer: string }[]) => ({
   "@context": "https://schema.org",
