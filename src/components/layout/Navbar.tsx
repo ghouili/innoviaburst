@@ -4,8 +4,8 @@ import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import logo from "@/assets/innoviaburst-logo.png";
-import logoT from "@/assets/Logo-Text.png";
+import logo from "@/assets/innoviaburst-logo.webp";
+import logoT from "@/assets/Logo-Text.webp";
 
 // Navigation links with i18n keys
 const navLinks = [
@@ -144,10 +144,10 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
             to="/" 
             className="flex items-end gap-0.5 shrink-0 focus:outline-none focus:ring-0 focus:ring-ring rounded-lg"
           >
-            <img src={logo} alt="Innoviaburst - Home" className="h-10 lg:h-16 w-auto " />
+            <img src={logo} alt="Innoviaburst - Home" width={256} height={256} className="h-10 lg:h-16 w-auto " />
             <div className="h-full flex items-end ">
 
-            <img src={logoT} alt="Innoviaburst - Home" className="h-5 lg:h-8 w-auto" />
+            <img src={logoT} alt="Innoviaburst - Home" width={480} height={96} className="h-5 lg:h-8 w-auto" />
             </div>
           </Link>
 

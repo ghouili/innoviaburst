@@ -6,7 +6,12 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import zlib from "node:zlib";
 import { legacyRedirects } from "./site-content.mjs";
+
+// gzip text assets (parity with nginx.prod.conf `gzip on`) so local Lighthouse
+// measures representative transfer sizes, not raw bytes.
+const COMPRESSIBLE = new Set([".html", ".js", ".css", ".json", ".xml", ".svg", ".txt", ".webmanifest"]);
 
 const ROOT = path.resolve(process.cwd(), "dist", "client");
 const PORT = Number(process.env.PREVIEW_PORT || 5055);
@@ -54,11 +59,19 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 2) serve pre-rendered file / directory index
+  // 2) serve pre-rendered file / directory index (gzip text like nginx)
   const file = tryFile(urlPath);
   if (file) {
     const ext = path.extname(file);
-    send(res, 200, fs.readFileSync(file), MIME[ext] || "application/octet-stream");
+    let body = fs.readFileSync(file);
+    const headers = { "Content-Type": MIME[ext] || "application/octet-stream" };
+    if (COMPRESSIBLE.has(ext) && /\bgzip\b/.test(req.headers["accept-encoding"] || "")) {
+      body = zlib.gzipSync(body, { level: 6 });
+      headers["Content-Encoding"] = "gzip";
+      headers["Vary"] = "Accept-Encoding";
+    }
+    res.writeHead(200, headers);
+    res.end(body);
     return;
   }
 

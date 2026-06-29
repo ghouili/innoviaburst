@@ -25,7 +25,8 @@ export default defineConfig(({ mode }) => ({
     // named exports resolve under Node ESM during pre-rendering.
     noExternal: ["react-helmet-async"],
   },
-  // NOTE: vendor manualChunks removed for Vike (which requires a function and
-  // manages chunking itself). Route/vendor code-splitting is revisited in
-  // Phase 10 (performance).
+  // NOTE: explicit vendor manualChunks is a no-op here — Vike 0.4.235 manages
+  // chunking itself and overrides output.manualChunks. The Phase 10 perf wins
+  // came from self-hosted fonts, WebP images, removing dead deps, and the
+  // postbuild `strip-modulepreload` step (keeps the JS off the LCP critical path).
 }));

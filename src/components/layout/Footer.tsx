@@ -3,7 +3,7 @@ import { Mail, Linkedin, Twitter, Instagram } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import logo from "@/assets/innoviaburst-logo.png";
+import logo from "@/assets/innoviaburst-logo.webp";
 import { openCookieSettings } from "@/components/CookieConsent";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { ORG_FACTS, hasAddress } from "@/seo/org-facts";
@@ -173,6 +173,8 @@ export function Footer() {
             <img
               src={logo}
               alt="InnoviaBurst"
+              width={256}
+              height={256}
               className="h-12 w-auto brightness-0 invert"
               loading="lazy"
             />

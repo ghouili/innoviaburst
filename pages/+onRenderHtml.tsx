@@ -22,11 +22,10 @@ const STATIC_HEAD = `
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <!-- Inter is self-hosted (see src/index.css @font-face, /public/fonts). No
+         third-party font origin. Preload ONLY the headline weight (700, the hero
+         H1 / LCP element); other weights load on demand with font-display:swap. -->
+    <link rel="preload" href="/fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin />
     <!-- Meta Pixel is NOT injected here. Deny-by-default: it loads client-side
          ONLY after explicit marketing consent (src/lib/meta-pixel.ts, gated by
          CookieConsent) — no Meta/Facebook network request fires before opt-in.
