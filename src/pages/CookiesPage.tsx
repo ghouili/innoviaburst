@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SkipLink } from "@/components/SkipLink";
 import { ArrowLeft } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 export default function CookiesPage() {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ export default function CookiesPage() {
             "@type": "WebPage",
             name: "Cookie Policy",
             description: "Details on cookie consent, analytics opt-in, and PECR compliance for Innoviaburst.",
-            url: `${siteUrl}/cookies`,
+            url: localizedUrl("/cookies"),
           },
         ]}
       />

@@ -9,7 +9,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, FileText, TrendingUp, Briefcase, Rocket, User, Linkedin } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 const caseStudies = [
   {
@@ -69,7 +69,7 @@ export default function WorkPage() {
         "@type": "ListItem",
         position: index + 1,
         name: study.title,
-        url: `${siteUrl}/work/${study.slug}`,
+        url: localizedUrl(`/work/${study.slug}`),
       })),
     }),
     []

@@ -22,7 +22,7 @@ import {
   Globe2,
   ClipboardList,
 } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 type TocKey = "trustPack" | "security" | "subprocessors" | "contracts" | "transfers" | "ai" | "dpia" | "contact";
 
@@ -103,7 +103,7 @@ export default function TrustPage() {
         "@type": "WebPage",
         name: t("trustPage.seo.title"),
         description: t("trustPage.seo.description"),
-        url: `${siteUrl}/trust`,
+        url: localizedUrl("/trust"),
       },
     ],
     [breadcrumbSchema, t]

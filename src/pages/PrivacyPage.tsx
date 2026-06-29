@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SkipLink } from "@/components/SkipLink";
 import { ArrowLeft } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 export default function PrivacyPage() {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             "@type": "WebPage",
             name: "Privacy Policy",
             description: "How Innoviaburst collects, uses, and protects personal data with GDPR/UK GDPR readiness.",
-            url: `${siteUrl}/privacy`,
+            url: localizedUrl("/privacy"),
           },
         ]}
       />

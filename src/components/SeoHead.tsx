@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import { safeJsonLd } from "@/seo/jsonld";
 import { DEFAULT_LOCALE, LOCALES, isLocale, localizedPath, type Locale } from "@/lib/i18n-routing";
 
@@ -53,11 +54,18 @@ export function SeoHead({
   ogImage,
   ogType = "website",
   jsonLd,
-  lang = DEFAULT_LOCALE,
+  lang,
   alternates,
 }: SeoHeadProps) {
-  // Normalize "en"/"en-GB"/"fr"/etc. to a supported locale.
-  const loc: Locale = isLocale(lang) ? lang : isLocale(lang.slice(0, 2)) ? (lang.slice(0, 2) as Locale) : DEFAULT_LOCALE;
+  // Locale = explicit `lang` prop, else the active i18n language (the SSR sets
+  // this per request, so /fr/* render with loc="fr"). Normalize "en-GB"->"en".
+  const { i18n } = useTranslation();
+  const active = lang ?? i18n.language ?? DEFAULT_LOCALE;
+  const loc: Locale = isLocale(active)
+    ? active
+    : isLocale(active.slice(0, 2))
+      ? (active.slice(0, 2) as Locale)
+      : DEFAULT_LOCALE;
   // Self-referencing canonical at the locale-prefixed URL (e.g. /en/trust).
   const canonical = buildUrl(localizedPath(loc, canonicalPath));
   // x-default always points at the default locale (en) per the locale strategy.

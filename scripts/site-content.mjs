@@ -2,8 +2,8 @@ export const siteUrl = process.env.VITE_SITE_URL || "https://innoviaburst.com";
 
 // Locale routing — mirror of src/lib/i18n-routing.ts (kept in sync manually
 // because Node runs this .mjs directly and can't import the .ts module).
-// Phase 1: only `en`. Phase 5 adds `fr` here + translated content.
-export const LOCALES = ["en"];
+// Phase 5: `en` (default) + `fr`.
+export const LOCALES = ["en", "fr"];
 export const DEFAULT_LOCALE = "en";
 
 export const localizedPath = (locale, flatPath = "/") => {

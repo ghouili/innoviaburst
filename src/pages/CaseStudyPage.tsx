@@ -8,7 +8,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, TrendingUp, Clock, Users, Wrench, FileText, Lock } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 const caseStudies: Record<string, {
   title: string;
@@ -114,7 +114,7 @@ export default function CaseStudyPage() {
             description: study.problem,
             articleSection: study.industry,
             author: { "@type": "Organization", name: "Innoviaburst", url: siteUrl },
-            mainEntityOfPage: `${siteUrl}/work/${slug}`,
+            mainEntityOfPage: localizedUrl(`/work/${slug}`),
             datePublished: "2025-01-01",
           },
         ]}

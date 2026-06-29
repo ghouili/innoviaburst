@@ -1,9 +1,32 @@
+import i18n from "@/i18n";
+import { DEFAULT_LOCALE, isLocale, localizedPath, type Locale } from "@/lib/i18n-routing";
+
 const siteUrl = import.meta.env.VITE_SITE_URL || "https://innoviaburst.com";
 const base = siteUrl.replace(/\/$/, "");
 
 /** Stable @id for the sitewide organization entity (referenced across schemas). */
 const ORG_ID = `${base}/#organization`;
 const WEBSITE_ID = `${base}/#website`;
+
+const currentLocale = (): Locale => {
+  const l = (i18n.language || DEFAULT_LOCALE).slice(0, 2);
+  return isLocale(l) ? l : DEFAULT_LOCALE;
+};
+
+/** Absolute URL for a flat in-app path at the active locale (e.g. /en/trust). */
+export const localizedUrl = (flatPath = "/") => `${base}${localizedPath(currentLocale(), flatPath)}`;
+
+/**
+ * Localize an absolute site URL to the active locale: `${base}/x` -> `${base}/<loc>/x`.
+ * Leaves already-locale-prefixed and off-site URLs untouched. Used to keep
+ * breadcrumb/Service schema URLs consistent with the page's /en|/fr canonical.
+ */
+const localizeAbs = (url: unknown): unknown => {
+  if (typeof url !== "string" || !url.startsWith(base)) return url;
+  const rest = url.slice(base.length);
+  if (/^\/(en|fr)(\/|#|$)/.test(rest)) return url; // already localized
+  return `${base}${localizedPath(currentLocale(), rest || "/")}`;
+};
 
 export const safeJsonLd = (data: Record<string, unknown> | Record<string, unknown>[]) =>
   JSON.stringify(data).replace(/</g, "\\u003c");
@@ -58,13 +81,8 @@ export const websiteJsonLd = () => ({
   name: "Innoviaburst",
   publisher: { "@id": ORG_ID },
   inLanguage: "en",
-  // NOTE: /search?q= is not implemented yet — the Sitelinks Searchbox will only
-  // function once a search endpoint exists. Remove this action or build /search.
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${base}/search?q={query}`,
-    queryInput: "required name=query",
-  },
+  // No SearchAction/potentialAction: there is no /search endpoint and the
+  // Sitelinks Searchbox is deprecated.
 });
 
 export const breadcrumbJsonLd = (items: { name: string; url: string }[]) => ({
@@ -74,7 +92,7 @@ export const breadcrumbJsonLd = (items: { name: string; url: string }[]) => ({
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: item.url,
+    item: localizeAbs(item.url),
   })),
 });
 
@@ -101,7 +119,7 @@ export const serviceJsonLd = (params: {
   offers: params.price
     ? {
         "@type": "Offer",
-        url: params.url,
+        url: localizeAbs(params.url),
         priceCurrency: params.priceCurrency ?? "GBP",
         price: String(params.price),
         priceValidUntil: params.priceValidUntil ?? "2026-12-31",
@@ -109,7 +127,7 @@ export const serviceJsonLd = (params: {
         ...(params.priceRange ? { description: params.priceRange } : {}),
       }
     : undefined,
-  url: params.url,
+  url: localizeAbs(params.url),
 });
 
 export const faqJsonLd = (items: { question: string; answer: string }[]) => ({

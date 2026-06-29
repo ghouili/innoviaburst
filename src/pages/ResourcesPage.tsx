@@ -39,7 +39,7 @@ import {
   Mail,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 type CategoryKey = "all" | "roi" | "ai" | "crm" | "ops" | "compliance";
 type ResourceKey = "roiCalculator" | "aiChecklist" | "hubspotHygiene" | "complianceRoadmap" | "apiPlaybook" | "ragGuide" | "workflowAudit" | "dpaReference" | "euAiAct" | "icoFairness" | "vendorSecurity" | "monitoringPlaybook" | "revopsScorecard" | "businessCase";
@@ -428,14 +428,14 @@ export default function ResourcesPage() {
       "@context": "https://schema.org",
       "@type": "ItemList",
       name: "Automation and AI resources",
-      url: `${siteUrl}/resources`,
+      url: localizedUrl("/resources"),
       itemListOrder: "Unordered",
       itemListElement: resources.map((item, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: item.title,
         description: item.description,
-        url: `${siteUrl}/resources`,
+        url: localizedUrl("/resources"),
       })),
     }),
     [resources]

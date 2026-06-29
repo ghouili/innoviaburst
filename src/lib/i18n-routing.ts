@@ -1,9 +1,9 @@
 // Single source of truth for locale-prefixed routing.
-// Phase 1: only `en` is live. Phase 5 adds `fr` (just extend LOCALES).
-// The app (react-router basename), the SSR render hooks, SeoHead, and the
-// build scripts all read these helpers so canonical URLs never drift.
+// Phase 5: `en` (default) + `fr`. The app (react-router basename), the SSR
+// render hooks, SeoHead, and the build scripts all read these helpers so
+// canonical URLs never drift.
 
-export const LOCALES = ["en"] as const;
+export const LOCALES = ["en", "fr"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "en";

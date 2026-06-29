@@ -1,128 +1,79 @@
-// // import { useTranslation } from "react-i18next";
-// // import { Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import { Globe } from "lucide-react";
+import { DEFAULT_LOCALE, isLocale, localizedPath, type Locale } from "@/lib/i18n-routing";
 
-// // const languages = [
-// //   { code: "en", label: "EN", full: "English" },
-// //   { code: "fr", label: "FR", full: "Français" },
-// // ];
-
-// // export function LanguageSwitcher() {
-// //   const { i18n } = useTranslation();
-
-// //   const currentLang = i18n.language?.startsWith("fr") ? "fr" : "en";
-
-// //   const handleChange = (langCode: string) => {
-// //     i18n.changeLanguage(langCode);
-// //   };
-
-// //   return (
-// //     <div className="flex items-center gap-1">
-// //       <Globe className="w-4 h-4 text-muted-foreground" />
-// //       <div className="flex items-center rounded-lg bg-muted p-0.5">
-// //         {languages.map((lang) => (
-// //           <button
-// //             key={lang.code}
-// //             onClick={() => handleChange(lang.code)}
-// //             className={`px-2 py-1 text-xs font-medium rounded-md transition-colors ${
-// //               currentLang === lang.code
-// //                 ? "bg-background text-foreground shadow-sm"
-// //                 : "text-muted-foreground hover:text-foreground"
-// //             }`}
-// //             aria-label={`Switch to ${lang.full}`}
-// //           >
-// //             {lang.label}
-// //           </button>
-// //         ))}
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
-// import { useTranslation } from "react-i18next";
-// import { Globe } from "lucide-react";
-
-// const languages = [
-//   { code: "en", label: "EN", full: "English" },
-//   { code: "fr", label: "FR", full: "Français" },
-// ];
-
-// export function LanguageSwitcher() {
-//   const { i18n } = useTranslation();
-//   const currentLang = i18n.language?.startsWith("fr") ? "fr" : "en";
-
-//   const handleChange = (langCode: string) => {
-//     i18n.changeLanguage(langCode);
-//   };
-
-//   // FR on the left, EN on the right (pill slides between them)
-//   const isFR = currentLang === "fr";
-
-//   return (
-//     <div className="inline-flex items-center gap-1 shrink-0 self-center leading-none">
-//       {/* Icon chip so icon size never affects the switcher height */}
-//       <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl ">
-//         <Globe className="h-4 w-4 text-muted-foreground" />
-//       </span>
-
-//       {/* Segmented control (fixed height; independent from siblings) */}
-//       <div
-//         className="relative inline-flex h-9 w-[92px] items-center rounded-xl border border-border bg-muted/60 p-1 overflow-hidden"
-//         role="group"
-//         aria-label="Language switcher"
-//       >
-//         {/* Sliding pill */}
-//         <span
-//           aria-hidden="true"
-//           className={[
-//             "absolute inset-y-1 start-1 w-[calc(50%-0.25rem)]",
-//             "rounded-lg bg-background shadow-sm",
-//             "transform transition-transform duration-200 ease-out",
-//             "motion-reduce:transition-none",
-//             // move pill to the RIGHT when EN is active
-//             isFR ? "translate-x-0" : "translate-x-full",
-//           ].join(" ")}
-//         />
-
-//         {languages.map((lang) => {
-//           const active = currentLang === lang.code;
-//           const inactive = lang.code === "en" ? "fr" : "en";
-
-//           return (
-//             <button
-//               key={lang.code}
-//               type="button"
-//               onClick={() => handleChange(inactive)}
-//               aria-label={`Switch to ${lang.full}`}
-//               aria-pressed={active}
-//               className={[
-//                 "relative z-10 flex-1 h-full",
-//                 "rounded-lg px-0 text-xs font-semibold",
-//                 "transition-colors motion-reduce:transition-none",
-//                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background",
-//                 active ? "text-foreground/45" : "text-muted-foreground hover:text-foreground",
-//               ].join(" ")}
-//             >
-//               {lang.label}
-//             </button>
-//           );
-//         })}
-//       </div>
-//     </div>
-//   );
-// }
+const LABELS: Record<Locale, { label: string; full: string }> = {
+  en: { label: "EN", full: "English" },
+  fr: { label: "FR", full: "Français" },
+};
+// FR on the left, EN on the right (the sliding pill moves right for EN).
+const ORDER: Locale[] = ["fr", "en"];
 
 /**
- * HIDDEN until Phase 5 (returns null).
+ * Real locale navigation between /en and /fr URLs.
  *
- * The previous implementation was a client-only toggle: it swapped i18n content
- * but left the URL and <html lang> at /en — a dead/misleading language control
- * and the exact SEO anti-pattern this rebuild removes. The segmented-control UI
- * is preserved in the commented blocks above for reference.
- *
- * Phase 5 HARD REQUIREMENT: restore a WORKING toggle that navigates real
- * /en <-> /fr URLs (correct <html lang> + hreflang). FR strings already exist
- * in fr.json. Do not re-ship a client-only swap.
+ * The active locale is the router basename; switching locale crosses basenames,
+ * so each option is a plain <a> to the SAME page under the other locale prefix
+ * — a full navigation that loads the SSG'd /fr (or /en) page with the correct
+ * <html lang> + translated content. Works without JS and is crawlable.
  */
 export function LanguageSwitcher() {
-  return null;
+  const { i18n } = useTranslation();
+  const location = useLocation();
+
+  const langSeg = (i18n.language || DEFAULT_LOCALE).slice(0, 2);
+  const current: Locale = isLocale(langSeg) ? langSeg : DEFAULT_LOCALE;
+
+  // useLocation().pathname is basename-stripped (e.g. "/automations").
+  const flatPath = location.pathname || "/";
+  const target = (loc: Locale) =>
+    `${localizedPath(loc, flatPath)}${location.search || ""}${location.hash || ""}`;
+
+  const isEN = current === "en";
+
+  return (
+    <div className="inline-flex items-center gap-1 shrink-0 self-center leading-none">
+      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl">
+        <Globe className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+      </span>
+
+      <div
+        className="relative inline-flex h-9 w-[92px] items-center rounded-xl border border-border bg-muted/60 p-1 overflow-hidden"
+        role="group"
+        aria-label="Language"
+      >
+        <span
+          aria-hidden="true"
+          className={[
+            "absolute inset-y-1 start-1 w-[calc(50%-0.25rem)] rounded-lg bg-background shadow-sm",
+            "transform transition-transform duration-200 ease-out motion-reduce:transition-none",
+            isEN ? "translate-x-full" : "translate-x-0",
+          ].join(" ")}
+        />
+        {ORDER.map((loc) => {
+          const active = current === loc;
+          return (
+            <a
+              key={loc}
+              href={target(loc)}
+              hrefLang={loc}
+              lang={loc}
+              aria-current={active ? "true" : undefined}
+              aria-label={`Switch to ${LABELS[loc].full}`}
+              className={[
+                "relative z-10 flex-1 h-full inline-flex items-center justify-center rounded-lg",
+                "text-xs font-semibold no-underline",
+                "transition-colors motion-reduce:transition-none",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background",
+                active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+              ].join(" ")}
+            >
+              {LABELS[loc].label}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  );
 }

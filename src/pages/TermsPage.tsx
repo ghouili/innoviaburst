@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { SkipLink } from "@/components/SkipLink";
 import { ArrowLeft } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 export default function TermsPage() {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ export default function TermsPage() {
             "@type": "WebPage",
             name: "Terms of Service",
             description: "Terms and conditions for Innoviaburst automation, AI copilot, and MVP services.",
-            url: `${siteUrl}/terms`,
+            url: localizedUrl("/terms"),
           },
         ]}
       />

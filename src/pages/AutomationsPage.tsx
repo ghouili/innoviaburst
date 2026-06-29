@@ -36,7 +36,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
 const categoryKeys = ["all", "sales", "ops", "support", "finance", "knowledge"] as const;
 
@@ -377,7 +377,7 @@ export default function AutomationsPage() {
         position: index + 1,
         name: item.title,
         description: item.outcome,
-        url: `${siteUrl}/automations#${item.key}`,
+        url: localizedUrl(`/automations#${item.key}`),
       })),
     }),
     [automations, t]
