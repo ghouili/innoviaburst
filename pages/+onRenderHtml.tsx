@@ -27,16 +27,10 @@ const STATIC_HEAD = `
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
-    <!-- Meta Pixel — TODO(Phase 9): gate behind consent (no facebook.com/tr before opt-in) -->
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
-        t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-      fbq("init", "722865524230512"); fbq("track", "PageView");
-    </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=722865524230512&ev=PageView&noscript=1" alt="" /></noscript>`;
+    <!-- Meta Pixel is NOT injected here. Deny-by-default: it loads client-side
+         ONLY after explicit marketing consent (src/lib/meta-pixel.ts, gated by
+         CookieConsent) — no Meta/Facebook network request fires before opt-in.
+         The old no-JS tracking beacon was removed too (it can't be consent-gated). -->`;
 
 const onRenderHtml: OnRenderHtmlAsync = async (pageContext) => {
   const Page = (pageContext as { Page?: () => JSX.Element }).Page;

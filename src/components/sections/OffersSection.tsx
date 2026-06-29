@@ -235,7 +235,7 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
         </div>
         {/* Disclaimer under the pricing cards */}
         <p className="mt-4 text-center text-sm text-muted-foreground">
-          {t("offers.disclaimer", "All costs subject to scope — priced from £450/day (tools & subscriptions billed separately).")}
+          {t("offers.disclaimer", "Fixed-price engagements; tools & subscriptions billed separately.")}
         </p>
 
         {/* Comparison Accordion */}

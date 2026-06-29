@@ -1,9 +1,9 @@
 {
   "_instructions": "Return native French for every value under en_to_translate (keep the EXACT same key paths) and drop it into src/i18n/fr.json. Also review/replace fr_to_review (FR drafted by the assistant). Do NOT machine-translate. Keep {{price}}/{{lang}} placeholders and the en-dashes/%/& exactly.",
   "_counts": {
-    "keysToTranslate": 329,
+    "keysToTranslate": 330,
     "enLeaves": 1010,
-    "frLeaves": 681
+    "frLeaves": 680
   },
   "en_to_translate": {
     "nav": {
@@ -11,6 +11,9 @@
     },
     "common": {
       "skipLink": "Skip to main content"
+    },
+    "offers": {
+      "disclaimer": "Fixed-price engagements; tools & subscriptions billed separately."
     },
     "work": {
       "viewAll": "View all case studies"

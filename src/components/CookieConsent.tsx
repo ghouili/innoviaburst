@@ -302,6 +302,7 @@ import { useTranslation } from "react-i18next";
 import { Cookie, Shield, BarChart3, Megaphone, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { loadMetaPixel } from "@/lib/meta-pixel";
 
 interface CookiePreferences {
   necessary: boolean;
@@ -452,11 +453,11 @@ export function CookieConsent() {
   }, []);
 
   const applyConsent = (prefs: CookiePreferences) => {
-    if (prefs.analytics)
-      console.log("Analytics consent granted - scripts can load");
-    if (prefs.marketing)
-      console.log("Marketing consent granted - scripts can load");
-
+    // Deny-by-default: the Meta Pixel loads ONLY with marketing consent, and
+    // never before this point (no connect.facebook.net / facebook.com/tr until
+    // here). Idempotent across reloads/navigation.
+    if (prefs.marketing) loadMetaPixel();
+    // No analytics vendor is wired yet — add its loader here behind prefs.analytics.
     window.dispatchEvent(new CustomEvent("cookie_consent", { detail: prefs }));
   };
 
