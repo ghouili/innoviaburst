@@ -1311,6 +1311,24 @@
           "q": "How do you handle our data?",
           "a": "We follow least-privilege access and sign NDAs. See our Trust page for details."
         }
+      ],
+      "aeo": [
+        {
+          "q": "What is the AI Ops Sprint?",
+          "a": "The AI Ops Sprint is a fixed, 10-business-day engagement that automates one workflow or ships one AI copilot inside your existing tools. It's built for ops teams buried in manual steps who need a quick, provable win — you get a working integration, lightweight documentation and a handover session before committing to anything larger."
+        },
+        {
+          "q": "How long does the AI Ops Sprint take?",
+          "a": "Ten business days, start to finish. Days 1–2 cover kickoff, requirements and tool access; days 3–6 build and connect the automation or copilot; days 7–8 are user testing and refinements with your team; days 9–10 deploy to production with documentation, a handover session and go-live."
+        },
+        {
+          "q": "What's included in the AI Ops Sprint?",
+          "a": "You get one workflow automated or one AI copilot shipped, scoped to complexity, deployed to your tools and ready to use. It includes lightweight documentation, a handover session and 30 days of bug-fix support. Multiple workflows, custom UI development and data migration sit outside the sprint and are scoped separately."
+        },
+        {
+          "q": "How much does the AI Ops Sprint cost?",
+          "a": "Pricing is fixed and agreed before any work begins: {{price}}. There are no hourly rates or surprises — scope is locked at kickoff. Invoices are issued in GBP on 50% upfront, 50% on completion terms, and most clients recover the cost within two to four weeks through the hours saved on manual tasks."
+        }
       ]
     },
     "automation-build": {
@@ -1414,6 +1432,24 @@
         {
           "q": "What's your change management process?",
           "a": "We work in 2-week sprints with demos, allowing for course corrections throughout."
+        }
+      ],
+      "aeo": [
+        {
+          "q": "What is the Automation Build?",
+          "a": "The Automation Build is a production-grade automation that connects three to five of your tools with proper logging, alerting and retry handling. Built over four to six weeks, it includes an admin interface for configuration and suits teams that need reliable cross-tool workflows with approvals, reporting and error handling — not just a quick script."
+        },
+        {
+          "q": "How long does the Automation Build take?",
+          "a": "Typically four to six weeks. Week 1 is a discovery workshop, process mapping and architecture; weeks 2–3 build the core automation, integrations and error handling; week 4 adds logging, monitoring and the admin interface; weeks 5–6 cover user testing, refinements, documentation, training and go-live."
+        },
+        {
+          "q": "What's included in the Automation Build?",
+          "a": "A multi-system workflow connecting three to five tools, a logging and monitoring dashboard, a failure-alert system, a retry and error-handling strategy, an admin interface for configuration, full documentation and training, plus 60 days of bug-fix support. Mobile apps, legacy rewrites, BI/data-warehousing and 24/7 on-call support are out of scope."
+        },
+        {
+          "q": "How much does the Automation Build cost?",
+          "a": "Pricing is fixed and agreed before any work begins: {{price}}, depending on the number of systems and complexity. There are no hourly rates — scope is locked after the discovery workshop. Invoices are issued in GBP on 50% upfront, 50% on completion terms, with most builds freeing one to two FTE-equivalent of capacity."
         }
       ]
     },
@@ -1525,6 +1561,24 @@
         {
           "q": "What if scope changes?",
           "a": "We build in flexibility. Material scope changes are discussed and re-scoped transparently."
+        }
+      ],
+      "aeo": [
+        {
+          "q": "What is the MVP Launch?",
+          "a": "The MVP Launch takes your idea from concept to a deployed, production-ready product in six to ten weeks. It includes user authentication, role-based access, your core features (typically five to eight screens), basic security and analytics in a mobile-responsive build — ideal for startups and SMEs validating a new product or internal tool."
+        },
+        {
+          "q": "How long does the MVP Launch take?",
+          "a": "Usually six to ten weeks. Weeks 1–2 cover discovery, design and architecture; weeks 3–4 build core development, authentication and the database; weeks 5–6 add features and refine the UI; weeks 7–8 are testing, security review and analytics; weeks 9–10 cover user testing, fixes, deployment and launch."
+        },
+        {
+          "q": "What's included in the MVP Launch?",
+          "a": "A fully functional MVP deployed to production with user authentication, role-based access, your core features (typically five to eight screens), basic security measures, analytics integration and a mobile-responsive design, plus 90 days of bug-fix support. Native mobile apps, advanced security certifications and ongoing feature development are out of scope."
+        },
+        {
+          "q": "How much does the MVP Launch cost?",
+          "a": "Pricing is fixed and agreed before any work begins: {{price}}, set by the scope confirmed in the discovery workshop. There are no hourly rates or surprises. Invoices are issued in GBP on 50% upfront, 50% on completion terms, and you receive full ownership of the codebase on completion."
         }
       ]
     }

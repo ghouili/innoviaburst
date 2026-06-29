@@ -35,6 +35,7 @@ interface OfferContent {
   successMetrics: { metric: string; example: string }[];
   weekByWeek: { week: string; activities: string[] }[];
   clientInputs: string[];
+  aeo: { q: string; a: string }[];
   faq: { q: string; a: string }[];
 }
 
@@ -58,15 +59,24 @@ export default function OfferPage() {
         successMetrics: t(`offerDetails.${slug}.successMetrics`, { returnObjects: true }) as { metric: string; example: string }[],
         weekByWeek: t(`offerDetails.${slug}.weekByWeek`, { returnObjects: true }) as { week: string; activities: string[] }[],
         clientInputs: t(`offerDetails.${slug}.clientInputs`, { returnObjects: true }) as string[],
+        // Phase 6 AEO: answer-first Q&A. {{price}} interpolated from OFFER_META
+        // (Phase 8 owns pricing). These map 1:1 into the FAQPage schema below.
+        aeo: (t(`offerDetails.${slug}.aeo`, { returnObjects: true }) as { q: string; a: string }[]).map((x) => ({
+          q: x.q,
+          a: x.a.replace(/\{\{price\}\}/g, meta.price),
+        })),
         faq: t(`offerDetails.${slug}.faq`, { returnObjects: true }) as { q: string; a: string }[],
       }
     : null;
 
   const canonicalPath = offer ? `/${slug}` : undefined;
 
+  // FAQPage schema = the answer-first AEO blocks + the detailed FAQ. Every entry
+  // here is rendered visibly on the page (AEO section + FAQ accordion, which keeps
+  // answers in the DOM), so schema maps 1:1 to on-page content.
   const faqSchema = offer
     ? faqJsonLd(
-        offer.faq.map((item) => ({
+        [...offer.aeo, ...offer.faq].map((item) => ({
           question: item.q,
           answer: item.a,
         }))
@@ -223,6 +233,21 @@ export default function OfferPage() {
           </div>
         </section>
 
+        {/* AEO: answer-first, question-led blocks (mapped 1:1 to FAQPage schema) */}
+        <section className="py-12 lg:py-16 border-b border-border">
+          <div className="container mx-auto px-4 lg:px-6 max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-8">Answers, up front</p>
+            <div className="space-y-8">
+              {offer.aeo.map((item, i) => (
+                <div key={i}>
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">{item.q}</h2>
+                  <p className="text-base text-muted-foreground leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Exclusions */}
         <section className="py-12 border-b border-border">
           <div className="container mx-auto px-4 lg:px-6">
@@ -301,6 +326,7 @@ export default function OfferPage() {
                 <div key={i} className="border border-border rounded-xl overflow-hidden">
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
                     className="w-full p-4 flex items-center justify-between text-left bg-card hover:bg-muted/50 transition-colors min-h-[48px]"
                   >
                     <span className="font-medium text-foreground">{item.q}</span>
@@ -310,11 +336,11 @@ export default function OfferPage() {
                       <ChevronDown className="w-5 h-5 text-muted-foreground shrink-0" />
                     )}
                   </button>
-                  {openFaq === i && (
-                    <div className="p-4 bg-muted/30 border-t border-border">
-                      <p className="text-sm text-muted-foreground">{item.a}</p>
-                    </div>
-                  )}
+                  {/* Answer stays in the DOM (CSS-hidden) so it is crawlable and
+                      maps 1:1 to the FAQPage schema, even while collapsed. */}
+                  <div className={`p-4 bg-muted/30 border-t border-border ${openFaq === i ? "" : "hidden"}`}>
+                    <p className="text-sm text-muted-foreground">{item.a}</p>
+                  </div>
                 </div>
               ))}
             </div>
