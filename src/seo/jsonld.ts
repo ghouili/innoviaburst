@@ -1,25 +1,68 @@
 const siteUrl = import.meta.env.VITE_SITE_URL || "https://innoviaburst.com";
+const base = siteUrl.replace(/\/$/, "");
+
+/** Stable @id for the sitewide organization entity (referenced across schemas). */
+const ORG_ID = `${base}/#organization`;
+const WEBSITE_ID = `${base}/#website`;
 
 export const safeJsonLd = (data: Record<string, unknown> | Record<string, unknown>[]) =>
   JSON.stringify(data).replace(/</g, "\\u003c");
 
+/**
+ * Sitewide entity: Organization + ProfessionalService (a subtype), with a stable
+ * @id so Services/Breadcrumbs/WebSite can reference it.
+ *
+ * Only verified data is included. TODO(Phase 7 — GEO/entity consistency): add
+ * `legalName`, `foundingDate`, `founder` (Person), and the remaining `sameAs`
+ * profiles (Crunchbase, X, GitHub, Clutch) once the user provides real values —
+ * do NOT invent these.
+ */
 export const orgJsonLd = () => ({
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
+  "@id": ORG_ID,
   name: "Innoviaburst",
   url: siteUrl,
-  logo: `${siteUrl.replace(/\/$/, "")}/og.jpg`,
-  sameAs: ["https://www.linkedin.com/company/innoviaburst"],
-  areaServed: ["GB", "EU"],
+  logo: {
+    "@type": "ImageObject",
+    url: `${base}/logo.png`,
+  },
+  image: `${base}/og.jpg`,
+  description:
+    "GDPR-by-design AI automation, AI copilots and MVPs for UK/EU SMEs — fixed scope, delivered in weeks, with the audit trail built in.",
+  email: "hello@innoviaburst.com",
+  areaServed: [
+    { "@type": "Country", name: "United Kingdom" },
+    { "@type": "Place", name: "European Union" },
+  ],
+  serviceType: ["Workflow automation", "AI copilots", "MVP development"],
+  // Verified profiles only (from the site footer). More added in Phase 7.
+  sameAs: [
+    "https://www.linkedin.com/company/innoviaburst",
+    "https://www.instagram.com/innoviaburst/",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hello@innoviaburst.com",
+    contactType: "sales",
+    areaServed: ["GB", "EU"],
+    availableLanguage: ["en", "fr"],
+  },
 });
 
 export const websiteJsonLd = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": WEBSITE_ID,
   url: siteUrl,
+  name: "Innoviaburst",
+  publisher: { "@id": ORG_ID },
+  inLanguage: "en",
+  // NOTE: /search?q= is not implemented yet — the Sitelinks Searchbox will only
+  // function once a search endpoint exists. Remove this action or build /search.
   potentialAction: {
     "@type": "SearchAction",
-    target: `${siteUrl}/search?q={query}`,
+    target: `${base}/search?q={query}`,
     queryInput: "required name=query",
   },
 });
@@ -43,6 +86,8 @@ export const serviceJsonLd = (params: {
   serviceType?: string[];
   priceCurrency?: string;
   price?: string | number;
+  priceRange?: string;
+  priceValidUntil?: string;
 }) => ({
   "@context": "https://schema.org",
   "@type": "Service",
@@ -50,18 +95,18 @@ export const serviceJsonLd = (params: {
   description: params.description,
   areaServed: params.areaServed ?? ["GB", "EU"],
   serviceType: params.serviceType ?? ["Workflow automation", "AI copilots", "MVP development"],
-  provider: {
-    "@type": "Organization",
-    name: "Innoviaburst",
-    url: siteUrl,
-  },
+  // Reference the sitewide org entity (emitted on the same page) instead of a
+  // duplicate inline Organization.
+  provider: { "@id": ORG_ID },
   offers: params.price
     ? {
         "@type": "Offer",
         url: params.url,
         priceCurrency: params.priceCurrency ?? "GBP",
-        price: params.price,
+        price: String(params.price),
+        priceValidUntil: params.priceValidUntil ?? "2026-12-31",
         availability: "https://schema.org/InStock",
+        ...(params.priceRange ? { description: params.priceRange } : {}),
       }
     : undefined,
   url: params.url,
@@ -80,4 +125,4 @@ export const faqJsonLd = (items: { question: string; answer: string }[]) => ({
   })),
 });
 
-export { siteUrl };
+export { siteUrl, ORG_ID };

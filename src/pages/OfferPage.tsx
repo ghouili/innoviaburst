@@ -186,12 +186,19 @@ export default function OfferPage() {
 
   const serviceSchema = offer
     ? (() => {
-        const parsedPrice = Number.parseFloat(offer.price.replace(/[^0-9.]/g, ""));
+        // Parse the "from"/low value, handling the "k" thousands suffix
+        // ("From £5k" -> 5000, "£15k–£30k" -> 15000). NOTE(Phase 8): replace
+        // this string-parsing with the canonical numbers from offers.ts (EUR).
+        const m = offer.price.match(/(\d+(?:\.\d+)?)\s*(k)?/i);
+        const parsedPrice = m ? Number.parseFloat(m[1]) * (m[2] ? 1000 : 1) : undefined;
+        const isRange = /[–-]/.test(offer.price);
         return serviceJsonLd({
           name: offer.title,
           description: offer.heroDescription,
           url: `${siteUrl}/${slug}`,
-          price: Number.isFinite(parsedPrice) ? parsedPrice : undefined,
+          price: parsedPrice,
+          priceCurrency: "GBP",
+          priceRange: isRange ? offer.price : undefined,
         });
       })()
     : null;

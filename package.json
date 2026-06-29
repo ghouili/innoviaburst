@@ -11,6 +11,7 @@
     "postbuild": "node scripts/verify-static-assets.mjs",
     "generate:hero-images": "node scripts/generate-hero-images.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
+    "verify:jsonld": "node scripts/validate-jsonld.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
