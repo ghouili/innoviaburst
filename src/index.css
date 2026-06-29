@@ -53,9 +53,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Primary: Orange — darkened so white button text clears WCAG AA (~4.6:1).
-       Bright orange for decorative use (chips/highlights) lives in --orange. */
-    --primary: 24 90% 40%;
+    /* Primary: deep logo blue (#15599E) — the brand button colour; white text
+       clears WCAG AA (~7:1). Orange (--orange) is kept for ACCENTS only. */
+    --primary: 210 77% 35%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary: Deep blue */
@@ -126,7 +126,8 @@
     --popover: 215 30% 12%;
     --popover-foreground: 200 20% 95%;
 
-    --primary: 24 95% 53%;
+    /* Primary: logo blue (matches light mode); white text clears AA. */
+    --primary: 210 77% 35%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 60% 50%;
