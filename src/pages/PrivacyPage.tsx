@@ -92,7 +92,7 @@ export default function PrivacyPage() {
                 <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.dataSharing.title")}</h2>
                 <p className="text-muted-foreground">
                   {t("privacyPage.sections.dataSharing.body")}{" "}
-                  <Link to="/subprocessors" className="text-accent hover:underline">{t("privacyPage.sections.dataSharing.linkText")}</Link>.
+                  <Link to="/subprocessors" className="text-accent-strong hover:underline">{t("privacyPage.sections.dataSharing.linkText")}</Link>.
                 </p>
                 <p className="text-muted-foreground">
                   {t("privacyPage.sections.dataSharing.noSell")}

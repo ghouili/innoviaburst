@@ -58,7 +58,7 @@ function OffersComparisonTable() {
               scope="col"
               className={[
                 "py-3 px-2 sm:py-4 sm:px-4 text-center font-semibold text-xs sm:text-sm",
-                idx === featuredIndex ? "text-accent" : "text-foreground",
+                idx === featuredIndex ? "text-accent-strong" : "text-foreground",
               ].join(" ")}
             >
               {t(`offers.${offer.key}.title`)}
@@ -143,7 +143,7 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
               }`}
             >
               {offer.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent text-accent-foreground text-xs font-semibold rounded-full">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-accent text-foreground text-xs font-semibold rounded-full">
                   {t("offers.mostPopular")}
                 </div>
               )}
@@ -167,7 +167,7 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                       <h3 className="text-xl font-bold text-foreground">
                         {t(`offers.${offer.key}.title`)}
                       </h3>
-                      <p className="text-sm text-accent font-medium">
+                      <p className="text-sm text-accent-strong font-medium">
                         {t(`offers.${offer.key}.timeline`)}
                       </p>
                     </div>
@@ -272,7 +272,7 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
                     <th className="py-4 px-4 text-center font-semibold text-foreground">
                       AI Ops Sprint
                     </th>
-                    <th className="py-4 px-4 text-center font-semibold text-accent">
+                    <th className="py-4 px-4 text-center font-semibold text-accent-strong">
                       Automation Build
                     </th>
                     <th className="py-4 px-4 text-center font-semibold text-foreground">

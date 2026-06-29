@@ -132,7 +132,7 @@ export default function WorkPage() {
                     <div className="flex items-center justify-between">
                       <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/20 rounded-full">
                         <FileText className="w-3.5 h-3.5 text-accent" />
-                        <span className="text-xs font-semibold text-accent">{study.label}</span>
+                        <span className="text-xs font-semibold text-accent-strong">{study.label}</span>
                       </div>
                       <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted rounded-full">
                         <study.icon className="w-3.5 h-3.5 text-muted-foreground" />
@@ -157,7 +157,7 @@ export default function WorkPage() {
 
                     {/* Results */}
                     <div>
-                      <p className="text-xs font-semibold text-accent uppercase tracking-wide mb-3">{t("workPage.labelResults")}</p>
+                      <p className="text-xs font-semibold text-accent-strong uppercase tracking-wide mb-3">{t("workPage.labelResults")}</p>
                       <div className="grid grid-cols-3 gap-4">
                         {study.results.map((result, i) => (
                           <div key={i} className="text-center">
@@ -184,7 +184,7 @@ export default function WorkPage() {
                     <p className="text-xs text-muted-foreground italic">{study.note}</p>
 
                     {/* CTA */}
-                    <div className="flex items-center text-sm font-medium text-secondary group-hover:text-accent transition-colors">
+                    <div className="flex items-center text-sm font-medium text-secondary group-hover:text-accent-strong transition-colors">
                       {t("workPage.viewFullCaseStudy")}
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </div>

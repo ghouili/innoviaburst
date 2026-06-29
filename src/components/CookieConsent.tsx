@@ -533,7 +533,7 @@ export function CookieConsent() {
                     {t("cookies.bannerDesc")} {" "}
                     <Link
                       to="/cookies"
-                      className="text-accent hover:underline font-medium"
+                      className="text-accent-strong hover:underline font-medium"
                     >
                       {t("cookies.readPolicy")}
                     </Link>

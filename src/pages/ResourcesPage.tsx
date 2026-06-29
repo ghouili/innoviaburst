@@ -692,7 +692,7 @@ export default function ResourcesPage() {
                         <div className="p-3 rounded-xl bg-muted group-hover:bg-accent/20 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
                           <resource.icon className="w-5 h-5 text-secondary group-hover:text-accent transition-colors" />
                         </div>
-                        <span className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full">
+                        <span className="text-xs font-semibold text-accent-strong bg-accent/10 px-2 py-1 rounded-full">
                           {t("resourcesPage.featured.badge")}
                         </span>
                       </div>
@@ -751,7 +751,7 @@ export default function ResourcesPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       {resource.featured && (
-                        <span className="text-xs font-semibold text-accent bg-accent/10 px-2 py-1 rounded-full">
+                        <span className="text-xs font-semibold text-accent-strong bg-accent/10 px-2 py-1 rounded-full">
                           {t("resourcesPage.featured.badge")}
                         </span>
                       )}

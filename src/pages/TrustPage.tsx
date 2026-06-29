@@ -562,7 +562,7 @@ const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
                   {(t("trustPage.ai.items", { returnObjects: true }) as string[]).map(
                     (item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-accent/20 text-accent flex items-center justify-center text-xs font-bold shrink-0">
+                        <div className="w-6 h-6 rounded-full bg-accent/20 text-accent-strong flex items-center justify-center text-xs font-bold shrink-0">
                           {index + 1}
                         </div>
                         <p className="text-sm text-muted-foreground">{item}</p>

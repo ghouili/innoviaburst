@@ -59,7 +59,7 @@ export default function CaseStudyPage() {
         <main className="pt-20 min-h-screen bg-background flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-foreground mb-4">{t("caseStudyPage.notFoundTitle")}</h1>
-            <Link to="/" className="text-accent hover:underline">{t("caseStudyPage.returnHome")}</Link>
+            <Link to="/" className="text-accent-strong hover:underline">{t("caseStudyPage.returnHome")}</Link>
           </div>
         </main>
         <Footer />
@@ -107,7 +107,7 @@ export default function CaseStudyPage() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/20 rounded-full mb-4">
               <FileText className="w-3.5 h-3.5 text-accent" />
-              <span className="text-xs font-semibold text-accent">{t("caseStudyPage.pilotBadge")}</span>
+              <span className="text-xs font-semibold text-accent-strong">{t("caseStudyPage.pilotBadge")}</span>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -160,7 +160,7 @@ export default function CaseStudyPage() {
                     <div className="space-y-3">
                       {study.workflow.map((step, i) => (
                         <div key={i} className="flex items-start gap-3">
-                          <span className="w-6 h-6 rounded-full bg-accent/20 text-accent flex items-center justify-center text-xs font-bold shrink-0">
+                          <span className="w-6 h-6 rounded-full bg-accent/20 text-accent-strong flex items-center justify-center text-xs font-bold shrink-0">
                             {i + 1}
                           </span>
                           <p className="text-sm text-muted-foreground">{step}</p>
@@ -173,7 +173,7 @@ export default function CaseStudyPage() {
                 {/* Results */}
                 <div>
                   <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                    <span className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">3</span>
+                    <span className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center text-accent-strong text-sm font-bold">3</span>
                     {t("caseStudyPage.resultsHeading")}
                   </h2>
                   <div className="grid sm:grid-cols-3 gap-4">

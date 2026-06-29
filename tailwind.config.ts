@@ -50,6 +50,9 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        // Text-safe darkened cyan for cyan TEXT/links (AA on the light bg);
+        // `--accent` stays bright for icons/borders/decorative.
+        "accent-strong": "hsl(var(--accent-strong))",
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",

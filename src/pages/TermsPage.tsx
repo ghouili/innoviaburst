@@ -98,7 +98,7 @@ export default function TermsPage() {
                 <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.privacy.title")}</h2>
                 <p className="text-muted-foreground">
                   {t("termsPage.sections.privacy.body")}{" "}
-                  <Link to="/privacy" className="text-accent hover:underline">{t("termsPage.sections.privacy.linkText")}</Link>.
+                  <Link to="/privacy" className="text-accent-strong hover:underline">{t("termsPage.sections.privacy.linkText")}</Link>.
                 </p>
               </section>
 

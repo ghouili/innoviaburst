@@ -47,7 +47,7 @@ export function ResourcesSection() {
                     <div className="p-3 rounded-xl bg-muted group-hover:bg-accent/20 transition-colors">
                       <resource.icon className="w-5 h-5 text-secondary group-hover:text-accent transition-colors" />
                     </div>
-                    <span className="text-xs font-semibold text-accent bg-accent/10 px-3 py-1 rounded-full">
+                    <span className="text-xs font-semibold text-accent-strong bg-accent/10 px-3 py-1 rounded-full">
                       {t(`resourcesSection.cards.${resource.key}.tag`)}
                     </span>
                   </div>

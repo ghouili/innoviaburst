@@ -115,7 +115,7 @@ export default function IndustriesPage() {
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* Workflows */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.workflowsHeading")}</h4>
+                      <h4 className="text-sm font-semibold text-accent-strong uppercase tracking-wide mb-3">{t("industriesPage.workflowsHeading")}</h4>
                       <ul className="space-y-2">
                         {industry.typicalWorkflows.map((workflow, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -128,7 +128,7 @@ export default function IndustriesPage() {
 
                     {/* Tool Stacks */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.toolsHeading")}</h4>
+                      <h4 className="text-sm font-semibold text-accent-strong uppercase tracking-wide mb-3">{t("industriesPage.toolsHeading")}</h4>
                       <div className="flex flex-wrap gap-2">
                         {industry.toolStacks.map((tool, i) => (
                           <span key={i} className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
@@ -140,7 +140,7 @@ export default function IndustriesPage() {
 
                     {/* Buying Triggers */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.triggersHeading")}</h4>
+                      <h4 className="text-sm font-semibold text-accent-strong uppercase tracking-wide mb-3">{t("industriesPage.triggersHeading")}</h4>
                       <ul className="space-y-2">
                         {industry.buyingTriggers.map((trigger, i) => (
                           <li key={i} className="text-sm text-muted-foreground">• {trigger}</li>
@@ -150,7 +150,7 @@ export default function IndustriesPage() {
 
                     {/* Example KPIs */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.kpisHeading")}</h4>
+                      <h4 className="text-sm font-semibold text-accent-strong uppercase tracking-wide mb-3">{t("industriesPage.kpisHeading")}</h4>
                       <ul className="space-y-2">
                         {industry.exampleKPIs.map((kpi, i) => (
                           <li key={i} className="text-sm font-medium text-foreground">{kpi}</li>

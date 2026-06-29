@@ -58,7 +58,7 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="py-16 lg:py-24 bg-gradient-hero">
           <div className="container mx-auto px-4 lg:px-6 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-4">{t("about.hero.eyebrow")}</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent-strong mb-4">{t("about.hero.eyebrow")}</p>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t("about.hero.title")}</h1>
             <p className="text-lg text-muted-foreground">{t("about.hero.lede")}</p>
           </div>
@@ -123,7 +123,7 @@ export default function AboutPage() {
               <div className="p-6 bg-card rounded-2xl border border-border">
                 <p className="text-lg font-bold text-foreground">{ORG_FACTS.founder.name}</p>
                 {ORG_FACTS.founder.jobTitle && (
-                  <p className="text-sm text-accent mb-2">{ORG_FACTS.founder.jobTitle}</p>
+                  <p className="text-sm text-accent-strong mb-2">{ORG_FACTS.founder.jobTitle}</p>
                 )}
                 {ORG_FACTS.founder.sameAs.length > 0 && (
                   <p className="mt-3 flex flex-wrap gap-3 text-sm">

@@ -53,8 +53,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Primary: Orange accent */
-    --primary: 24 95% 53%;
+    /* Primary: Orange — darkened so white button text clears WCAG AA (~4.6:1).
+       Bright orange for decorative use (chips/highlights) lives in --orange. */
+    --primary: 24 90% 40%;
     --primary-foreground: 0 0% 100%;
 
     /* Secondary: Deep blue */
@@ -65,9 +66,12 @@
     --muted: 200 30% 95%;
     --muted-foreground: 215 15% 45%;
 
-    /* Accent: Cyan */
+    /* Accent: Cyan — BRIGHT, kept for icons / borders / badges / focus ring. */
     --accent: 192 85% 50%;
     --accent-foreground: 0 0% 100%;
+    /* Text-safe darkened cyan (~6:1 on the light bg) — for cyan TEXT and links
+       (use the `text-accent-strong` utility). Decorative cyan stays --accent. */
+    --accent-strong: 192 80% 32%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -86,12 +90,12 @@
     --deep-blue-dark: 215 70% 30%;
     --orange: 24 95% 53%;
     --orange-light: 24 95% 60%;
-    --orange-dark: 24 95% 45%;
+    --orange-dark: 24 90% 38%;
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(200 40% 98%) 0%, hsl(192 60% 95%) 50%, hsl(200 40% 98%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 30% 99%) 100%);
-    --gradient-cta: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(24 95% 45%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(24 90% 40%) 0%, hsl(24 90% 32%) 100%);
     --gradient-blue: linear-gradient(135deg, hsl(192 85% 50%) 0%, hsl(210 70% 45%) 100%);
     --gradient-glow: radial-gradient(ellipse at 50% 0%, hsl(192 85% 50% / 0.15) 0%, transparent 70%);
 
@@ -133,6 +137,7 @@
 
     --accent: 192 75% 45%;
     --accent-foreground: 0 0% 100%;
+    --accent-strong: 192 80% 64%;
 
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 100%;

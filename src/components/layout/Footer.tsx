@@ -207,7 +207,7 @@ export function Footer() {
           {/* Company Links */}
           <nav aria-label={t("footer.company")}
             className="space-y-4">
-            <h4 className="font-semibold">{t("footer.company")}</h4>
+            <h3 className="font-semibold">{t("footer.company")}</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
@@ -220,7 +220,7 @@ export function Footer() {
           {/* Resources Links */}
           <nav aria-label={t("footer.resources")}
             className="space-y-4">
-            <h4 className="font-semibold">{t("footer.resources")}</h4>
+            <h3 className="font-semibold">{t("footer.resources")}</h3>
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
@@ -233,7 +233,7 @@ export function Footer() {
           {/* Legal Links */}
           <nav aria-label={t("footer.legal")}
             className="space-y-4">
-            <h4 className="font-semibold">{t("footer.legal")}</h4>
+            <h3 className="font-semibold">{t("footer.legal")}</h3>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>

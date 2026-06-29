@@ -404,7 +404,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
                 <div className="grid sm:grid-cols-3 gap-4">
                   {(t("booking.whatNext.steps", { returnObjects: true }) as string[]).map((label, idx) => (
                     <div key={idx} className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-sm font-bold text-accent">
+                      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-sm font-bold text-accent-strong">
                         {idx + 1}
                       </div>
                       <p className="text-sm text-muted-foreground">{label}</p>

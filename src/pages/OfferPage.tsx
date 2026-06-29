@@ -102,7 +102,7 @@ export default function OfferPage() {
         <main id="main-content" className="pt-20 min-h-screen bg-background flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-foreground mb-4">{t("offerPage.notFound.heading")}</h1>
-            <Link to="/" className="text-accent hover:underline">{t("offerPage.notFound.returnHome")}</Link>
+            <Link to="/" className="text-accent-strong hover:underline">{t("offerPage.notFound.returnHome")}</Link>
           </div>
         </main>
         <Footer />
@@ -192,7 +192,7 @@ export default function OfferPage() {
 
               {/* Deliverables summary */}
               <div className="p-6 bg-card rounded-2xl border border-border shadow-lg">
-                <h3 className="text-lg font-bold text-foreground mb-4">{t("offerPage.ui.whatsIncluded")}</h3>
+                <h2 className="text-lg font-bold text-foreground mb-4">{t("offerPage.ui.whatsIncluded")}</h2>
                 <ul className="space-y-3">
                   {offer.deliverables.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -216,7 +216,7 @@ export default function OfferPage() {
         {/* AEO: answer-first, question-led blocks (mapped 1:1 to FAQPage schema) */}
         <section className="py-12 lg:py-16 border-b border-border">
           <div className="container mx-auto px-4 lg:px-6 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-8">{t("offerPage.ui.aeoEyebrow")}</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent-strong mb-8">{t("offerPage.ui.aeoEyebrow")}</p>
             <div className="space-y-8">
               {offer.aeo.map((item, i) => (
                 <div key={i}>
@@ -251,7 +251,7 @@ export default function OfferPage() {
               {offer.successMetrics.map((metric, i) => (
                 <div key={i} className="p-6 bg-card rounded-xl border border-border text-center">
                   <p className="text-lg font-bold text-foreground mb-1">{metric.metric}</p>
-                  <p className="text-sm text-accent">{metric.example}</p>
+                  <p className="text-sm text-accent-strong">{metric.example}</p>
                 </div>
               ))}
             </div>
@@ -265,7 +265,7 @@ export default function OfferPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {offer.weekByWeek.map((week, i) => (
                 <div key={i} className="p-4 bg-card rounded-xl border border-border">
-                  <p className="text-sm font-bold text-accent mb-3">{week.week}</p>
+                  <p className="text-sm font-bold text-accent-strong mb-3">{week.week}</p>
                   <ul className="space-y-2">
                     {week.activities.map((activity, j) => (
                       <li key={j} className="text-xs text-muted-foreground flex items-start gap-2">

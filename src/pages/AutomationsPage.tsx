@@ -609,7 +609,7 @@ export default function AutomationsPage() {
                         <Button
                           variant="ghost"
                           onClick={clearAll}
-                          className="min-h-[44px] text-accent"
+                          className="min-h-[44px] text-accent-strong"
                         >
                           {t("automationsPage.clearFilters")}
                         </Button>
@@ -646,7 +646,7 @@ export default function AutomationsPage() {
                   ))}
                 <button
                   onClick={clearAll}
-                  className="text-sm text-accent hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded px-2 min-h-[32px]"
+                  className="text-sm text-accent-strong hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded px-2 min-h-[32px]"
                 >
                   {t("automationsPage.clearAll")}
                 </button>
@@ -818,7 +818,7 @@ function AutomationCard({
         {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full bg-accent/15 text-accent px-3 py-1 text-xs font-semibold">
+            <span className="inline-flex items-center rounded-full bg-accent/15 text-accent-strong px-3 py-1 text-xs font-semibold">
               {automation.category}
             </span>
 
@@ -881,7 +881,7 @@ function AutomationCard({
           <div className="flex items-start gap-2">
             <Zap className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
             <div className="min-w-0">
-              <div className="text-[11px] font-semibold tracking-wide text-accent/90">
+              <div className="text-[11px] font-semibold tracking-wide text-accent-strong/90">
                 {t("automationsPage.card.exampleImpact")}
               </div>
               <div className="text-sm font-semibold text-muted-foreground line-clamp-1">

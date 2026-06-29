@@ -82,7 +82,7 @@ export default function ComingSoonPage() {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Text Content */}
               <div className="space-y-6 animate-fade-in-up">
-                <p className="text-sm font-semibold uppercase tracking-wider text-accent">
+                <p className="text-sm font-semibold uppercase tracking-wider text-accent-strong">
                   {t("comingSoon.badge")}
                 </p>
 

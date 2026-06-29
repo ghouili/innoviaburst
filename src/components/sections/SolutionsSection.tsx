@@ -105,7 +105,7 @@ export function SolutionsSection() {
 
                 {/* What it fixes */}
                 <div>
-                  <p className="text-xs font-semibold text-accent uppercase tracking-wide mb-1">
+                  <p className="text-xs font-semibold text-accent-strong uppercase tracking-wide mb-1">
                     {t("solutions.whatItFixes")}
                   </p>
                   <p className="text-sm text-muted-foreground">
@@ -115,7 +115,7 @@ export function SolutionsSection() {
 
                 {/* Typical tools */}
                 <div>
-                  <p className="text-xs font-semibold text-accent uppercase tracking-wide mb-1">
+                  <p className="text-xs font-semibold text-accent-strong uppercase tracking-wide mb-1">
                     {t("solutions.typicalTools")}
                   </p>
                   <p className="text-sm text-muted-foreground">
@@ -125,7 +125,7 @@ export function SolutionsSection() {
               </div>
                 {/* Example KPI */}
                 <div className="pt-4 border-t border-border min-h-20 flex flex-col justify-start">
-                  <p className="text-xs font-semibold text-accent uppercase tracking-wide mb-1">
+                  <p className="text-xs font-semibold text-accent-strong uppercase tracking-wide mb-1">
                     {t("solutions.exampleKpi")}
                   </p>
                   <p className="text-base font-semibold text-gradient-orange">
