@@ -42,111 +42,101 @@ export default function PrivacyPage() {
           <div className="container mx-auto px-4 lg:px-6 max-w-4xl">
             <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
               <ArrowLeft className="w-4 h-4" />
-              Back to home
+              {t("common.backToHome")}
             </Link>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Privacy Policy</h1>
-            <p className="text-sm text-muted-foreground mb-8">Last updated: December 2024</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t("privacyPage.title")}</h1>
+            <p className="text-sm text-muted-foreground mb-8">{t("privacyPage.lastUpdated")}</p>
 
             <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">1. Who We Are</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.whoWeAre.title")}</h2>
                 <p className="text-muted-foreground">
-                  Innoviaburst Ltd ("we", "us", "our") is a company registered in England and Wales (Company No. XXXXXXXX). 
-                  We are the data controller for personal data collected through this website and our services.
+                  {t("privacyPage.sections.whoWeAre.body")}
                 </p>
                 <p className="text-muted-foreground">
-                  Contact: hello@innoviaburst.com
+                  {t("privacyPage.sections.whoWeAre.contact")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">2. What Data We Collect</h2>
-                <p className="text-muted-foreground mb-3">We may collect:</p>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.whatWeCollect.title")}</h2>
+                <p className="text-muted-foreground mb-3">{t("privacyPage.sections.whatWeCollect.intro")}</p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li><strong>Contact information:</strong> Name, email address, company name when you contact us or use our services</li>
-                  <li><strong>Technical data:</strong> IP address, browser type, device information when you visit our website</li>
-                  <li><strong>Usage data:</strong> How you interact with our website (with your consent)</li>
-                  <li><strong>Project data:</strong> Information you share during service delivery</li>
+                  {(t("privacyPage.sections.whatWeCollect.items", { returnObjects: true }) as { label: string; text: string }[]).map((item, i) => (
+                    <li key={i}><strong>{item.label}</strong> {item.text}</li>
+                  ))}
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">3. How We Use Your Data</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.howWeUse.title")}</h2>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>To respond to your enquiries and provide our services</li>
-                  <li>To improve our website and services</li>
-                  <li>To send you relevant updates (only with your consent)</li>
-                  <li>To comply with legal obligations</li>
+                  {(t("privacyPage.sections.howWeUse.items", { returnObjects: true }) as string[]).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">4. Legal Basis</h2>
-                <p className="text-muted-foreground">We process your data based on:</p>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.legalBasis.title")}</h2>
+                <p className="text-muted-foreground">{t("privacyPage.sections.legalBasis.intro")}</p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li><strong>Contract:</strong> To deliver services you've requested</li>
-                  <li><strong>Legitimate interests:</strong> To improve our services and respond to enquiries</li>
-                  <li><strong>Consent:</strong> For analytics and marketing communications</li>
+                  {(t("privacyPage.sections.legalBasis.items", { returnObjects: true }) as { label: string; text: string }[]).map((item, i) => (
+                    <li key={i}><strong>{item.label}</strong> {item.text}</li>
+                  ))}
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">5. Data Sharing</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.dataSharing.title")}</h2>
                 <p className="text-muted-foreground">
-                  We may share data with sub-processors who help us deliver our services. 
-                  See our <Link to="/subprocessors" className="text-accent hover:underline">sub-processors list</Link>.
+                  {t("privacyPage.sections.dataSharing.body")}{" "}
+                  <Link to="/subprocessors" className="text-accent hover:underline">{t("privacyPage.sections.dataSharing.linkText")}</Link>.
                 </p>
                 <p className="text-muted-foreground">
-                  We do not sell your personal data.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">6. Data Retention</h2>
-                <p className="text-muted-foreground">
-                  We retain personal data only as long as necessary for the purposes described. 
-                  Project data is typically deleted within 30 days of project completion unless otherwise agreed.
+                  {t("privacyPage.sections.dataSharing.noSell")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">7. Your Rights</h2>
-                <p className="text-muted-foreground mb-3">Under UK GDPR, you have the right to:</p>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.retention.title")}</h2>
+                <p className="text-muted-foreground">
+                  {t("privacyPage.sections.retention.body")}
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.yourRights.title")}</h2>
+                <p className="text-muted-foreground mb-3">{t("privacyPage.sections.yourRights.intro")}</p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>Access your personal data</li>
-                  <li>Correct inaccurate data</li>
-                  <li>Request deletion</li>
-                  <li>Restrict processing</li>
-                  <li>Data portability</li>
-                  <li>Object to processing</li>
-                  <li>Withdraw consent</li>
+                  {(t("privacyPage.sections.yourRights.items", { returnObjects: true }) as string[]).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
                 <p className="text-muted-foreground mt-3">
-                  Contact us at hello@innoviaburst.com to exercise these rights.
+                  {t("privacyPage.sections.yourRights.exercise")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">8. International Transfers</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.transfers.title")}</h2>
                 <p className="text-muted-foreground">
-                  Some of our sub-processors are based outside the UK. Where this is the case, 
-                  we ensure appropriate safeguards are in place, such as Standard Contractual Clauses.
+                  {t("privacyPage.sections.transfers.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">9. Complaints</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.complaints.title")}</h2>
                 <p className="text-muted-foreground">
-                  If you have concerns about how we handle your data, please contact us first. 
-                  You also have the right to lodge a complaint with the Information Commissioner's Office (ICO).
+                  {t("privacyPage.sections.complaints.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">10. Changes to This Policy</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("privacyPage.sections.changes.title")}</h2>
                 <p className="text-muted-foreground">
-                  We may update this policy from time to time. Material changes will be communicated appropriately.
+                  {t("privacyPage.sections.changes.body")}
                 </p>
               </section>
             </div>

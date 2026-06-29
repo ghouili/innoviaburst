@@ -19,7 +19,7 @@ const ORDER: Locale[] = ["fr", "en"];
  * <html lang> + translated content. Works without JS and is crawlable.
  */
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
 
   const langSeg = (i18n.language || DEFAULT_LOCALE).slice(0, 2);
@@ -41,7 +41,7 @@ export function LanguageSwitcher() {
       <div
         className="relative inline-flex h-9 w-[92px] items-center rounded-xl border border-border bg-muted/60 p-1 overflow-hidden"
         role="group"
-        aria-label="Language"
+        aria-label={t("languageSwitcher.groupLabel")}
       >
         <span
           aria-hidden="true"
@@ -60,7 +60,7 @@ export function LanguageSwitcher() {
               hrefLang={loc}
               lang={loc}
               aria-current={active ? "true" : undefined}
-              aria-label={`Switch to ${LABELS[loc].full}`}
+              aria-label={t("languageSwitcher.switchTo", { lang: LABELS[loc].full })}
               className={[
                 "relative z-10 flex-1 h-full inline-flex items-center justify-center rounded-lg",
                 "text-xs font-semibold no-underline",

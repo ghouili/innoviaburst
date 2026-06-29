@@ -453,16 +453,16 @@ const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
                       <Users className="w-4 h-4" />
-                      Sub-processors
+                      {t("trustPage.subprocessors.title")}
                     </div>
                     <p className="text-muted-foreground max-w-3xl">
-                      We’re transparent about tools and services that may process data:
+                      {t("trustPage.subprocessors.subtitle")}
                     </p>
                   </div>
                 </div>
 
                 <div className="grid gap-3 max-w-3xl">
-                  {["Sub-processor list available on request", "We notify clients of material changes with reasonable notice"].map(
+                  {(t("trustPage.subprocessors.bullets", { returnObjects: true }) as string[]).map(
                     (line) => (
                       <div key={line} className="flex items-start gap-3">
                         <FileCheck className="w-4 h-4 text-secondary mt-1" />
@@ -474,14 +474,14 @@ const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
 
                 <div className="p-5 bg-card rounded-xl border border-border max-w-xl flex items-center justify-between gap-4">
                   <div className="space-y-1">
-                    <p className="text-sm text-foreground font-semibold">Sub-processor transparency</p>
-                    <p className="text-sm text-muted-foreground">View the current list and stay notified of updates.</p>
+                    <p className="text-sm text-foreground font-semibold">{t("trustPage.subprocessors.card.title")}</p>
+                    <p className="text-sm text-muted-foreground">{t("trustPage.subprocessors.card.subtitle")}</p>
                   </div>
                   <Link
                     to="/subprocessors"
                     className="inline-flex items-center gap-2 text-secondary font-semibold hover:underline min-h-[32px]"
                   >
-                    View full list
+                    {t("trustPage.subprocessors.card.link")}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>

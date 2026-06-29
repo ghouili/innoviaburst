@@ -42,92 +42,84 @@ export default function TermsPage() {
           <div className="container mx-auto px-4 lg:px-6 max-w-4xl">
             <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
               <ArrowLeft className="w-4 h-4" />
-              Back to home
+              {t("common.backToHome")}
             </Link>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Terms of Service</h1>
-            <p className="text-sm text-muted-foreground mb-8">Last updated: December 2024</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{t("termsPage.title")}</h1>
+            <p className="text-sm text-muted-foreground mb-8">{t("termsPage.lastUpdated")}</p>
 
             <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8">
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">1. Agreement</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.agreement.title")}</h2>
                 <p className="text-muted-foreground">
-                  By accessing this website, you agree to these terms and conditions. 
-                  If you don't agree, please don't use the website.
+                  {t("termsPage.sections.agreement.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">2. About Us</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.aboutUs.title")}</h2>
                 <p className="text-muted-foreground">
-                  Innoviaburst Ltd is a company registered in England and Wales (Company No. XXXXXXXX). 
-                  Registered office: [Address placeholder].
+                  {t("termsPage.sections.aboutUs.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">3. Services</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.services.title")}</h2>
                 <p className="text-muted-foreground">
-                  We provide AI, automation, and software development services. 
-                  Specific project terms are set out in separate agreements (Statements of Work).
+                  {t("termsPage.sections.services.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">4. Website Use</h2>
-                <p className="text-muted-foreground mb-3">You agree to:</p>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.websiteUse.title")}</h2>
+                <p className="text-muted-foreground mb-3">{t("termsPage.sections.websiteUse.intro")}</p>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>Use the website lawfully and not for any unlawful purpose</li>
-                  <li>Not attempt to gain unauthorised access to our systems</li>
-                  <li>Not interfere with the proper working of the website</li>
-                  <li>Not use automated systems to access the website without permission</li>
+                  {(t("termsPage.sections.websiteUse.items", { returnObjects: true }) as string[]).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">5. Intellectual Property</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.ip.title")}</h2>
                 <p className="text-muted-foreground">
-                  All content on this website (text, graphics, logos, images) is owned by or licensed to 
-                  Innoviaburst Ltd. You may not reproduce, distribute, or modify this content without permission.
+                  {t("termsPage.sections.ip.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">6. Limitation of Liability</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.liability.title")}</h2>
                 <p className="text-muted-foreground">
-                  While we take reasonable care, we don't guarantee the website will be error-free or uninterrupted. 
-                  We exclude liability for any indirect or consequential losses to the fullest extent permitted by law.
+                  {t("termsPage.sections.liability.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">7. Privacy</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.privacy.title")}</h2>
                 <p className="text-muted-foreground">
-                  Your use of the website is also governed by our{" "}
-                  <Link to="/privacy" className="text-accent hover:underline">Privacy Policy</Link>.
+                  {t("termsPage.sections.privacy.body")}{" "}
+                  <Link to="/privacy" className="text-accent hover:underline">{t("termsPage.sections.privacy.linkText")}</Link>.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">8. Changes</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.changes.title")}</h2>
                 <p className="text-muted-foreground">
-                  We may update these terms at any time. Continued use of the website after changes 
-                  constitutes acceptance of the new terms.
+                  {t("termsPage.sections.changes.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">9. Governing Law</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.governingLaw.title")}</h2>
                 <p className="text-muted-foreground">
-                  These terms are governed by English law. Disputes will be subject to the exclusive 
-                  jurisdiction of the English courts.
+                  {t("termsPage.sections.governingLaw.body")}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-bold text-foreground mb-3">10. Contact</h2>
+                <h2 className="text-xl font-bold text-foreground mb-3">{t("termsPage.sections.contact.title")}</h2>
                 <p className="text-muted-foreground">
-                  Questions? Contact us at hello@innoviaburst.com
+                  {t("termsPage.sections.contact.body")}
                 </p>
               </section>
             </div>

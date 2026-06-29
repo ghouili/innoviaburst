@@ -114,16 +114,16 @@ export default function OfferPage() {
     return (
       <>
         <SeoHead
-          title="Offer Not Found | Innoviaburst"
-          description="The offer you're looking for doesn't exist or may have moved."
+          title={t("offerPage.notFound.seoTitle")}
+          description={t("offerPage.notFound.seoDescription")}
           robots="noindex, nofollow"
         />
         <SkipLink />
         <Navbar onBookingClick={() => setBookingOpen(true)} />
         <main id="main-content" className="pt-20 min-h-screen bg-background flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-foreground mb-4">Offer not found</h1>
-            <Link to="/" className="text-accent hover:underline">Return to home</Link>
+            <h1 className="text-2xl font-bold text-foreground mb-4">{t("offerPage.notFound.heading")}</h1>
+            <Link to="/" className="text-accent hover:underline">{t("offerPage.notFound.returnHome")}</Link>
           </div>
         </main>
         <Footer />
@@ -157,7 +157,7 @@ export default function OfferPage() {
           <div className="container mx-auto px-4 lg:px-6">
             <Link to="/#offers" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
               <ArrowLeft className="w-4 h-4" />
-              Back to Offers
+              {t("offerPage.ui.backToOffers")}
             </Link>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -167,14 +167,14 @@ export default function OfferPage() {
                 </h1>
                 <p className="text-lg text-muted-foreground mb-6">{offer.heroDescription}</p>
                 <p className="text-sm text-muted-foreground mb-4">
-                  A focused package for workflow automations, AI copilots, or MVPs for UK/EU SMEs with GDPR/UK GDPR-ready delivery, optional DPA support, transparent sub-processor use, and agreed data retention.
+                  {t("offerPage.ui.heroTagline")}
                 </p>
                 <div className="space-y-2 mb-6">
-                  <p className="text-sm font-semibold text-foreground">How it works (3 quick steps)</p>
+                  <p className="text-sm font-semibold text-foreground">{t("offerPage.ui.howItWorks.title")}</p>
                   <ul className="space-y-1 text-sm text-muted-foreground list-disc list-inside">
-                    <li>Scope the workflow, AI copilot, or MVP you need with measurable outcomes.</li>
-                    <li>Build and test with your live tools, approvals, and compliance checkpoints.</li>
-                    <li>Deploy with documentation, data retention notes, and a trust-ready handover.</li>
+                    {(t("offerPage.ui.howItWorks.steps", { returnObjects: true }) as string[]).map((step, i) => (
+                      <li key={i}>{step}</li>
+                    ))}
                   </ul>
                 </div>
                 
@@ -189,30 +189,30 @@ export default function OfferPage() {
                 </div>
 
                 <p className="text-sm text-muted-foreground mb-6">
-                  <strong>Best for:</strong> {offer.bestFor}
+                  <strong>{t("offerPage.ui.bestForLabel")}</strong> {offer.bestFor}
                 </p>
 
                 <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] text-sm sm:text-base px-5 sm:px-8">
-                  Book a 15-min call
+                  {t("offerPage.ui.bookCall")}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
 
                 <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
                   <Link to="/automations" className="text-secondary hover:underline">
-                    Browse automation examples
+                    {t("offerPage.ui.links.automations")}
                   </Link>
                   <Link to="/works" className="text-secondary hover:underline">
-                    See case studies with ROI
+                    {t("offerPage.ui.links.caseStudies")}
                   </Link>
                   <Link to="/trust" className="text-secondary hover:underline">
-                    Review trust, DPA, and retention details
+                    {t("offerPage.ui.links.trust")}
                   </Link>
                 </div>
               </div>
 
               {/* Deliverables summary */}
               <div className="p-6 bg-card rounded-2xl border border-border shadow-lg">
-                <h3 className="text-lg font-bold text-foreground mb-4">What's Included</h3>
+                <h3 className="text-lg font-bold text-foreground mb-4">{t("offerPage.ui.whatsIncluded")}</h3>
                 <ul className="space-y-3">
                   {offer.deliverables.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
@@ -228,7 +228,7 @@ export default function OfferPage() {
           {/* Sticky CTA for mobile - safe-area aware */}
           <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-card/95 backdrop-blur-sm border-t border-border z-50 pb-[max(1rem,env(safe-area-inset-bottom))]">
             <Button variant="hero" className="w-full min-h-[48px]" onClick={() => setBookingOpen(true)}>
-              Book a 15-min call
+              {t("offerPage.ui.bookCall")}
             </Button>
           </div>
         </section>
@@ -236,7 +236,7 @@ export default function OfferPage() {
         {/* AEO: answer-first, question-led blocks (mapped 1:1 to FAQPage schema) */}
         <section className="py-12 lg:py-16 border-b border-border">
           <div className="container mx-auto px-4 lg:px-6 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-8">Answers, up front</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-8">{t("offerPage.ui.aeoEyebrow")}</p>
             <div className="space-y-8">
               {offer.aeo.map((item, i) => (
                 <div key={i}>
@@ -251,7 +251,7 @@ export default function OfferPage() {
         {/* Exclusions */}
         <section className="py-12 border-b border-border">
           <div className="container mx-auto px-4 lg:px-6">
-            <h2 className="text-xl font-bold text-foreground mb-6">What's Not Included</h2>
+            <h2 className="text-xl font-bold text-foreground mb-6">{t("offerPage.ui.whatsNotIncluded")}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {offer.exclusions.map((item, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -266,7 +266,7 @@ export default function OfferPage() {
         {/* Success Metrics */}
         <section className="py-12 lg:py-16 bg-muted/30">
           <div className="container mx-auto px-4 lg:px-6">
-            <h2 className="text-xl font-bold text-foreground mb-6">Success Metrics</h2>
+            <h2 className="text-xl font-bold text-foreground mb-6">{t("offerPage.ui.successMetrics")}</h2>
             <div className="grid sm:grid-cols-3 gap-6">
               {offer.successMetrics.map((metric, i) => (
                 <div key={i} className="p-6 bg-card rounded-xl border border-border text-center">
@@ -281,7 +281,7 @@ export default function OfferPage() {
         {/* Timeline */}
         <section className="py-12 lg:py-16">
           <div className="container mx-auto px-4 lg:px-6">
-            <h2 className="text-xl font-bold text-foreground mb-6">Timeline</h2>
+            <h2 className="text-xl font-bold text-foreground mb-6">{t("offerPage.ui.timeline")}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {offer.weekByWeek.map((week, i) => (
                 <div key={i} className="p-4 bg-card rounded-xl border border-border">
@@ -303,7 +303,7 @@ export default function OfferPage() {
         {/* Client Inputs */}
         <section className="py-12 lg:py-16 bg-muted/30">
           <div className="container mx-auto px-4 lg:px-6">
-            <h2 className="text-xl font-bold text-foreground mb-6">What We Need From You</h2>
+            <h2 className="text-xl font-bold text-foreground mb-6">{t("offerPage.ui.clientInputs")}</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {offer.clientInputs.map((input, i) => (
                 <div key={i} className="flex items-start gap-3 p-4 bg-card rounded-xl border border-border">
@@ -320,7 +320,7 @@ export default function OfferPage() {
         {/* FAQ */}
         <section className="py-12 lg:py-16">
           <div className="container mx-auto px-4 lg:px-6">
-            <h2 className="text-xl font-bold text-foreground mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-xl font-bold text-foreground mb-6">{t("offerPage.ui.faq")}</h2>
             <div className="space-y-3 max-w-3xl">
               {offer.faq.map((item, i) => (
                 <div key={i} className="border border-border rounded-xl overflow-hidden">
@@ -355,10 +355,9 @@ export default function OfferPage() {
                 <CreditCard className="w-6 h-6 text-accent" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-1">Billing & Payment</h3>
+                <h3 className="font-semibold text-foreground mb-1">{t("offerPage.ui.billing.title")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  Invoices in GBP. Payment accepted via UK bank transfer or Wise. 
-                  Typical terms: 50% upfront, 50% on completion.
+                  {t("offerPage.ui.billing.body")}
                 </p>
               </div>
             </div>
@@ -369,13 +368,13 @@ export default function OfferPage() {
         <section className="py-16 lg:py-24 bg-gradient-hero">
           <div className="container mx-auto px-4 lg:px-6 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Ready to get started?
+              {t("offerPage.ui.finalCta.title")}
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              Book a quick call to discuss your requirements. We'll scope your project and get back to you within 48 hours.
+              {t("offerPage.ui.finalCta.body")}
             </p>
             <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] text-sm sm:text-base px-5 sm:px-8">
-              Book a 15-min call
+              {t("offerPage.ui.bookCall")}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
