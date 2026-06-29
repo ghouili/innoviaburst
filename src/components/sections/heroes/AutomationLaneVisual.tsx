@@ -77,12 +77,17 @@ const STYLES = `
   --line: hsl(var(--border));
   --ink: hsl(var(--foreground));
   --slate: hsl(var(--muted-foreground));
-  --blue: hsl(var(--secondary));
+  /* Logo blue (was hsl(var(--secondary)) = 4.27:1) — darkened so the small
+     "Processing"/tag labels on the light-blue chip clear WCAG AA on the now-opaque
+     white panel. Also aligns the panel accent with the brand primary. */
+  --blue: hsl(210 77% 35%);
   --blue-soft: hsl(var(--secondary) / 0.10);
   --green: hsl(160 84% 39%);
   --green-soft: hsl(160 84% 39% / 0.12);
-  --orange: hsl(var(--primary));
-  --orange-soft: hsl(var(--primary) / 0.12);
+  /* Brand orange for the panel's manual-mode warnings / overdue states. Literal
+     (not hsl(var(--primary))) because --primary is now logo blue. */
+  --orange: hsl(24 95% 53%);
+  --orange-soft: hsl(24 95% 53% / 0.12);
   --radius: 12px;
   --shadow-sm: 0 1px 2px rgba(29,37,48,.05), 0 1px 1px rgba(29,37,48,.03);
   --shadow-md: 0 10px 30px -12px rgba(29,37,48,.18), 0 2px 6px rgba(29,37,48,.05);
@@ -574,7 +579,11 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
    * and replaces the lane contents with the live (or reduced-motion) state.
    */
   return (
-    <div ref={rootRef} className={`ialane panel ${className}`.trim()}>
+    // Decorative, explicitly "Illustrative" mockup — its message is conveyed by
+    // the hero copy, so it's aria-hidden (keeps its animated micro-labels out of
+    // the a11y tree / contrast audits). The demo toggle below is tabIndex={-1}
+    // so there's no focusable element inside an aria-hidden subtree.
+    <div ref={rootRef} aria-hidden="true" className={`ialane panel ${className}`.trim()}>
       {/* CSS injected raw — a JSX text child gets HTML-escaped (content:"" -> &quot;),
           which mismatches the client on hydration (#425). */}
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
@@ -595,10 +604,10 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
           </div>
         </div>
         <div className="toggle" id="ialane-toggle">
-          <button type="button" data-mode="manual">
+          <button type="button" tabIndex={-1} data-mode="manual">
             Without automation
           </button>
-          <button type="button" data-mode="auto" className="on">
+          <button type="button" tabIndex={-1} data-mode="auto" className="on">
             With Innoviaburst
           </button>
         </div>
