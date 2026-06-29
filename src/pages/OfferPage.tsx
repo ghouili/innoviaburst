@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -11,7 +12,19 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check, X, Clock, ChevronDown, ChevronUp, CreditCard } from "lucide-react";
 import { breadcrumbJsonLd, faqJsonLd, orgJsonLd, serviceJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
-const offers: Record<string, {
+/**
+ * Price-only metadata. The localizable offer COPY now lives in i18n
+ * (`offerDetails.<slug>.*` — see en.json), so /fr renders French once the FR
+ * strings are supplied. Phase 8 replaces this with src/data/offers.ts
+ * (EUR-primary + GBP). Keep price OUT of i18n.
+ */
+const OFFER_META: Record<string, { price: string }> = {
+  "ai-ops-sprint": { price: "From £5k" },
+  "automation-build": { price: "£15k–£30k" },
+  "mvp-launch": { price: "From £25k" },
+};
+
+interface OfferContent {
   title: string;
   timeline: string;
   bestFor: string;
@@ -23,155 +36,31 @@ const offers: Record<string, {
   weekByWeek: { week: string; activities: string[] }[];
   clientInputs: string[];
   faq: { q: string; a: string }[];
-}> = {
-  "ai-ops-sprint": {
-    title: "AI Ops Sprint",
-    timeline: "10 business days",
-    bestFor: "Ops teams drowning in manual steps who need quick wins",
-    price: "From £5k",
-    heroDescription: "Get one workflow automated or one AI copilot shipped in just 10 business days. Perfect for proving ROI before larger investments.",
-    deliverables: [
-      "1 workflow automated OR 1 AI copilot shipped (scoped to complexity)",
-      "Working integration deployed to your tools",
-      "Lightweight documentation + handover session",
-      "30-day support for bug fixes",
-    ],
-    exclusions: [
-      "Multiple workflows (one per sprint)",
-      "Custom UI development",
-      "Data migration or cleanup",
-      "Ongoing maintenance beyond 30 days",
-    ],
-    successMetrics: [
-      { metric: "Hours saved/week", example: "4–10 hours typically" },
-      { metric: "Faster response time", example: "50–70% reduction" },
-      { metric: "Error reduction", example: "60–80% fewer manual errors" },
-    ],
-    weekByWeek: [
-      { week: "Days 1–2", activities: ["Kickoff call", "Requirements gathering", "Tool access setup", "Workflow mapping"] },
-      { week: "Days 3–6", activities: ["Build automation/copilot", "Connect integrations", "Test with sample data"] },
-      { week: "Days 7–8", activities: ["UAT with your team", "Refinements", "Edge case handling"] },
-      { week: "Days 9–10", activities: ["Deploy to production", "Documentation", "Handover session", "Go live"] },
-    ],
-    clientInputs: [
-      "Access to relevant tools (CRM, helpdesk, etc.)",
-      "1–2 hours of SME time for requirements",
-      "Test data or scenarios",
-      "Approvals for integrations",
-    ],
-    faq: [
-      { q: "What counts as 'one workflow'?", a: "A single automation trigger with up to 8 steps. Complex multi-branch workflows may require the Automation Build package." },
-      { q: "Can I choose both automation and copilot?", a: "The sprint includes one OR the other. For both, we'd scope a combined project." },
-      { q: "What if we need changes after delivery?", a: "30 days of bug fixes included. Additional changes can be scoped as a follow-on sprint." },
-      { q: "Do you work with our existing tools?", a: "Yes, we integrate with most common business tools. We'll confirm compatibility in the scoping call." },
-      { q: "What's the typical ROI?", a: "Most clients see payback within 2–4 weeks through time savings." },
-      { q: "How do you handle our data?", a: "We follow least-privilege access and sign NDAs. See our Trust page for details." },
-    ],
-  },
-  "automation-build": {
-    title: "Automation Build",
-    timeline: "4–6 weeks",
-    bestFor: "Cross-tool automation with approvals, reporting, and error handling",
-    price: "£15k–£30k",
-    heroDescription: "Build robust, production-grade automation that connects multiple systems with proper logging, alerts, and retry strategies.",
-    deliverables: [
-      "Multi-system workflow connecting 3–5 tools",
-      "Logging and monitoring dashboard",
-      "Alert system for failures",
-      "Retry and error handling strategy",
-      "Admin interface for configuration",
-      "Full documentation and training",
-      "60-day support for bug fixes",
-    ],
-    exclusions: [
-      "Custom mobile apps",
-      "Legacy system rewrites",
-      "Data warehousing or BI",
-      "24/7 on-call support",
-    ],
-    successMetrics: [
-      { metric: "Cycle-time reduction", example: "40–60% faster" },
-      { metric: "Error reduction", example: "70–90% fewer" },
-      { metric: "Team capacity freed", example: "1–2 FTE equivalent" },
-    ],
-    weekByWeek: [
-      { week: "Week 1", activities: ["Discovery workshop", "Process mapping", "Technical architecture", "Tool access setup"] },
-      { week: "Weeks 2–3", activities: ["Core automation build", "Integration development", "Error handling setup"] },
-      { week: "Week 4", activities: ["Logging & monitoring", "Admin interface", "Testing"] },
-      { week: "Weeks 5–6", activities: ["UAT", "Refinements", "Documentation", "Training", "Go live"] },
-    ],
-    clientInputs: [
-      "2–4 hours/week of stakeholder time",
-      "Admin access to all integrated tools",
-      "Test environment if available",
-      "Sign-off on requirements doc",
-    ],
-    faq: [
-      { q: "What's the difference from the Sprint?", a: "The Build includes multiple connected systems, proper error handling, monitoring, and an admin interface." },
-      { q: "Can you work with our internal APIs?", a: "Yes, we regularly integrate with custom APIs. We'll need documentation and test access." },
-      { q: "How do you handle approvals workflows?", a: "We build approval steps with configurable rules, escalation paths, and audit trails." },
-      { q: "What monitoring is included?", a: "A dashboard showing automation runs, success rates, and alerts for failures." },
-      { q: "Do you provide training?", a: "Yes, a 2-hour training session is included, plus documentation for ongoing reference." },
-      { q: "What's your change management process?", a: "We work in 2-week sprints with demos, allowing for course corrections throughout." },
-    ],
-  },
-  "mvp-launch": {
-    title: "MVP Launch",
-    timeline: "6–10 weeks",
-    bestFor: "Startups & SMEs launching a new product or internal tool",
-    price: "From £25k",
-    heroDescription: "Go from idea to deployed product with authentication, basic security, and analytics. Perfect for validating new products or building internal tools.",
-    deliverables: [
-      "Fully functional MVP deployed to production",
-      "User authentication and role-based access",
-      "Core features as scoped (typically 5–8 screens)",
-      "Basic security measures",
-      "Analytics integration",
-      "Mobile-responsive design",
-      "90-day support for bug fixes",
-    ],
-    exclusions: [
-      "Native mobile apps (web-first)",
-      "Advanced security certifications",
-      "Unlimited feature scope",
-      "Ongoing feature development",
-    ],
-    successMetrics: [
-      { metric: "Time-to-market", example: "8 weeks average" },
-      { metric: "User activation rate", example: "Track from day 1" },
-      { metric: "Iteration speed", example: "Weekly releases possible" },
-    ],
-    weekByWeek: [
-      { week: "Weeks 1–2", activities: ["Discovery & design", "User stories", "Technical architecture", "Wireframes approval"] },
-      { week: "Weeks 3–4", activities: ["Core development", "Authentication", "Database setup"] },
-      { week: "Weeks 5–6", activities: ["Feature development", "Integration work", "UI refinement"] },
-      { week: "Weeks 7–8", activities: ["Testing", "Security review", "Analytics setup"] },
-      { week: "Weeks 9–10", activities: ["UAT", "Bug fixes", "Deployment", "Launch"] },
-    ],
-    clientInputs: [
-      "Clear product vision and priorities",
-      "4–6 hours/week of product owner time",
-      "Branding assets",
-      "Test users for feedback",
-    ],
-    faq: [
-      { q: "What tech stack do you use?", a: "Modern web stack: React, TypeScript, and Supabase for backend. Optimised for speed and maintainability." },
-      { q: "Can we own the code?", a: "Absolutely. You get full ownership and access to the codebase on completion." },
-      { q: "How do you scope an MVP?", a: "We run a discovery workshop to identify the core features needed to validate your hypothesis." },
-      { q: "What about ongoing development?", a: "We can discuss a retainer or project-based continuation after launch." },
-      { q: "Do you help with launch?", a: "Yes, we handle deployment and can advise on go-to-market, though marketing execution is typically client-led." },
-      { q: "What if scope changes?", a: "We build in flexibility. Material scope changes are discussed and re-scoped transparently." },
-    ],
-  },
-};
+}
 
 export default function OfferPage() {
+  const { t } = useTranslation();
   const location = useLocation();
   const slug = location.pathname.replace('/', '');
   const [bookingOpen, setBookingOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const offer = slug ? offers[slug] : null;
+  const meta = slug ? OFFER_META[slug] : null;
+  const offer: OfferContent | null = meta
+    ? {
+        title: t(`offerDetails.${slug}.title`),
+        timeline: t(`offerDetails.${slug}.timeline`),
+        bestFor: t(`offerDetails.${slug}.bestFor`),
+        price: meta.price,
+        heroDescription: t(`offerDetails.${slug}.heroDescription`),
+        deliverables: t(`offerDetails.${slug}.deliverables`, { returnObjects: true }) as string[],
+        exclusions: t(`offerDetails.${slug}.exclusions`, { returnObjects: true }) as string[],
+        successMetrics: t(`offerDetails.${slug}.successMetrics`, { returnObjects: true }) as { metric: string; example: string }[],
+        weekByWeek: t(`offerDetails.${slug}.weekByWeek`, { returnObjects: true }) as { week: string; activities: string[] }[],
+        clientInputs: t(`offerDetails.${slug}.clientInputs`, { returnObjects: true }) as string[],
+        faq: t(`offerDetails.${slug}.faq`, { returnObjects: true }) as { q: string; a: string }[],
+      }
+    : null;
 
   const canonicalPath = offer ? `/${slug}` : undefined;
 

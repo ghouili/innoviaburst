@@ -9,136 +9,46 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Briefcase, Rocket, Building2, Stethoscope, ShoppingCart, Check } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
 
-const industries = [
-  {
-    icon: Briefcase,
-    title: "Professional Services SMEs",
-    description: "Legal, accounting, and consulting firms with complex client workflows and compliance requirements.",
-    typicalWorkflows: [
-      "Client onboarding & intake forms",
-      "Document generation & routing",
-      "Time tracking integrations",
-      "Compliance reporting & audits",
-      "Invoice generation & follow-up",
-    ],
-    toolStacks: ["HubSpot", "Xero/QuickBooks", "Google Workspace", "Asana/Monday", "DocuSign"],
-    buyingTriggers: [
-      "Growing client base but can't hire fast enough",
-      "Too much time on admin vs. billable work",
-      "Compliance pressure increasing",
-      "Client onboarding taking too long",
-    ],
-    exampleKPIs: [
-      "40% reduction in client onboarding time",
-      "8–12 hrs/week saved on admin",
-      "50% faster invoice cycle",
-    ],
-    primary: true,
-  },
-  {
-    icon: Rocket,
-    title: "B2B SaaS & Funded Startups",
-    description: "Fast-growing companies that need to scale operations without scaling headcount proportionally.",
-    typicalWorkflows: [
-      "Customer success automation",
-      "Product-led growth workflows",
-      "Revenue operations (RevOps)",
-      "Support ticket triage & routing",
-      "Internal tools & dashboards",
-    ],
-    toolStacks: ["HubSpot/Salesforce", "Zendesk/Intercom", "Slack", "Notion", "Stripe"],
-    buyingTriggers: [
-      "Series A/B pressure to improve unit economics",
-      "Support team overwhelmed",
-      "Lead routing chaos",
-      "Manual reporting taking too long",
-    ],
-    exampleKPIs: [
-      "60% faster first response time",
-      "3x faster lead-to-SDR handoff",
-      "20% reduction in churn",
-    ],
-    primary: true,
-  },
-  {
-    icon: Building2,
-    title: "Property & Real Estate",
-    description: "Estate agents, property managers, and developers with high-volume client communication.",
-    typicalWorkflows: [
-      "Lead capture & qualification",
-      "Viewing scheduling automation",
-      "Tenant communication",
-      "Maintenance request routing",
-      "Document management",
-    ],
-    toolStacks: ["Property CRMs", "Microsoft 365", "WhatsApp Business", "Calendly"],
-    buyingTriggers: [
-      "High lead volume, low conversion",
-      "Agents spending too much time on admin",
-      "Tenant communication gaps",
-    ],
-    exampleKPIs: [
-      "2x lead response speed",
-      "30% more viewings scheduled",
-      "50% reduction in missed follow-ups",
-    ],
-    primary: false,
-  },
-  {
-    icon: Stethoscope,
-    title: "Healthcare & Clinics",
-    description: "Private clinics and healthcare providers with patient communication and scheduling needs.",
-    typicalWorkflows: [
-      "Appointment booking & reminders",
-      "Patient intake forms",
-      "Prescription reminders",
-      "Feedback collection",
-      "Referral management",
-    ],
-    toolStacks: ["Practice management systems", "NHS integrations", "SMS platforms"],
-    buyingTriggers: [
-      "High no-show rates",
-      "Staff overwhelmed with phone calls",
-      "Patient communication gaps",
-    ],
-    exampleKPIs: [
-      "40% reduction in no-shows",
-      "60% fewer phone calls",
-      "Faster patient intake",
-    ],
-    primary: false,
-  },
-  {
-    icon: ShoppingCart,
-    title: "E-commerce & DTC Brands",
-    description: "Online retailers with customer service, inventory, and marketing automation needs.",
-    typicalWorkflows: [
-      "Order status automation",
-      "Customer service triage",
-      "Inventory alerts",
-      "Review collection",
-      "Return processing",
-    ],
-    toolStacks: ["Shopify/WooCommerce", "Gorgias/Zendesk", "Klaviyo", "Google Sheets"],
-    buyingTriggers: [
-      "Customer service backlog",
-      "Manual order tracking",
-      "High return rates",
-    ],
-    exampleKPIs: [
-      "50% faster customer response",
-      "20% reduction in returns queries",
-      "Automated order updates",
-    ],
-    primary: false,
-  },
+interface Industry {
+  id: string;
+  icon: LucideIcon;
+  primary: boolean;
+  title: string;
+  description: string;
+  typicalWorkflows: string[];
+  toolStacks: string[];
+  buyingTriggers: string[];
+  exampleKPIs: string[];
+}
+
+// Icons + primary/coming flag stay in TS (structural, non-copy). The display
+// COPY lives in i18n under `industriesPage.items.<id>.*` (see en.json).
+const INDUSTRY_META: { id: string; icon: LucideIcon; primary: boolean }[] = [
+  { id: "professional-services", icon: Briefcase, primary: true },
+  { id: "b2b-saas", icon: Rocket, primary: true },
+  { id: "property-real-estate", icon: Building2, primary: false },
+  { id: "healthcare-clinics", icon: Stethoscope, primary: false },
+  { id: "ecommerce-dtc", icon: ShoppingCart, primary: false },
 ];
 
 export default function IndustriesPage() {
   const { t } = useTranslation();
   const [bookingOpen, setBookingOpen] = useState(false);
+
+  const industries: Industry[] = INDUSTRY_META.map((meta) => ({
+    id: meta.id,
+    icon: meta.icon,
+    primary: meta.primary,
+    title: t(`industriesPage.items.${meta.id}.title`),
+    description: t(`industriesPage.items.${meta.id}.description`),
+    typicalWorkflows: t(`industriesPage.items.${meta.id}.typicalWorkflows`, { returnObjects: true }) as string[],
+    toolStacks: t(`industriesPage.items.${meta.id}.toolStacks`, { returnObjects: true }) as string[],
+    buyingTriggers: t(`industriesPage.items.${meta.id}.buyingTriggers`, { returnObjects: true }) as string[],
+    exampleKPIs: t(`industriesPage.items.${meta.id}.exampleKPIs`, { returnObjects: true }) as string[],
+  }));
 
   const primaryIndustries = industries.filter(i => i.primary);
   const comingIndustries = industries.filter(i => !i.primary);
@@ -174,13 +84,13 @@ export default function IndustriesPage() {
           <div className="container mx-auto px-4 lg:px-6">
             <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
               <ArrowLeft className="w-4 h-4" />
-              Back to home
+              {t("industriesPage.backToHome")}
             </Link>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Industries We <span className="text-gradient-brand">Serve</span>
+              {t("industriesPage.headingPrefix")}<span className="text-gradient-brand">{t("industriesPage.headingHighlight")}</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Deep expertise in high-value automation for UK/EU businesses. We understand your workflows, tools, and compliance needs.
+              {t("industriesPage.intro")}
             </p>
           </div>
         </section>
@@ -188,7 +98,7 @@ export default function IndustriesPage() {
         {/* Primary Industries */}
         <section className="py-16 lg:py-20">
           <div className="container mx-auto px-4 lg:px-6">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Primary Focus</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-8">{t("industriesPage.primaryHeading")}</h2>
             <div className="space-y-12">
               {primaryIndustries.map((industry, index) => (
                 <div key={index} className="p-8 bg-card rounded-2xl border border-border shadow-card">
@@ -205,7 +115,7 @@ export default function IndustriesPage() {
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* Workflows */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">Typical Workflows</h4>
+                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.workflowsHeading")}</h4>
                       <ul className="space-y-2">
                         {industry.typicalWorkflows.map((workflow, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -218,7 +128,7 @@ export default function IndustriesPage() {
 
                     {/* Tool Stacks */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">Common Tools</h4>
+                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.toolsHeading")}</h4>
                       <div className="flex flex-wrap gap-2">
                         {industry.toolStacks.map((tool, i) => (
                           <span key={i} className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
@@ -230,7 +140,7 @@ export default function IndustriesPage() {
 
                     {/* Buying Triggers */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">When to Automate</h4>
+                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.triggersHeading")}</h4>
                       <ul className="space-y-2">
                         {industry.buyingTriggers.map((trigger, i) => (
                           <li key={i} className="text-sm text-muted-foreground">• {trigger}</li>
@@ -240,7 +150,7 @@ export default function IndustriesPage() {
 
                     {/* Example KPIs */}
                     <div>
-                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">Example Results</h4>
+                      <h4 className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">{t("industriesPage.kpisHeading")}</h4>
                       <ul className="space-y-2">
                         {industry.exampleKPIs.map((kpi, i) => (
                           <li key={i} className="text-sm font-medium text-foreground">{kpi}</li>
@@ -251,7 +161,7 @@ export default function IndustriesPage() {
 
                   <div className="mt-6 pt-6 border-t border-border">
                     <Button variant="outline" onClick={() => setBookingOpen(true)}>
-                      Discuss {industry.title.split(' ')[0]} automation
+                      {t("industriesPage.discussPrefix")}{industry.title.split(' ')[0]}{t("industriesPage.discussSuffix")}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
@@ -264,9 +174,9 @@ export default function IndustriesPage() {
         {/* Coming Industries */}
         <section className="py-16 lg:py-20 bg-muted/30">
           <div className="container mx-auto px-4 lg:px-6">
-            <h2 className="text-2xl font-bold text-foreground mb-2">Expanding to More Industries</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-2">{t("industriesPage.comingHeading")}</h2>
             <p className="text-muted-foreground mb-8">
-              We're actively building expertise in these sectors. Get in touch if you're in one of these industries.
+              {t("industriesPage.comingText")}
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               {comingIndustries.map((industry, index) => (
@@ -285,7 +195,7 @@ export default function IndustriesPage() {
                       </span>
                     ))}
                   </div>
-                  <p className="text-xs text-muted-foreground italic">Coming soon</p>
+                  <p className="text-xs text-muted-foreground italic">{t("industriesPage.comingSoon")}</p>
                 </div>
               ))}
             </div>
@@ -295,12 +205,12 @@ export default function IndustriesPage() {
         {/* CTA */}
         <section className="py-16 bg-gradient-hero">
           <div className="container mx-auto px-4 lg:px-6 text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Don't see your industry?</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">{t("industriesPage.ctaHeading")}</h2>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Our automation patterns often transfer across industries. Let's discuss your specific workflows.
+              {t("industriesPage.ctaText")}
             </p>
             <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)} className="w-full sm:w-auto">
-              Book a 15-min call
+              {t("industriesPage.ctaButton")}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>

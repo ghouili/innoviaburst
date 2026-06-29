@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
 import { Navbar } from "@/components/layout/Navbar";
@@ -10,7 +11,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, TrendingUp, Clock, Users, Wrench, FileText, Lock } from "lucide-react";
 import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
 
-const caseStudies: Record<string, {
+// Route keys (slugs) stay in TS; the human-readable COPY lives in i18n
+// under `caseStudies.<slug>.*` (shared with WorkPage). See en.json.
+const CASE_STUDY_SLUGS = [
+  "professional-services-client-onboarding",
+  "saas-support-ticket-triage",
+] as const;
+
+interface CaseStudyDetail {
   title: string;
   industry: string;
   teamSize: string;
@@ -21,60 +29,28 @@ const caseStudies: Record<string, {
   results: { metric: string; label: string }[];
   tools: string[];
   confidentialNote: string;
-}> = {
-  "professional-services-client-onboarding": {
-    title: "Professional Services Firm — Client Onboarding",
-    industry: "Professional Services (Consulting)",
-    teamSize: "15–30 employees",
-    problem: "Client onboarding was taking 4+ hours per new client. Documents were scattered across email, shared drives, and CRM. Admin staff spent significant time on manual data entry and follow-ups.",
-    solution: "We built an automated client intake workflow that captures form submissions, creates CRM deals, generates standard documents, and assigns tasks to the right team members.",
-    workflow: [
-      "Client completes intake form (branded, mobile-friendly)",
-      "Form data validated and enriched",
-      "HubSpot deal created with all client details",
-      "Welcome documents generated from templates",
-      "Tasks assigned to relevant team members in Asana",
-      "Automated follow-up sequence started",
-    ],
-    timeline: "Delivered in 8 business days",
-    results: [
-      { metric: "~6–12 hrs/week", label: "Time saved" },
-      { metric: "80%", label: "Fewer manual steps" },
-      { metric: "2 days", label: "Faster client start" },
-    ],
-    tools: ["HubSpot CRM", "Google Forms", "Google Docs", "Asana", "Zapier"],
-    confidentialNote: "Full client details available on request under NDA. Numbers shown are representative of typical outcomes.",
-  },
-  "saas-support-ticket-triage": {
-    title: "B2B SaaS — Support Ticket Triage",
-    industry: "B2B SaaS (Software)",
-    teamSize: "50–100 employees",
-    problem: "Support team spending 2+ hours daily on manual ticket categorisation and routing. First response times were slow, and specialist tickets often went to generalists first.",
-    solution: "We implemented an AI-powered ticket analysis system that automatically categorises, prioritises, and routes tickets to the right specialist, with smart auto-responses for common queries.",
-    workflow: [
-      "Ticket received in Zendesk",
-      "AI analyses ticket content and sentiment",
-      "Category and priority automatically assigned",
-      "Routed to appropriate specialist queue",
-      "Auto-response sent for common queries",
-      "Slack notification to on-call team",
-    ],
-    timeline: "Delivered in 12 business days",
-    results: [
-      { metric: "~8–10 hrs/week", label: "Time saved" },
-      { metric: "60%", label: "Faster first response" },
-      { metric: "95%", label: "Routing accuracy" },
-    ],
-    tools: ["Zendesk", "OpenAI API", "Slack", "Make (Integromat)"],
-    confidentialNote: "Full client details available on request under NDA. Numbers shown are representative of typical outcomes.",
-  },
-};
+}
 
 export default function CaseStudyPage() {
+  const { t } = useTranslation();
   const { slug } = useParams<{ slug: string }>();
   const [bookingOpen, setBookingOpen] = useState(false);
 
-  const study = slug ? caseStudies[slug] : null;
+  const isKnownSlug = !!slug && (CASE_STUDY_SLUGS as readonly string[]).includes(slug);
+  const study: CaseStudyDetail | null = isKnownSlug
+    ? {
+        title: t(`caseStudies.${slug}.title`),
+        industry: t(`caseStudies.${slug}.detailIndustry`),
+        teamSize: t(`caseStudies.${slug}.teamSize`),
+        problem: t(`caseStudies.${slug}.problem`),
+        solution: t(`caseStudies.${slug}.solution`),
+        workflow: t(`caseStudies.${slug}.workflow`, { returnObjects: true }) as string[],
+        timeline: t(`caseStudies.${slug}.timeline`),
+        results: t(`caseStudies.${slug}.results`, { returnObjects: true }) as { metric: string; label: string }[],
+        tools: t(`caseStudies.${slug}.tools`, { returnObjects: true }) as string[],
+        confidentialNote: t(`caseStudies.${slug}.confidentialNote`),
+      }
+    : null;
 
   if (!study) {
     return (
@@ -82,8 +58,8 @@ export default function CaseStudyPage() {
         <Navbar onBookingClick={() => setBookingOpen(true)} />
         <main className="pt-20 min-h-screen bg-background flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-foreground mb-4">Case study not found</h1>
-            <Link to="/" className="text-accent hover:underline">Return to home</Link>
+            <h1 className="text-2xl font-bold text-foreground mb-4">{t("caseStudyPage.notFoundTitle")}</h1>
+            <Link to="/" className="text-accent hover:underline">{t("caseStudyPage.returnHome")}</Link>
           </div>
         </main>
         <Footer />
@@ -129,12 +105,12 @@ export default function CaseStudyPage() {
           <div className="container mx-auto px-4 lg:px-6">
             <Link to="/#work" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
               <ArrowLeft className="w-4 h-4" />
-              Back to Our Work
+              {t("caseStudyPage.backToWork")}
             </Link>
 
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/20 rounded-full mb-4">
               <FileText className="w-3.5 h-3.5 text-accent" />
-              <span className="text-xs font-semibold text-accent">Pilot Case Study</span>
+              <span className="text-xs font-semibold text-accent">{t("caseStudyPage.pilotBadge")}</span>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -168,7 +144,7 @@ export default function CaseStudyPage() {
                 <div>
                   <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                     <span className="w-8 h-8 rounded-lg bg-destructive/20 flex items-center justify-center text-destructive text-sm font-bold">1</span>
-                    The Problem
+                    {t("caseStudyPage.problemHeading")}
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">{study.problem}</p>
                 </div>
@@ -177,13 +153,13 @@ export default function CaseStudyPage() {
                 <div>
                   <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                     <span className="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center text-secondary text-sm font-bold">2</span>
-                    What We Built
+                    {t("caseStudyPage.solutionHeading")}
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">{study.solution}</p>
-                  
+
                   {/* Workflow diagram */}
                   <div className="p-6 bg-card rounded-2xl border border-border">
-                    <h3 className="text-sm font-semibold text-foreground mb-4">Workflow Steps</h3>
+                    <h3 className="text-sm font-semibold text-foreground mb-4">{t("caseStudyPage.workflowStepsHeading")}</h3>
                     <div className="space-y-3">
                       {study.workflow.map((step, i) => (
                         <div key={i} className="flex items-start gap-3">
@@ -201,7 +177,7 @@ export default function CaseStudyPage() {
                 <div>
                   <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
                     <span className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">3</span>
-                    Results
+                    {t("caseStudyPage.resultsHeading")}
                   </h2>
                   <div className="grid sm:grid-cols-3 gap-4">
                     {study.results.map((result, i) => (
@@ -227,7 +203,7 @@ export default function CaseStudyPage() {
               <div className="space-y-6">
                 {/* Tools used */}
                 <div className="p-6 bg-card rounded-2xl border border-border">
-                  <h3 className="text-sm font-semibold text-foreground mb-4">Stack / Tools Used</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-4">{t("caseStudyPage.toolsHeading")}</h3>
                   <div className="flex flex-wrap gap-2">
                     {study.tools.map((tool) => (
                       <span key={tool} className="px-3 py-1.5 bg-muted text-muted-foreground text-sm rounded-lg">
@@ -239,12 +215,12 @@ export default function CaseStudyPage() {
 
                 {/* CTA */}
                 <div className="p-6 bg-gradient-hero rounded-2xl border border-accent/20">
-                  <h3 className="text-lg font-bold text-foreground mb-2">Want similar results?</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-2">{t("caseStudyPage.ctaHeading")}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Let's discuss how we can automate your workflows.
+                    {t("caseStudyPage.ctaText")}
                   </p>
                   <Button variant="hero" className="w-full" onClick={() => setBookingOpen(true)}>
-                    Book a 15-min call
+                    {t("caseStudyPage.ctaButton")}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
