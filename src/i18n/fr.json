@@ -18,7 +18,7 @@
     "getStarted": "Commencer",
     "contactUs": "Nous contacter",
     "backToHome": "Retour à l'accueil",
-    "fixedPriceNote": "Prix fixe · cadré en 48 h"
+    "fixedPriceNote": "Cadré en 48 h"
   },
   "cookies": {
     "title": "Nous respectons votre vie privée",
@@ -348,7 +348,8 @@
       "multiSystem": "Multiple",
       "documentation": "Complète"
     },
-    "noPriceAnswer": "Chaque projet est à prix fixe et cadré en 48 heures, sans mauvaise surprise horaire — nous communiquons le montant exact lors d'un court appel de cadrage."
+    "noPriceAnswer": "Chaque projet est à prix fixe et cadré en 48 heures, sans mauvaise surprise horaire — nous communiquons le montant exact lors d'un court appel de cadrage.",
+    "disclaimer": "Devis sur mesure ; outils et abonnements facturés séparément."
   },
   "work": {
     "title": "Nos Réalisations",

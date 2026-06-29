@@ -20,7 +20,7 @@
     "contactUs": "Contact us",
     "backToHome": "Back to home",
     "skipLink": "Skip to main content",
-    "fixedPriceNote": "Fixed-price · scoped in 48h"
+    "fixedPriceNote": "Scoped in 48h"
   },
   "cookies": {
     "title": "We value your privacy",
@@ -302,7 +302,7 @@
     "deliverables": "Deliverables",
     "successMetrics": "Success metrics",
     "mostPopular": "Most Popular",
-    "disclaimer": "Fixed-price engagements; tools & subscriptions billed separately.",
+    "disclaimer": "Custom quote per project; tools & subscriptions billed separately.",
     "swipeHint": "← Swipe to compare →",
     "table": {
       "feature": "Feature",
@@ -2241,7 +2241,7 @@
     },
     "what": {
       "title": "What we do",
-      "body": "We scope, build and ship three things — each as a fixed-price engagement with a clear, measurable outcome:",
+      "body": "We scope, build and ship three things — each scoped and quoted per project, with a clear, measurable outcome:",
       "items": [
         {
           "title": "Workflow automation",
@@ -2261,8 +2261,8 @@
       "title": "How we work",
       "items": [
         {
-          "title": "Fixed scope, fixed price",
-          "body": "Every engagement is scoped and priced up front. No hourly billing and no surprises — you know what you're getting and what it costs before we start."
+          "title": "Fixed scope, custom quote",
+          "body": "Every engagement is scoped up front and quoted per project — no hourly billing, no surprises. You know exactly what's included before we start."
         },
         {
           "title": "GDPR-by-design",
