@@ -71,7 +71,9 @@ const SEEDED_LANE_HTML = seededCardHtml(TASKS[0], 0) + seededCardHtml(TASKS[1], 
 const STYLES = `
 .ialane{
   --bg: hsl(var(--background));
-  --card: hsl(var(--card));
+  /* White card surfaces. (Was hsl(var(--card)) — a self-referential cycle that
+     resolved invalid, so the panel rendered transparent over the hero gradient.) */
+  --card: hsl(0 0% 100%);
   --line: hsl(var(--border));
   --ink: hsl(var(--foreground));
   --slate: hsl(var(--muted-foreground));
@@ -572,7 +574,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
    * and replaces the lane contents with the live (or reduced-motion) state.
    */
   return (
-    <div ref={rootRef} className={`bg-white ialane panel ${className}`.trim()}>
+    <div ref={rootRef} className={`ialane panel ${className}`.trim()}>
       {/* CSS injected raw — a JSX text child gets HTML-escaped (content:"" -> &quot;),
           which mismatches the client on hydration (#425). */}
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
