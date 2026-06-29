@@ -11,7 +11,8 @@
     "seeAutomations": "See automations",
     "closeMenu": "Close menu",
     "openMenu": "Open menu",
-    "menuLabel": "Navigation menu"
+    "menuLabel": "Navigation menu",
+    "about": "About"
   },
   "common": {
     "learnMore": "Learn more",
@@ -434,7 +435,8 @@
       "privacy": "Privacy Policy",
       "cookies": "Cookie Policy",
       "terms": "Terms of Service",
-      "accessibility": "Accessibility"
+      "accessibility": "Accessibility",
+      "about": "About"
     },
     "social": {
       "email": "Email us",
@@ -447,7 +449,9 @@
       "privacyNote": "UK/EU-focused — privacy & security information available in Trust & Compliance."
     },
     "companyDetails": "Innoviaburst Ltd (Company No. XXXXXXXX) — Registered in England and Wales",
-    "complianceNote": "Built with focus on UK GDPR & EU compliance readiness."
+    "complianceNote": "Built with focus on UK GDPR & EU compliance readiness.",
+    "companyNo": "Company No.",
+    "registeredOffice": "Registered office"
   },
   "solutions": {
     "title": "Top",
@@ -2220,5 +2224,70 @@
   "languageSwitcher": {
     "groupLabel": "Language",
     "switchTo": "Switch to {{lang}}"
+  },
+  "about": {
+    "seo": {
+      "title": "About Innoviaburst | GDPR-by-design AI automation for UK & EU SMEs",
+      "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs — fixed scope, delivered in weeks, with the audit trail built in."
+    },
+    "hero": {
+      "eyebrow": "About us",
+      "title": "Automation UK and EU SMEs can actually trust",
+      "lede": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for small and mid-sized teams across the UK and EU — fixed scope, delivered in weeks, with the audit trail built in."
+    },
+    "mission": {
+      "title": "Our mission",
+      "body": "Enterprise-grade automation has been out of reach for most SMEs — too expensive, too slow, and too risky to govern. We exist to change that: to give smaller teams the same leverage from AI and automation that large companies enjoy, without the enterprise overhead or the compliance headaches."
+    },
+    "what": {
+      "title": "What we do",
+      "body": "We scope, build and ship three things — each as a fixed-price engagement with a clear, measurable outcome:",
+      "items": [
+        {
+          "title": "Workflow automation",
+          "body": "We connect your tools and automate the manual, repetitive steps — with logging, approvals and error handling so it runs reliably in production."
+        },
+        {
+          "title": "AI copilots",
+          "body": "We ship focused AI assistants that draft, triage and answer inside your existing systems, so your team moves faster without switching tools."
+        },
+        {
+          "title": "MVPs",
+          "body": "We take a product idea to a deployed, production-ready MVP — authentication, core features and analytics — so you can validate quickly."
+        }
+      ]
+    },
+    "approach": {
+      "title": "How we work",
+      "items": [
+        {
+          "title": "Fixed scope, fixed price",
+          "body": "Every engagement is scoped and priced up front. No hourly billing and no surprises — you know what you're getting and what it costs before we start."
+        },
+        {
+          "title": "GDPR-by-design",
+          "body": "Data protection is built in from day one: least-privilege access, optional DPAs, agreed retention and a clear audit trail — not bolted on afterwards."
+        },
+        {
+          "title": "Transparent by default",
+          "body": "We publish the sub-processors we use, notify you of material changes, and keep our trust and compliance details open for review."
+        },
+        {
+          "title": "Delivered in weeks",
+          "body": "We work in short, demo-driven cycles, so you see progress early and ship in weeks — not quarters."
+        }
+      ]
+    },
+    "founder": {
+      "title": "Leadership",
+      "placeholder": "Founder details coming soon.",
+      "connectLabel": "Connect"
+    },
+    "cta": {
+      "title": "Ready to see what we'd automate first?",
+      "body": "Book a short call and we'll map the highest-impact workflow, copilot or MVP for your team — and give you a fixed scope within 48 hours.",
+      "button": "Book a 15-min call",
+      "secondary": "See our work"
+    }
   }
 }

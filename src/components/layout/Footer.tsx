@@ -6,8 +6,10 @@ import { useTranslation } from "react-i18next";
 import logo from "@/assets/innoviaburst-logo.png";
 import { openCookieSettings } from "@/components/CookieConsent";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { ORG_FACTS, hasAddress } from "@/seo/org-facts";
 const footerLinkDefinitions = {
   company: [
+    { labelKey: "footer.links.about", href: "/about" }, // Crawlable standalone page (Phase 7)
     { labelKey: "footer.links.offers", href: "/#offers" },
     { labelKey: "footer.links.solutions", href: "/#solutions" },
     { labelKey: "footer.links.industries", href: "/industries" }, // Crawlable standalone page
@@ -262,14 +264,28 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Optional: Company disclosure (enable when you have real data) */}
-        {/*
-        <div className="py-4 border-t border-background/10 mb-4">
-          <p className="text-xs text-background/55 text-center">
-            InnoviaBurst Ltd (Company No. XXXXXXXX) — Registered in England and Wales — Registered office: [ADDRESS]
-          </p>
-        </div>
-        */}
+        {/* Company disclosure — driven by src/seo/org-facts.ts (Phase 7). Renders
+            only once a real legalName is supplied, and stays consistent with the
+            Organization schema's legalName. Nothing is shown while unset. */}
+        {ORG_FACTS.legalName && (
+          <div className="py-4 border-t border-background/10 mb-4">
+            <p className="text-xs text-background/55 text-center">
+              {ORG_FACTS.legalName}
+              {ORG_FACTS.vatId ? ` — ${t("footer.companyNo")} ${ORG_FACTS.vatId}` : ""}
+              {hasAddress()
+                ? ` — ${t("footer.registeredOffice")}: ${[
+                    ORG_FACTS.address.streetAddress,
+                    ORG_FACTS.address.addressLocality,
+                    ORG_FACTS.address.addressRegion,
+                    ORG_FACTS.address.postalCode,
+                    ORG_FACTS.address.addressCountry,
+                  ]
+                    .filter(Boolean)
+                    .join(", ")}`
+                : ""}
+            </p>
+          </div>
+        )}
 
         {/* Bottom Bar */}
         <div className="pt-4 border-t border-background/10 flex flex-col sm:flex-row justify-between items-center gap-4">

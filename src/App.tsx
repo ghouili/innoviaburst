@@ -26,6 +26,7 @@ import ResourcesPage from "./pages/ResourcesPage";
 import IndustriesPage from "./pages/IndustriesPage";
 import ComingSoonPage from "./pages/ComingSoonPage";
 import LandingPage from "./pages/LandingPage";
+import AboutPage from "./pages/AboutPage";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ export function AppShell() {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/automations" element={<AutomationsPage />} />
             <Route path="/works" element={<WorkPage />} />
             <Route path="/work/:slug" element={<CaseStudyPage />} />

@@ -9,7 +9,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, TrendingUp, Clock, Users, Wrench, FileText, Lock } from "lucide-react";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, articleJsonLd } from "@/seo/jsonld";
 
 // Route keys (slugs) stay in TS; the human-readable COPY lives in i18n
 // under `caseStudies.<slug>.*` (shared with WorkPage). See en.json.
@@ -83,16 +83,13 @@ export default function CaseStudyPage() {
             { name: "Work", url: `${siteUrl}/works` },
             { name: study.title, url: `${siteUrl}/work/${slug}` },
           ]),
-          {
-            "@context": "https://schema.org",
-            "@type": "Article",
+          articleJsonLd({
             headline: study.title,
             description: study.problem,
             articleSection: study.industry,
-            author: { "@type": "Organization", name: "Innoviaburst", url: siteUrl },
-            mainEntityOfPage: localizedUrl(`/work/${slug}`),
+            url: `${siteUrl}/work/${slug}`,
             datePublished: "2025-01-01",
-          },
+          }),
         ]}
       />
 

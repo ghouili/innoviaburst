@@ -26,6 +26,7 @@ export const caseStudies = [
 // `/work` is intentionally absent — it 301-redirects to `/works`.
 export const flatRoutes = [
   { path: "/", source: "src/pages/Index.tsx", changefreq: "weekly", priority: 1.0 },
+  { path: "/about", source: "src/pages/AboutPage.tsx", changefreq: "monthly", priority: 0.6 },
   { path: "/automations", source: "src/pages/AutomationsPage.tsx", changefreq: "weekly", priority: 0.9 },
   { path: "/resources", source: "src/pages/ResourcesPage.tsx", changefreq: "weekly", priority: 0.85 },
   { path: "/industries", source: "src/pages/IndustriesPage.tsx", changefreq: "monthly", priority: 0.6 },

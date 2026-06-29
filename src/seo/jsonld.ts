@@ -1,12 +1,14 @@
 import i18n from "@/i18n";
 import { DEFAULT_LOCALE, isLocale, localizedPath, type Locale } from "@/lib/i18n-routing";
+import { ORG_FACTS, hasFounder, hasAddress } from "@/seo/org-facts";
 
 const siteUrl = import.meta.env.VITE_SITE_URL || "https://innoviaburst.com";
 const base = siteUrl.replace(/\/$/, "");
 
-/** Stable @id for the sitewide organization entity (referenced across schemas). */
+/** Stable @ids for the sitewide entities (referenced across schemas). */
 const ORG_ID = `${base}/#organization`;
 const WEBSITE_ID = `${base}/#website`;
+const FOUNDER_ID = `${base}/#founder`;
 
 const currentLocale = (): Locale => {
   const l = (i18n.language || DEFAULT_LOCALE).slice(0, 2);
@@ -33,18 +35,19 @@ export const safeJsonLd = (data: Record<string, unknown> | Record<string, unknow
 
 /**
  * Sitewide entity: Organization + ProfessionalService (a subtype), with a stable
- * @id so Services/Breadcrumbs/WebSite can reference it.
+ * @id so Services/Breadcrumbs/WebSite/Person can reference it.
  *
- * Only verified data is included. TODO(Phase 7 — GEO/entity consistency): add
- * `legalName`, `foundingDate`, `founder` (Person), and the remaining `sameAs`
- * profiles (Crunchbase, X, GitHub, Clutch) once the user provides real values —
- * do NOT invent these.
+ * GEO/entity-consistency fields (legalName, foundingDate, founder, address) are
+ * driven by src/seo/org-facts.ts and emitted ONLY when the owner has supplied a
+ * real value there — nothing is invented. `founder` references the Person node
+ * emitted by founderJsonLd() (same @id), so the entity graph stays consistent.
  */
 export const orgJsonLd = () => ({
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],
   "@id": ORG_ID,
-  name: "Innoviaburst",
+  name: ORG_FACTS.name,
+  ...(ORG_FACTS.legalName ? { legalName: ORG_FACTS.legalName } : {}),
   url: siteUrl,
   logo: {
     "@type": "ImageObject",
@@ -54,16 +57,28 @@ export const orgJsonLd = () => ({
   description:
     "GDPR-by-design AI automation, AI copilots and MVPs for UK/EU SMEs — fixed scope, delivered in weeks, with the audit trail built in.",
   email: "hello@innoviaburst.com",
+  ...(ORG_FACTS.foundingDate ? { foundingDate: ORG_FACTS.foundingDate } : {}),
+  ...(hasFounder() ? { founder: { "@id": FOUNDER_ID } } : {}),
+  ...(hasAddress()
+    ? {
+        address: {
+          "@type": "PostalAddress",
+          ...(ORG_FACTS.address.streetAddress ? { streetAddress: ORG_FACTS.address.streetAddress } : {}),
+          ...(ORG_FACTS.address.addressLocality ? { addressLocality: ORG_FACTS.address.addressLocality } : {}),
+          ...(ORG_FACTS.address.addressRegion ? { addressRegion: ORG_FACTS.address.addressRegion } : {}),
+          ...(ORG_FACTS.address.postalCode ? { postalCode: ORG_FACTS.address.postalCode } : {}),
+          ...(ORG_FACTS.address.addressCountry ? { addressCountry: ORG_FACTS.address.addressCountry } : {}),
+        },
+      }
+    : {}),
+  ...(ORG_FACTS.vatId ? { vatID: ORG_FACTS.vatId } : {}),
   areaServed: [
     { "@type": "Country", name: "United Kingdom" },
     { "@type": "Place", name: "European Union" },
   ],
   serviceType: ["Workflow automation", "AI copilots", "MVP development"],
-  // Verified profiles only (from the site footer). More added in Phase 7.
-  sameAs: [
-    "https://www.linkedin.com/company/innoviaburst",
-    "https://www.instagram.com/innoviaburst/",
-  ],
+  // Verified profiles only — driven by org-facts.ts.
+  sameAs: ORG_FACTS.sameAs,
   contactPoint: {
     "@type": "ContactPoint",
     email: "hello@innoviaburst.com",
@@ -72,6 +87,26 @@ export const orgJsonLd = () => ({
     availableLanguage: ["en", "fr"],
   },
 });
+
+/**
+ * Founder Person node (GEO). Returns null until a real founder name exists in
+ * org-facts.ts — so we never emit a placeholder Person. `worksFor` references the
+ * org @id; orgJsonLd reciprocates with `founder: { @id }`.
+ */
+export const founderJsonLd = () => {
+  if (!hasFounder()) return null;
+  const f = ORG_FACTS.founder;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": FOUNDER_ID,
+    name: f.name,
+    ...(f.jobTitle ? { jobTitle: f.jobTitle } : {}),
+    worksFor: { "@id": ORG_ID },
+    url: `${base}/about`,
+    ...(f.sameAs.length ? { sameAs: f.sameAs } : {}),
+  };
+};
 
 export const websiteJsonLd = () => ({
   "@context": "https://schema.org",
@@ -141,6 +176,33 @@ export const faqJsonLd = (items: { question: string; answer: string }[]) => ({
       text: item.answer,
     },
   })),
+});
+
+/**
+ * Reusable Article schema (case studies now; blog/resources later). Author and
+ * publisher default to the sitewide org entity (@id graph). `url` is localized to
+ * the active locale. Omitted optional fields are simply not emitted.
+ */
+export const articleJsonLd = (params: {
+  headline: string;
+  description?: string;
+  url: string;
+  image?: string;
+  articleSection?: string;
+  datePublished?: string;
+  dateModified?: string;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: params.headline,
+  ...(params.description ? { description: params.description } : {}),
+  ...(params.articleSection ? { articleSection: params.articleSection } : {}),
+  mainEntityOfPage: localizeAbs(params.url),
+  image: params.image ?? `${base}/og.jpg`,
+  ...(params.datePublished ? { datePublished: params.datePublished } : {}),
+  ...(params.dateModified ? { dateModified: params.dateModified } : {}),
+  author: { "@id": ORG_ID },
+  publisher: { "@id": ORG_ID },
 });
 
 export { siteUrl, ORG_ID };
