@@ -1217,5 +1217,14 @@
         "bodyNoPrice": "Missions à prix fixe, facturées en EUR ou GBP — un acompte pour démarrer, puis des paiements par jalons."
       }
     }
+  },
+  "workPage": {
+    "comingSoon": {
+      "title": "Études de cas bientôt disponibles",
+      "body": "Nous rédigeons nos premiers projets. En attendant, réservez un appel, découvrez ce que nous automatisons, ou consultez notre gestion des données.",
+      "bookCall": "Réserver un appel de 15 min",
+      "browse": "Voir les automatisations",
+      "trust": "Consulter la page Confiance"
+    }
   }
 }

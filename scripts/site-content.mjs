@@ -35,15 +35,17 @@ export const flatRoutes = [
   { path: "/privacy", source: "src/pages/PrivacyPage.tsx", changefreq: "yearly", priority: 0.4 },
   { path: "/cookies", source: "src/pages/CookiesPage.tsx", changefreq: "yearly", priority: 0.4 },
   { path: "/terms", source: "src/pages/TermsPage.tsx", changefreq: "yearly", priority: 0.4 },
-  { path: "/works", source: "src/pages/WorkPage.tsx", changefreq: "monthly", priority: 0.7 },
+  // Coming-soon listing — noindex (out of sitemap) until real cases exist, but
+  // still 301s legacy flat /works -> /en/works (not a newRoute).
+  { path: "/works", source: "src/pages/WorkPage.tsx", changefreq: "monthly", priority: 0.7, noindex: true },
   { path: "/coming-soon", source: "src/pages/ComingSoonPage.tsx", changefreq: "monthly", priority: 0.3 },
   // Campaign landing page — pre-rendered + indexable-ready, but kept OUT of the
   // sitemap (noindex flag) until launch is confirmed. Reached via the /en/ URL.
-  { path: "/lp/ai-automation", source: "src/pages/LandingPage.tsx", changefreq: "monthly", priority: 0.5, noindex: true },
+  { path: "/lp/ai-automation", source: "src/pages/LandingPage.tsx", changefreq: "monthly", priority: 0.5, noindex: true, newRoute: true },
   ...offers.map((o) => ({ path: `/${o.slug}`, source: o.source, changefreq: o.changefreq, priority: o.priority })),
   ...caseStudies.map((c) => ({ path: `/work/${c.slug}`, source: c.source, changefreq: c.changefreq, priority: c.priority })),
   // Pre-rendered but noindex — served as the real 404 body (nginx error_page).
-  { path: "/404", source: "src/pages/NotFound.tsx", changefreq: "yearly", priority: 0.0, noindex: true },
+  { path: "/404", source: "src/pages/NotFound.tsx", changefreq: "yearly", priority: 0.0, noindex: true, newRoute: true },
 ];
 
 /** All locale-prefixed URLs to pre-render (SSG). */
@@ -71,7 +73,9 @@ export const sitemapRoutes = () =>
 export const legacyRedirects = () => {
   const map = {};
   for (const r of flatRoutes) {
-    if (r.noindex) continue; // /404 has no legacy URL to redirect
+    // Skip routes with no legacy flat URL (/404, /lp). noindex routes like /works
+    // are LEGACY URLs and must still redirect — so gate on `newRoute`, not noindex.
+    if (r.newRoute) continue;
     map[r.path] = localizedPath(DEFAULT_LOCALE, r.path);
   }
   map["/work"] = localizedPath(DEFAULT_LOCALE, "/works");
