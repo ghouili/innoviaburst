@@ -6,6 +6,7 @@ import { HeroShell } from "@/components/sections/heroes/HeroShell";
 import { AutomationLaneVisual } from "@/components/sections/heroes/AutomationLaneVisual";
 import { ProofStrip } from "@/components/sections/ProofStrip";
 import { OffersSection } from "@/components/sections/OffersSection";
+import { MvpSection } from "@/components/sections/MvpSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { TrustSection } from "@/components/sections/TrustSection";
@@ -74,7 +75,10 @@ const Index = () => {
           
           {/* 3. Productised Offers */}
           <OffersSection onBookingClick={() => setIsRequestOpen(true)} />
-          
+
+          {/* 3b. MVP band — surface MVP Launch alongside automation */}
+          <MvpSection />
+
           {/* 4. Top Workflows (6 cards + link) */}
           <SolutionsSection />
           

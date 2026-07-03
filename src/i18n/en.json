@@ -1,6 +1,7 @@
 {
   "nav": {
     "automations": "Automations",
+    "mvp": "MVPs",
     "offers": "Offers",
     "solutions": "Solutions",
     "industries": "Industries",
@@ -86,7 +87,7 @@
       "gdpr": "UK GDPR ready",
       "agnostic": "Tool-agnostic"
     },
-    "eyebrow": "GDPR-by-design AI & automation",
+    "eyebrow": "GDPR-by-design AI, automation & MVPs",
     "h1Pre": "AI automation your ",
     "h1Accent": "DPO and your board",
     "h1Post": " both sign off on.",
@@ -352,6 +353,18 @@
       "documentation": "Full"
     },
     "noPriceAnswer": "Every project is fixed-price and scoped in 48 hours, with no hourly surprises — we share the exact figure on a short scoping call."
+  },
+  "mvpSection": {
+    "title": "From idea to a",
+    "titleHighlight": "live MVP",
+    "titleAfter": " in weeks",
+    "subtitle": "Investor-ready AI/SaaS products, built lean — you own the code and IP, with compliance and analytics from day one.",
+    "points": [
+      "MVP build, deploy & analytics dashboard",
+      "You own the code & IP",
+      "GDPR & EU AI Act-ready from day one"
+    ],
+    "cta": "See how MVP Launch works"
   },
   "work": {
     "title": "Our Work",
@@ -1460,9 +1473,11 @@
     },
     "mvp-launch": {
       "title": "MVP Launch",
+      "seoTitle": "MVP Development — Build an Investor-Ready MVP in Weeks | Innoviaburst",
+      "seoDescription": "MVP development for startups & SMEs: go from idea to a live, investor-ready MVP in weeks. You own the code & IP, with GDPR & EU AI Act compliance and analytics from day one.",
       "timeline": "6–10 weeks",
       "bestFor": "Startups & SMEs launching a new product or internal tool",
-      "heroDescription": "Go from idea to deployed product with authentication, basic security, and analytics. Perfect for validating new products or building internal tools.",
+      "heroDescription": "MVP development from idea to a live, investor-ready product in weeks — with authentication, security, and analytics. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
       "deliverables": [
         "Fully functional MVP deployed to production",
         "User authentication and role-based access",

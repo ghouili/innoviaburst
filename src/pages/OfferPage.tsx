@@ -119,8 +119,10 @@ export default function OfferPage() {
   return (
     <>
       <SeoHead
-        title={`${offer.title} | Innoviaburst`}
-        description={`${offer.heroDescription} Timeline: ${offer.timeline}.`}
+        // Per-offer SEO override (falls back to the generic pattern). MVP Launch
+        // uses this to target MVP-development / "build an MVP in weeks" intent.
+        title={t(`offerDetails.${slug}.seoTitle`, { defaultValue: `${offer.title} | Innoviaburst` })}
+        description={t(`offerDetails.${slug}.seoDescription`, { defaultValue: `${offer.heroDescription} Timeline: ${offer.timeline}.` })}
         canonicalPath={canonicalPath}
         alternates={canonicalPath ? buildAlternates(canonicalPath) : undefined}
         ogType="website"

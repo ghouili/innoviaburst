@@ -10,6 +10,7 @@ import logoT from "@/assets/Logo-Text.webp";
 // Navigation links with i18n keys
 const navLinks = [
   { labelKey: "nav.automations", href: "/automations" },
+  { labelKey: "nav.mvp", href: "/mvp-launch" },
   { labelKey: "nav.offers", href: "/#offers" },
   { labelKey: "nav.work", href: "/work" },
   { labelKey: "nav.trust", href: "/trust" },

@@ -1099,6 +1099,28 @@
     }
   },
   "fr_to_review": {
+    "nav": {
+      "mvp": "MVP"
+    },
+    "mvpSection": {
+      "title": "De l'idée à un",
+      "titleHighlight": "MVP en production",
+      "titleAfter": " en quelques semaines",
+      "subtitle": "Des produits IA/SaaS prêts pour les investisseurs, développés en mode lean — vous êtes propriétaire du code et de la PI, avec conformité et analytics dès le premier jour.",
+      "points": [
+        "Développement, déploiement du MVP & tableau de bord analytics",
+        "Vous êtes propriétaire du code et de la PI",
+        "Conforme au RGPD et au règlement IA de l'UE dès le premier jour"
+      ],
+      "cta": "Découvrir MVP Launch"
+    },
+    "offerDetails": {
+      "mvp-launch": {
+        "seoTitle": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | Innoviaburst",
+        "seoDescription": "Développement de MVP pour startups et PME : de l'idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD & règlement IA de l'UE et analytics dès le premier jour.",
+        "heroDescription": "Développement de MVP, de l'idée à un produit en production prêt pour les investisseurs en quelques semaines — avec authentification, sécurité et analytics. Vous êtes propriétaire du code et de la PI, et le produit est conforme au RGPD et au règlement IA de l'UE dès le premier jour."
+      }
+    },
     "hero": {
       "headlinePre": "Livrez",
       "headlineHighlight": "IA & automatisation",
@@ -1113,7 +1135,7 @@
         "gdpr": "Conforme RGPD UK",
         "agnostic": "Compatible tous outils"
       },
-      "eyebrow": "IA & automatisation conformes par conception",
+      "eyebrow": "IA, automatisation & MVP — conformes par conception",
       "h1Pre": "L'automatisation IA que votre ",
       "h1Accent": "DPO et votre direction",
       "h1Post": " approuvent tous les deux.",
