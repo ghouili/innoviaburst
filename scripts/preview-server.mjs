@@ -7,7 +7,17 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
-import { legacyRedirects } from "./site-content.mjs";
+import { legacyRedirects, negotiateLocale } from "./site-content.mjs";
+
+// Parse a Cookie header into a plain object.
+const parseCookies = (header = "") =>
+  Object.fromEntries(
+    header
+      .split(";")
+      .map((c) => c.trim().split("="))
+      .filter((p) => p[0])
+      .map(([k, ...v]) => [k, decodeURIComponent(v.join("="))]),
+  );
 
 // gzip text assets (parity with nginx.prod.conf `gzip on`) so local Lighthouse
 // measures representative transfer sizes, not raw bytes.
@@ -51,6 +61,20 @@ const tryFile = (urlPath) => {
 
 const server = http.createServer((req, res) => {
   const urlPath = (req.url || "/").split("?")[0];
+
+  // 0) site root -> locale negotiation (302, mirrors nginx.prod.conf `location = /`)
+  if (urlPath === "/") {
+    const cookies = parseCookies(req.headers.cookie || "");
+    const loc = negotiateLocale(req.headers["accept-language"] || "", cookies.locale || "");
+    const qs = (req.url || "").includes("?") ? "?" + req.url.split("?").slice(1).join("?") : "";
+    res.writeHead(302, {
+      Location: `/${loc}/${qs}`,
+      Vary: "Accept-Language, Cookie",
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+    });
+    res.end();
+    return;
+  }
 
   // 1) exact-match 301 redirects (locale migration)
   if (Object.prototype.hasOwnProperty.call(REDIRECTS, urlPath)) {

@@ -6,8 +6,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const server = spawn(process.execPath, ["scripts/preview-server.mjs"], { env: { ...process.env, PREVIEW_PORT: String(PORT) }, stdio: "ignore" });
 await sleep(1500);
 
-const hit = async (p) => {
-  const res = await fetch(BASE + p, { redirect: "manual" });
+const hit = async (p, headers) => {
+  const res = await fetch(BASE + p, { redirect: "manual", headers });
   return { status: res.status, loc: res.headers.get("location") };
 };
 
@@ -24,6 +24,20 @@ try {
     else redBad.push(`${from}->${r.status} ${r.loc} (want ${to})`);
   }
   ok(`all ${Object.keys(redirects).length} legacy URLs 301 -> /en/*`, redBad.length === 0, redBad.slice(0, 5).join("; "));
+
+  // 1b) "/" is content-negotiated (302), NOT a static 301 to /en/
+  const nEn = await hit("/", { "Accept-Language": "en-US,en;q=0.9" });
+  const nFr = await hit("/", { "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8" });
+  const nCookie = await hit("/", { "Accept-Language": "en-US,en;q=0.9", Cookie: "locale=fr" });
+  const nNone = await hit("/", {});
+  ok(
+    '"/" negotiates locale (302): en/fr/cookie/none',
+    nEn.status === 302 && nEn.loc === "/en/" &&
+      nFr.status === 302 && nFr.loc === "/fr/" &&
+      nCookie.status === 302 && nCookie.loc === "/fr/" &&
+      nNone.status === 302 && nNone.loc === "/en/",
+    `en->${nEn.status} ${nEn.loc} | fr->${nFr.status} ${nFr.loc} | cookie(fr)->${nCookie.status} ${nCookie.loc} | none->${nNone.status} ${nNone.loc}`,
+  );
 
   // 2) footer/link targets resolve (200)
   const targets = ["/en/", "/fr/", "/en/about", "/en/industries", "/en/works", "/en/automations", "/en/trust", "/en/subprocessors", "/en/resources", "/en/privacy", "/en/cookies", "/en/terms", "/en/lp/ai-automation"];

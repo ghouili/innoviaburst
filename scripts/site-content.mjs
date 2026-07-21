@@ -68,7 +68,9 @@ export const sitemapRoutes = () =>
 /**
  * 301 redirect map: every legacy flat URL -> its default-locale equivalent.
  * Preserves link equity during the locale migration. `/work` consolidates to
- * `/works`. The home redirect `/` -> `/en/` is included here.
+ * `/works`. The site root `/` is intentionally EXCLUDED — it is not a static
+ * 301 but a per-visitor locale negotiation (see `negotiateLocale` + the
+ * `location = /` block in nginx.prod.conf).
  */
 export const legacyRedirects = () => {
   const map = {};
@@ -76,10 +78,30 @@ export const legacyRedirects = () => {
     // Skip routes with no legacy flat URL (/404, /lp). noindex routes like /works
     // are LEGACY URLs and must still redirect — so gate on `newRoute`, not noindex.
     if (r.newRoute) continue;
+    // `/` is content-negotiated (302), not a permanent 301 to one locale.
+    if (r.path === "/") continue;
     map[r.path] = localizedPath(DEFAULT_LOCALE, r.path);
   }
   map["/work"] = localizedPath(DEFAULT_LOCALE, "/works");
   return map;
+};
+
+/**
+ * Pick the locale for a bare `/` request. Mirrors the nginx map in
+ * nginx.prod.conf so local dev (preview-server) and prod behave identically:
+ *   1. an explicit `locale` cookie (set by the on-site language switcher) wins;
+ *   2. otherwise the browser's primary Accept-Language tag (e.g. "fr-FR" -> fr);
+ *   3. otherwise DEFAULT_LOCALE.
+ */
+export const negotiateLocale = (acceptLanguage = "", cookieLocale = "") => {
+  const cookie = String(cookieLocale).trim().toLowerCase().slice(0, 2);
+  if (LOCALES.includes(cookie)) return cookie;
+  const primary = String(acceptLanguage)
+    .toLowerCase()
+    .split(",")[0]
+    .split("-")[0]
+    .trim();
+  return LOCALES.includes(primary) ? primary : DEFAULT_LOCALE;
 };
 
 export const buildUrl = (path = "/") =>

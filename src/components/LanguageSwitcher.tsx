@@ -32,6 +32,14 @@ export function LanguageSwitcher() {
 
   const isEN = current === "en";
 
+  // Remember an explicit language choice so a later visit to "/" resolves to it
+  // (read server-side by the nginx locale-negotiation map). Progressive
+  // enhancement: the switch is a real <a> and still works without JS — "/" just
+  // falls back to Accept-Language when no cookie is set.
+  const remember = (loc: Locale) => {
+    document.cookie = `locale=${loc}; path=/; max-age=31536000; samesite=Lax`;
+  };
+
   return (
     <div className="inline-flex items-center gap-1 shrink-0 self-center leading-none">
       <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl">
@@ -59,6 +67,7 @@ export function LanguageSwitcher() {
               href={target(loc)}
               hrefLang={loc}
               lang={loc}
+              onClick={() => remember(loc)}
               aria-current={active ? "true" : undefined}
               aria-label={t("languageSwitcher.switchTo", { lang: LABELS[loc].full })}
               className={[
