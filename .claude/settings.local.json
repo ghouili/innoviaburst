@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /s /q public)",
+      "Bash(dir /s /q src\\\\assets)"
+    ]
+  }
+}

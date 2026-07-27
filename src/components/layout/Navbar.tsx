@@ -1,21 +1,56 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { hashLinkProps, isHashLink } from "@/lib/hash-nav";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logo from "@/assets/innoviaburst-logo.webp";
 import logoT from "@/assets/Logo-Text.webp";
 
-// Navigation links with i18n keys
-const navLinks = [
-  { labelKey: "nav.automations", href: "/automations" },
-  { labelKey: "nav.mvp", href: "/mvp-launch" },
-  { labelKey: "nav.offers", href: "/#offers" },
+interface NavChild {
+  labelKey: string;
+  href: string;
+}
+
+interface NavItem {
+  labelKey: string;
+  /** Leaf link. Mutually exclusive with `children`. */
+  href?: string;
+  /** Renders a dropdown instead of a leaf link. */
+  children?: NavChild[];
+}
+
+/**
+ * Top-level navigation. The four service destinations live under a single
+ * "Services" dropdown: six flat links overflowed the bar at the `lg` breakpoint
+ * (1024px), where the desktop nav first appears, by ~72px.
+ */
+const navItems: NavItem[] = [
+  {
+    labelKey: "nav.services",
+    children: [
+      { labelKey: "nav.automations", href: "/automations" },
+      { labelKey: "nav.mvp", href: "/mvp-launch" },
+      { labelKey: "nav.offers", href: "/#offers" },
+      { labelKey: "nav.training", href: "/#training" },
+    ],
+  },
   { labelKey: "nav.work", href: "/work" },
   { labelKey: "nav.trust", href: "/trust" },
   { labelKey: "nav.resources", href: "/resources" },
 ];
+
+/** Flat list of every destination — used by the mobile menu and active checks. */
+const allLinks: NavChild[] = navItems.flatMap((item) =>
+  item.children ? item.children : [{ labelKey: item.labelKey, href: item.href! }],
+);
 
 interface NavbarProps {
   onBookingClick?: () => void;
@@ -132,6 +167,15 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
     return location.pathname === href;
   };
 
+  // A dropdown reads as active when the current route is one of its children.
+  const isGroupActive = (item: NavItem) =>
+    !!item.children?.some((child) => isActive(child.href));
+
+  const desktopItemClasses = (active: boolean) =>
+    `px-3 xl:px-4 py-2 text-sm font-medium rounded-lg transition-colors min-h-[40px] flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-ring ${
+      active ? "text-secondary bg-secondary/10" : "text-foreground/80 hover:text-secondary hover:bg-muted"
+    }`;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-300 ${
@@ -145,44 +189,74 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
             to="/" 
             className="flex items-end gap-0.5 shrink-0 focus:outline-none focus:ring-0 focus:ring-ring rounded-lg"
           >
-            <img src={logo} alt="Innoviaburst - Home" width={256} height={256} className="h-10 lg:h-16 w-auto " />
+            {/* Slightly smaller at lg: at 1024px the full-size lockup costs
+                224px of bar, which pushes the longer FR labels into overflow. */}
+            <img src={logo} alt="Innoviaburst - Home" width={256} height={256} className="h-10 lg:h-12 xl:h-16 w-auto " />
             <div className="h-full flex items-end ">
 
-            <img src={logoT} alt="Innoviaburst - Home" width={480} height={96} className="h-5 lg:h-8 w-auto" />
+            <img src={logoT} alt="Innoviaburst - Home" width={480} height={96} className="h-5 lg:h-6 xl:h-8 w-auto" />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
-              const isExternal = link.href.includes('#');
-              const active = isActive(link.href);
-              const label = t(link.labelKey);
-              
-              return isExternal ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => handleNavLinkClick(link.href)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors min-h-[40px] flex items-center focus:outline-none focus:ring-2 focus:ring-ring ${
-                    active 
-                      ? "text-secondary bg-secondary/10" 
-                      : "text-foreground/80 hover:text-secondary hover:bg-muted"
-                  }`}
-                >
-                  {label}
-                </a>
-              ) : (
+            {navItems.map((item) => {
+              // Grouped item -> dropdown. Radix DropdownMenu gives us the full
+              // keyboard contract for free: Enter/Space/ArrowDown to open,
+              // arrows to move, Escape to close, focus returned to the trigger.
+              if (item.children) {
+                const active = isGroupActive(item);
+                return (
+                  // modal={false}: this is navigation, not a dialog. The default
+                  // (modal) locks body scroll and marks the rest of the page
+                  // aria-hidden while open, which hides the nav from AT users.
+                  <DropdownMenu key={item.labelKey} modal={false}>
+                    <DropdownMenuTrigger className={`${desktopItemClasses(active)} group`}>
+                      {t(item.labelKey)}
+                      <ChevronDown
+                        className="w-4 h-4 transition-transform duration-200 group-data-[state=open]:rotate-180"
+                        aria-hidden="true"
+                      />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" className="min-w-[13rem]">
+                      {item.children.map((child) => {
+                        const childActive = isActive(child.href);
+                        const childClasses = `w-full cursor-pointer text-sm font-medium ${
+                          childActive ? "text-secondary" : ""
+                        }`;
+                        return (
+                          <DropdownMenuItem key={child.href} asChild>
+                            {isHashLink(child.href) ? (
+                              <Link {...hashLinkProps(child.href)} className={childClasses}>
+                                {t(child.labelKey)}
+                              </Link>
+                            ) : (
+                              <Link
+                                to={child.href}
+                                aria-current={childActive ? "page" : undefined}
+                                className={childClasses}
+                              >
+                                {t(child.labelKey)}
+                              </Link>
+                            )}
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                );
+              }
+
+              const href = item.href!;
+              const active = isActive(href);
+              return (
                 <Link
-                  key={link.href}
-                  to={link.href}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors min-h-[40px] flex items-center focus:outline-none focus:ring-2 focus:ring-ring ${
-                    active 
-                      ? "text-secondary bg-secondary/10" 
-                      : "text-foreground/80 hover:text-secondary hover:bg-muted"
-                  }`}
+                  key={href}
+                  to={href}
+                  aria-current={active ? "page" : undefined}
+                  className={desktopItemClasses(active)}
                 >
-                  {label}
+                  {t(item.labelKey)}
                 </Link>
               );
             })}
@@ -191,11 +265,11 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
-            <Button 
-              variant="hero" 
-              size="default" 
+            <Button
+              variant="hero"
+              size="default"
               onClick={handleCTAClick}
-              className="min-h-[44px]"
+              className="min-h-[44px] px-4 xl:px-5"
             >
               {t("nav.bookCall")}
             </Button>
@@ -235,7 +309,9 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
-              {navLinks.map((link) => {
+              {/* Flat list on mobile — a vertical sheet has the room, so the
+                  "Services" grouping would only add a tap to reach each item. */}
+              {allLinks.map((link) => {
                 const label = t(link.labelKey);
                 const isExternal = link.href.includes('#');
                 const active = isActive(link.href);

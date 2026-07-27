@@ -1,8 +1,8 @@
 {
   "_instructions": "Return native French for every value under en_to_translate (keep the EXACT same key paths) and drop it into src/i18n/fr.json. Also review/replace fr_to_review (FR drafted by the assistant). Do NOT machine-translate. Keep {{price}}/{{lang}} placeholders and the en-dashes/%/& exactly.",
   "_counts": {
-    "keysToTranslate": 330,
-    "enLeaves": 1010,
+    "keysToTranslate": 346,
+    "enLeaves": 1026,
     "frLeaves": 680
   },
   "en_to_translate": {
@@ -14,6 +14,32 @@
     },
     "offers": {
       "disclaimer": "Fixed-price engagements; tools & subscriptions billed separately."
+    },
+    "trainingSection": {
+      "eyebrow": "Training · with our partners",
+      "title": "Upskill your team on",
+      "titleHighlight": "AI & automation",
+      "subtitle": "Hands-on training sessions — run together with our accredited training partners — that get your team building, governing and shipping AI safely. From half-day workshops to multi-week cohorts.",
+      "formats": [
+        {
+          "title": "Live workshops",
+          "description": "On-site or remote, tailored to your stack."
+        },
+        {
+          "title": "Team cohorts",
+          "description": "Multi-week, build-alongside programmes."
+        },
+        {
+          "title": "Partner-certified",
+          "description": "Content delivered with our training partners."
+        }
+      ],
+      "cta": "Request a training session",
+      "secondaryCta": "Book a 15-min call",
+      "partnersLabel": "In partnership with",
+      "partnerPlaceholder": "Partner logo",
+      "partnersNote": "Partner logos are placeholders — accredited training partners will be named here once agreements are signed.",
+      "requestInterest": "Training — AI & automation upskilling for my team"
     },
     "work": {
       "viewAll": "View all case studies"
@@ -1100,7 +1126,12 @@
   },
   "fr_to_review": {
     "nav": {
-      "mvp": "MVP"
+      "mvp": "MVP",
+      "services": "Services",
+      "training": "Formation"
+    },
+    "stickyBar": {
+      "label": "Étape suivante"
     },
     "mvpSection": {
       "title": "De l'idée à un",

@@ -42,6 +42,9 @@ export const flatRoutes = [
   // Campaign landing page — pre-rendered + indexable-ready, but kept OUT of the
   // sitemap (noindex flag) until launch is confirmed. Reached via the /en/ URL.
   { path: "/lp/ai-automation", source: "src/pages/LandingPage.tsx", changefreq: "monthly", priority: 0.5, noindex: true, newRoute: true },
+  // Paid-ads MVP landing page — SSG'd for both locales, noindex (out of sitemap),
+  // no legacy 301 (newRoute). The robots meta is emitted by SeoHead in the page.
+  { path: "/lp/mvp", source: "src/pages/LpMvpPage.tsx", changefreq: "monthly", priority: 0.5, noindex: true, newRoute: true },
   ...offers.map((o) => ({ path: `/${o.slug}`, source: o.source, changefreq: o.changefreq, priority: o.priority })),
   ...caseStudies.map((c) => ({ path: `/work/${c.slug}`, source: c.source, changefreq: c.changefreq, priority: c.priority })),
   // Pre-rendered but noindex — served as the real 404 body (nginx error_page).

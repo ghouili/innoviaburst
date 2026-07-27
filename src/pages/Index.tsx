@@ -7,6 +7,7 @@ import { AutomationLaneVisual } from "@/components/sections/heroes/AutomationLan
 import { ProofStrip } from "@/components/sections/ProofStrip";
 import { OffersSection } from "@/components/sections/OffersSection";
 import { MvpSection } from "@/components/sections/MvpSection";
+import { TrainingSection } from "@/components/sections/TrainingSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { WorkSection } from "@/components/sections/WorkSection";
 import { TrustSection } from "@/components/sections/TrustSection";
@@ -24,7 +25,16 @@ const Index = () => {
   const { t } = useTranslation();
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isRequestOpen, setIsRequestOpen] = useState(false);
+  // Seeds the request form's notes field so a scope request arriving from a
+  // specific band (e.g. Training) says what it's about. Cleared for the
+  // generic entry points.
+  const [requestInterest, setRequestInterest] = useState<string | undefined>(undefined);
   const location = useLocation();
+
+  const openRequest = (interest?: string) => {
+    setRequestInterest(interest);
+    setIsRequestOpen(true);
+  };
 
   // Handle SPA-safe scroll to section from footer hash links
   useEffect(() => {
@@ -67,17 +77,23 @@ const Index = () => {
           {/* 1. Hero — Design 1 (Automation lane panel) */}
           <HeroShell
             visual={<AutomationLaneVisual className="w-full" />}
-            onScopeClick={() => setIsRequestOpen(true)}
+            onScopeClick={() => openRequest()}
           />
           
           {/* 2. Proof bar */}
           <ProofStrip />
           
           {/* 3. Productised Offers */}
-          <OffersSection onBookingClick={() => setIsRequestOpen(true)} />
+          <OffersSection onBookingClick={() => openRequest()} />
 
           {/* 3b. MVP band — surface MVP Launch alongside automation */}
           <MvpSection />
+
+          {/* 3c. Training band — partner-delivered AI & automation upskilling */}
+          <TrainingSection
+            onRequestClick={() => openRequest(t("trainingSection.requestInterest"))}
+            onBookingClick={() => setIsBookingOpen(true)}
+          />
 
           {/* 4. Top Workflows (6 cards + link) */}
           <SolutionsSection />
@@ -89,18 +105,22 @@ const Index = () => {
           <TrustSection />
           
           {/* 7. Final CTA */}
-          <ContactSection onBookingClick={() => setIsRequestOpen(true)} />
+          <ContactSection onBookingClick={() => openRequest()} />
         </main>
         <Footer />
       </div>
 
       {/* Modals */}
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
-      <RequestModal isOpen={isRequestOpen} onClose={() => setIsRequestOpen(false)} />
+      <RequestModal
+        isOpen={isRequestOpen}
+        onClose={() => setIsRequestOpen(false)}
+        prefilledInterest={requestInterest}
+      />
       
       {/* Sticky Next Step bar */}
       <StickyNextStep 
-        onRequestClick={() => setIsRequestOpen(true)}
+        onRequestClick={() => openRequest()}
         onBookClick={() => setIsBookingOpen(true)}
       />
       

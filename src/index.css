@@ -75,6 +75,9 @@
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
+    /* Text-safe darker red (~5:1 on the light bg) for error MESSAGE text; the
+       brighter --destructive stays for input borders (only needs 3:1). */
+    --destructive-strong: 0 72% 42%;
 
     --border: 200 25% 90%;
     --input: 200 25% 90%;
@@ -316,6 +319,32 @@
     @apply py-12 md:py-16;
   }
 
+  /* Scroll-reveal (landing pages): pre-animation state + revealed state. The
+     <Reveal> component (IntersectionObserver) swaps .lp-reveal -> .lp-reveal-in
+     as the element enters the viewport. Reduced-motion users skip straight to
+     the visible state (also enforced globally below). */
+  .lp-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    will-change: opacity, transform;
+  }
+
+  .lp-reveal-in {
+    /* `both` (not `forwards`) so the "from" keyframe (opacity:0) is held during
+       any animation-delay — otherwise staggered cards flash visible for a beat
+       before the fade-up starts. */
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lp-reveal,
+    .lp-reveal-in {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
   }
@@ -330,6 +359,24 @@
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
+  }
+
+  /* Schematic-illustration motion (Training section SVG): dashed connectors that
+     "flow" between nodes, and softly pulsing status dots. Purely decorative —
+     the SVG is aria-hidden, so stopping them costs no information. */
+  .animate-dash-flow {
+    animation: dashFlow 2s linear infinite;
+  }
+
+  .animate-spark {
+    animation: spark 2.6s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-dash-flow,
+    .animate-spark {
+      animation: none !important;
+    }
   }
 }
 

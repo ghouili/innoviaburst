@@ -1,5 +1,7 @@
 {
   "nav": {
+    "services": "Services",
+    "training": "Formation",
     "automations": "Automatisations",
     "mvp": "MVP",
     "offers": "Offres",
@@ -19,7 +21,8 @@
     "getStarted": "Commencer",
     "contactUs": "Nous contacter",
     "backToHome": "Retour à l'accueil",
-    "fixedPriceNote": "Cadré en 48 h"
+    "fixedPriceNote": "Cadré en 48 h",
+    "optional": "facultatif"
   },
   "cookies": {
     "title": "Nous respectons votre vie privée",
@@ -68,6 +71,7 @@
     }
   },
   "stickyBar": {
+    "label": "Étape suivante",
     "primaryCta": "Demander un plan d'automatisation",
     "secondaryCta": "Réserver un appel (15 min)"
   },
@@ -1196,6 +1200,172 @@
       "reference": "Référence"
     }
   },
+  "lpMvp": {
+    "hero": {
+      "eyebrow": "MVP Launch — pour startups & PME",
+      "headlinePre": "De l’idée à un ",
+      "headlineAccent": "MVP en ligne, prêt pour les investisseurs",
+      "headlinePost": " en 6–10 semaines",
+      "subhead": "Nous concevons, construisons et déployons votre MVP — authentification, sécurité et analytics inclus. Vous possédez le code et la PI, et il est prêt pour le RGPD et le règlement IA de l’UE dès le premier jour.",
+      "primaryCta": "Obtenir mon cadrage gratuit 48 h",
+      "variants": {
+        "investor": {
+          "eyebrow": "MVP Launch — prêt pour votre levée en semaines",
+          "headlinePre": "Lancez un ",
+          "headlineAccent": "MVP prêt pour les investisseurs",
+          "headlinePost": " avant votre prochaine levée",
+          "subhead": "Un produit réel et fonctionnel à montrer à vos utilisateurs et investisseurs — construit lean en 6–10 semaines, avec analytics dès le premier jour. Vous possédez 100 % du code et de la PI.",
+          "primaryCta": "Obtenir mon cadrage gratuit 48 h"
+        },
+        "speed": {
+          "eyebrow": "MVP Launch — livré en semaines, pas en trimestres",
+          "headlinePre": "De l’idée à un ",
+          "headlineAccent": "produit livré",
+          "headlinePost": " en 6–10 semaines",
+          "subhead": "Un MVP à périmètre fixe, en ligne en quelques semaines — authentification, sécurité et analytics inclus. Vous possédez le code et la PI, et c’est prêt RGPD & règlement IA de l’UE dès le premier jour.",
+          "primaryCta": "Obtenir mon cadrage gratuit 48 h"
+        }
+      }
+    },
+    "chips": [
+      "Prêt RGPD & règlement IA de l’UE",
+      "Vous possédez le code & la PI",
+      "En ligne en 6–10 semaines"
+    ],
+    "form": {
+      "title": "Obtenez votre cadrage gratuit en 48 h",
+      "subtitle": "Dites-nous ce que vous construisez — nous vous renvoyons un périmètre fixe sous 48 heures. Sans engagement.",
+      "name": "Votre nom",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Email professionnel",
+      "emailPlaceholder": "jean@entreprise.com",
+      "building": "Que construisez-vous ?",
+      "buildingPlaceholder": "Une app de réservation pour cliniques, un portail client, un outil interne…",
+      "submitting": "Envoi…",
+      "secondary": "Ou réservez un appel de 15 min",
+      "consent": "Pas de spam — nous vous écrivons uniquement au sujet de votre cadrage.",
+      "privacyLink": "Politique de confidentialité",
+      "errors": {
+        "name": "Veuillez indiquer votre nom",
+        "email": "Saisissez un email professionnel valide",
+        "building": "Dites-nous en un peu plus",
+        "submit": "Une erreur s’est produite — réessayez ou écrivez-nous."
+      },
+      "success": {
+        "title": "Votre cadrage arrive",
+        "body": "Merci — nous vous envoyons votre cadrage fixe sous 48 heures. Envie d’en parler plus tôt ?",
+        "cta": "Réserver un appel de 15 min"
+      }
+    },
+    "proof": {
+      "logosLabel": "Conçu pour les équipes qui lancent leur premier produit",
+      "logoPlaceholder": "Votre logo",
+      "note": "Emplacement réservé — vrais logos & chiffres ajoutés avant le lancement de la campagne",
+      "stats": [
+        { "value": "90 jours", "label": "de support correctifs inclus" },
+        { "value": "5–8", "label": "écrans clés, cadrés avec vous" },
+        { "value": "Chaque sem.", "label": "des livraisons à valider" }
+      ]
+    },
+    "whatYouGet": {
+      "eyebrow": "Ce que vous obtenez",
+      "title": "Tout pour lancer — rien de superflu",
+      "items": [
+        { "title": "MVP en production", "body": "Un produit pleinement fonctionnel, déployé en production et prêt pour de vrais utilisateurs." },
+        { "title": "Auth & rôles", "body": "Authentification des utilisateurs et accès par rôles intégrés dès le départ." },
+        { "title": "Vos fonctionnalités clés", "body": "Les 5 à 8 écrans qui valident votre idée — cadrés avec vous, prêts à livrer." },
+        { "title": "Socle de sécurité", "body": "Des mesures de sécurité raisonnables pour lancer en confiance." },
+        { "title": "Analytics dès le jour 1", "body": "Analytics produit en place pour mesurer l’activation immédiatement." },
+        { "title": "Responsive mobile", "body": "Un rendu et un fonctionnement impeccables sur toutes les tailles d’écran, d’emblée." }
+      ]
+    },
+    "how": {
+      "eyebrow": "Comment ça marche",
+      "title": "Trois étapes vers un produit en ligne",
+      "steps": [
+        { "title": "Cadrage gratuit 48 h", "body": "Dites-nous ce que vous construisez. Nous renvoyons un périmètre fixe et un plan sous 48 heures — sans engagement." },
+        { "title": "Conception & développement", "body": "Nous concevons, développons et itérons en livraisons hebdomadaires, avec votre revue à chaque étape." },
+        { "title": "Lancement & propriété", "body": "Nous déployons en production et vous transférons 100 % du code et de la PI. C’est à vous." }
+      ]
+    },
+    "timeline": {
+      "eyebrow": "Calendrier",
+      "title": "Votre parcours de 6–10 semaines jusqu’au lancement",
+      "steps": [
+        { "week": "Semaines 1–2", "label": "Découverte & design" },
+        { "week": "Semaines 3–4", "label": "Développement du cœur & auth" },
+        { "week": "Semaines 5–6", "label": "Fonctionnalités & UI" },
+        { "week": "Semaines 7–8", "label": "Tests & sécurité" },
+        { "week": "Semaines 9–10", "label": "Recette & lancement" }
+      ]
+    },
+    "risk": {
+      "eyebrow": "Une façon sûre de démarrer",
+      "title": "Le risque est pour nous, pas pour vous",
+      "items": [
+        { "title": "Cadrage gratuit 48 h", "body": "Voyez exactement ce que nous construirions et à quel prix — avant d’engager le moindre euro." },
+        { "title": "Périmètre & prix fixes", "body": "Convenus par écrit à l’avance. Pas de taux horaire, pas de facture surprise." },
+        { "title": "Vous possédez le code & la PI", "body": "Pleine propriété transférée à la livraison. Aucun verrouillage, jamais." }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "Les réponses avant vos questions",
+      "items": [
+        { "q": "Combien ça coûte ?", "a": "Chaque MVP est à périmètre et prix fixes, convenus lors de votre cadrage gratuit 48 h avant tout démarrage — pas de taux horaire, pas de surprise. Vous connaissez le prix exact avant de vous engager." },
+        { "q": "Combien de temps ça prend ?", "a": "La plupart des MVP passent de l’idée au lancement en 6–10 semaines : découverte et design en semaines 1–2, cœur en 3–4, fonctionnalités et UI en 5–6, tests et sécurité en 7–8, puis recette et lancement en 9–10." },
+        { "q": "Suis-je propriétaire du code et de la PI ?", "a": "Oui — à 100 %. Vous obtenez la pleine propriété et l’accès au code à la livraison. Aucun verrouillage, aucune licence à payer." },
+        { "q": "Et si le périmètre change ?", "a": "Nous prévoyons de la flexibilité. Les petits ajustements sont absorbés au fil de l’eau ; tout changement important est re-cadré en toute transparence, vous gardez la main sur le coût et le délai." }
+      ]
+    },
+    "details": {
+      "title": "Les détails — hors périmètre & ce que nous attendons de vous",
+      "notIncludedTitle": "Ce qui n’est pas inclus",
+      "notIncluded": [
+        "Applications mobiles natives (nous construisons d’abord pour le web)",
+        "Certifications de sécurité avancées",
+        "Périmètre de fonctionnalités illimité",
+        "Développement de fonctionnalités après le lancement"
+      ],
+      "needTitle": "Ce que nous attendons de vous",
+      "need": [
+        "Une vision produit et des priorités claires",
+        "4 à 6 heures par semaine côté product owner",
+        "Vos éléments de marque",
+        "Quelques utilisateurs test pour les retours"
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Quand vous voulez",
+      "title": "Encore hésitant ? Commencez par le cadrage.",
+      "subtitle": "Gratuit, à périmètre fixe et sans engagement — vous recevez votre cadrage 48 h par email."
+    },
+    "sticky": {
+      "message": "De l’idée à un MVP en ligne en 6–10 semaines.",
+      "primary": "Mon cadrage gratuit",
+      "secondary": "Réserver un appel"
+    },
+    "footer": {
+      "tagline": "Développement de MVP pour startups & PME UK/EU — périmètre fixe, vous possédez le code & la PI."
+    },
+    "preview": {
+      "appName": "votremvp.app",
+      "statusLive": "En ligne",
+      "metrics": [
+        { "label": "Inscriptions", "value": "1 284", "delta": "+18 %" },
+        { "label": "Actifs", "value": "312", "delta": "+9 %" },
+        { "label": "MRR", "value": "4,2 k€", "delta": "+24 %" }
+      ],
+      "ctaLabel": "Commencer",
+      "badgeShipped": "Livré · Semaine 8",
+      "badgeGdpr": "Prêt RGPD"
+    },
+    "a11y": {
+      "trustSignals": "Signaux de confiance",
+      "home": "Innoviaburst — Accueil",
+      "primaryNav": "Navigation principale"
+    }
+  },
   "seo": {
     "home": {
       "title": "Innoviaburst | IA & Automatisation pour PME UK/EU — Livré en semaines",
@@ -1212,6 +1382,10 @@
     "lp": {
       "title": "Automatisation IA pour les PME européennes — conforme par conception | InnoviaBurst",
       "description": "Automatisations IA, copilotes et MVP à périmètre fixe pour les PME européennes — en production en semaines, prêts RGPD & règlement IA de l’UE."
+    },
+    "lpMvp": {
+      "title": "Créez votre MVP en 6–10 semaines — périmètre fixe, la PI est à vous | InnoviaBurst",
+      "description": "Développement de MVP pour startups & PME UK/EU. De l’idée à un MVP en ligne, prêt pour les investisseurs, en 6–10 semaines. Cadrage gratuit en 48 h, prix fixe, vous possédez le code & la PI — prêt RGPD & règlement IA de l’UE."
     },
     "cookies": {
       "title": "Politique de cookies | Innoviaburst",

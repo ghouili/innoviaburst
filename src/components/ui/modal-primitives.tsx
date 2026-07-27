@@ -121,9 +121,9 @@ export function FieldError({ id, message, className }: FieldErrorProps) {
     <p
       id={id}
       role="alert"
-      className={cn("text-sm text-destructive mt-1.5 flex items-center gap-1.5", className)}
+      className={cn("text-sm text-destructive-strong mt-1.5 flex items-center gap-1.5", className)}
     >
-      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+      <AlertCircle className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
       <span>{message}</span>
     </p>
   );

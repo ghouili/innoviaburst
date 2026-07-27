@@ -1,5 +1,7 @@
 {
   "nav": {
+    "services": "Services",
+    "training": "Training",
     "automations": "Automations",
     "mvp": "MVPs",
     "offers": "Offers",
@@ -21,7 +23,8 @@
     "contactUs": "Contact us",
     "backToHome": "Back to home",
     "skipLink": "Skip to main content",
-    "fixedPriceNote": "Scoped in 48h"
+    "fixedPriceNote": "Scoped in 48h",
+    "optional": "optional"
   },
   "cookies": {
     "title": "We value your privacy",
@@ -70,6 +73,7 @@
     }
   },
   "stickyBar": {
+    "label": "Next step",
     "primaryCta": "Request an automation plan",
     "secondaryCta": "Book a 15-min call"
   },
@@ -365,6 +369,32 @@
       "GDPR & EU AI Act-ready from day one"
     ],
     "cta": "See how MVP Launch works"
+  },
+  "trainingSection": {
+    "eyebrow": "Training · with our partners",
+    "title": "Upskill your team on",
+    "titleHighlight": "AI & automation",
+    "subtitle": "Hands-on training sessions — run together with our accredited training partners — that get your team building, governing and shipping AI safely. From half-day workshops to multi-week cohorts.",
+    "formats": [
+      {
+        "title": "Live workshops",
+        "description": "On-site or remote, tailored to your stack."
+      },
+      {
+        "title": "Team cohorts",
+        "description": "Multi-week, build-alongside programmes."
+      },
+      {
+        "title": "Partner-certified",
+        "description": "Content delivered with our training partners."
+      }
+    ],
+    "cta": "Request a training session",
+    "secondaryCta": "Book a 15-min call",
+    "partnersLabel": "In partnership with",
+    "partnerPlaceholder": "Partner logo",
+    "partnersNote": "Partner logos are placeholders — accredited training partners will be named here once agreements are signed.",
+    "requestInterest": "Training — AI & automation upskilling for my team"
   },
   "work": {
     "title": "Our Work",
@@ -1196,6 +1226,172 @@
       "reference": "Reference"
     }
   },
+  "lpMvp": {
+    "hero": {
+      "eyebrow": "MVP Launch — for startups & SME teams",
+      "headlinePre": "From idea to a live, ",
+      "headlineAccent": "investor-ready MVP",
+      "headlinePost": " in 6–10 weeks",
+      "subhead": "We design, build and ship your MVP — authentication, security and analytics included. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
+      "primaryCta": "Get my free 48-hour scope",
+      "variants": {
+        "investor": {
+          "eyebrow": "MVP Launch — raise-ready in weeks",
+          "headlinePre": "Ship an ",
+          "headlineAccent": "investor-ready MVP",
+          "headlinePost": " before your next raise",
+          "subhead": "A real, working product to put in front of users and investors — built lean in 6–10 weeks, with analytics from day one. You own 100% of the code and IP.",
+          "primaryCta": "Get my free 48-hour scope"
+        },
+        "speed": {
+          "eyebrow": "MVP Launch — ship in weeks, not quarters",
+          "headlinePre": "Go from idea to a ",
+          "headlineAccent": "shipped product",
+          "headlinePost": " in 6–10 weeks",
+          "subhead": "A fixed-scope MVP, live in weeks — authentication, security and analytics included. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
+          "primaryCta": "Get my free 48-hour scope"
+        }
+      }
+    },
+    "chips": [
+      "GDPR & EU AI Act-ready",
+      "You own the code & IP",
+      "Live in 6–10 weeks"
+    ],
+    "form": {
+      "title": "Get your free 48-hour scope",
+      "subtitle": "Tell us what you're building — we'll send back a fixed scope within 48 hours. No obligation.",
+      "name": "Your name",
+      "namePlaceholder": "Jane Doe",
+      "email": "Work email",
+      "emailPlaceholder": "jane@company.com",
+      "building": "What are you building?",
+      "buildingPlaceholder": "A booking app for clinics, a client portal, an internal ops tool…",
+      "submitting": "Sending…",
+      "secondary": "Or book a 15-min call",
+      "consent": "No spam — we'll only email you about your scope.",
+      "privacyLink": "Privacy Policy",
+      "errors": {
+        "name": "Please add your name",
+        "email": "Enter a valid work email",
+        "building": "Tell us a little about it",
+        "submit": "Something went wrong — please try again or email us."
+      },
+      "success": {
+        "title": "Scope on its way",
+        "body": "Thanks — we'll email your fixed scope within 48 hours. Want to talk it through sooner?",
+        "cta": "Book a 15-min call"
+      }
+    },
+    "proof": {
+      "logosLabel": "Built for teams shipping their first product",
+      "logoPlaceholder": "Your logo",
+      "note": "Placeholder — real logos & metrics added before campaign launch",
+      "stats": [
+        { "value": "90 days", "label": "of bug-fix support included" },
+        { "value": "5–8", "label": "core screens, scoped with you" },
+        { "value": "Weekly", "label": "releases you can review" }
+      ]
+    },
+    "whatYouGet": {
+      "eyebrow": "What you get",
+      "title": "Everything you need to launch — nothing you don't",
+      "items": [
+        { "title": "Production MVP", "body": "A fully functional product deployed to production and ready for real users." },
+        { "title": "Auth & roles", "body": "User authentication and role-based access built in from the start." },
+        { "title": "Your core features", "body": "The 5–8 screens that prove your idea — scoped with you, built to ship." },
+        { "title": "Security baseline", "body": "Sensible security measures so you can launch with confidence." },
+        { "title": "Analytics from day one", "body": "Product analytics wired in so you can measure activation immediately." },
+        { "title": "Mobile-responsive", "body": "Looks and works right on every screen size, out of the box." }
+      ]
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "title": "Three steps to a live product",
+      "steps": [
+        { "title": "Free 48-hour scope", "body": "Tell us what you're building. We send back a fixed scope and plan within 48 hours — no obligation." },
+        { "title": "Design & build", "body": "We design, build and iterate in weekly releases, with you reviewing progress every step." },
+        { "title": "Launch & own it", "body": "We deploy to production and hand over 100% of the code and IP. It's yours." }
+      ]
+    },
+    "timeline": {
+      "eyebrow": "Timeline",
+      "title": "Your 6–10 week path to launch",
+      "steps": [
+        { "week": "Weeks 1–2", "label": "Discovery & design" },
+        { "week": "Weeks 3–4", "label": "Core build & auth" },
+        { "week": "Weeks 5–6", "label": "Features & UI" },
+        { "week": "Weeks 7–8", "label": "Testing & security" },
+        { "week": "Weeks 9–10", "label": "UAT & launch" }
+      ]
+    },
+    "risk": {
+      "eyebrow": "A safe way to start",
+      "title": "The risk is on us, not you",
+      "items": [
+        { "title": "Free 48-hour scope", "body": "See exactly what we'd build and what it costs — before you commit a penny." },
+        { "title": "Fixed scope, fixed price", "body": "Agreed up front in writing. No hourly rates, no surprise invoices." },
+        { "title": "You own the code & IP", "body": "Full ownership handed over on completion. No lock-in, ever." }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Questions",
+      "title": "Answers before you ask",
+      "items": [
+        { "q": "How much does it cost?", "a": "Every MVP is fixed-scope and fixed-price, agreed in your free 48-hour scope before any work begins — no hourly rates and no surprises. You'll know the exact price before you commit." },
+        { "q": "How long does it take?", "a": "Most MVPs go from idea to live in 6–10 weeks: discovery and design in weeks 1–2, core build in 3–4, features and UI in 5–6, testing and security in 7–8, then UAT and launch in 9–10." },
+        { "q": "Do I own the code and IP?", "a": "Yes — 100%. You get full ownership of and access to the codebase on completion. There's no lock-in and no licence to keep paying." },
+        { "q": "What if the scope changes?", "a": "We build in flexibility. Small changes are absorbed as we go; anything material is re-scoped transparently so you're always in control of cost and timeline." }
+      ]
+    },
+    "details": {
+      "title": "The fine print — what's out of scope & what we need from you",
+      "notIncludedTitle": "What's not included",
+      "notIncluded": [
+        "Native mobile apps (we build web-first)",
+        "Advanced security certifications",
+        "Unlimited feature scope",
+        "Ongoing feature development after launch"
+      ],
+      "needTitle": "What we need from you",
+      "need": [
+        "A clear product vision and priorities",
+        "4–6 hours a week of product-owner time",
+        "Your branding assets",
+        "A few test users for feedback"
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready when you are",
+      "title": "Still deciding? Start with the scope.",
+      "subtitle": "It's free, it's fixed, and there's zero obligation — you'll have your 48-hour scope by email."
+    },
+    "sticky": {
+      "message": "From idea to a live MVP in 6–10 weeks.",
+      "primary": "Get my free scope",
+      "secondary": "Book a call"
+    },
+    "footer": {
+      "tagline": "MVP development for UK/EU startups & SMEs — fixed scope, you own the code & IP."
+    },
+    "preview": {
+      "appName": "yourmvp.app",
+      "statusLive": "Live",
+      "metrics": [
+        { "label": "Signups", "value": "1,284", "delta": "+18%" },
+        { "label": "Active", "value": "312", "delta": "+9%" },
+        { "label": "MRR", "value": "€4.2k", "delta": "+24%" }
+      ],
+      "ctaLabel": "Get started",
+      "badgeShipped": "Shipped · Week 8",
+      "badgeGdpr": "GDPR-ready"
+    },
+    "a11y": {
+      "trustSignals": "Trust signals",
+      "home": "Innoviaburst — Home",
+      "primaryNav": "Primary"
+    }
+  },
   "seo": {
     "home": {
       "title": "Innoviaburst | AI & Automation for UK/EU SMEs — Delivered in Weeks",
@@ -1212,6 +1408,10 @@
     "lp": {
       "title": "AI Automation for European SMEs — GDPR-by-design | InnoviaBurst",
       "description": "Fixed-scope AI automations, copilots and MVPs for European SMEs — live in weeks, GDPR & EU AI Act-ready, with EU data residency."
+    },
+    "lpMvp": {
+      "title": "Build Your MVP in 6–10 Weeks — Fixed Scope, You Own the IP | InnoviaBurst",
+      "description": "MVP development for UK/EU startups & SMEs. Go from idea to a live, investor-ready MVP in 6–10 weeks. Free 48-hour scope, fixed price, you own the code & IP — GDPR & EU AI Act-ready."
     },
     "cookies": {
       "title": "Cookie Policy | Innoviaburst",
