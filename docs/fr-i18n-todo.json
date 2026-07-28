@@ -1,9 +1,10 @@
 {
   "_instructions": "Return native French for every value under en_to_translate (keep the EXACT same key paths) and drop it into src/i18n/fr.json. Also review/replace fr_to_review (FR drafted by the assistant). Do NOT machine-translate. Keep {{price}}/{{lang}} placeholders and the en-dashes/%/& exactly.",
   "_counts": {
-    "keysToTranslate": 346,
-    "enLeaves": 1026,
-    "frLeaves": 680
+    "keysToTranslate": 383,
+    "keysToReview": 116,
+    "enLeaves": 1231,
+    "frLeaves": 850
   },
   "en_to_translate": {
     "nav": {
@@ -296,7 +297,7 @@
         "title": "MVP Launch",
         "timeline": "6–10 weeks",
         "bestFor": "Startups & SMEs launching a new product or internal tool",
-        "heroDescription": "Go from idea to deployed product with authentication, basic security, and analytics. Perfect for validating new products or building internal tools.",
+        "heroDescription": "We take one validated idea and build it into a live, investor-ready product — authentication, security and analytics included. You own the code and the IP outright, and it’s GDPR and EU AI Act-ready from day one. Fixed scope agreed before we write a line of code.",
         "deliverables": [
           "Fully functional MVP deployed to production",
           "User authentication and role-based access",
@@ -404,22 +405,138 @@
         ],
         "aeo": [
           {
-            "q": "What is the MVP Launch?",
-            "a": "The MVP Launch takes your idea from concept to a deployed, production-ready product in six to ten weeks. It includes user authentication, role-based access, your core features (typically five to eight screens), basic security and analytics in a mobile-responsive build — ideal for startups and SMEs validating a new product or internal tool."
+            "q": "What is MVP Launch?",
+            "a": "MVP Launch is a fixed-scope MVP development service for European startups and SMEs. We build one validated idea into a live, investor-ready product in weeks — with authentication, security and analytics included. You own the code and IP, and it’s GDPR and EU AI Act-ready from day one."
           },
           {
-            "q": "How long does the MVP Launch take?",
-            "a": "Usually six to ten weeks. Weeks 1–2 cover discovery, design and architecture; weeks 3–4 build core development, authentication and the database; weeks 5–6 add features and refine the UI; weeks 7–8 are testing, security review and analytics; weeks 9–10 cover user testing, fixes, deployment and launch."
+            "q": "How long does it take to build an MVP?",
+            "a": "Most MVP Launch builds go from agreed scope to a live product in a matter of weeks, not months. The exact timeline depends on the number of screens and features, which we fix before starting. You’ll have a firm scope and delivery date within 48 hours of your first call."
           },
           {
-            "q": "What's included in the MVP Launch?",
-            "a": "A fully functional MVP deployed to production with user authentication, role-based access, your core features (typically five to eight screens), basic security measures, analytics integration and a mobile-responsive design, plus 90 days of bug-fix support. Native mobile apps, advanced security certifications and ongoing feature development are out of scope."
+            "q": "What’s included in an MVP build?",
+            "a": "Every build includes a fully functional product deployed to production, secure authentication with role-based access, your 5–8 core screens, sensible built-in security, analytics integration and a mobile-responsive interface. You receive full source code, IP ownership and compliance documentation covering data retention and processing."
           },
           {
             "q": "How much does the MVP Launch cost?",
             "a": "Pricing is fixed and agreed before any work begins: {{price}}, set by the scope confirmed in the discovery workshop. There are no hourly rates or surprises. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and you receive full ownership of the codebase on completion."
           }
-        ]
+        ],
+        "eyebrow": "MVP Launch — fixed-scope MVP development for European startups & SMEs",
+        "summaryFacts": [
+          "You own the code & IP",
+          "GDPR & EU AI Act-ready from day one"
+        ],
+        "seoDescription": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks — you own the code and IP, GDPR and EU AI Act-ready from day one.",
+        "howWeBuild": {
+          "title": "How we build your MVP",
+          "intro": "Three stages, one fixed scope. No open-ended timelines, no surprise invoices.",
+          "stages": [
+            {
+              "title": "Define the product",
+              "body": "We map the smallest version of your product that proves the idea and stands up to investor questions: core user journeys, the 5–8 screens that matter, and the success metrics you'll report on. You approve a fixed scope and timeline before build begins."
+            },
+            {
+              "title": "Build, test and check",
+              "body": "We build in short cycles you can see, connecting real authentication, data storage and analytics — not mockups. Data handling, retention and access controls are reviewed at set compliance checkpoints as we go, so nothing needs retrofitting later."
+            },
+            {
+              "title": "Deploy and hand over",
+              "body": "We deploy to production and hand you everything: the running product, the source code and IP, technical documentation, and data-retention and processing notes your DPO can act on. You leave with a product you can demo, ship and raise on."
+            }
+          ]
+        },
+        "whatYouGet": {
+          "title": "What you get",
+          "items": [
+            {
+              "title": "A live product, in production — not a prototype.",
+              "body": "A fully functional MVP deployed and ready to put in front of users and investors."
+            },
+            {
+              "title": "Users can sign up and sign in securely.",
+              "body": "Authentication and role-based access built in, so you can onboard real users from launch."
+            },
+            {
+              "title": "Your core product, done properly.",
+              "body": "The 5–8 screens and key journeys that prove your idea — scoped and agreed up front."
+            },
+            {
+              "title": "Sensible security from the start.",
+              "body": "Encryption in transit, secure authentication and safe data handling as standard, not add-ons."
+            },
+            {
+              "title": "You can see what users actually do.",
+              "body": "Analytics wired in so you can report activation and engagement to your board and investors."
+            },
+            {
+              "title": "Works on the devices your users bring.",
+              "body": "Mobile-responsive web across phone, tablet and desktop."
+            },
+            {
+              "title": "You own all of it.",
+              "body": "Full source code and IP transferred to you — no lock-in, no licence to us."
+            }
+          ]
+        },
+        "outOfScope": {
+          "intro": "A tight scope is what lets us ship in weeks. These sit outside MVP Launch — we'll flag early if your project genuinely needs them.",
+          "items": [
+            {
+              "title": "Native iOS/Android apps.",
+              "body": "We build web-first — faster to ship and iterate. Native comes later, once the product is proven."
+            },
+            {
+              "title": "Formal security certifications.",
+              "body": "SOC 2 / ISO 27001 are post-MVP; we build to sensible security standards so you're well placed to pursue them."
+            },
+            {
+              "title": "Unlimited scope.",
+              "body": "The scope we agree is the scope we build. New ideas mid-build are logged and quoted as a follow-on — never quietly absorbed or dropped."
+            },
+            {
+              "title": "Ongoing feature development.",
+              "body": "MVP Launch delivers your first shippable product. Continued build is a separate, optional engagement."
+            }
+          ]
+        },
+        "objections": [
+          {
+            "q": "Will it actually ship?",
+            "a": "Yes — and the scope is what guarantees it. We agree exactly what we're building and the timeline before any code is written, then build in short cycles you can watch progress against. Fixed scope means a fixed finish line, not a project that drifts."
+          },
+          {
+            "q": "Do I really own it?",
+            "a": "Completely. On final payment, all source code and IP transfer to you in writing. No licence back to us, no proprietary lock-in, no dependency on us to keep it running. Your product, your codebase, your asset."
+          },
+          {
+            "q": "What happens after launch?",
+            "a": "You leave fully equipped: running product, full code, documentation, and data-retention/processing notes. Take it to your own team, another agency, or come back to us. No ongoing contract you're locked into."
+          },
+          {
+            "q": "Is it genuinely investor-ready?",
+            "a": "It means three things and we build for all: a working product you can demo live, analytics that evidence real user activation, and clean, documented, GDPR- and EU AI Act-ready foundations that survive technical due diligence."
+          }
+        ],
+        "stickyCard": {
+          "label": "MVP Launch",
+          "line1": "Investor-ready MVP, built in weeks",
+          "line2": "Fixed scope · You own the code & IP · GDPR & EU AI Act-ready",
+          "priceLine": "Custom quote per project · EUR / GBP · deposit + milestones",
+          "note": "No fixed-price template — you get a scoped quote for your product, not ours. No obligation."
+        },
+        "credibilityNote": "We’re a compliance-native product studio: we build MVPs the way European founders actually have to ship them — data handling, ownership and documentation treated as first-class from day one, not bolted on before a raise. The standard summed up across our work: AI automation your DPO and your board both sign off on.",
+        "proofPlaceholder": "Case studies coming soon — ask for a walkthrough of recent builds on your scoping call.",
+        "finalCta": {
+          "title": "Ready to see your MVP scoped?",
+          "body": "Tell us the idea. Within 48 hours you'll have a fixed scope, a timeline and a clear quote — no obligation, no open-ended estimates. If it's not the right fit, we'll say so and point you somewhere better.",
+          "trustLine": "You own the code and IP · GDPR & EU AI Act-ready · Fixed scope before we build"
+        },
+        "proofStack": {
+          "headline": "Built on the stack investors expect"
+        },
+        "h1Pre": "Ship an investor-ready MVP in weeks — with the ",
+        "h1Accent": "compliance already built in",
+        "h1Post": "."
       }
     },
     "caseStudies": {
@@ -988,14 +1105,14 @@
       },
       "ui": {
         "backToOffers": "Back to Offers",
-        "heroTagline": "A focused package for workflow automations, AI copilots, or MVPs for UK/EU SMEs with GDPR/UK GDPR-ready delivery, optional DPA support, transparent sub-processor use, and agreed data retention.",
         "howItWorks": {
           "title": "How it works (3 quick steps)",
           "steps": [
             "Scope the workflow, AI copilot, or MVP you need with measurable outcomes.",
             "Build and test with your live tools, approvals, and compliance checkpoints.",
             "Deploy with documentation, data retention notes, and a trust-ready handover."
-          ]
+          ],
+          "stepLabel": "Step {{n}}"
         },
         "bestForLabel": "Best for:",
         "bookCall": "Book a 15-min call",
@@ -1004,9 +1121,7 @@
           "caseStudies": "See case studies with ROI",
           "trust": "Review trust, DPA, and retention details"
         },
-        "whatsIncluded": "What's Included",
         "aeoEyebrow": "Answers, up front",
-        "whatsNotIncluded": "What's Not Included",
         "successMetrics": "Success Metrics",
         "timeline": "Timeline",
         "clientInputs": "What We Need From You",
@@ -1018,6 +1133,25 @@
         "finalCta": {
           "title": "Ready to get started?",
           "body": "Book a quick call to discuss your requirements. We'll scope your project and get back to you within 48 hours."
+        },
+        "comparison": {
+          "included": "Included",
+          "excluded": "Out of scope, on purpose"
+        },
+        "proof": {
+          "label": "Tech stack and compliance",
+          "headline": "Built on the tools you already run"
+        },
+        "ctaPrimary": "Get a fixed scope in 48 hours",
+        "ctaSecondary": "Book a 15-min scoping call",
+        "ctaMicrocopy": "48-hour turnaround · No obligation · You keep the scope doc",
+        "objectionsTitle": "The questions founders actually ask",
+        "founderNoteLabel": "A note from the founder",
+        "proofPlaceholderLabel": "Proof placeholder",
+        "trustRow": {
+          "gdpr": "GDPR by design",
+          "aiAct": "EU AI Act-ready",
+          "ip": "Own your IP"
         }
       }
     },
@@ -1122,6 +1256,16 @@
         "button": "Book a 15-min call",
         "secondary": "See our work"
       }
+    },
+    "mvpHero": {
+      "visualAlt": "Animation: a wireframe sketch of a product dashboard assembles into a finished, live analytics app — progressing from Idea to Build, Test and Live.",
+      "live": "Live",
+      "phases": {
+        "idea": "Idea",
+        "build": "Build",
+        "test": "Test",
+        "live": "Live"
+      }
     }
   },
   "fr_to_review": {
@@ -1149,7 +1293,26 @@
       "mvp-launch": {
         "seoTitle": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | Innoviaburst",
         "seoDescription": "Développement de MVP pour startups et PME : de l'idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD & règlement IA de l'UE et analytics dès le premier jour.",
-        "heroDescription": "Développement de MVP, de l'idée à un produit en production prêt pour les investisseurs en quelques semaines — avec authentification, sécurité et analytics. Vous êtes propriétaire du code et de la PI, et le produit est conforme au RGPD et au règlement IA de l'UE dès le premier jour."
+        "heroDescription": "Développement de MVP, de l'idée à un produit en production prêt pour les investisseurs en quelques semaines — avec authentification, sécurité et analytics. Vous êtes propriétaire du code et de la PI, et le produit est conforme au RGPD et au règlement IA de l'UE dès le premier jour.",
+        "subheading": "Développement de MVP pour startups & PME européennes",
+        "summaryFacts": [
+          "Vous possédez le code et la PI",
+          "Prêt RGPD & règlement IA de l'UE dès le départ"
+        ]
+      },
+      "ai-ops-sprint": {
+        "subheading": "Automatisation de workflows & copilotes IA pour les équipes ops UK et UE",
+        "summaryFacts": [
+          "Un workflow en production dans vos outils existants",
+          "Prêt RGPD & règlement IA de l'UE dès le départ"
+        ]
+      },
+      "automation-build": {
+        "subheading": "Automatisation de workflows production-ready pour PME UK & UE",
+        "summaryFacts": [
+          "Connecte 3 à 5 de vos outils existants",
+          "Prêt RGPD & règlement IA de l'UE dès le départ"
+        ]
       }
     },
     "hero": {
@@ -1265,6 +1428,61 @@
         "title": "Sous-traitants | Innoviaburst",
         "description": "Liste des sous-traitants tiers utilisés par Innoviaburst pour la prestation de services. Transparence totale sur le traitement des données."
       }
+    },
+    "offerPage": {
+      "ui": {
+        "summary": {
+          "label": "Résumé de l'offre",
+          "title": "En bref",
+          "note": "Sans engagement. Le périmètre et le prix sont convenus par écrit avant le début des travaux."
+        },
+        "bookCall": "Réserver un appel (15 min)"
+      }
+    },
+    "footer": {
+      "blurb": "IA, automatisation & MVP pour les PME du UK et de l'UE.",
+      "compliance": {
+        "label": "Posture de conformité",
+        "gdpr": "RGPD UK & UE",
+        "aiAct": "Prêt règlement IA de l'UE",
+        "cyberEssentials": "Cyber Essentials",
+        "inProgress": "en cours"
+      },
+      "booking": {
+        "headline": "Vous préférez en parler ?",
+        "description": "15 minutes, sans argumentaire. Présentez un workflow et nous vous dirons si l'automatiser en vaut la peine.",
+        "cta": "Réserver un appel (15 min)"
+      }
+    },
+    "solutions": {
+      "categoriesLabel": "Catégories de workflows",
+      "categories": {
+        "revenue": {
+          "label": "Revenus",
+          "hint": "Du premier contact au rendez-vous, sans relances manuelles."
+        },
+        "support": {
+          "label": "Support",
+          "hint": "Répondre plus vite, et cesser de répéter les mêmes réponses."
+        },
+        "ops": {
+          "label": "Ops & finance",
+          "hint": "Boucler tout ce qui suit la signature."
+        }
+      }
+    },
+    "proofStrip": {
+      "roi": "Heures gagnées, mesurées avant et après — par écrit",
+      "tools": "Fonctionne sur votre stack — HubSpot, Slack, Stripe",
+      "oversight": "Un humain valide chaque changement"
     }
+  },
+  "_notes": {
+    "doNotTranslate": [
+      "offerDetails.mvp-launch.proofStack.items",
+      "offerPage.ui.proof.tools"
+    ],
+    "why": "Product names stay as-is (Next.js, Postgres, Stripe, Vercel, HubSpot, ...). Everything else under en_to_translate needs native French.",
+    "headlineSplit": "offerDetails.mvp-launch.h1Pre + h1Accent + h1Post concatenate into the single <h1>. Keep the trailing space at the end of h1Pre (and any leading space needed in h1Post) so the joined sentence reads correctly in French."
   }
 }

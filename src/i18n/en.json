@@ -74,35 +74,99 @@
   },
   "stickyBar": {
     "label": "Next step",
-    "primaryCta": "Request an automation plan",
+    "primaryCta": "Get a fixed scope in 48h",
     "secondaryCta": "Book a 15-min call"
   },
+  "credibility": {
+    "label": "Client proof",
+    "badge": "Placeholder",
+    "note": "Named client logos and quoted results land here. We're keeping it empty until our first EU pilots agree to be named. No stock logos, no unattributed quotes."
+  },
   "hero": {
-    "headlinePre": "Ship",
-    "headlineHighlight": "AI & automation",
-    "headlinePost": "in weeks, not months.",
-    "headline": "Ship AI & automation in weeks, not months.",
-    "subheadline": "We build workflow automations, AI copilots, and MVPs for UK/EU SMEs — with clear scope, measurable ROI, and compliance-ready delivery.",
-    "deliveryNote": "First delivery in ~10 days. Clear scope. Measurable ROI.",
-    "primaryCta": "Request an automation plan",
-    "secondaryCta": "See automations",
-    "trustPoints": {
-      "delivery": "First delivery in ~10 days",
-      "gdpr": "UK GDPR ready",
-      "agnostic": "Tool-agnostic"
-    },
-    "eyebrow": "GDPR-by-design AI, automation & MVPs",
+    "eyebrow": "AI, automation & MVPs for European SMEs",
     "h1Pre": "AI automation your ",
     "h1Accent": "DPO and your board",
     "h1Post": " both sign off on.",
-    "lede": "GDPR-by-design workflow automations, AI copilots and MVPs for European SMEs — fixed scope, live in weeks, with the audit trail built in.",
-    "ctaShipped": "See what we've shipped",
+    "lede": "Workflow automations, AI copilots and MVPs. Live in weeks, with the audit trail built in.",
     "ctaScope": "Get a fixed scope in 48h",
+    "ctaBook": "Book a 15-min call",
+    "ctaBrowse": "Browse the automation library",
+    "chipsLabel": "Trust signals",
     "chips": {
       "delivery": "First workflow live in ~10 days",
       "compliance": "GDPR & EU AI Act-ready",
-      "price": "Scoped in 48h",
       "residency": "Your data stays in the EU"
+    },
+    "lane": {
+      "title": "Sample: automation queue",
+      "illustrative": "Illustrative",
+      "subAuto": "Clearing in real time",
+      "subManual": "Backlog growing",
+      "toggleManual": "Without automation",
+      "toggleAuto": "With Innoviaburst",
+      "laneLabel": "Incoming queue",
+      "active": "{{count}} active",
+      "metricsHead": "Sample metrics",
+      "sampleNote": "Example figures, not client data.",
+      "justNow": "just now",
+      "slaBreached": "SLA breached",
+      "footAutoLead": "Nothing piling up.",
+      "footAutoRest": "New work is tagged, routed and closed as it arrives.",
+      "footManualLead": "Work is piling up.",
+      "footManualRest": "Tasks wait, breach SLA and turn overdue. Nothing routes itself.",
+      "status": {
+        "queued": "Queued",
+        "processing": "Processing",
+        "done": "Done",
+        "overdue": "Overdue"
+      },
+      "stats": {
+        "handled": "Tasks handled today",
+        "resp": "Avg response time",
+        "hours": "Hours saved this week",
+        "miss": "Onboarding misses"
+      },
+      "trends": {
+        "live": "live",
+        "rising": "+ rising",
+        "faster": "93% faster",
+        "climbing": "climbing",
+        "heldZero": "held at zero",
+        "atRisk": "at risk",
+        "missRising": "rising"
+      },
+      "tasks": {
+        "support": {
+          "title": "New support ticket",
+          "src": "via Helpdesk",
+          "tag": "#support",
+          "route": "Tier-2 queue"
+        },
+        "lead": {
+          "title": "Unassigned lead",
+          "src": "via CRM",
+          "tag": "#sales",
+          "route": "Rep · West"
+        },
+        "payment": {
+          "title": "Failed payment",
+          "src": "via Stripe",
+          "tag": "#billing",
+          "route": "Retry + notify"
+        },
+        "onboarding": {
+          "title": "Onboarding step",
+          "src": "via Product",
+          "tag": "#success",
+          "route": "Send setup guide"
+        },
+        "invoice": {
+          "title": "Invoice follow-up",
+          "src": "via Ledger",
+          "tag": "#finance",
+          "route": "Schedule reminder"
+        }
+      }
     },
     "stage": {
       "tag": "Operations, in order",
@@ -112,11 +176,9 @@
     }
   },
   "proofStrip": {
-    "delivery": "Delivery in weeks, not months",
-    "roi": "Measurable ROI from day one",
-    "compliance": "UK/EU data compliance built-in",
-    "tools": "Works with your existing tools",
-    "oversight": "Human oversight on every project"
+    "roi": "Hours saved, measured before and after, in writing",
+    "tools": "Runs on your existing stack (HubSpot, Slack, Stripe)",
+    "oversight": "A human signs off every change"
   },
   "booking": {
     "title": "Book your call",
@@ -185,7 +247,7 @@
   },
   "request": {
     "title": "Request an automation plan",
-    "description": "Tell us what you're looking to automate — we'll reply with a tailored plan.",
+    "description": "Tell us what you're looking to automate. We'll reply with a tailored plan.",
     "stepper": {
       "step1": "Your details",
       "step2": "Your goal"
@@ -199,12 +261,12 @@
       "rolePlaceholder": "Head of Operations",
       "primaryGoalLabel": "What's your primary outcome?",
       "toolsLabel": "Tools you use",
-      "toolsHint": "Optional — select any",
+      "toolsHint": "Optional, select any",
       "timelineLabel": "Timeline",
       "timelineHint": "Optional",
       "timelinePlaceholder": "Select a timeline (optional)",
       "notesLabel": "Anything else?",
-      "notesHint": "Optional — one sentence is enough",
+      "notesHint": "Optional, one sentence is enough",
       "notesPlaceholder": "e.g. We want to automate support triage + draft replies using Zendesk + Slack.",
       "interestedIn": "Interested in: {{topic}}"
     },
@@ -307,7 +369,7 @@
     "deliverables": "Deliverables",
     "successMetrics": "Success metrics",
     "mostPopular": "Most Popular",
-    "disclaimer": "Custom quote per project; tools & subscriptions billed separately.",
+    "disclaimer": "Custom quote per project. Tools & subscriptions billed separately.",
     "swipeHint": "← Swipe to compare →",
     "table": {
       "feature": "Feature",
@@ -332,7 +394,7 @@
     },
     "build": {
       "title": "Automation Build",
-      "timeline": "4–6 weeks",
+      "timeline": "4-6 weeks",
       "bestFor": "Cross-tool automation with approvals & reporting",
       "bestForShort": "Complex workflows",
       "deliverables": [
@@ -345,7 +407,7 @@
     },
     "mvp": {
       "title": "MVP Launch",
-      "timeline": "6–10 weeks",
+      "timeline": "6-10 weeks",
       "bestFor": "Startups & SMEs launching a new product",
       "bestForShort": "New products",
       "deliverables": [
@@ -356,13 +418,13 @@
       "multiSystem": "Multiple",
       "documentation": "Full"
     },
-    "noPriceAnswer": "Every project is fixed-price and scoped in 48 hours, with no hourly surprises — we share the exact figure on a short scoping call."
+    "noPriceAnswer": "Every project is fixed-price and scoped in 48 hours, with no hourly surprises. We share the exact figure on a short scoping call."
   },
   "mvpSection": {
     "title": "From idea to a",
     "titleHighlight": "live MVP",
     "titleAfter": " in weeks",
-    "subtitle": "Investor-ready AI/SaaS products, built lean — you own the code and IP, with compliance and analytics from day one.",
+    "subtitle": "Investor-ready AI/SaaS products, built lean. You own the code and IP, with compliance and analytics from day one.",
     "points": [
       "MVP build, deploy & analytics dashboard",
       "You own the code & IP",
@@ -374,7 +436,7 @@
     "eyebrow": "Training · with our partners",
     "title": "Upskill your team on",
     "titleHighlight": "AI & automation",
-    "subtitle": "Hands-on training sessions — run together with our accredited training partners — that get your team building, governing and shipping AI safely. From half-day workshops to multi-week cohorts.",
+    "subtitle": "Hands-on training sessions (run together with our accredited training partners) that get your team building, governing and shipping AI safely. From half-day workshops to multi-week cohorts.",
     "formats": [
       {
         "title": "Live workshops",
@@ -393,8 +455,8 @@
     "secondaryCta": "Book a 15-min call",
     "partnersLabel": "In partnership with",
     "partnerPlaceholder": "Partner logo",
-    "partnersNote": "Partner logos are placeholders — accredited training partners will be named here once agreements are signed.",
-    "requestInterest": "Training — AI & automation upskilling for my team"
+    "partnersNote": "Partner logos are placeholders. Accredited training partners will be named here once agreements are signed.",
+    "requestInterest": "Training: AI & automation upskilling for my team"
   },
   "work": {
     "title": "Our Work",
@@ -413,7 +475,7 @@
   "trust": {
     "title": "Trust &",
     "titleHighlight": "Compliance",
-    "subtitle": "Security and compliance aren't afterthoughts — they're built in from day one.",
+    "subtitle": "Security and compliance aren't afterthoughts. They're built in from day one.",
     "downloadPack": "Download Trust Pack (PDF)",
     "viewPage": "View full Trust & Compliance page",
     "viewPolicy": "View full policy",
@@ -450,7 +512,7 @@
     "titleHighlight": "this month",
     "subtitle": "Tell us about your workflow challenge. We'll respond with a clear scope within 48 hours.",
     "responseTime": "We reply within 24 hours (UK business days)",
-    "primaryCta": "Request an automation plan",
+    "primaryCta": "Get a fixed scope in 48h",
     "emailCta": "Email us directly",
     "bookCall": "Book a call",
     "emailUs": "Email us",
@@ -458,8 +520,21 @@
   },
   "footer": {
     "tagline": "AI & automation delivered in weeks. UK/EU focused, compliance-ready.",
+    "blurb": "AI, automation & MVPs for UK and EU SMEs.",
     "description": "AI & automation delivered in weeks. Built for UK/EU teams with governance and clarity from day one.",
     "remoteFirst": "Remote-first • UK/EU clients",
+    "compliance": {
+      "label": "Compliance posture",
+      "gdpr": "UK & EU GDPR",
+      "aiAct": "EU AI Act-ready",
+      "cyberEssentials": "Cyber Essentials",
+      "inProgress": "in progress"
+    },
+    "booking": {
+      "headline": "Prefer to talk it through?",
+      "description": "15 minutes, no pitch. Bring one workflow and we'll tell you whether automating it is worth it.",
+      "cta": "Book a 15-min call"
+    },
     "company": "Company",
     "resources": "Resources",
     "legal": "Legal",
@@ -488,9 +563,9 @@
     },
     "bottom": {
       "copyright": "© {{year}} InnoviaBurst. All rights reserved.",
-      "privacyNote": "UK/EU-focused — privacy & security information available in Trust & Compliance."
+      "privacyNote": "UK/EU-focused. Privacy & security information available in Trust & Compliance."
     },
-    "companyDetails": "Innoviaburst Ltd (Company No. XXXXXXXX) — Registered in England and Wales",
+    "companyDetails": "Innoviaburst Ltd (Company No. XXXXXXXX), registered in England and Wales",
     "complianceNote": "Built with focus on UK GDPR & EU compliance readiness.",
     "companyNo": "Company No.",
     "registeredOffice": "Registered office"
@@ -503,6 +578,21 @@
     "typicalTools": "Typical tools",
     "exampleKpi": "Example KPI",
     "cta": "See full Automations Library",
+    "categoriesLabel": "Workflow categories",
+    "categories": {
+      "revenue": {
+        "label": "Revenue",
+        "hint": "From first touch to a booked meeting, without manual chasing."
+      },
+      "support": {
+        "label": "Support",
+        "hint": "Answer faster, and stop re-answering the same questions."
+      },
+      "ops": {
+        "label": "Ops & finance",
+        "hint": "Close the loop on everything that follows the signature."
+      }
+    },
     "items": {
       "leadToMeeting": {
         "title": "Lead-to-Meeting in 60 Seconds",
@@ -512,7 +602,7 @@
       },
       "demoQualification": {
         "title": "Demo Request Qualification & Routing",
-        "fixes": "Low-context requests waste sales time; good-fit leads wait too long.",
+        "fixes": "Low-context requests waste sales time. Good-fit leads wait too long.",
         "tools": "HubSpot, Slack, Calendly, Gmail",
         "kpi": "More qualified calls, fewer no-shows"
       },
@@ -520,11 +610,11 @@
         "title": "AI Support Triage + Draft Reply",
         "fixes": "Repetitive tickets and manual routing slow teams and break SLAs.",
         "tools": "Zendesk, Slack, OpenAI, Notion",
-        "kpi": "30–60% faster first response"
+        "kpi": "30-60% faster first response"
       },
       "dunning": {
         "title": "Smart Dunning + CRM Sync",
-        "fixes": "Failed payments cause churn and revenue leakage; follow-up is manual.",
+        "fixes": "Failed payments cause churn and revenue leakage. Follow-up is manual.",
         "tools": "Stripe, HubSpot, Gmail, Slack",
         "kpi": "Higher recovery rate, fewer manual chases"
       },
@@ -692,12 +782,12 @@
           "Post summary in Slack + request approval for high-risk cases",
           "Start SLA tracking + escalate if overdue"
         ],
-        "kpi": "EXAMPLE: 30–60% faster first response"
+        "kpi": "EXAMPLE: 30-60% faster first response"
       },
       "stripeDunning": {
         "title": "Stripe Payment Failed → Smart Dunning + CRM Update",
         "outcome": "Recover revenue automatically when payments fail",
-        "problem": "Failed payments cause churn and revenue leakage; teams follow up manually and inconsistently.",
+        "problem": "Failed payments cause churn and revenue leakage. Teams follow up manually and inconsistently.",
         "steps": [
           "Stripe event received (payment failed / requires action)",
           "Check customer + invoice context",
@@ -736,7 +826,7 @@
           "Update CRM status + next action date",
           "Generate weekly finance summary report"
         ],
-        "kpi": "EXAMPLE: save 3–8 hrs/week and reduce overdue invoices"
+        "kpi": "EXAMPLE: save 3-8 hrs/week and reduce overdue invoices"
       },
       "recruitmentPipeline": {
         "title": "Recruitment Pipeline Automation",
@@ -771,7 +861,7 @@
       "demoQualification": {
         "title": "Website Demo Requests → Qualification → Routing",
         "outcome": "Qualify requests instantly and route to the right person",
-        "problem": "Demo requests arrive with low context; teams waste time on unqualified calls or slow response.",
+        "problem": "Demo requests arrive with low context. Teams waste time on unqualified calls or slow response.",
         "steps": [
           "Demo request submitted",
           "Auto-enrich + score lead (industry/size/intent)",
@@ -786,7 +876,7 @@
       "execOpsDigest": {
         "title": "Weekly Exec Ops Digest (KPIs + Blockers) to Slack/Email",
         "outcome": "Leadership visibility without manual reporting",
-        "problem": "Managers spend hours compiling updates; leadership lacks a single weekly view of ops health.",
+        "problem": "Managers spend hours compiling updates. Leadership lacks a single weekly view of ops health.",
         "steps": [
           "Pull KPIs from sources (CRM/Support/Finance/PM tool)",
           "Aggregate weekly deltas + top issues",
@@ -795,12 +885,12 @@
           "Create follow-up tasks for top blockers",
           "Archive report for audit trail"
         ],
-        "kpi": "EXAMPLE: save 2–6 hrs/week of reporting time"
+        "kpi": "EXAMPLE: save 2-6 hrs/week of reporting time"
       },
       "aiKnowledgeBase": {
         "title": "AI Knowledge Base Builder (Tickets/Docs → FAQ Suggestions)",
         "outcome": "Keep docs fresh and reduce repetitive support load",
-        "problem": "Knowledge is scattered and outdated; support answers repeat; onboarding is slow.",
+        "problem": "Knowledge is scattered and outdated. Support answers repeat, and onboarding is slow.",
         "steps": [
           "Ingest tickets + internal docs on a schedule",
           "Cluster topics + detect new recurring questions",
@@ -819,7 +909,7 @@
       "description": "We're building this page to help you pick the right automation faster."
     },
     "skipLink": "Skip to main content",
-    "badge": "InnoviaBurst — Shipping weekly",
+    "badge": "InnoviaBurst, shipping weekly",
     "headline": "This page is",
     "headlineHighlight": "coming soon",
     "subheadline": "We're building this section to help you choose the right workflow faster. In the meantime, explore what we can already deliver.",
@@ -838,7 +928,7 @@
       },
       "realExamples": {
         "title": "Real examples",
-        "description": "Workflows with steps + expected impact — no guesswork."
+        "description": "Workflows with steps + expected impact. No guesswork."
       },
       "fastScoping": {
         "title": "Fast scoping",
@@ -861,7 +951,7 @@
     "badge": "UK/EU focused",
     "title": "Trust &",
     "titleHighlight": "Compliance",
-    "subtitle": "How we protect your data and deliver with confidence — plain English, no legal jargon.",
+    "subtitle": "How we protect your data and deliver with confidence. Plain English, no legal jargon.",
     "trustPackAvailable": "We can share a Trust Pack (PDF), DPA, and sub-processor list on request.",
     "primaryCta": "Book a call",
     "downloadTrustPack": "Download Trust Pack (PDF)",
@@ -1048,14 +1138,14 @@
   },
   "resourcesPage": {
     "seo": {
-      "title": "Resources — Playbooks, Templates & Checklists | InnoviaBurst",
+      "title": "Resources: Playbooks, Templates & Checklists | InnoviaBurst",
       "description": "Practical guides, templates, and checklists for UK/EU teams automating operations and deploying AI responsibly."
     },
     "hero": {
       "backToHome": "Back to home",
       "title": "Resources for",
       "titleHighlight": "UK/EU teams",
-      "subtitle": "Practical playbooks, templates, and checklists for operations, AI, and compliance—built for teams that need to ship, not study."
+      "subtitle": "Practical playbooks, templates, and checklists for operations, AI, and compliance. Built for teams that need to ship, not study."
     },
     "whatYouFind": {
       "title": "What you'll find",
@@ -1115,7 +1205,7 @@
     },
     "newsletter": {
       "title": "Get templates + playbooks monthly",
-      "subtitle": "New resources delivered to your inbox—practical tools for UK/EU ops teams.",
+      "subtitle": "New resources delivered to your inbox. Practical tools for UK/EU ops teams.",
       "benefits": [
         "New playbooks + templates (monthly)",
         "Automation opportunities for UK/EU ops",
@@ -1148,12 +1238,12 @@
     "resources": {
       "roiCalculator": {
         "title": "Automation ROI Assessment Tool",
-        "description": "Quantify savings from automations using time, volume, and error inputs—built for UK/EU SMEs.",
+        "description": "Quantify savings from automations using time, volume, and error inputs. Built for UK/EU SMEs.",
         "ctaLabel": "Calculate ROI"
       },
       "aiChecklist": {
         "title": "AI Copilot Deployment Checklist",
-        "description": "A practical rollout checklist from pilot to monitoring—data prep, testing, governance, and launch.",
+        "description": "A practical rollout checklist from pilot to monitoring: data prep, testing, governance, and launch.",
         "ctaLabel": "Get checklist"
       },
       "hubspotHygiene": {
@@ -1163,7 +1253,7 @@
       },
       "complianceRoadmap": {
         "title": "UK/EU AI Compliance Roadmap",
-        "description": "Plain-English roadmap for GDPR + AI compliance decisions—what to check before shipping AI features.",
+        "description": "Plain-English roadmap for GDPR + AI compliance decisions. What to check before shipping AI features.",
         "ctaLabel": "Open roadmap"
       },
       "apiPlaybook": {
@@ -1173,12 +1263,12 @@
       },
       "ragGuide": {
         "title": "RAG KB Implementation Guide",
-        "description": "How to build a knowledge base assistant that's actually useful—data prep, structure, governance, deployment.",
+        "description": "How to build a knowledge base assistant that's actually useful: data prep, structure, governance, deployment.",
         "ctaLabel": "Open guide"
       },
       "workflowAudit": {
         "title": "Workflow Efficiency Audit Template",
-        "description": "Score your workflows to find the highest-impact automation opportunities—includes a prioritisation matrix.",
+        "description": "Score your workflows to find the highest-impact automation opportunities. Includes a prioritisation matrix.",
         "ctaLabel": "Get template"
       },
       "dpaReference": {
@@ -1228,27 +1318,27 @@
   },
   "lpMvp": {
     "hero": {
-      "eyebrow": "MVP Launch — for startups & SME teams",
+      "eyebrow": "MVP Launch for startups & SME teams",
       "headlinePre": "From idea to a live, ",
       "headlineAccent": "investor-ready MVP",
-      "headlinePost": " in 6–10 weeks",
-      "subhead": "We design, build and ship your MVP — authentication, security and analytics included. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
+      "headlinePost": " in 6-10 weeks",
+      "subhead": "We design, build and ship your MVP, with authentication, security and analytics included. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
       "primaryCta": "Get my free 48-hour scope",
       "variants": {
         "investor": {
-          "eyebrow": "MVP Launch — raise-ready in weeks",
+          "eyebrow": "MVP Launch, raise-ready in weeks",
           "headlinePre": "Ship an ",
           "headlineAccent": "investor-ready MVP",
           "headlinePost": " before your next raise",
-          "subhead": "A real, working product to put in front of users and investors — built lean in 6–10 weeks, with analytics from day one. You own 100% of the code and IP.",
+          "subhead": "A real, working product to put in front of users and investors. Built lean in 6-10 weeks, with analytics from day one. You own 100% of the code and IP.",
           "primaryCta": "Get my free 48-hour scope"
         },
         "speed": {
-          "eyebrow": "MVP Launch — ship in weeks, not quarters",
+          "eyebrow": "MVP Launch: ship in weeks, not quarters",
           "headlinePre": "Go from idea to a ",
           "headlineAccent": "shipped product",
-          "headlinePost": " in 6–10 weeks",
-          "subhead": "A fixed-scope MVP, live in weeks — authentication, security and analytics included. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
+          "headlinePost": " in 6-10 weeks",
+          "subhead": "A fixed-scope MVP, live in weeks, with authentication, security and analytics included. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
           "primaryCta": "Get my free 48-hour scope"
         }
       }
@@ -1256,96 +1346,168 @@
     "chips": [
       "GDPR & EU AI Act-ready",
       "You own the code & IP",
-      "Live in 6–10 weeks"
+      "Live in 6-10 weeks"
     ],
     "form": {
       "title": "Get your free 48-hour scope",
-      "subtitle": "Tell us what you're building — we'll send back a fixed scope within 48 hours. No obligation.",
+      "subtitle": "Tell us what you're building. We'll send back a fixed scope within 48 hours. No obligation.",
       "name": "Your name",
       "namePlaceholder": "Jane Doe",
       "email": "Work email",
       "emailPlaceholder": "jane@company.com",
       "building": "What are you building?",
-      "buildingPlaceholder": "A booking app for clinics, a client portal, an internal ops tool…",
-      "submitting": "Sending…",
+      "buildingPlaceholder": "A booking app for clinics, a client portal, an internal ops tool",
+      "submitting": "Sending...",
       "secondary": "Or book a 15-min call",
-      "consent": "No spam — we'll only email you about your scope.",
+      "consent": "No spam. We'll only email you about your scope.",
       "privacyLink": "Privacy Policy",
       "errors": {
         "name": "Please add your name",
         "email": "Enter a valid work email",
         "building": "Tell us a little about it",
-        "submit": "Something went wrong — please try again or email us."
+        "submit": "Something went wrong. Please try again or email us."
       },
       "success": {
         "title": "Scope on its way",
-        "body": "Thanks — we'll email your fixed scope within 48 hours. Want to talk it through sooner?",
+        "body": "Thanks. We'll email your fixed scope within 48 hours. Want to talk it through sooner?",
         "cta": "Book a 15-min call"
       }
     },
     "proof": {
       "logosLabel": "Built for teams shipping their first product",
       "logoPlaceholder": "Your logo",
-      "note": "Placeholder — real logos & metrics added before campaign launch",
+      "note": "Placeholder. Real logos & metrics added before campaign launch",
       "stats": [
-        { "value": "90 days", "label": "of bug-fix support included" },
-        { "value": "5–8", "label": "core screens, scoped with you" },
-        { "value": "Weekly", "label": "releases you can review" }
+        {
+          "value": "90 days",
+          "label": "of bug-fix support included"
+        },
+        {
+          "value": "5-8",
+          "label": "core screens, scoped with you"
+        },
+        {
+          "value": "Weekly",
+          "label": "releases you can review"
+        }
       ]
     },
     "whatYouGet": {
       "eyebrow": "What you get",
-      "title": "Everything you need to launch — nothing you don't",
+      "title": "Everything you need to launch, nothing you don't",
       "items": [
-        { "title": "Production MVP", "body": "A fully functional product deployed to production and ready for real users." },
-        { "title": "Auth & roles", "body": "User authentication and role-based access built in from the start." },
-        { "title": "Your core features", "body": "The 5–8 screens that prove your idea — scoped with you, built to ship." },
-        { "title": "Security baseline", "body": "Sensible security measures so you can launch with confidence." },
-        { "title": "Analytics from day one", "body": "Product analytics wired in so you can measure activation immediately." },
-        { "title": "Mobile-responsive", "body": "Looks and works right on every screen size, out of the box." }
+        {
+          "title": "Production MVP",
+          "body": "A fully functional product deployed to production and ready for real users."
+        },
+        {
+          "title": "Auth & roles",
+          "body": "User authentication and role-based access built in from the start."
+        },
+        {
+          "title": "Your core features",
+          "body": "The 5-8 screens that prove your idea, scoped with you and built to ship."
+        },
+        {
+          "title": "Security baseline",
+          "body": "Sensible security measures so you can launch with confidence."
+        },
+        {
+          "title": "Analytics from day one",
+          "body": "Product analytics wired in so you can measure activation immediately."
+        },
+        {
+          "title": "Mobile-responsive",
+          "body": "Looks and works right on every screen size, out of the box."
+        }
       ]
     },
     "how": {
       "eyebrow": "How it works",
       "title": "Three steps to a live product",
       "steps": [
-        { "title": "Free 48-hour scope", "body": "Tell us what you're building. We send back a fixed scope and plan within 48 hours — no obligation." },
-        { "title": "Design & build", "body": "We design, build and iterate in weekly releases, with you reviewing progress every step." },
-        { "title": "Launch & own it", "body": "We deploy to production and hand over 100% of the code and IP. It's yours." }
+        {
+          "title": "Free 48-hour scope",
+          "body": "Tell us what you're building. We send back a fixed scope and plan within 48 hours. No obligation."
+        },
+        {
+          "title": "Design & build",
+          "body": "We design, build and iterate in weekly releases, with you reviewing progress every step."
+        },
+        {
+          "title": "Launch & own it",
+          "body": "We deploy to production and hand over 100% of the code and IP. It's yours."
+        }
       ]
     },
     "timeline": {
       "eyebrow": "Timeline",
-      "title": "Your 6–10 week path to launch",
+      "title": "Your 6-10 week path to launch",
       "steps": [
-        { "week": "Weeks 1–2", "label": "Discovery & design" },
-        { "week": "Weeks 3–4", "label": "Core build & auth" },
-        { "week": "Weeks 5–6", "label": "Features & UI" },
-        { "week": "Weeks 7–8", "label": "Testing & security" },
-        { "week": "Weeks 9–10", "label": "UAT & launch" }
+        {
+          "week": "Weeks 1-2",
+          "label": "Discovery & design"
+        },
+        {
+          "week": "Weeks 3-4",
+          "label": "Core build & auth"
+        },
+        {
+          "week": "Weeks 5-6",
+          "label": "Features & UI"
+        },
+        {
+          "week": "Weeks 7-8",
+          "label": "Testing & security"
+        },
+        {
+          "week": "Weeks 9-10",
+          "label": "UAT & launch"
+        }
       ]
     },
     "risk": {
       "eyebrow": "A safe way to start",
       "title": "The risk is on us, not you",
       "items": [
-        { "title": "Free 48-hour scope", "body": "See exactly what we'd build and what it costs — before you commit a penny." },
-        { "title": "Fixed scope, fixed price", "body": "Agreed up front in writing. No hourly rates, no surprise invoices." },
-        { "title": "You own the code & IP", "body": "Full ownership handed over on completion. No lock-in, ever." }
+        {
+          "title": "Free 48-hour scope",
+          "body": "See exactly what we'd build and what it costs, before you commit a penny."
+        },
+        {
+          "title": "Fixed scope, fixed price",
+          "body": "Agreed up front in writing. No hourly rates, no surprise invoices."
+        },
+        {
+          "title": "You own the code & IP",
+          "body": "Full ownership handed over on completion. No lock-in, ever."
+        }
       ]
     },
     "faq": {
       "eyebrow": "Questions",
       "title": "Answers before you ask",
       "items": [
-        { "q": "How much does it cost?", "a": "Every MVP is fixed-scope and fixed-price, agreed in your free 48-hour scope before any work begins — no hourly rates and no surprises. You'll know the exact price before you commit." },
-        { "q": "How long does it take?", "a": "Most MVPs go from idea to live in 6–10 weeks: discovery and design in weeks 1–2, core build in 3–4, features and UI in 5–6, testing and security in 7–8, then UAT and launch in 9–10." },
-        { "q": "Do I own the code and IP?", "a": "Yes — 100%. You get full ownership of and access to the codebase on completion. There's no lock-in and no licence to keep paying." },
-        { "q": "What if the scope changes?", "a": "We build in flexibility. Small changes are absorbed as we go; anything material is re-scoped transparently so you're always in control of cost and timeline." }
+        {
+          "q": "How much does it cost?",
+          "a": "Every MVP is fixed-scope and fixed-price, agreed in your free 48-hour scope before any work begins. No hourly rates and no surprises. You'll know the exact price before you commit."
+        },
+        {
+          "q": "How long does it take?",
+          "a": "Most MVPs go from idea to live in 6-10 weeks: discovery and design in weeks 1-2, core build in 3-4, features and UI in 5-6, testing and security in 7-8, then UAT and launch in 9-10."
+        },
+        {
+          "q": "Do I own the code and IP?",
+          "a": "Yes, 100%. You get full ownership of and access to the codebase on completion. There's no lock-in and no licence to keep paying."
+        },
+        {
+          "q": "What if the scope changes?",
+          "a": "We build in flexibility. Small changes are absorbed as we go. Anything material is re-scoped transparently so you're always in control of cost and timeline."
+        }
       ]
     },
     "details": {
-      "title": "The fine print — what's out of scope & what we need from you",
+      "title": "The fine print: what's out of scope & what we need from you",
       "notIncludedTitle": "What's not included",
       "notIncluded": [
         "Native mobile apps (we build web-first)",
@@ -1356,7 +1518,7 @@
       "needTitle": "What we need from you",
       "need": [
         "A clear product vision and priorities",
-        "4–6 hours a week of product-owner time",
+        "4-6 hours a week of product-owner time",
         "Your branding assets",
         "A few test users for feedback"
       ]
@@ -1364,23 +1526,35 @@
     "finalCta": {
       "eyebrow": "Ready when you are",
       "title": "Still deciding? Start with the scope.",
-      "subtitle": "It's free, it's fixed, and there's zero obligation — you'll have your 48-hour scope by email."
+      "subtitle": "It's free, it's fixed, and there's zero obligation. You'll have your 48-hour scope by email."
     },
     "sticky": {
-      "message": "From idea to a live MVP in 6–10 weeks.",
+      "message": "From idea to a live MVP in 6-10 weeks.",
       "primary": "Get my free scope",
       "secondary": "Book a call"
     },
     "footer": {
-      "tagline": "MVP development for UK/EU startups & SMEs — fixed scope, you own the code & IP."
+      "tagline": "MVP development for UK/EU startups & SMEs. Fixed scope, you own the code & IP."
     },
     "preview": {
       "appName": "yourmvp.app",
       "statusLive": "Live",
       "metrics": [
-        { "label": "Signups", "value": "1,284", "delta": "+18%" },
-        { "label": "Active", "value": "312", "delta": "+9%" },
-        { "label": "MRR", "value": "€4.2k", "delta": "+24%" }
+        {
+          "label": "Signups",
+          "value": "1,284",
+          "delta": "+18%"
+        },
+        {
+          "label": "Active",
+          "value": "312",
+          "delta": "+9%"
+        },
+        {
+          "label": "MRR",
+          "value": "€4.2k",
+          "delta": "+24%"
+        }
       ],
       "ctaLabel": "Get started",
       "badgeShipped": "Shipped · Week 8",
@@ -1388,13 +1562,13 @@
     },
     "a11y": {
       "trustSignals": "Trust signals",
-      "home": "Innoviaburst — Home",
+      "home": "Innoviaburst Home",
       "primaryNav": "Primary"
     }
   },
   "seo": {
     "home": {
-      "title": "Innoviaburst | AI & Automation for UK/EU SMEs — Delivered in Weeks",
+      "title": "Innoviaburst | AI & Automation for UK/EU SMEs, Delivered in Weeks",
       "description": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
     },
     "industries": {
@@ -1402,28 +1576,28 @@
       "description": "Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
     },
     "works": {
-      "title": "Our Work — Case Studies | Innoviaburst",
+      "title": "Our Work: Case Studies | Innoviaburst",
       "description": "Real automation projects with measurable outcomes. See how we have helped UK/EU businesses save time, reduce errors, and scale operations."
     },
     "lp": {
-      "title": "AI Automation for European SMEs — GDPR-by-design | InnoviaBurst",
-      "description": "Fixed-scope AI automations, copilots and MVPs for European SMEs — live in weeks, GDPR & EU AI Act-ready, with EU data residency."
+      "title": "AI Automation for European SMEs, GDPR-by-design | InnoviaBurst",
+      "description": "Fixed-scope AI automations, copilots and MVPs for European SMEs. Live in weeks, GDPR & EU AI Act-ready, with EU data residency."
     },
     "lpMvp": {
-      "title": "Build Your MVP in 6–10 Weeks — Fixed Scope, You Own the IP | InnoviaBurst",
-      "description": "MVP development for UK/EU startups & SMEs. Go from idea to a live, investor-ready MVP in 6–10 weeks. Free 48-hour scope, fixed price, you own the code & IP — GDPR & EU AI Act-ready."
+      "title": "Build Your MVP in 6-10 Weeks: Fixed Scope, You Own the IP | InnoviaBurst",
+      "description": "MVP development for UK/EU startups & SMEs. Go from idea to a live, investor-ready MVP in 6-10 weeks. Free 48-hour scope, fixed price, you own the code & IP, GDPR & EU AI Act-ready."
     },
     "cookies": {
       "title": "Cookie Policy | Innoviaburst",
-      "description": "Innoviaburst Cookie Policy — how we use cookies and similar technologies."
+      "description": "Innoviaburst Cookie Policy: how we use cookies and similar technologies."
     },
     "privacy": {
       "title": "Privacy Policy | Innoviaburst",
-      "description": "Innoviaburst Privacy Policy — how we collect, use, and protect your personal data."
+      "description": "Innoviaburst Privacy Policy: how we collect, use, and protect your personal data."
     },
     "terms": {
       "title": "Terms of Service | Innoviaburst",
-      "description": "Innoviaburst Terms of Service — terms and conditions for using our website and services."
+      "description": "Innoviaburst Terms of Service: terms and conditions for using our website and services."
     },
     "subprocessors": {
       "title": "Sub-Processors | Innoviaburst",
@@ -1433,9 +1607,14 @@
   "offerDetails": {
     "ai-ops-sprint": {
       "title": "AI Ops Sprint",
+      "subheading": "Workflow automation & AI copilots for UK and EU ops teams",
       "timeline": "10 business days",
       "bestFor": "Ops teams drowning in manual steps who need quick wins",
       "heroDescription": "Get one workflow automated or one AI copilot shipped in just 10 business days. Perfect for proving ROI before larger investments.",
+      "summaryFacts": [
+        "One workflow live inside your existing tools",
+        "GDPR & EU AI Act-ready from day one"
+      ],
       "deliverables": [
         "1 workflow automated OR 1 AI copilot shipped (scoped to complexity)",
         "Working integration deployed to your tools",
@@ -1451,20 +1630,20 @@
       "successMetrics": [
         {
           "metric": "Hours saved/week",
-          "example": "4–10 hours typically"
+          "example": "4-10 hours typically"
         },
         {
           "metric": "Faster response time",
-          "example": "50–70% reduction"
+          "example": "50-70% reduction"
         },
         {
           "metric": "Error reduction",
-          "example": "60–80% fewer manual errors"
+          "example": "60-80% fewer manual errors"
         }
       ],
       "weekByWeek": [
         {
-          "week": "Days 1–2",
+          "week": "Days 1-2",
           "activities": [
             "Kickoff call",
             "Requirements gathering",
@@ -1473,7 +1652,7 @@
           ]
         },
         {
-          "week": "Days 3–6",
+          "week": "Days 3-6",
           "activities": [
             "Build automation/copilot",
             "Connect integrations",
@@ -1481,7 +1660,7 @@
           ]
         },
         {
-          "week": "Days 7–8",
+          "week": "Days 7-8",
           "activities": [
             "UAT with your team",
             "Refinements",
@@ -1489,7 +1668,7 @@
           ]
         },
         {
-          "week": "Days 9–10",
+          "week": "Days 9-10",
           "activities": [
             "Deploy to production",
             "Documentation",
@@ -1500,7 +1679,7 @@
       ],
       "clientInputs": [
         "Access to relevant tools (CRM, helpdesk, etc.)",
-        "1–2 hours of SME time for requirements",
+        "1-2 hours of SME time for requirements",
         "Test data or scenarios",
         "Approvals for integrations"
       ],
@@ -1523,7 +1702,7 @@
         },
         {
           "q": "What's the typical ROI?",
-          "a": "Most clients see payback within 2–4 weeks through time savings."
+          "a": "Most clients see payback within 2-4 weeks through time savings."
         },
         {
           "q": "How do you handle our data?",
@@ -1533,11 +1712,11 @@
       "aeo": [
         {
           "q": "What is the AI Ops Sprint?",
-          "a": "The AI Ops Sprint is a fixed, 10-business-day engagement that automates one workflow or ships one AI copilot inside your existing tools. It's built for ops teams buried in manual steps who need a quick, provable win — you get a working integration, lightweight documentation and a handover session before committing to anything larger."
+          "a": "The AI Ops Sprint is a fixed, 10-business-day engagement that automates one workflow or ships one AI copilot inside your existing tools. It's built for ops teams buried in manual steps who need a quick, provable win. You get a working integration, lightweight documentation and a handover session before committing to anything larger."
         },
         {
           "q": "How long does the AI Ops Sprint take?",
-          "a": "Ten business days, start to finish. Days 1–2 cover kickoff, requirements and tool access; days 3–6 build and connect the automation or copilot; days 7–8 are user testing and refinements with your team; days 9–10 deploy to production with documentation, a handover session and go-live."
+          "a": "Ten business days, start to finish: kickoff and requirements, then the build, then testing with your team, then deployment and handover. The day-by-day breakdown is set out in the timeline on this page."
         },
         {
           "q": "What's included in the AI Ops Sprint?",
@@ -1545,17 +1724,22 @@
         },
         {
           "q": "How much does the AI Ops Sprint cost?",
-          "a": "Pricing is fixed and agreed before any work begins: {{price}}. There are no hourly rates or surprises — scope is locked at kickoff. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and most clients recover the cost within two to four weeks through the hours saved on manual tasks."
+          "a": "Pricing is fixed and agreed before any work begins: {{price}}. There are no hourly rates or surprises. Scope is locked at kickoff. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and most clients recover the cost within two to four weeks through the hours saved on manual tasks."
         }
       ]
     },
     "automation-build": {
       "title": "Automation Build",
-      "timeline": "4–6 weeks",
+      "subheading": "Production-grade workflow automation for UK & EU SMEs",
+      "timeline": "4-6 weeks",
       "bestFor": "Cross-tool automation with approvals, reporting, and error handling",
       "heroDescription": "Build robust, production-grade automation that connects multiple systems with proper logging, alerts, and retry strategies.",
+      "summaryFacts": [
+        "Connects 3-5 of your existing tools",
+        "GDPR & EU AI Act-ready from day one"
+      ],
       "deliverables": [
-        "Multi-system workflow connecting 3–5 tools",
+        "Multi-system workflow connecting 3-5 tools",
         "Logging and monitoring dashboard",
         "Alert system for failures",
         "Retry and error handling strategy",
@@ -1572,15 +1756,15 @@
       "successMetrics": [
         {
           "metric": "Cycle-time reduction",
-          "example": "40–60% faster"
+          "example": "40-60% faster"
         },
         {
           "metric": "Error reduction",
-          "example": "70–90% fewer"
+          "example": "70-90% fewer"
         },
         {
           "metric": "Team capacity freed",
-          "example": "1–2 FTE equivalent"
+          "example": "1-2 FTE equivalent"
         }
       ],
       "weekByWeek": [
@@ -1594,7 +1778,7 @@
           ]
         },
         {
-          "week": "Weeks 2–3",
+          "week": "Weeks 2-3",
           "activities": [
             "Core automation build",
             "Integration development",
@@ -1610,7 +1794,7 @@
           ]
         },
         {
-          "week": "Weeks 5–6",
+          "week": "Weeks 5-6",
           "activities": [
             "UAT",
             "Refinements",
@@ -1621,7 +1805,7 @@
         }
       ],
       "clientInputs": [
-        "2–4 hours/week of stakeholder time",
+        "2-4 hours/week of stakeholder time",
         "Admin access to all integrated tools",
         "Test environment if available",
         "Sign-off on requirements doc"
@@ -1655,11 +1839,11 @@
       "aeo": [
         {
           "q": "What is the Automation Build?",
-          "a": "The Automation Build is a production-grade automation that connects three to five of your tools with proper logging, alerting and retry handling. Built over four to six weeks, it includes an admin interface for configuration and suits teams that need reliable cross-tool workflows with approvals, reporting and error handling — not just a quick script."
+          "a": "The Automation Build is a production-grade automation that connects three to five of your tools with proper logging, alerting and retry handling. Built over four to six weeks, it includes an admin interface for configuration and suits teams that need reliable cross-tool workflows with approvals, reporting and error handling, not just a quick script."
         },
         {
           "q": "How long does the Automation Build take?",
-          "a": "Typically four to six weeks. Week 1 is a discovery workshop, process mapping and architecture; weeks 2–3 build the core automation, integrations and error handling; week 4 adds logging, monitoring and the admin interface; weeks 5–6 cover user testing, refinements, documentation, training and go-live."
+          "a": "Typically four to six weeks: a discovery workshop, then the core build and integrations, then monitoring, testing and go-live. The week-by-week breakdown is set out in the timeline on this page."
         },
         {
           "q": "What's included in the Automation Build?",
@@ -1667,21 +1851,27 @@
         },
         {
           "q": "How much does the Automation Build cost?",
-          "a": "Pricing is fixed and agreed before any work begins: {{price}}, depending on the number of systems and complexity. There are no hourly rates — scope is locked after the discovery workshop. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, with most builds freeing one to two FTE-equivalent of capacity."
+          "a": "Pricing is fixed and agreed before any work begins: {{price}}, depending on the number of systems and complexity. There are no hourly rates. Scope is locked after the discovery workshop. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, with most builds freeing one to two FTE-equivalent of capacity."
         }
       ]
     },
     "mvp-launch": {
       "title": "MVP Launch",
-      "seoTitle": "MVP Development — Build an Investor-Ready MVP in Weeks | Innoviaburst",
-      "seoDescription": "MVP development for startups & SMEs: go from idea to a live, investor-ready MVP in weeks. You own the code & IP, with GDPR & EU AI Act compliance and analytics from day one.",
-      "timeline": "6–10 weeks",
+      "seoTitle": "MVP Development: Build an Investor-Ready MVP in Weeks | Innoviaburst",
+      "seoDescription": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one.",
+      "eyebrow": "MVP Launch: fixed-scope MVP development for European startups & SMEs",
+      "subheading": "MVP development for European startups & SMEs",
+      "timeline": "6-10 weeks",
       "bestFor": "Startups & SMEs launching a new product or internal tool",
-      "heroDescription": "MVP development from idea to a live, investor-ready product in weeks — with authentication, security, and analytics. You own the code and IP, and it's GDPR & EU AI Act-ready from day one.",
+      "heroDescription": "We take one validated idea and build it into a live, investor-ready product, with authentication, security and analytics included. You own the code and the IP outright, and it’s GDPR and EU AI Act-ready from day one. Fixed scope agreed before we write a line of code.",
+      "summaryFacts": [
+        "You own the code & IP",
+        "GDPR & EU AI Act-ready from day one"
+      ],
       "deliverables": [
         "Fully functional MVP deployed to production",
         "User authentication and role-based access",
-        "Core features as scoped (typically 5–8 screens)",
+        "Core features as scoped (typically 5-8 screens)",
         "Basic security measures",
         "Analytics integration",
         "Mobile-responsive design",
@@ -1709,7 +1899,7 @@
       ],
       "weekByWeek": [
         {
-          "week": "Weeks 1–2",
+          "week": "Weeks 1-2",
           "activities": [
             "Discovery & design",
             "User stories",
@@ -1718,7 +1908,7 @@
           ]
         },
         {
-          "week": "Weeks 3–4",
+          "week": "Weeks 3-4",
           "activities": [
             "Core development",
             "Authentication",
@@ -1726,7 +1916,7 @@
           ]
         },
         {
-          "week": "Weeks 5–6",
+          "week": "Weeks 5-6",
           "activities": [
             "Feature development",
             "Integration work",
@@ -1734,7 +1924,7 @@
           ]
         },
         {
-          "week": "Weeks 7–8",
+          "week": "Weeks 7-8",
           "activities": [
             "Testing",
             "Security review",
@@ -1742,7 +1932,7 @@
           ]
         },
         {
-          "week": "Weeks 9–10",
+          "week": "Weeks 9-10",
           "activities": [
             "UAT",
             "Bug fixes",
@@ -1753,7 +1943,7 @@
       ],
       "clientInputs": [
         "Clear product vision and priorities",
-        "4–6 hours/week of product owner time",
+        "4-6 hours/week of product owner time",
         "Branding assets",
         "Test users for feedback"
       ],
@@ -1785,22 +1975,138 @@
       ],
       "aeo": [
         {
-          "q": "What is the MVP Launch?",
-          "a": "The MVP Launch takes your idea from concept to a deployed, production-ready product in six to ten weeks. It includes user authentication, role-based access, your core features (typically five to eight screens), basic security and analytics in a mobile-responsive build — ideal for startups and SMEs validating a new product or internal tool."
+          "q": "What is MVP Launch?",
+          "a": "MVP Launch is a fixed-scope MVP development service for European startups and SMEs. We build one validated idea into a live, investor-ready product in weeks, with authentication, security and analytics included. You own the code and IP, and it’s GDPR and EU AI Act-ready from day one."
         },
         {
-          "q": "How long does the MVP Launch take?",
-          "a": "Usually six to ten weeks. Weeks 1–2 cover discovery, design and architecture; weeks 3–4 build core development, authentication and the database; weeks 5–6 add features and refine the UI; weeks 7–8 are testing, security review and analytics; weeks 9–10 cover user testing, fixes, deployment and launch."
+          "q": "How long does it take to build an MVP?",
+          "a": "Most MVP Launch builds go from agreed scope to a live product in a matter of weeks, not months. The exact timeline depends on the number of screens and features, which we fix before starting. You’ll have a firm scope and delivery date within 48 hours of your first call."
         },
         {
-          "q": "What's included in the MVP Launch?",
-          "a": "A fully functional MVP deployed to production with user authentication, role-based access, your core features (typically five to eight screens), basic security measures, analytics integration and a mobile-responsive design, plus 90 days of bug-fix support. Native mobile apps, advanced security certifications and ongoing feature development are out of scope."
+          "q": "What’s included in an MVP build?",
+          "a": "Every build includes a fully functional product deployed to production, secure authentication with role-based access, your 5-8 core screens, sensible built-in security, analytics integration and a mobile-responsive interface. You receive full source code, IP ownership and compliance documentation covering data retention and processing."
         },
         {
           "q": "How much does the MVP Launch cost?",
           "a": "Pricing is fixed and agreed before any work begins: {{price}}, set by the scope confirmed in the discovery workshop. There are no hourly rates or surprises. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and you receive full ownership of the codebase on completion."
         }
-      ]
+      ],
+      "howWeBuild": {
+        "title": "How we build your MVP",
+        "intro": "Three stages, one fixed scope. No open-ended timelines, no surprise invoices.",
+        "stages": [
+          {
+            "title": "Define the product",
+            "body": "We map the smallest version of your product that proves the idea and stands up to investor questions: core user journeys, the 5-8 screens that matter, and the success metrics you'll report on. You approve a fixed scope and timeline before build begins."
+          },
+          {
+            "title": "Build, test and check",
+            "body": "We build in short cycles you can see, connecting real authentication, data storage and analytics, not mockups. Data handling, retention and access controls are reviewed at set compliance checkpoints as we go, so nothing needs retrofitting later."
+          },
+          {
+            "title": "Deploy and hand over",
+            "body": "We deploy to production and hand you everything: the running product, the source code and IP, technical documentation, and data-retention and processing notes your DPO can act on. You leave with a product you can demo, ship and raise on."
+          }
+        ]
+      },
+      "whatYouGet": {
+        "title": "What you get",
+        "items": [
+          {
+            "title": "A live product, in production, not a prototype.",
+            "body": "A fully functional MVP deployed and ready to put in front of users and investors."
+          },
+          {
+            "title": "Users can sign up and sign in securely.",
+            "body": "Authentication and role-based access built in, so you can onboard real users from launch."
+          },
+          {
+            "title": "Your core product, done properly.",
+            "body": "The 5-8 screens and key journeys that prove your idea, scoped and agreed up front."
+          },
+          {
+            "title": "Sensible security from the start.",
+            "body": "Encryption in transit, secure authentication and safe data handling as standard, not add-ons."
+          },
+          {
+            "title": "You can see what users actually do.",
+            "body": "Analytics wired in so you can report activation and engagement to your board and investors."
+          },
+          {
+            "title": "Works on the devices your users bring.",
+            "body": "Mobile-responsive web across phone, tablet and desktop."
+          },
+          {
+            "title": "You own all of it.",
+            "body": "Full source code and IP transferred to you. No lock-in, no licence to us."
+          }
+        ]
+      },
+      "outOfScope": {
+        "intro": "A tight scope is what lets us ship in weeks. These sit outside MVP Launch. We'll flag early if your project genuinely needs them.",
+        "items": [
+          {
+            "title": "Native iOS/Android apps.",
+            "body": "We build web-first, which is faster to ship and iterate. Native comes later, once the product is proven."
+          },
+          {
+            "title": "Formal security certifications.",
+            "body": "SOC 2 / ISO 27001 are post-MVP. We build to sensible security standards so you're well placed to pursue them."
+          },
+          {
+            "title": "Unlimited scope.",
+            "body": "The scope we agree is the scope we build. New ideas mid-build are logged and quoted as a follow-on. They are never quietly absorbed or dropped."
+          },
+          {
+            "title": "Ongoing feature development.",
+            "body": "MVP Launch delivers your first shippable product. Continued build is a separate, optional engagement."
+          }
+        ]
+      },
+      "objections": [
+        {
+          "q": "Will it actually ship?",
+          "a": "Yes, and the scope is what guarantees it. We agree exactly what we're building and the timeline before any code is written, then build in short cycles you can watch progress against. Fixed scope means a fixed finish line, not a project that drifts."
+        },
+        {
+          "q": "Do I really own it?",
+          "a": "Completely. On final payment, all source code and IP transfer to you in writing. No licence back to us, no proprietary lock-in, no dependency on us to keep it running. Your product, your codebase, your asset."
+        },
+        {
+          "q": "What happens after launch?",
+          "a": "You leave fully equipped: running product, full code, documentation, and data-retention/processing notes. Take it to your own team, another agency, or come back to us. No ongoing contract you're locked into."
+        },
+        {
+          "q": "Is it genuinely investor-ready?",
+          "a": "It means three things and we build for all: a working product you can demo live, analytics that evidence real user activation, and clean, documented, GDPR- and EU AI Act-ready foundations that survive technical due diligence."
+        }
+      ],
+      "stickyCard": {
+        "label": "MVP Launch",
+        "line1": "Investor-ready MVP, built in weeks",
+        "line2": "Fixed scope · You own the code & IP · GDPR & EU AI Act-ready",
+        "priceLine": "Custom quote per project · EUR / GBP · deposit + milestones",
+        "note": "No fixed-price template. You get a scoped quote for your product, not ours. No obligation."
+      },
+      "credibilityNote": "We’re a compliance-native product studio: we build MVPs the way European founders actually have to ship them. Data handling, ownership and documentation are treated as first-class from day one, not bolted on before a raise. The standard summed up across our work: AI automation your DPO and your board both sign off on.",
+      "proofPlaceholder": "Case studies coming soon. Ask for a walkthrough of recent builds on your scoping call.",
+      "finalCta": {
+        "title": "Ready to see your MVP scoped?",
+        "body": "Tell us the idea. Within 48 hours you'll have a fixed scope, a timeline and a clear quote, with no obligation and no open-ended estimates. If it's not the right fit, we'll say so and point you somewhere better.",
+        "trustLine": "You own the code and IP · GDPR & EU AI Act-ready · Fixed scope before we build"
+      },
+      "proofStack": {
+        "headline": "Built on the stack investors expect",
+        "items": [
+          "Next.js",
+          "Postgres",
+          "Stripe",
+          "Vercel"
+        ]
+      },
+      "h1Pre": "Ship an investor-ready MVP in weeks, with the ",
+      "h1Accent": "compliance already built in",
+      "h1Post": "."
     }
   },
   "caseStudies": {
@@ -1808,8 +2114,8 @@
       "label": "Pilot Case Study",
       "industry": "Professional Services",
       "detailIndustry": "Professional Services (Consulting)",
-      "teamSize": "15–30 employees",
-      "title": "Professional Services Firm — Client Onboarding",
+      "teamSize": "15-30 employees",
+      "title": "Professional Services Firm: Client Onboarding",
       "problem": "Client onboarding was taking 4+ hours per new client. Documents were scattered across email, shared drives, and CRM. Admin staff spent significant time on manual data entry and follow-ups.",
       "cardProblem": "Manual client intake taking 4+ hours per new client. Documents scattered across email, shared drives, and CRM.",
       "solution": "We built an automated client intake workflow that captures form submissions, creates CRM deals, generates standard documents, and assigns tasks to the right team members.",
@@ -1825,7 +2131,7 @@
       "timeline": "Delivered in 8 business days",
       "results": [
         {
-          "metric": "~6–12 hrs/week",
+          "metric": "~6-12 hrs/week",
           "label": "Time saved"
         },
         {
@@ -1850,15 +2156,15 @@
         "Google Docs",
         "Zapier"
       ],
-      "note": "Example outcome — actual results may vary",
+      "note": "Example outcome, actual results may vary",
       "confidentialNote": "Full client details available on request under NDA. Numbers shown are representative of typical outcomes."
     },
     "saas-support-ticket-triage": {
       "label": "Pilot Case Study",
       "industry": "B2B SaaS",
       "detailIndustry": "B2B SaaS (Software)",
-      "teamSize": "50–100 employees",
-      "title": "B2B SaaS — Support Ticket Triage",
+      "teamSize": "50-100 employees",
+      "title": "B2B SaaS: Support Ticket Triage",
       "problem": "Support team spending 2+ hours daily on manual ticket categorisation and routing. First response times were slow, and specialist tickets often went to generalists first.",
       "cardProblem": "Support team spending 2+ hours daily on manual ticket categorisation and routing to specialists.",
       "solution": "We implemented an AI-powered ticket analysis system that automatically categorises, prioritises, and routes tickets to the right specialist, with smart auto-responses for common queries.",
@@ -1874,7 +2180,7 @@
       "timeline": "Delivered in 12 business days",
       "results": [
         {
-          "metric": "~8–10 hrs/week",
+          "metric": "~8-10 hrs/week",
           "label": "Time saved"
         },
         {
@@ -1898,7 +2204,7 @@
         "Slack",
         "Make"
       ],
-      "note": "Example outcome — actual results may vary",
+      "note": "Example outcome, actual results may vary",
       "confidentialNote": "Full client details available on request under NDA. Numbers shown are representative of typical outcomes."
     }
   },
@@ -1991,7 +2297,7 @@
         ],
         "exampleKPIs": [
           "40% reduction in client onboarding time",
-          "8–12 hrs/week saved on admin",
+          "8-12 hrs/week saved on admin",
           "50% faster invoice cycle"
         ]
       },
@@ -2376,9 +2682,30 @@
     },
     "ui": {
       "backToOffers": "Back to Offers",
-      "heroTagline": "A focused package for workflow automations, AI copilots, or MVPs for UK/EU SMEs with GDPR/UK GDPR-ready delivery, optional DPA support, transparent sub-processor use, and agreed data retention.",
+      "comparison": {
+        "included": "Included",
+        "excluded": "Out of scope, on purpose"
+      },
+      "proof": {
+        "label": "Tech stack and compliance",
+        "headline": "Built on the tools you already run",
+        "tools": [
+          "HubSpot",
+          "Slack",
+          "Stripe",
+          "Notion",
+          "Zendesk",
+          "Calendly"
+        ]
+      },
+      "summary": {
+        "label": "Offer summary",
+        "title": "At a glance",
+        "note": "No obligation. Scope and price are agreed in writing before any work starts."
+      },
       "howItWorks": {
         "title": "How it works (3 quick steps)",
+        "stepLabel": "Step {{n}}",
         "steps": [
           "Scope the workflow, AI copilot, or MVP you need with measurable outcomes.",
           "Build and test with your live tools, approvals, and compliance checkpoints.",
@@ -2392,9 +2719,7 @@
         "caseStudies": "See case studies with ROI",
         "trust": "Review trust, DPA, and retention details"
       },
-      "whatsIncluded": "What's Included",
       "aeoEyebrow": "Answers, up front",
-      "whatsNotIncluded": "What's Not Included",
       "successMetrics": "Success Metrics",
       "timeline": "Timeline",
       "clientInputs": "What We Need From You",
@@ -2402,11 +2727,22 @@
       "billing": {
         "title": "Billing & Payment",
         "body": "Invoices in EUR or GBP. Payment accepted via UK bank transfer or Wise. Typical terms: 50% upfront, 50% on completion.",
-        "bodyNoPrice": "Fixed-price engagements, invoiced in EUR or GBP — a deposit to start, then milestone payments."
+        "bodyNoPrice": "Fixed-price engagements, invoiced in EUR or GBP. A deposit to start, then milestone payments."
       },
       "finalCta": {
         "title": "Ready to get started?",
         "body": "Book a quick call to discuss your requirements. We'll scope your project and get back to you within 48 hours."
+      },
+      "ctaPrimary": "Get a fixed scope in 48 hours",
+      "ctaSecondary": "Book a 15-min scoping call",
+      "ctaMicrocopy": "48-hour turnaround · No obligation · You keep the scope doc",
+      "objectionsTitle": "The questions founders actually ask",
+      "founderNoteLabel": "A note from the founder",
+      "proofPlaceholderLabel": "Proof placeholder",
+      "trustRow": {
+        "gdpr": "GDPR by design",
+        "aiAct": "EU AI Act-ready",
+        "ip": "Own your IP"
       }
     }
   },
@@ -2450,24 +2786,24 @@
   "about": {
     "seo": {
       "title": "About Innoviaburst | GDPR-by-design AI automation for UK & EU SMEs",
-      "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs — fixed scope, delivered in weeks, with the audit trail built in."
+      "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
     },
     "hero": {
       "eyebrow": "About us",
       "title": "Automation UK and EU SMEs can actually trust",
-      "lede": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for small and mid-sized teams across the UK and EU — fixed scope, delivered in weeks, with the audit trail built in."
+      "lede": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for small and mid-sized teams across the UK and EU. Fixed scope, delivered in weeks, with the audit trail built in."
     },
     "mission": {
       "title": "Our mission",
-      "body": "Enterprise-grade automation has been out of reach for most SMEs — too expensive, too slow, and too risky to govern. We exist to change that: to give smaller teams the same leverage from AI and automation that large companies enjoy, without the enterprise overhead or the compliance headaches."
+      "body": "Enterprise-grade automation has been out of reach for most SMEs: too expensive, too slow, and too risky to govern. We exist to change that: to give smaller teams the same leverage from AI and automation that large companies enjoy, without the enterprise overhead or the compliance headaches."
     },
     "what": {
       "title": "What we do",
-      "body": "We scope, build and ship three things — each scoped and quoted per project, with a clear, measurable outcome:",
+      "body": "We scope, build and ship three things, each scoped and quoted per project, with a clear, measurable outcome:",
       "items": [
         {
           "title": "Workflow automation",
-          "body": "We connect your tools and automate the manual, repetitive steps — with logging, approvals and error handling so it runs reliably in production."
+          "body": "We connect your tools and automate the manual, repetitive steps, with logging, approvals and error handling so it runs reliably in production."
         },
         {
           "title": "AI copilots",
@@ -2475,7 +2811,7 @@
         },
         {
           "title": "MVPs",
-          "body": "We take a product idea to a deployed, production-ready MVP — authentication, core features and analytics — so you can validate quickly."
+          "body": "We take a product idea to a deployed, production-ready MVP (authentication, core features and analytics) so you can validate quickly."
         }
       ]
     },
@@ -2484,11 +2820,11 @@
       "items": [
         {
           "title": "Fixed scope, custom quote",
-          "body": "Every engagement is scoped up front and quoted per project — no hourly billing, no surprises. You know exactly what's included before we start."
+          "body": "Every engagement is scoped up front and quoted per project. No hourly billing, no surprises. You know exactly what's included before we start."
         },
         {
           "title": "GDPR-by-design",
-          "body": "Data protection is built in from day one: least-privilege access, optional DPAs, agreed retention and a clear audit trail — not bolted on afterwards."
+          "body": "Data protection is built in from day one: least-privilege access, optional DPAs, agreed retention and a clear audit trail, not bolted on afterwards."
         },
         {
           "title": "Transparent by default",
@@ -2496,7 +2832,7 @@
         },
         {
           "title": "Delivered in weeks",
-          "body": "We work in short, demo-driven cycles, so you see progress early and ship in weeks — not quarters."
+          "body": "We work in short, demo-driven cycles, so you see progress early and ship in weeks, not quarters."
         }
       ]
     },
@@ -2507,9 +2843,19 @@
     },
     "cta": {
       "title": "Ready to see what we'd automate first?",
-      "body": "Book a short call and we'll map the highest-impact workflow, copilot or MVP for your team — and give you a fixed scope within 48 hours.",
+      "body": "Book a short call and we'll map the highest-impact workflow, copilot or MVP for your team, and give you a fixed scope within 48 hours.",
       "button": "Book a 15-min call",
       "secondary": "See our work"
+    }
+  },
+  "mvpHero": {
+    "visualAlt": "Animation: a wireframe sketch of a product dashboard assembles into a finished, live analytics app, progressing from Idea to Build, Test and Live.",
+    "live": "Live",
+    "phases": {
+      "idea": "Idea",
+      "build": "Build",
+      "test": "Test",
+      "live": "Live"
     }
   }
 }
