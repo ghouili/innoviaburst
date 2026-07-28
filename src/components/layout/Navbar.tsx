@@ -171,9 +171,13 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
   const isGroupActive = (item: NavItem) =>
     !!item.children?.some((child) => isActive(child.href));
 
+  // Active state uses --deep-blue-dark, not --secondary: secondary on
+  // secondary/10 measures 4.11:1, under the 4.5 AA floor. It only showed up on
+  // pages that are nav children (e.g. /mvp-launch under Services), so it sat
+  // unnoticed. deep-blue-dark on the same tint is 8.1:1.
   const desktopItemClasses = (active: boolean) =>
     `px-3 xl:px-4 py-2 text-sm font-medium rounded-lg transition-colors min-h-[40px] flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-ring ${
-      active ? "text-secondary bg-secondary/10" : "text-foreground/80 hover:text-secondary hover:bg-muted"
+      active ? "text-deep-blue-dark bg-secondary/10" : "text-foreground/80 hover:text-secondary hover:bg-muted"
     }`;
 
   return (
@@ -323,7 +327,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                     onClick={() => handleNavLinkClick(link.href)}
                     className={`text-base font-medium py-3 px-4 rounded-lg min-h-[48px] flex items-center focus:outline-none focus:ring-2 focus:ring-ring ${
                       active 
-                        ? "text-secondary bg-secondary/10" 
+                        ? "text-deep-blue-dark bg-secondary/10" 
                         : "text-foreground/80 hover:text-secondary hover:bg-muted"
                     }`}
                   >
@@ -336,7 +340,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
                     onClick={() => setIsOpen(false)}
                     className={`text-base font-medium py-3 px-4 rounded-lg min-h-[48px] flex items-center focus:outline-none focus:ring-2 focus:ring-ring ${
                       active 
-                        ? "text-secondary bg-secondary/10" 
+                        ? "text-deep-blue-dark bg-secondary/10" 
                         : "text-foreground/80 hover:text-secondary hover:bg-muted"
                     }`}
                   >
