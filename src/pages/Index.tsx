@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroShell } from "@/components/sections/heroes/HeroShell";
 import { AutomationLaneVisual } from "@/components/sections/heroes/AutomationLaneVisual";
+import { CredibilityStrip } from "@/components/sections/CredibilityStrip";
 import { ProofStrip } from "@/components/sections/ProofStrip";
 import { OffersSection } from "@/components/sections/OffersSection";
 import { MvpSection } from "@/components/sections/MvpSection";
@@ -76,10 +77,14 @@ const Index = () => {
         <main id="main-content">
           {/* 1. Hero — Design 1 (Automation lane panel) */}
           <HeroShell
-            visual={<AutomationLaneVisual className="w-full" />}
+            visual={<AutomationLaneVisual className="w-full bg-black" />}
             onScopeClick={() => openRequest()}
+            onBookClick={() => setIsBookingOpen(true)}
           />
-          
+
+          {/* 1b. Reserved slot for real client proof — labelled placeholder */}
+          <CredibilityStrip />
+
           {/* 2. Proof bar */}
           <ProofStrip />
           
@@ -107,7 +112,7 @@ const Index = () => {
           {/* 7. Final CTA */}
           <ContactSection onBookingClick={() => openRequest()} />
         </main>
-        <Footer />
+        <Footer onBookingClick={() => setIsBookingOpen(true)} />
       </div>
 
       {/* Modals */}
