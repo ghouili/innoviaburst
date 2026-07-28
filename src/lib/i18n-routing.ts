@@ -22,6 +22,21 @@ export function getLocaleFromPath(pathname: string): Locale {
   return isLocale(seg) ? seg : DEFAULT_LOCALE;
 }
 
+/**
+ * Pick the locale for a bare "/" request. Mirrors the `map` blocks in
+ * nginx.prod.conf and negotiateLocale() in scripts/site-content.mjs so dev,
+ * preview and prod all resolve "/" the same way:
+ *   1. an explicit `locale` cookie (set by LanguageSwitcher) wins;
+ *   2. otherwise the browser's primary Accept-Language tag ("fr-FR" -> fr);
+ *   3. otherwise DEFAULT_LOCALE.
+ */
+export function negotiateLocale(acceptLanguage = "", cookieLocale = ""): Locale {
+  const cookie = cookieLocale.trim().toLowerCase().slice(0, 2);
+  if (isLocale(cookie)) return cookie;
+  const primary = acceptLanguage.toLowerCase().split(",")[0].split("-")[0].trim();
+  return isLocale(primary) ? primary : DEFAULT_LOCALE;
+}
+
 /** The react-router basename for a locale, e.g. "/en". */
 export function basenameFor(locale: Locale): string {
   return `/${locale}`;

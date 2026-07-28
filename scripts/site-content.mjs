@@ -91,7 +91,8 @@ export const legacyRedirects = () => {
 
 /**
  * Pick the locale for a bare `/` request. Mirrors the nginx map in
- * nginx.prod.conf so local dev (preview-server) and prod behave identically:
+ * nginx.prod.conf and negotiateLocale() in src/lib/i18n-routing.ts (which the
+ * dev/preview middleware in vite.config.ts uses) so every server agrees:
  *   1. an explicit `locale` cookie (set by the on-site language switcher) wins;
  *   2. otherwise the browser's primary Accept-Language tag (e.g. "fr-FR" -> fr);
  *   3. otherwise DEFAULT_LOCALE.
