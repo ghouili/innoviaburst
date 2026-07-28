@@ -1,0 +1,162 @@
+{
+  "/en/": {
+    "title": "Innoviaburst | AI &amp; Automation for UK/EU SMEs, Delivered in Weeks",
+    "canonical": "https://innoviaburst.com/en/",
+    "description": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
+  },
+  "/en/about": {
+    "title": "About Innoviaburst | GDPR-by-design AI automation for UK &amp; EU SMEs",
+    "canonical": "https://innoviaburst.com/en/about",
+    "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
+  },
+  "/en/automations": {
+    "title": "Automation Library | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/automations",
+    "description": "Browse 10+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts."
+  },
+  "/en/resources": {
+    "title": "Resources: Playbooks, Templates &amp; Checklists | InnoviaBurst",
+    "canonical": "https://innoviaburst.com/en/resources",
+    "description": "Practical guides, templates, and checklists for UK/EU teams automating operations and deploying AI responsibly."
+  },
+  "/en/industries": {
+    "title": "Industries We Serve | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/industries",
+    "description": "Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
+  },
+  "/en/trust": {
+    "title": "Trust &amp; Compliance | InnoviaBurst",
+    "canonical": "https://innoviaburst.com/en/trust",
+    "description": "How InnoviaBurst protects your data: Trust Pack, DPA readiness, sub-processors, SCCs/UK Addendum, retention, incident response, and AI oversight for UK/EU buyers."
+  },
+  "/en/subprocessors": {
+    "title": "Sub-Processors | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/subprocessors",
+    "description": "List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling."
+  },
+  "/en/privacy": {
+    "title": "Privacy Policy | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/privacy",
+    "description": "Innoviaburst Privacy Policy: how we collect, use, and protect your personal data."
+  },
+  "/en/cookies": {
+    "title": "Cookie Policy | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/cookies",
+    "description": "Innoviaburst Cookie Policy: how we use cookies and similar technologies."
+  },
+  "/en/terms": {
+    "title": "Terms of Service | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/terms",
+    "description": "Innoviaburst Terms of Service: terms and conditions for using our website and services."
+  },
+  "/en/coming-soon": {
+    "title": "Coming Soon | InnoviaBurst",
+    "canonical": "https://innoviaburst.com/en/coming-soon",
+    "description": "We&#x27;re building this page to help you pick the right automation faster."
+  },
+  "/en/ai-ops-sprint": {
+    "title": "AI Ops Sprint | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/ai-ops-sprint",
+    "description": "Get one workflow automated or one AI copilot shipped in just 10 business days. Perfect for proving ROI before larger investments. Timeline: 10 business days."
+  },
+  "/en/automation-build": {
+    "title": "Automation Build | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/automation-build",
+    "description": "Build robust, production-grade automation that connects multiple systems with proper logging, alerts, and retry strategies. Timeline: 4-6 weeks."
+  },
+  "/en/mvp-launch": {
+    "title": "MVP Development: Build an Investor-Ready MVP in Weeks | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/mvp-launch",
+    "description": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one."
+  },
+  "/en/work/professional-services-client-onboarding": {
+    "title": "Professional Services Firm: Client Onboarding | Case Study | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/work/professional-services-client-onboarding",
+    "description": "Client onboarding was taking 4+ hours per new client. Documents were scattered across email, shared drives, and CRM. Admin staff spent significant tim... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
+  },
+  "/en/work/saas-support-ticket-triage": {
+    "title": "B2B SaaS: Support Ticket Triage | Case Study | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/work/saas-support-ticket-triage",
+    "description": "Support team spending 2+ hours daily on manual ticket categorisation and routing. First response times were slow, and specialist tickets often went to... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
+  },
+  "/fr/": {
+    "title": "Innoviaburst | IA &amp; Automatisation pour PME UK/EU — Livré en semaines",
+    "canonical": "https://innoviaburst.com/fr/",
+    "description": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVP avec une livraison conforme. Livraison rapide, en semaines."
+  },
+  "/fr/about": {
+    "title": "About Innoviaburst | GDPR-by-design AI automation for UK &amp; EU SMEs",
+    "canonical": "https://innoviaburst.com/fr/about",
+    "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
+  },
+  "/fr/automations": {
+    "title": "Bibliothèque d&#x27;Automatisations | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/automations",
+    "description": "Parcourez 10+ exemples d&#x27;automatisations pour les équipes Sales, Ops, Support, Finance et Knowledge. Voir workflows, outils, délais et impacts KPI."
+  },
+  "/fr/resources": {
+    "title": "Ressources — Guides, Modèles &amp; Checklists | InnoviaBurst",
+    "canonical": "https://innoviaburst.com/fr/resources",
+    "description": "Guides pratiques, modèles et checklists pour les équipes UK/EU automatisant leurs opérations et déployant l&#x27;IA de manière responsable."
+  },
+  "/fr/industries": {
+    "title": "Secteurs que nous servons | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/industries",
+    "description": "Expertise en automatisation pour les PME de services professionnels, le SaaS B2B et plus. Livraison axée UK/EU, soucieuse de la conformité."
+  },
+  "/fr/trust": {
+    "title": "Confiance &amp; Conformité | InnoviaBurst",
+    "canonical": "https://innoviaburst.com/fr/trust",
+    "description": "Comment InnoviaBurst protège vos données : Trust Pack, DPA, sous-traitants, SCCs/Avenant UK, rétention, gestion des incidents et supervision IA pour les clients UK/EU."
+  },
+  "/fr/subprocessors": {
+    "title": "Sous-traitants | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/subprocessors",
+    "description": "Liste des sous-traitants tiers utilisés par Innoviaburst pour la prestation de services. Transparence totale sur le traitement des données."
+  },
+  "/fr/privacy": {
+    "title": "Politique de confidentialité | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/privacy",
+    "description": "Politique de confidentialité d’Innoviaburst — comment nous collectons, utilisons et protégeons vos données personnelles."
+  },
+  "/fr/cookies": {
+    "title": "Politique de cookies | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/cookies",
+    "description": "Politique de cookies d’Innoviaburst — comment nous utilisons les cookies et technologies similaires."
+  },
+  "/fr/terms": {
+    "title": "Conditions d’utilisation | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/terms",
+    "description": "Conditions d’utilisation d’Innoviaburst — conditions générales d’utilisation de notre site et de nos services."
+  },
+  "/fr/coming-soon": {
+    "title": "Bientôt disponible | InnoviaBurst",
+    "canonical": "https://innoviaburst.com/fr/coming-soon",
+    "description": "Nous construisons cette page pour vous aider à choisir la bonne automatisation plus rapidement."
+  },
+  "/fr/ai-ops-sprint": {
+    "title": "AI Ops Sprint | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/ai-ops-sprint",
+    "description": "Get one workflow automated or one AI copilot shipped in just 10 business days. Perfect for proving ROI before larger investments. Timeline: 10 business days."
+  },
+  "/fr/automation-build": {
+    "title": "Automation Build | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/automation-build",
+    "description": "Build robust, production-grade automation that connects multiple systems with proper logging, alerts, and retry strategies. Timeline: 4-6 weeks."
+  },
+  "/fr/mvp-launch": {
+    "title": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/mvp-launch",
+    "description": "Développement de MVP pour startups et PME : de l&#x27;idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD &amp; règlement IA de l&#x27;UE et analytics dès le premier jour."
+  },
+  "/fr/work/professional-services-client-onboarding": {
+    "title": "Professional Services Firm: Client Onboarding | Case Study | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/work/professional-services-client-onboarding",
+    "description": "Client onboarding was taking 4+ hours per new client. Documents were scattered across email, shared drives, and CRM. Admin staff spent significant tim... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
+  },
+  "/fr/work/saas-support-ticket-triage": {
+    "title": "B2B SaaS: Support Ticket Triage | Case Study | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/work/saas-support-ticket-triage",
+    "description": "Support team spending 2+ hours daily on manual ticket categorisation and routing. First response times were slow, and specialist tickets often went to... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
+  }
+}

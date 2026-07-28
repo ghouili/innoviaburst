@@ -1,18 +1,34 @@
 import fs from "node:fs";
 import path from "node:path";
-import { allRoutes, siteUrl } from "./site-content.mjs";
+import { sitemapRoutes, siteUrl } from "./site-content.mjs";
 
 const targetBase = process.env.SEO_BASE_URL || siteUrl;
+/** Origin the pages' canonicals must point at, regardless of where we fetch from. */
+const canonicalBase = siteUrl.replace(/\/$/, "");
 const outputDir = path.resolve(process.cwd(), "reports");
 const timeoutMs = Number(process.env.SEO_TIMEOUT_MS || 15000);
 
+/**
+ * Audit every indexable, locale-prefixed URL (/en/*, /fr/*).
+ *
+ * This used to import `allRoutes`, which the locale migration removed — the
+ * script had been crashing on import ever since. sitemapRoutes() is the right
+ * successor: it is the same list the sitemap advertises, so it excludes the
+ * noindex routes (/works, /lp/*, /404) that deliberately don't carry full SEO
+ * metadata and would otherwise report as false failures.
+ *
+ * Note this audits a LIVE origin — `siteUrl` by default. Point it at a local
+ * preview with SEO_BASE_URL to audit the build you just produced.
+ */
 const normalisedRoutes = (() => {
   const seen = new Set();
-  return allRoutes.filter((route) => {
-    if (seen.has(route.path)) return false;
-    seen.add(route.path);
-    return true;
-  });
+  return sitemapRoutes()
+    .map((route) => ({ path: route.loc }))
+    .filter((route) => {
+      if (seen.has(route.path)) return false;
+      seen.add(route.path);
+      return true;
+    });
 })();
 
 const getHtml = async (url) => {
@@ -51,7 +67,9 @@ const auditRoute = async (route) => {
 
   try {
     const { response, text } = await getHtml(url);
-    const title = extract(text, /<title>([^<]*)<\/title>/i);
+    // react-helmet-async renders `<title data-rh="true">` — the old attribute-less
+    // pattern matched nothing and reported every page as missing a title.
+    const title = extract(text, /<title[^>]*>([^<]*)<\/title>/i);
     const description = extract(
       text,
       /<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i
@@ -69,10 +87,13 @@ const auditRoute = async (route) => {
 
     if (!title) issues.push("Missing <title>");
     if (!description) issues.push("Missing meta description");
+    // Canonicals are absolute production URLs by design, so they're checked
+    // against the canonical origin (siteUrl) — not against wherever we fetched
+    // from. Auditing a local preview otherwise flagged every correct canonical.
     if (!canonical) {
       issues.push("Missing canonical link");
-    } else if (!canonical.startsWith(targetBase.replace(/\/$/, ""))) {
-      issues.push(`Canonical mismatch (${canonical})`);
+    } else if (!canonical.startsWith(canonicalBase)) {
+      issues.push(`Canonical mismatch (${canonical}, expected ${canonicalBase}/...)`);
     }
     if (jsonLd.length === 0) issues.push("Missing JSON-LD");
     if (text.length < 500) issues.push("HTML response too small; possible empty shell");

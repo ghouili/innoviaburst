@@ -5,11 +5,34 @@ const PORT = 5127;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const axeSrc = readFileSync("node_modules/axe-core/axe.min.js", "utf8");
 const server = spawn(process.execPath, ["scripts/preview-server.mjs"], { env: { ...process.env, PREVIEW_PORT: String(PORT) }, stdio: "ignore" });
+/**
+ * Pages to audit, with the hero-accent expectation declared per page.
+ *
+ * `heroAccent: true` means the page is supposed to carry the brand-gradient
+ * heading accent — a *fragment* of the H1 wrapped in `.text-gradient-brand`,
+ * driven by a dedicated `titleHighlight` i18n key (home, /automations, /trust,
+ * /works, /industries, ...).
+ *
+ * It is not a site-wide invariant. An offer page's H1 is the bare product name
+ * (`{offer.title}` — "AI Ops Sprint"), and the legal/about pages have no accent
+ * either; there is no fragment to highlight and gradient-filling a whole product
+ * name is a pattern used nowhere in the design system. The probe used to assert
+ * the accent unconditionally, so /ai-ops-sprint failed the whole suite for a
+ * design it was never meant to have. The flag keeps the assertion strict where
+ * the pattern applies and silent where it doesn't — if a marketing page ever
+ * loses its accent, this still fails.
+ */
+const PAGES = [
+  { path: "/en/", heroAccent: true },
+  { path: "/fr/", heroAccent: true },
+  { path: "/en/ai-ops-sprint", heroAccent: false },
+];
+
 let browser; const out = [];
 try {
   await sleep(1500);
   browser = await chromium.launch({ headless: true, executablePath: process.env.PW_EXECUTABLE });
-  for (const path of ["/en/", "/fr/", "/en/ai-ops-sprint"]) {
+  for (const { path, heroAccent: expectAccent } of PAGES) {
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: "load" }).catch(() => {});
     await sleep(1200);
@@ -30,19 +53,23 @@ try {
       return { tag: el.tagName.toLowerCase() + (el.textContent ? "·" + el.textContent.trim().slice(0, 18) : ""), ring };
     });
     // hero H1 accent: confirm the gradient class is applied + computed color is transparent w/ bg-image (gradient renders)
-    const heroAccent = await page.evaluate(() => {
+    const accent = await page.evaluate(() => {
       const el = document.querySelector("h1 .text-gradient-brand") || document.querySelector(".text-gradient-brand");
       if (!el) return { found: false };
       const s = getComputedStyle(el);
       return { found: true, hasGradient: /gradient/.test(s.backgroundImage), clip: s.webkitBackgroundClip || s.backgroundClip };
     });
-    out.push({ path, lang, criticals: byImpact.critical || 0, serious: byImpact.serious || 0, moderate: byImpact.moderate || 0, rules: rules.slice(0, 8), focusRing: focus.ring, focusEl: focus.tag, heroAccent });
+    // Pages without the accent pattern still have to have a top-level heading —
+    // that's the check that carries the weight where the gradient one can't.
+    const h1s = await page.evaluate(() => document.querySelectorAll("h1").length);
+    const heroAccent = expectAccent ? { ...accent, ok: !!accent.hasGradient } : { expected: false, ok: true };
+    out.push({ path, lang, criticals: byImpact.critical || 0, serious: byImpact.serious || 0, moderate: byImpact.moderate || 0, rules: rules.slice(0, 8), focusRing: focus.ring, focusEl: focus.tag, h1s, heroAccent });
     await page.close();
   }
 } catch (e) { out.push({ fatal: String(e).slice(0, 200) }); }
 finally { if (browser) await browser.close().catch(() => {}); server.kill(); }
 console.log("\n===== PHASE 11 AXE A11Y =====");
 for (const r of out) console.log(JSON.stringify(r));
-const pass = out.every((r) => !r.fatal && r.criticals === 0 && r.lang && r.focusRing && r.heroAccent?.hasGradient);
-console.log("\nVERDICT (0 critical + lang + focus ring + hero gradient):", pass ? "PASS ✅" : "REVIEW ❌");
+const pass = out.every((r) => !r.fatal && r.criticals === 0 && r.lang && r.focusRing && r.h1s === 1 && r.heroAccent?.ok);
+console.log("\nVERDICT (0 critical + lang + focus ring + single h1 + hero gradient where expected):", pass ? "PASS ✅" : "REVIEW ❌");
 process.exit(0);

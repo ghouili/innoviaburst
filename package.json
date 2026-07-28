@@ -14,6 +14,7 @@
     "verify:jsonld": "node scripts/validate-jsonld.mjs",
     "perf:lh": "node scripts/lh.mjs",
     "qa:static": "node scripts/qa-static.mjs",
+    "qa:titles": "node scripts/qa-titles.mjs",
     "qa:lh": "node scripts/qa-lh.mjs",
     "qa:axe": "node scripts/qa-axe.mjs",
     "qa:status": "node scripts/qa-status.mjs",
