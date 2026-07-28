@@ -24,6 +24,11 @@
     "canonical": "https://innoviaburst.com/en/industries",
     "description": "Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
   },
+  "/en/training": {
+    "title": "AI, Development &amp; Automation Training for Teams | Innoviaburst",
+    "canonical": "https://innoviaburst.com/en/training",
+    "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
+  },
   "/en/trust": {
     "title": "Trust &amp; Compliance | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/trust",
@@ -103,6 +108,11 @@
     "title": "Secteurs que nous servons | Innoviaburst",
     "canonical": "https://innoviaburst.com/fr/industries",
     "description": "Expertise en automatisation pour les PME de services professionnels, le SaaS B2B et plus. Livraison axée UK/EU, soucieuse de la conformité."
+  },
+  "/fr/training": {
+    "title": "AI, Development &amp; Automation Training for Teams | Innoviaburst",
+    "canonical": "https://innoviaburst.com/fr/training",
+    "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
   },
   "/fr/trust": {
     "title": "Confiance &amp; Conformité | InnoviaBurst",

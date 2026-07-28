@@ -28,6 +28,7 @@ import ComingSoonPage from "./pages/ComingSoonPage";
 import LandingPage from "./pages/LandingPage";
 import LpMvpPage from "./pages/LpMvpPage";
 import AboutPage from "./pages/AboutPage";
+import TrainingPage from "./pages/TrainingPage";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ export function AppShell() {
             <Route path="/cookies" element={<CookiesPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/404" element={<NotFound />} />
+            <Route path="/training" element={<TrainingPage />} />
             <Route path="/:slug" element={<OfferPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

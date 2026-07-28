@@ -30,6 +30,7 @@ export const flatRoutes = [
   { path: "/automations", source: "src/pages/AutomationsPage.tsx", changefreq: "weekly", priority: 0.9 },
   { path: "/resources", source: "src/pages/ResourcesPage.tsx", changefreq: "weekly", priority: 0.85 },
   { path: "/industries", source: "src/pages/IndustriesPage.tsx", changefreq: "monthly", priority: 0.6 },
+  { path: "/training", source: "src/pages/TrainingPage.tsx", changefreq: "monthly", priority: 0.7, newRoute: true },
   { path: "/trust", source: "src/pages/TrustPage.tsx", changefreq: "monthly", priority: 0.8 },
   { path: "/subprocessors", source: "src/pages/SubprocessorsPage.tsx", changefreq: "monthly", priority: 0.6 },
   { path: "/privacy", source: "src/pages/PrivacyPage.tsx", changefreq: "yearly", priority: 0.4 },

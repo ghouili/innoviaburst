@@ -458,6 +458,231 @@
     "partnersNote": "Partner logos are placeholders. Accredited training partners will be named here once agreements are signed.",
     "requestInterest": "Training: AI & automation upskilling for my team"
   },
+  "trainingPage": {
+    "backToHome": "Back to home",
+    "eyebrow": "Team training, four tracks",
+    "headingPrefix": "AI, development and automation training ",
+    "headingHighlight": "for your team",
+    "intro": "Practical, partner-delivered training across four tracks: AI and copilots, software development, automation and workflows, and AI governance. From half-day workshops to multi-week cohorts, built around your real work rather than slides.",
+    "formatsHeading": "Ways to learn",
+    "audience": {
+      "heading": "Who it is for",
+      "items": [
+        {
+          "title": "Ops and RevOps teams",
+          "description": "The people drowning in manual steps who want to automate them properly."
+        },
+        {
+          "title": "Product and engineering teams",
+          "description": "Teams building AI features who need patterns that hold up in production."
+        },
+        {
+          "title": "Founders and team leads",
+          "description": "Leaders who want their team fluent in AI without a six-month detour."
+        },
+        {
+          "title": "Compliance and DPO stakeholders",
+          "description": "The people who have to sign off, brought in early rather than at the end."
+        }
+      ]
+    },
+    "how": {
+      "heading": "How a session works",
+      "steps": [
+        {
+          "title": "Scope",
+          "description": "We shape the sessions around your tools, your team's level and the outcomes you want."
+        },
+        {
+          "title": "Deliver",
+          "description": "Live, hands-on training, on-site or remote, in English or French, run against real examples."
+        },
+        {
+          "title": "Apply",
+          "description": "Your team leaves with working artefacts and a plan to keep going, not just notes."
+        }
+      ]
+    },
+    "faq": {
+      "heading": "Training questions, answered",
+      "items": [
+        {
+          "question": "Do you train on-site or remotely?",
+          "answer": "Both. Workshops and cohorts run on-site at your office or fully remote, whichever suits your team."
+        },
+        {
+          "question": "Which languages do you deliver in?",
+          "answer": "English and French. Sessions, materials and questions are handled in either language."
+        },
+        {
+          "question": "Is the content tailored to us?",
+          "answer": "Yes. Every session is scoped to your stack, your team's level and the outcomes you care about."
+        },
+        {
+          "question": "Do you certify attendees?",
+          "answer": "Partner-certified programmes carry certification from our accredited training partners. Workshops come with materials and a completion summary."
+        },
+        {
+          "question": "How many people can attend?",
+          "answer": "Workshops suit small groups. Cohorts run as multi-week programmes for a whole team. We right-size it on the scoping call."
+        },
+        {
+          "question": "How do we get started?",
+          "answer": "Request a training session or book a 15-minute call. We scope it with you and come back with a plan and a quote."
+        },
+        {
+          "question": "How do we book training?",
+          "answer": "Use Request training dates. Tell us which tracks you want, the format that suits your team, and two or three preferred dates. We reply with the slots we can confirm, usually within two working days."
+        },
+        {
+          "question": "Can we choose our own dates?",
+          "answer": "Yes. The request form takes two or three preferred dates plus an optional note on your wider timeframe. We hold the closest match we can staff and confirm it by email before anything is booked."
+        },
+        {
+          "question": "Which topics do you cover?",
+          "answer": "Four tracks: AI, software development, automation and workflows, and AI governance and compliance. Each track is shaped around your real work, so we drop or deepen individual topics to fit the team."
+        },
+        {
+          "question": "How do we become a training partner?",
+          "answer": "Use Become a training partner. Tell us what you deliver, your accreditations and which tracks you can co-deliver. We review every application and reply either way."
+        }
+      ]
+    },
+    "finalHeading": "Ready to upskill your team?",
+    "finalText": "Tell us your tools, your team and what you want them to be able to do. We come back with a training plan and a quote, with no obligation.",
+    "schema": {
+      "serviceName": "AI, development and automation training for teams",
+      "serviceDescription": "Partner-delivered, hands-on training for European teams across four tracks: AI copilots and LLM applications, modern software development, cross-tool automation, and AI governance under the EU AI Act and GDPR. Available as workshops or multi-week cohorts, on-site or remote, in English and French."
+    },
+    "ctaPrimary": "Request training dates",
+    "ctaPartner": "Become a training partner",
+    "tracks": {
+      "heading": "Training tracks",
+      "intro": "Four tracks, each built from your real work. Mix them in one programme or take a single track on its own.",
+      "items": [
+        {
+          "title": "AI",
+          "description": "Get your team building with LLMs properly, from first copilot to something you would put in front of a customer.",
+          "topics": [
+            "Copilots your team will actually use",
+            "LLM fundamentals for builders",
+            "RAG assistants over your own documents",
+            "Agents, tool use and evaluation"
+          ]
+        },
+        {
+          "title": "Software development",
+          "description": "Modern app and product build, end to end, with the practices that keep a codebase shippable after month three.",
+          "topics": [
+            "Modern app and product architecture",
+            "The stack we build on and why",
+            "Testing that catches real bugs",
+            "Shipping, releases and rollback"
+          ]
+        },
+        {
+          "title": "Automation and workflows",
+          "description": "Connect the tools you already run and automate the manual steps, with the guardrails that keep it reliable in production.",
+          "topics": [
+            "Cross-tool automation patterns",
+            "Approvals and human sign-off",
+            "Monitoring, alerts and retries",
+            "Choosing what to automate first"
+          ]
+        },
+        {
+          "title": "AI governance and compliance",
+          "description": "Adopt AI in a way your DPO and your board can both sign off, with the paperwork that survives an audit.",
+          "topics": [
+            "The EU AI Act in practice",
+            "GDPR-safe AI adoption",
+            "Risk assessment and classification",
+            "Documentation an auditor accepts"
+          ]
+        }
+      ]
+    },
+    "forms": {
+      "booking": {
+        "title": "Request training dates",
+        "description": "Tell us what your team needs and when. We reply with the slots we can confirm.",
+        "submit": "Send request",
+        "submitting": "Sending",
+        "successTitle": "Request received",
+        "successBody": "We will send you available slots to confirm your dates.",
+        "successDetails": [
+          "We reply within two working days",
+          "Nothing is booked until you confirm",
+          "No cost and no obligation"
+        ]
+      },
+      "partner": {
+        "title": "Become a training partner",
+        "description": "Tell us what you deliver and which tracks you can co-deliver with us.",
+        "submit": "Send application",
+        "submitting": "Sending",
+        "successTitle": "Application received",
+        "successBody": "We review every application and will reply either way.",
+        "successDetails": [
+          "We review applications weekly",
+          "We reply whether or not there is a fit",
+          "Your details are not shared with third parties"
+        ]
+      },
+      "fields": {
+        "name": "Your name",
+        "workEmail": "Work email",
+        "company": "Company",
+        "tracks": "Which tracks are you interested in",
+        "tracksHint": "Select all that apply",
+        "coDeliverTracks": "Which tracks can you co-deliver",
+        "format": "Preferred format",
+        "teamSize": "Approximate team size",
+        "teamSizeHint": "A rough number is fine",
+        "dates": "Preferred dates",
+        "datesHint": "Give us two or three options. These are requests, not live availability.",
+        "dateFirst": "First choice",
+        "dateSecond": "Second choice",
+        "dateThird": "Third choice",
+        "timeframe": "Timeframe note",
+        "timeframeHint": "Optional. For example, any week in March, or after our product launch.",
+        "notes": "Anything else",
+        "notesHint": "Optional. Tell us about the team, the tools or the outcome you want.",
+        "organization": "Organization",
+        "contactName": "Contact name",
+        "email": "Email",
+        "delivers": "What you deliver",
+        "deliversHint": "Courses, formats, languages and typical audience.",
+        "accreditations": "Accreditations",
+        "accreditationsHint": "Optional. Any accreditation or certification bodies.",
+        "message": "Message",
+        "messageHint": "Optional."
+      },
+      "formatOptions": [
+        "Live workshop",
+        "Team cohort",
+        "On-site",
+        "Remote"
+      ],
+      "trackOptions": [
+        "AI",
+        "Software development",
+        "Automation",
+        "Governance"
+      ],
+      "errors": {
+        "nameRequired": "Please tell us your name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Please enter a valid email address",
+        "companyRequired": "Please tell us your company",
+        "organizationRequired": "Please tell us your organization",
+        "tracksRequired": "Please select at least one track",
+        "deliversRequired": "Please tell us what you deliver"
+      },
+      "consent": "We use your details only to answer this enquiry. See our Privacy Policy.",
+      "close": "Close"
+    }
+  },
   "work": {
     "title": "Our Work",
     "subtitle": "Real automation projects with measurable outcomes.",
@@ -1567,6 +1792,10 @@
     }
   },
   "seo": {
+    "training": {
+      "title": "AI, Development & Automation Training for Teams | Innoviaburst",
+      "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
+    },
     "home": {
       "title": "Innoviaburst | AI & Automation for UK/EU SMEs, Delivered in Weeks",
       "description": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."

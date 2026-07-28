@@ -31,6 +31,12 @@
     <priority>0.60</priority>
   </url>
   <url>
+    <loc>https://innoviaburst.com/en/training</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
     <loc>https://innoviaburst.com/en/trust</loc>
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
@@ -125,6 +131,12 @@
     <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://innoviaburst.com/fr/training</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
   <url>
     <loc>https://innoviaburst.com/fr/trust</loc>

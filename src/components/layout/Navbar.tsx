@@ -39,7 +39,7 @@ const navItems: NavItem[] = [
       { labelKey: "nav.automations", href: "/automations" },
       { labelKey: "nav.mvp", href: "/mvp-launch" },
       { labelKey: "nav.offers", href: "/#offers" },
-      { labelKey: "nav.training", href: "/#training" },
+      { labelKey: "nav.training", href: "/training" },
     ],
   },
   { labelKey: "nav.work", href: "/work" },
