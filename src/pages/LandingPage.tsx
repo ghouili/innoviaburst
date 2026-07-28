@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroShell } from "@/components/sections/heroes/HeroShell";
 import { WeaveVisual } from "@/components/sections/heroes/WeaveVisual";
+import { CredibilityStrip } from "@/components/sections/CredibilityStrip";
 import { ProofStrip } from "@/components/sections/ProofStrip";
 import { OffersSection } from "@/components/sections/OffersSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
@@ -56,8 +57,10 @@ const LandingPage = () => {
           <HeroShell
             visual={<WeaveVisual className="w-full" tagLabel={t("hero.stage.tag")} statLabels={statLabels} />}
             onScopeClick={() => setIsRequestOpen(true)}
+            onBookClick={() => setIsBookingOpen(true)}
           />
 
+          <CredibilityStrip />
           <ProofStrip />
           <OffersSection onBookingClick={() => setIsRequestOpen(true)} />
           <SolutionsSection />

@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 
 /**
  * AutomationLaneVisual
@@ -32,18 +34,103 @@ interface TaskDef {
   route: string;
 }
 
-const TASKS: ReadonlyArray<TaskDef> = [
-  { t: "New support ticket", src: "via Helpdesk", tag: "#support", route: "Tier-2 queue" },
-  { t: "Unassigned lead", src: "via CRM", tag: "#sales", route: "Rep · West" },
-  { t: "Failed payment", src: "via Stripe", tag: "#billing", route: "Retry + notify" },
-  { t: "Onboarding step", src: "via Product", tag: "#success", route: "Send setup guide" },
-  { t: "Invoice follow-up", src: "via Ledger", tag: "#finance", route: "Schedule reminder" },
-];
+const TASK_KEYS = ["support", "lead", "payment", "onboarding", "invoice"] as const;
+
+/**
+ * Every user-visible string in the panel, resolved once per render from i18n.
+ * The imperative animation below mutates DOM text directly, so it reads these
+ * through a ref rather than calling `t` inside the effect (which runs once with
+ * `[]` deps). Keeping the whole panel translated matters because it is chrome a
+ * French visitor reads at the same size as the hero — a half-translated mock
+ * looks more like an oversight than an English product screenshot does.
+ */
+interface LaneCopy {
+  tasks: TaskDef[];
+  title: string;
+  illustrative: string;
+  subAuto: string;
+  subManual: string;
+  toggleManual: string;
+  toggleAuto: string;
+  laneLabel: string;
+  active: string;
+  metricsHead: string;
+  sampleNote: string;
+  statHandled: string;
+  statResp: string;
+  statHours: string;
+  statMiss: string;
+  trendLive: string;
+  trendRising: string;
+  trendFaster: string;
+  trendClimbing: string;
+  trendHeldZero: string;
+  trendAtRisk: string;
+  trendMissRising: string;
+  statusQueued: string;
+  statusProcessing: string;
+  statusDone: string;
+  statusOverdue: string;
+  justNow: string;
+  slaBreached: string;
+  /** Panel footer, split so the lead clause can be bolded in any language. */
+  footAutoLead: string;
+  footAutoRest: string;
+  footManualLead: string;
+  footManualRest: string;
+}
+
+const buildCopy = (t: TFunction): LaneCopy => {
+  const k = (suffix: string) => t(`hero.lane.${suffix}`);
+  return {
+    tasks: TASK_KEYS.map((key) => ({
+      t: k(`tasks.${key}.title`),
+      src: k(`tasks.${key}.src`),
+      tag: k(`tasks.${key}.tag`),
+      route: k(`tasks.${key}.route`),
+    })),
+    title: k("title"),
+    illustrative: k("illustrative"),
+    subAuto: k("subAuto"),
+    subManual: k("subManual"),
+    toggleManual: k("toggleManual"),
+    toggleAuto: k("toggleAuto"),
+    laneLabel: k("laneLabel"),
+    active: k("active"),
+    metricsHead: k("metricsHead"),
+    sampleNote: k("sampleNote"),
+    statHandled: k("stats.handled"),
+    statResp: k("stats.resp"),
+    statHours: k("stats.hours"),
+    statMiss: k("stats.miss"),
+    trendLive: k("trends.live"),
+    trendRising: k("trends.rising"),
+    trendFaster: k("trends.faster"),
+    trendClimbing: k("trends.climbing"),
+    trendHeldZero: k("trends.heldZero"),
+    trendAtRisk: k("trends.atRisk"),
+    trendMissRising: k("trends.missRising"),
+    statusQueued: k("status.queued"),
+    statusProcessing: k("status.processing"),
+    statusDone: k("status.done"),
+    statusOverdue: k("status.overdue"),
+    justNow: k("justNow"),
+    slaBreached: k("slaBreached"),
+    footAutoLead: k("footAutoLead"),
+    footAutoRest: k("footAutoRest"),
+    footManualLead: k("footManualLead"),
+    footManualRest: k("footManualRest"),
+  };
+};
 
 const ROUTE_SVG =
   '<svg viewBox="0 0 24 24" fill="none"><path d="M4 7h9a4 4 0 014 4v2m0 0l-3-3m3 3l3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const CHECK_SVG =
   '<svg class="check" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
+
+/** Translations land in innerHTML, so neutralise the markup-significant chars. */
+const esc = (s: string): string =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /**
  * Resting-state lane markup as a raw HTML string — byte-identical to what the
@@ -52,15 +139,21 @@ const CHECK_SVG =
  * expression/text/element nodes during hydration (that caused #425). The effect
  * clears and re-owns this lane on mount, so it's purely the no-JS/crawler view.
  */
-const seededCardHtml = (d: TaskDef, y: number): string =>
-  `<div class="card" style="transform:translateY(${y}px)"><div class="scan"></div>` +
-  `<div class="card-top"><span class="tdot"></span><span class="ttl">${d.t}</span>` +
-  `<span class="status"><span class="spin" style="display:none"></span><span class="slabel">Queued</span>${CHECK_SVG}</span></div>` +
-  `<div class="card-meta"><span class="meta-pre">${d.src}<span class="meta-sep"></span>just now</span>` +
-  `<span class="meta-auto"><span class="meta-sep"></span><span class="tag">${d.tag}</span>` +
-  `<span class="route">${ROUTE_SVG}${d.route}</span></span></div></div>`;
+const cardInnerHtml = (d: TaskDef, c: LaneCopy): string =>
+  `<div class="scan"></div>` +
+  `<div class="card-top"><span class="tdot"></span><span class="ttl">${esc(d.t)}</span>` +
+  `<span class="status"><span class="spin" style="display:none"></span><span class="slabel">${esc(c.statusQueued)}</span>${CHECK_SVG}</span></div>` +
+  `<div class="card-meta"><span class="meta-pre">${esc(d.src)}<span class="meta-sep"></span>${esc(c.justNow)}</span>` +
+  `<span class="meta-auto"><span class="meta-sep"></span><span class="tag">${esc(d.tag)}</span>` +
+  `<span class="route">${ROUTE_SVG}${esc(d.route)}</span></span></div>`;
 
-const SEEDED_LANE_HTML = seededCardHtml(TASKS[0], 0) + seededCardHtml(TASKS[1], 88);
+const seededLaneHtml = (c: LaneCopy): string =>
+  [c.tasks[0], c.tasks[1]]
+    .map(
+      (d, i) =>
+        `<div class="card" style="transform:translateY(${i * 88}px)">${cardInnerHtml(d, c)}</div>`,
+    )
+    .join("");
 
 /* --------------------------------- styles ---------------------------------- */
 /*
@@ -94,7 +187,7 @@ const STYLES = `
   --ease: cubic-bezier(.45,.05,.25,1);
   --slot: 88px;
 }
-.ialane.panel{ width:100%; background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-md); overflow:hidden; }
+.ialane.panel{ width:100%; background:white; border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-md); overflow:hidden; }
 .ialane .panel-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 17px; border-bottom:1px solid var(--line); background:var(--card); }
 .ialane .ph-left{ display:flex; align-items:center; gap:11px; min-width:0; }
 .ialane .live{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--slate); }
@@ -104,6 +197,9 @@ const STYLES = `
 .ialane .ph-title{ font-size:13.5px; font-weight:600; }
 .ialane .ph-titlerow{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
 .ialane .ill-tag{ font-size:9.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); background:var(--bg); border:1px solid var(--line); border-radius:999px; padding:2px 7px; }
+/* Sample-data caption sitting directly above the metric tiles. Deliberately the
+   quietest text in the column — it qualifies the numbers without shouting. */
+.ialane .mc-note{ font-size:10.5px; line-height:1.35; color:var(--slate); font-weight:500; margin:-6px 0 1px; }
 .ialane .ph-sub{ font-size:11.5px; color:var(--slate); margin-top:1px; }
 .ialane .toggle{ display:inline-flex; background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:3px; gap:2px; flex:none; }
 .ialane .toggle button{ font-family:inherit; font-size:11.5px; font-weight:550; border:none; background:transparent; color:var(--slate); padding:6px 11px; border-radius:7px; cursor:pointer; transition:color .2s, background .2s; white-space:nowrap; }
@@ -139,10 +235,14 @@ const STYLES = `
 @keyframes ialane-draw{ to{stroke-dashoffset:0;} }
 .ialane .card.processing .status .spin{ width:9px; height:9px; border-radius:50%; border:1.6px solid hsl(var(--secondary) / .3); border-top-color:var(--blue); animation:ialane-spin .7s linear infinite; }
 @keyframes ialane-spin{ to{transform:rotate(360deg);} }
-.ialane .card-meta{ display:flex; align-items:center; gap:7px; min-height:16px; font-size:11.5px; color:var(--slate); }
-.ialane .meta-pre{ display:inline-flex; align-items:center; gap:7px; }
+.ialane .card-meta{ display:flex; align-items:center; gap:7px; min-height:16px; font-size:11.5px; color:var(--slate); overflow:hidden; }
+/* nowrap + flex:none: the still-hidden .meta-auto reserves layout width, which
+   squeezed "via Helpdesk · just now" onto two lines in the resting state (and on
+   every card in French). The source line now holds one line and the card's own
+   overflow clips the reveal instead. */
+.ialane .meta-pre{ display:inline-flex; align-items:center; gap:7px; flex:none; white-space:nowrap; }
 .ialane .meta-sep{ width:2.5px; height:2.5px; border-radius:50%; background:var(--slate); opacity:.55; flex:none; }
-.ialane .meta-auto{ display:inline-flex; align-items:center; gap:6px; opacity:0; transform:translateX(-4px); transition:opacity .4s var(--ease) .05s, transform .4s var(--ease) .05s; }
+.ialane .meta-auto{ display:inline-flex; align-items:center; gap:6px; white-space:nowrap; opacity:0; transform:translateX(-4px); transition:opacity .4s var(--ease) .05s, transform .4s var(--ease) .05s; }
 .ialane .card.processing .meta-auto, .ialane .card.done .meta-auto{ opacity:1; transform:none; }
 .ialane .tag{ font-weight:600; color:var(--blue); background:var(--blue-soft); padding:2px 7px; border-radius:6px; font-size:11px; }
 .ialane .route{ display:inline-flex; align-items:center; gap:4px; color:var(--ink); font-weight:500; }
@@ -159,9 +259,12 @@ const STYLES = `
 .ialane .stat-trend{ display:inline-flex; align-items:center; gap:3px; font-size:10.5px; font-weight:600; color:var(--green); }
 .ialane .stat-trend svg{ width:11px; height:11px; }
 .ialane .stat-trend.down{ color:var(--orange); }
-.ialane .stat-val{ margin-top:5px; font-size:25px; font-weight:650; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1; display:flex; align-items:baseline; gap:7px; }
-.ialane .stat-val .from{ font-size:12px; font-weight:500; color:var(--slate); }
-.ialane .stat-val .arrow{ font-size:14px; color:var(--slate); opacity:.65; font-weight:500; }
+/* Was 25px/650. These are illustrative figures, so they must not be the loudest
+   thing in the hero — dialled down to roughly the weight of a table cell so the
+   panel reads as "a product view" rather than as a results claim. */
+.ialane .stat-val{ margin-top:4px; font-size:17px; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.1; display:flex; align-items:baseline; gap:6px; }
+.ialane .stat-val .from{ font-size:11.5px; font-weight:500; color:var(--slate); }
+.ialane .stat-val .arrow{ font-size:12px; color:var(--slate); opacity:.65; font-weight:500; }
 .ialane .stat.warn{ border-color:hsl(var(--primary) / .4); background:linear-gradient(to bottom, var(--card), var(--orange-soft)); }
 .ialane .stat.warn .stat-val{ color:var(--orange); }
 .ialane .panel-foot{ display:flex; align-items:center; gap:10px; padding:11px 18px; border-top:1px solid var(--line); font-size:11.5px; color:var(--slate); background:var(--card); }
@@ -187,10 +290,17 @@ const STYLES = `
 
 export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualProps) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const { t, i18n } = useTranslation();
+  const copy = useMemo(() => buildCopy(t), [t]);
+  // The effect owns the DOM imperatively and must not re-run on every render, so
+  // it reads the current translations through a ref instead of closing over them.
+  const copyRef = useRef(copy);
+  copyRef.current = copy;
 
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    const c = () => copyRef.current;
 
     /* ---- scoped element lookups (replaces document.getElementById) ---- */
     const $ = <T extends HTMLElement = HTMLElement>(id: string): T | null =>
@@ -228,7 +338,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
     let manualAvgMin = 240;
 
     /* ----------------------------- formatters ----------------------------- */
-    const fmtComma = (n: number): string => Math.round(n).toLocaleString("en-US");
+    const fmtComma = (n: number): string => Math.round(n).toLocaleString(i18n.language);
     const fmtDur = (min: number): string => {
       if (min < 60) return Math.round(min) + "m";
       const h = Math.floor(min / 60);
@@ -284,18 +394,20 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
         if (resp) resp.textContent = "3m";
         statResp?.classList.remove("warn");
         trendwrapResp?.classList.remove("down");
-        if (trendResp) trendResp.textContent = "93% faster";
+        if (trendResp) trendResp.textContent = c().trendFaster;
         statMiss?.classList.remove("warn");
         trendwrapMiss?.classList.remove("down");
-        if (trendMiss) trendMiss.textContent = "held at zero";
+        if (trendMiss) trendMiss.textContent = c().trendHeldZero;
       } else {
         if (resp) resp.textContent = fmtDur(manualAvgMin);
         statResp?.classList.add("warn");
         trendwrapResp?.classList.add("down");
-        if (trendResp) trendResp.textContent = "climbing";
+        if (trendResp) trendResp.textContent = c().trendClimbing;
         statMiss?.classList.toggle("warn", stats.miss > 0);
         trendwrapMiss?.classList.toggle("down", stats.miss > 0);
-        if (trendMiss) trendMiss.textContent = stats.miss > 0 ? "rising" : "at risk";
+        if (trendMiss) {
+          trendMiss.textContent = stats.miss > 0 ? c().trendMissRising : c().trendAtRisk;
+        }
       }
     }
 
@@ -307,7 +419,8 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
     }
 
     function nextTask(): TaskDef {
-      const d = TASKS[pickIdx % TASKS.length];
+      const tasks = c().tasks;
+      const d = tasks[pickIdx % tasks.length];
       pickIdx++;
       return d;
     }
@@ -315,19 +428,9 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
     function makeCard(d: TaskDef): Card {
       const el = document.createElement("div");
       el.className = "card";
-      el.innerHTML =
-        '<div class="scan"></div><div class="card-top"><span class="tdot"></span><span class="ttl">' +
-        d.t +
-        '</span><span class="status"><span class="spin" style="display:none"></span><span class="slabel">Queued</span>' +
-        CHECK_SVG +
-        '</span></div><div class="card-meta"><span class="meta-pre">' +
-        d.src +
-        '<span class="meta-sep"></span>just now</span><span class="meta-auto"><span class="meta-sep"></span><span class="tag">' +
-        d.tag +
-        '</span><span class="route">' +
-        ROUTE_SVG +
-        d.route +
-        "</span></span></div>";
+      // Same builder as the SSR resting state, so the mounted lane is markup-
+      // identical to what crawlers and no-JS visitors get.
+      el.innerHTML = cardInnerHtml(d, c());
       return { el, data: d, busy: false, gone: false };
     }
 
@@ -336,7 +439,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
         cards[i].el.style.transform = "translateY(" + i * SLOT + "px)";
       }
       const n = cards.length;
-      if (queueCount) queueCount.textContent = n + " active";
+      if (queueCount) queueCount.textContent = c().active.replace("{{count}}", String(n));
     }
 
     function spawn(): Card {
@@ -369,17 +472,21 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       if (sp) sp.style.display = showSpin ? "inline-block" : "none";
     }
 
-    function goOverdue(c: Card): void {
-      if (c.gone || mode !== "manual") return;
-      c.el.classList.add("overdue");
-      setStatus(c, "Overdue", false);
-      const pre = c.el.querySelector<HTMLElement>(".meta-pre");
+    function goOverdue(card: Card): void {
+      if (card.gone || mode !== "manual") return;
+      card.el.classList.add("overdue");
+      setStatus(card, c().statusOverdue, false);
+      const pre = card.el.querySelector<HTMLElement>(".meta-pre");
       if (pre) {
         pre.innerHTML =
-          c.data.src +
-          '<span class="meta-sep"></span><span style="color:var(--orange);font-weight:600">SLA breached</span>';
+          esc(card.data.src) +
+          '<span class="meta-sep"></span><span style="color:var(--orange);font-weight:600">' +
+          esc(c().slaBreached) +
+          "</span>";
       }
-      if (c.data.tag === "#success") {
+      // The onboarding task is the one that trips the "misses" counter; it is
+      // identified by its position in the list, not by its (translated) tag.
+      if (card.data === c().tasks[3]) {
         stats.miss += 1;
         renderStats();
       }
@@ -411,13 +518,13 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       }
       c.busy = true;
       c.el.classList.add("processing");
-      setStatus(c, "Processing", true);
+      setStatus(c, copyRef.current.statusProcessing, true);
       timers.push(
         setTimeout(() => {
           if (c.gone) return;
           c.el.classList.remove("processing");
           c.el.classList.add("done");
-          setStatus(c, "Done", false);
+          setStatus(c, copyRef.current.statusDone, false);
           timers.push(
             setTimeout(() => {
               if (c.gone) return;
@@ -471,9 +578,8 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       clearAll();
       lane!.classList.remove("manual");
       foot!.classList.remove("manual");
-      phSub!.textContent = "Clearing in real time";
-      footText!.innerHTML =
-        "<b>Nothing piling up.</b> New work is tagged, routed and closed as it arrives.";
+      phSub!.textContent = c().subAuto;
+      footText!.innerHTML = `<b>${esc(c().footAutoLead)}</b> ${esc(c().footAutoRest)}`;
       manualAvgMin = 240;
       stats.miss = 0;
       renderStats();
@@ -491,9 +597,8 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       clearAll();
       lane!.classList.add("manual");
       foot!.classList.add("manual");
-      phSub!.textContent = "Backlog growing";
-      footText!.innerHTML =
-        "<b>Work is piling up.</b> Tasks wait, breach SLA and turn overdue — nothing routes itself.";
+      phSub!.textContent = c().subManual;
+      footText!.innerHTML = `<b>${esc(c().footManualLead)}</b> ${esc(c().footManualRest)}`;
       renderStats();
       spawn();
       spawn();
@@ -510,9 +615,8 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       mode = "auto";
       lane!.classList.remove("manual");
       foot!.classList.remove("manual");
-      phSub!.textContent = "Clearing in real time";
-      footText!.innerHTML =
-        "<b>Nothing piling up.</b> New work is tagged, routed and closed as it arrives.";
+      phSub!.textContent = c().subAuto;
+      footText!.innerHTML = `<b>${esc(c().footAutoLead)}</b> ${esc(c().footAutoRest)}`;
       lane!.innerHTML = "";
       cards = [];
 
@@ -523,8 +627,8 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
 
       // Seed one finished card and one idle queued card for a calm snapshot.
       doneCard.el.classList.add("done");
-      setStatus(doneCard, "Done", false);
-      setStatus(idleCard, "Queued", false);
+      setStatus(doneCard, c().statusDone, false);
+      setStatus(idleCard, c().statusQueued, false);
 
       renderStats();
     }
@@ -570,7 +674,9 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       cards = [];
       if (lane) lane.innerHTML = "";
     };
-  }, []);
+    // Restart the lane on a language switch so the cards already on screen are
+    // rebuilt in the new locale rather than stranded in the old one.
+  }, [i18n.language]);
 
   /* ------------------------------ resting DOM ---------------------------- */
   /*
@@ -595,20 +701,22 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
           </span>
           <div>
             <div className="ph-titlerow">
-              <span className="ph-title">Automation lane</span>
-              <span className="ill-tag">Illustrative</span>
+              {/* "Sample: automation queue" — names this as an example product
+                  view rather than a dashboard of real client numbers. */}
+              <span className="ph-title">{copy.title}</span>
+              <span className="ill-tag">{copy.illustrative}</span>
             </div>
             <div className="ph-sub" id="ialane-phSub">
-              Clearing in real time
+              {copy.subAuto}
             </div>
           </div>
         </div>
         <div className="toggle" id="ialane-toggle">
           <button type="button" tabIndex={-1} data-mode="manual">
-            Without automation
+            {copy.toggleManual}
           </button>
           <button type="button" tabIndex={-1} data-mode="auto" className="on">
-            With Innoviaburst
+            {copy.toggleAuto}
           </button>
         </div>
       </div>
@@ -616,9 +724,9 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       <div className="panel-body">
         <div className="lane-col">
           <div className="lane-label">
-            <span>Incoming queue</span>
+            <span>{copy.laneLabel}</span>
             <span className="count" id="ialane-queueCount">
-              2 active
+              {copy.active.replace("{{count}}", "2")}
             </span>
           </div>
           {/* Seeded resting cards so crawlers / no-JS see real structure.
@@ -628,16 +736,20 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
             className="lane"
             id="ialane-lane"
             suppressHydrationWarning
-            dangerouslySetInnerHTML={{ __html: SEEDED_LANE_HTML }}
+            dangerouslySetInnerHTML={{ __html: seededLaneHtml(copy) }}
           />
         </div>
 
         <div className="mc">
-          <div className="mc-head">Mission control</div>
+          {/* Was "Mission control" over 25px figures, which read as a results
+              claim. Now headed as sample figures, with the caption directly
+              above the tiles and the numbers dialled down (see .stat-val). */}
+          <div className="mc-head">{copy.metricsHead}</div>
+          <p className="mc-note">{copy.sampleNote}</p>
 
           <div className="stat" id="ialane-stat-handled">
             <div className="stat-top">
-              <span className="stat-label">Tasks handled today</span>
+              <span className="stat-label">{copy.statHandled}</span>
               <span className="stat-trend">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -648,7 +760,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span id="ialane-trend-handled">live</span>
+                <span id="ialane-trend-handled">{copy.trendLive}</span>
               </span>
             </div>
             <div className="stat-val">
@@ -658,7 +770,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
 
           <div className="stat" id="ialane-stat-resp">
             <div className="stat-top">
-              <span className="stat-label">Avg response time</span>
+              <span className="stat-label">{copy.statResp}</span>
               <span className="stat-trend down" id="ialane-trendwrap-resp">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -669,7 +781,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span id="ialane-trend-resp">93% faster</span>
+                <span id="ialane-trend-resp">{copy.trendFaster}</span>
               </span>
             </div>
             <div className="stat-val">
@@ -681,7 +793,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
 
           <div className="stat" id="ialane-stat-hours">
             <div className="stat-top">
-              <span className="stat-label">Hours saved this week</span>
+              <span className="stat-label">{copy.statHours}</span>
               <span className="stat-trend">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -692,7 +804,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>+ rising</span>
+                <span>{copy.trendRising}</span>
               </span>
             </div>
             <div className="stat-val">
@@ -702,7 +814,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
 
           <div className="stat" id="ialane-stat-miss">
             <div className="stat-top">
-              <span className="stat-label">Onboarding misses</span>
+              <span className="stat-label">{copy.statMiss}</span>
               <span className="stat-trend" id="ialane-trendwrap-miss">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -714,7 +826,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
                     transform="rotate(180 12 12)"
                   />
                 </svg>
-                <span id="ialane-trend-miss">held at zero</span>
+                <span id="ialane-trend-miss">{copy.trendHeldZero}</span>
               </span>
             </div>
             <div className="stat-val">
@@ -727,8 +839,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       <div className="panel-foot" id="ialane-foot">
         <span className="fdot" />
         <span id="ialane-footText">
-          <b>Nothing piling up.</b> New work is tagged, routed and closed as it
-          arrives.
+          <b>{copy.footAutoLead}</b> {copy.footAutoRest}
         </span>
       </div>
     </div>

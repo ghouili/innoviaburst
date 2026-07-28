@@ -38,7 +38,7 @@ export function ContactSection({ onBookingClick }: ContactSectionProps) {
               onClick={handleBookCall}
               className="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] gap-2 text-sm sm:text-base px-5 sm:px-8"
             >
-              {t("contact.primaryCta", "Request an automation plan")}
+              {t("contact.primaryCta", "Get a fixed scope in 48h")}
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
             <Button 
