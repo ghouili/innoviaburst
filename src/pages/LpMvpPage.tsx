@@ -212,7 +212,7 @@ export default function LpMvpPage() {
                     </div>
                   ))}
                 </div>
-                <p className="text-xs italic text-muted-foreground">— {t("lpMvp.proof.note")}</p>
+                <p className="text-xs italic text-muted-foreground">{t("lpMvp.proof.note")}</p>
               </Reveal>
             </div>
           </section>

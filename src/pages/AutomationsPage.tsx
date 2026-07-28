@@ -715,7 +715,7 @@ export default function AutomationsPage() {
               <NewsletterForm
                 placement="library"
                 headline="Get new automations in your inbox"
-                description="We publish new workflow templates monthly. Subscribe to get notified—plus early access to pilot programmes."
+                description="We publish new workflow templates monthly. Subscribe to get notified, plus early access to pilot programmes."
                 buttonText="Subscribe"
                 shortConsent
               />

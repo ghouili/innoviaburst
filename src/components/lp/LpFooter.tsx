@@ -57,9 +57,9 @@ export function LpFooter() {
         {ORG_FACTS.legalName && (
           <p className="mt-8 border-t border-background/10 pt-6 text-xs text-background/55">
             {ORG_FACTS.legalName}
-            {ORG_FACTS.vatId ? ` — ${t("footer.companyNo")} ${ORG_FACTS.vatId}` : ""}
+            {ORG_FACTS.vatId ? `, ${t("footer.companyNo")} ${ORG_FACTS.vatId}` : ""}
             {hasAddress()
-              ? ` — ${t("footer.registeredOffice")}: ${[
+              ? `, ${t("footer.registeredOffice")}: ${[
                   ORG_FACTS.address.streetAddress,
                   ORG_FACTS.address.addressLocality,
                   ORG_FACTS.address.addressRegion,

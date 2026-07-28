@@ -727,7 +727,7 @@ export default function ResourcesPage() {
                       >
                         <a
                           href={resource.href}
-                          aria-label={`${resource.ctaLabel} — ${resource.title}`}
+                          aria-label={`${resource.ctaLabel}, ${resource.title}`}
                         >
                           {resource.ctaLabel}
                           <ArrowRight className="w-4 h-4 ml-2" />
@@ -786,7 +786,7 @@ export default function ResourcesPage() {
                   >
                     <a
                       href={resource.href}
-                      aria-label={`${resource.ctaLabel} — ${resource.title}`}
+                      aria-label={`${resource.ctaLabel}, ${resource.title}`}
                     >
                       {resource.ctaLabel}
                       <ArrowRight className="w-4 h-4 ml-2" />
