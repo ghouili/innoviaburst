@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/innoviaburst-logo.webp";
 import { openCookieSettings } from "@/components/CookieConsent";
-import { ORG_FACTS, hasAddress } from "@/seo/org-facts";
+import { ORG_FACTS, hasAddress, hasSecondaryAddress } from "@/seo/org-facts";
 
 /**
  * Minimal landing-page footer: brand + legal essentials only (privacy, cookies,
@@ -65,6 +65,15 @@ export function LpFooter() {
                   ORG_FACTS.address.addressRegion,
                   ORG_FACTS.address.postalCode,
                   ORG_FACTS.address.addressCountry,
+                ]
+                  .filter(Boolean)
+                  .join(", ")}`
+              : ""}
+            {hasSecondaryAddress()
+              ? `. ${t("footer.alsoAt")}: ${[
+                  ORG_FACTS.secondaryAddress!.streetAddress,
+                  ORG_FACTS.secondaryAddress!.addressLocality,
+                  ORG_FACTS.secondaryAddress!.addressCountry,
                 ]
                   .filter(Boolean)
                   .join(", ")}`

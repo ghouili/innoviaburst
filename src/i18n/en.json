@@ -857,8 +857,7 @@
     "social": {
       "email": "Email us",
       "linkedin": "LinkedIn",
-      "instagram": "Instagram",
-      "twitter": "Twitter / X"
+      "instagram": "Instagram"
     },
     "bottom": {
       "copyright": "© {{year}} InnoviaBurst. All rights reserved.",
@@ -2836,7 +2835,7 @@
     "sections": {
       "whoWeAre": {
         "title": "1. Who We Are",
-        "body": "InnoviaBurst Ltd (\"we\", \"us\", \"our\") is a company registered in England and Wales (Company No. XXXXXXXX). We are the data controller for personal data collected through this website and our services.",
+        "body": "InnoviaBurst (\"we\", \"us\", \"our\") is a company registered in Tunisia (Tax ID 1985775/A/M/000), with its registered office at Rue Habib Thameur, Résidence Haj Dahman, Étage 1, Jendouba Sud 8100, Tunisia. We are the data controller for personal data collected through this website and our services.",
         "contact": "Contact: hello@innoviaburst.com"
       },
       "whatWeCollect": {
@@ -2936,7 +2935,7 @@
       },
       "aboutUs": {
         "title": "2. About Us",
-        "body": "InnoviaBurst Ltd is a company registered in England and Wales (Company No. XXXXXXXX). Registered office: [Address placeholder]."
+        "body": "InnoviaBurst is a company registered in Tunisia (Tax ID 1985775/A/M/000). Registered office: Rue Habib Thameur, Résidence Haj Dahman, Étage 1, Jendouba Sud 8100, Tunisia."
       },
       "services": {
         "title": "3. Services",
@@ -2954,7 +2953,7 @@
       },
       "ip": {
         "title": "5. Intellectual Property",
-        "body": "All content on this website (text, graphics, logos, images) is owned by or licensed to InnoviaBurst Ltd. You may not reproduce, distribute, or modify this content without permission."
+        "body": "All content on this website (text, graphics, logos, images) is owned by or licensed to InnoviaBurst. You may not reproduce, distribute, or modify this content without permission."
       },
       "liability": {
         "title": "6. Limitation of Liability",
