@@ -546,6 +546,22 @@
         {
           "question": "How do we become a training partner?",
           "answer": "Use Become a training partner. Tell us what you deliver, your accreditations and which tracks you can co-deliver. We review every application and reply either way."
+        },
+        {
+          "question": "What is corporate AI training?",
+          "answer": "Corporate AI training is hands-on upskilling that teaches your team to use AI, automation and modern development safely inside your real workflows, covering practical tools alongside AI governance and compliance, rather than generic theory."
+        },
+        {
+          "question": "How long is a workshop or a cohort?",
+          "answer": "Workshops run as focused half-day or full-day sessions for a small group. Cohorts run as multi-week, build-alongside programmes for a whole team. We right-size the length to your team's level on the scoping call."
+        },
+        {
+          "question": "How much does corporate AI training cost?",
+          "answer": "Training is priced per programme, based on the tracks, format and group size, and agreed in writing before booking. Tell us your tracks and preferred dates and we come back with a fixed quote, usually within two working days."
+        },
+        {
+          "question": "Workshop or cohort: which format suits my team?",
+          "answer": "Choose a workshop for a small group that needs one focused skill in a single session. Choose a cohort when a whole team needs durable capability built over several weeks alongside their real work."
         }
       ]
     },
@@ -969,7 +985,7 @@
     "title": "Automation",
     "titleHighlight": "Library",
     "subtitle": "Example workflows we build for UK/EU businesses. Each shows delivery time, tools, and expected impact.",
-    "metaTitle": "Automation Library | Innoviaburst",
+    "metaTitle": "AI Workflow Automation for UK & EU SMEs | Innoviaburst",
     "metaDescription": "Browse 10+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts.",
     "backToHome": "Back to home",
     "searchPlaceholder": "Search automations...",
@@ -1056,6 +1072,10 @@
         {
           "q": "Is AI automation GDPR and EU AI Act ready?",
           "a": "Yes. Every build is GDPR-by-design with least-privilege access, clear data-retention notes, and an audit trail from day one. Work is scoped to stay clear of prohibited EU AI Act use cases."
+        },
+        {
+          "q": "AI Ops Sprint vs Automation Build: which do I need?",
+          "a": "Choose the AI Ops Sprint to automate one workflow or ship one AI copilot in about 10 business days, ideal for a quick proof of value. Choose the Automation Build for production-grade automation across three to five connected tools, with approvals, monitoring and error handling, over four to six weeks."
         }
       ]
     },
@@ -1938,6 +1958,7 @@
     "ai-ops-sprint": {
       "seoTitle": "Workflow Automation Sprint: Automate One Workflow in 10 Days | Innoviaburst",
       "seoDescription": "Fixed-scope workflow automation and AI copilots for UK and EU ops teams. Ship one automation live inside your existing tools in 10 business days, GDPR and EU AI Act-ready from day one.",
+      "noPriceAnswer": "Pricing is fixed and agreed before any work begins, with no hourly rates or surprises. Scope is locked at kickoff and the Sprint runs over 10 business days. You get the exact figure on a short scoping call, and invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms.",
       "title": "AI Ops Sprint",
       "subheading": "Workflow automation & AI copilots for UK and EU ops teams",
       "timeline": "10 business days",
@@ -2063,6 +2084,7 @@
     "automation-build": {
       "seoTitle": "Automation Build: Production Workflow Automation for UK & EU SMEs | Innoviaburst",
       "seoDescription": "Production-grade workflow automation connecting 3 to 5 of your tools, with approvals, monitoring, and error handling. Fixed scope, delivered in 4 to 6 weeks, GDPR and EU AI Act-ready.",
+      "noPriceAnswer": "Pricing is fixed and agreed before any work begins, set by the number of systems and complexity, with no hourly rates. Scope is locked after the discovery workshop and the build runs over 4 to 6 weeks. You get the exact figure before committing, and invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms.",
       "title": "Automation Build",
       "subheading": "Production-grade workflow automation for UK & EU SMEs",
       "timeline": "4-6 weeks",
@@ -2193,6 +2215,7 @@
       "title": "MVP Launch",
       "seoTitle": "MVP Development: Build an Investor-Ready MVP in Weeks | Innoviaburst",
       "seoDescription": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one.",
+      "noPriceAnswer": "Pricing is fixed and agreed before any work begins, set by the scope confirmed in the discovery, with no hourly rates or surprises. You get the exact figure before committing, invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and you own the code and IP on completion.",
       "eyebrow": "MVP Launch: fixed-scope MVP development for European startups & SMEs",
       "subheading": "MVP development for European startups & SMEs",
       "timeline": "6-10 weeks",
@@ -2323,6 +2346,14 @@
         {
           "q": "How much does the MVP Launch cost?",
           "a": "Pricing is fixed and agreed before any work begins: {{price}}, set by the scope confirmed in the discovery workshop. There are no hourly rates or surprises. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and you receive full ownership of the codebase on completion."
+        },
+        {
+          "q": "What is an MVP?",
+          "a": "An MVP, or minimum viable product, is the smallest version of a product that proves your core idea with real users. It includes the essential features needed to validate one hypothesis and learn quickly, rather than a full feature set."
+        },
+        {
+          "q": "MVP vs full product: when should I build an MVP?",
+          "a": "Build an MVP when you need to validate one hypothesis with real users fast, in weeks and at fixed scope. Move to a fuller product once the core is proven and demand for more features, scale or integrations is clear."
         }
       ],
       "howWeBuild": {

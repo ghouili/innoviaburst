@@ -391,7 +391,8 @@ export default function AutomationsPage() {
       websiteJsonLd(),
       breadcrumbJsonLd([
         { name: "Home", url: siteUrl },
-        { name: t("automationsPage.metaTitle"), url: `${siteUrl}/automations` },
+        // Short breadcrumb label (the meta title is now a long keyword phrase).
+        { name: t("nav.automations"), url: `${siteUrl}/automations` },
       ]),
       ...(Array.isArray(faqItems) && faqItems.length
         ? [faqJsonLd(faqItems.map((f) => ({ question: f.q, answer: f.a })))]

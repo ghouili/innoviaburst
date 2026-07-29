@@ -124,7 +124,9 @@ export default function OfferPage() {
           a: SHOW_PRICING
             ? x.a.replace(/\{\{price\}\}/g, priceInline(slug))
             : x.a.includes("{{price}}")
-              ? t("offers.noPriceAnswer")
+              // Per-offer, figure-free process answer (unique per page, keeps the
+              // "how much" answer rich). Falls back to the generic sentence.
+              ? t(`offerDetails.${slug}.noPriceAnswer`, { defaultValue: t("offers.noPriceAnswer") })
               : x.a,
         })),
         faq: t(`offerDetails.${slug}.faq`, { returnObjects: true }) as { q: string; a: string }[],
