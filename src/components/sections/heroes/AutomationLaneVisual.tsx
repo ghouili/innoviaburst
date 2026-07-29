@@ -285,6 +285,11 @@ const STYLES = `
 /* Reduced-motion guard intentionally removed: this decorative hero is a
    showcase that animates for every visitor (see ALWAYS_ANIMATE in the effect).
    Restore this block alongside ALWAYS_ANIMATE=false to re-gate the pulse/scan. */
+/* Auto-stop resting state: once the showcase has played (data-stopped set by the
+   effect), freeze the remaining continuous motion so the settled panel is fully
+   still — this is what keeps the hero within WCAG 2.2.2. */
+.ialane[data-stopped] .live .beat::after{ animation:none; }
+.ialane[data-stopped] .scan{ animation:none; opacity:0; }
 `;
 
 export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualProps) {
@@ -317,6 +322,9 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
     const SLOT = 88;
     const MAX_AUTO = 5;
     const MAX_MANUAL = 9;
+    // The showcase plays for this long, then stops and settles. Kept under the
+    // WCAG 2.2.2 "more than 5 seconds" threshold so no pause control is needed.
+    const AUTO_STOP_MS = 5000;
 
     interface Card {
       el: HTMLDivElement;
@@ -332,6 +340,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
     let pickIdx = 0;
     let driftTimer: ReturnType<typeof setTimeout> | null = null;
     let manualTimer: ReturnType<typeof setTimeout> | null = null;
+    let autoStopTimer: ReturnType<typeof setTimeout> | null = null;
 
     const stats = { handled: 1248, hours: 37, miss: 0, resolves: 0 };
     let manualAvgMin = 240;
@@ -677,6 +686,38 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       renderStats();
     }
 
+    /**
+     * Auto-stop for the showcase: after AUTO_STOP_MS, halt every loop, freeze the
+     * remaining continuous motion (the live pulse, via the data-stopped hook —
+     * which React won't strip on re-render the way a className would), and rest
+     * on a clean settled snapshot of the current mode. This bounds all
+     * auto-started motion to under the WCAG 2.2.2 threshold, so no pause control
+     * is required; a page refresh replays it.
+     */
+    function stopAndSettle(): void {
+      const wasManual = mode === "manual";
+      timers.forEach(clearTimeout);
+      timers = [];
+      if (driftTimer) {
+        clearTimeout(driftTimer);
+        driftTimer = null;
+      }
+      if (manualTimer) {
+        clearTimeout(manualTimer);
+        manualTimer = null;
+      }
+      rafs.forEach((id) => cancelAnimationFrame(id));
+      rafs.length = 0;
+      root.setAttribute("data-stopped", "true");
+      if (wasManual) renderReducedMotionStaticManual();
+      else renderReducedMotionStatic();
+    }
+
+    function scheduleAutoStop(): void {
+      if (autoStopTimer) clearTimeout(autoStopTimer);
+      autoStopTimer = setTimeout(stopAndSettle, AUTO_STOP_MS);
+    }
+
     /* ------------------------------ toggle wiring ------------------------- */
     const onToggleClick = (e: MouseEvent): void => {
       const target = e.target as HTMLElement | null;
@@ -688,8 +729,12 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
         b.classList.remove("on");
       });
       btn.classList.add("on");
+      // A user switch restarts motion, so clear the stopped state and re-arm the
+      // auto-stop, keeping each interaction bounded under the 2.2.2 threshold.
+      root.removeAttribute("data-stopped");
       if (m === "auto") startAuto();
       else startManual();
+      scheduleAutoStop();
     };
 
     // Reduced-motion variant: swap the static snapshot instead of starting the
@@ -731,6 +776,8 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       toggle.addEventListener("click", onToggleClick);
       renderStats();
       startAuto();
+      // Play the showcase, then stop and settle after AUTO_STOP_MS.
+      scheduleAutoStop();
     }
 
     /* -------------------------------- cleanup ----------------------------- */
@@ -741,6 +788,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       timers = [];
       if (driftTimer) clearTimeout(driftTimer);
       if (manualTimer) clearTimeout(manualTimer);
+      if (autoStopTimer) clearTimeout(autoStopTimer);
       rafs.forEach((id) => cancelAnimationFrame(id));
       cards = [];
       if (lane) lane.innerHTML = "";
