@@ -272,62 +272,6 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
               {t("offers.swipeHint", "← Swipe to compare →")}
             </p>
             <div className="overflow-x-auto bg-card rounded-xl border border-border p-4 scrollbar-hide">
-              {/* <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="py-4 px-4 text-left font-semibold text-foreground">
-                      Feature
-                    </th>
-                    <th className="py-4 px-4 text-center font-semibold text-foreground">
-                      AI Ops Sprint
-                    </th>
-                    <th className="py-4 px-4 text-center font-semibold text-accent-strong">
-                      Automation Build
-                    </th>
-                    <th className="py-4 px-4 text-center font-semibold text-foreground">
-                      MVP Launch
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="text-muted-foreground">
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4">Timeline</td>
-                    <td className="py-3 px-4 text-center">10 days</td>
-                    <td className="py-3 px-4 text-center">4–6 weeks</td>
-                    <td className="py-3 px-4 text-center">6–10 weeks</td>
-                  </tr>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4">Starting price</td>
-                    <td className="py-3 px-4 text-center">£5k</td>
-                    <td className="py-3 px-4 text-center">£15k</td>
-                    <td className="py-3 px-4 text-center">£25k</td>
-                  </tr>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4">Multi-system integration</td>
-                    <td className="py-3 px-4 text-center">1 system</td>
-                    <td className="py-3 px-4 text-center">Multiple</td>
-                    <td className="py-3 px-4 text-center">Multiple</td>
-                  </tr>
-                  <tr className="border-b border-border/50">
-                    <td className="py-3 px-4">Documentation</td>
-                    <td className="py-3 px-4 text-center">Lightweight</td>
-                    <td className="py-3 px-4 text-center">Full</td>
-                    <td className="py-3 px-4 text-center">Full</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4">Best for</td>
-                    <td className="py-3 px-4 text-center text-xs">
-                      Quick wins
-                    </td>
-                    <td className="py-3 px-4 text-center text-xs">
-                      Complex workflows
-                    </td>
-                    <td className="py-3 px-4 text-center text-xs">
-                      New products
-                    </td>
-                  </tr>
-                </tbody>
-              </table> */}
               <OffersComparisonTable />
             </div>
           </CollapsibleContent>

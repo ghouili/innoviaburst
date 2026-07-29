@@ -40,6 +40,7 @@ import {
   websiteJsonLd,
   serviceJsonLd,
   faqJsonLd,
+  howToJsonLd,
 } from "@/seo/jsonld";
 
 interface CopyItem {
@@ -100,8 +101,17 @@ export default function TrainingPage() {
       ...(Array.isArray(faq) && faq.length
         ? [faqJsonLd(faq.map((f) => ({ question: f.question, answer: f.answer })))]
         : []),
+      ...(Array.isArray(steps) && steps.length
+        ? [
+            howToJsonLd({
+              name: t("trainingPage.how.heading"),
+              description: t("trainingPage.schema.serviceDescription"),
+              steps: steps.map((s) => ({ name: s.title, text: s.description })),
+            }),
+          ]
+        : []),
     ],
-    [t, faq]
+    [t, faq, steps]
   );
 
   return (

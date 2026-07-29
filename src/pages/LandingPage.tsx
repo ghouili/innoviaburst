@@ -39,6 +39,9 @@ const LandingPage = () => {
         title={t("seo.lp.title")}
         description={t("seo.lp.description")}
         canonicalPath="/lp/ai-automation"
+        // Paid-ads page: keep it out of the index to match its noindex flag in
+        // scripts/site-content.mjs (which already excludes it from the sitemap).
+        robots="noindex, nofollow"
         jsonLd={[
           orgJsonLd(),
           websiteJsonLd(),

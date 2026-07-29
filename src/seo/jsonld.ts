@@ -181,6 +181,29 @@ export const faqJsonLd = (items: { question: string; answer: string }[]) => ({
 });
 
 /**
+ * HowTo schema for a described process (offer delivery, training booking).
+ * Google retired HowTo rich results, so this mainly helps answer engines and
+ * entity understanding grasp the process; it is structurally valid HowTo. Steps
+ * with an empty name fall back to their text so `name` is never blank.
+ */
+export const howToJsonLd = (params: {
+  name: string;
+  description?: string;
+  steps: { name: string; text: string }[];
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: params.name,
+  ...(params.description ? { description: params.description } : {}),
+  step: params.steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.name || s.text,
+    text: s.text,
+  })),
+});
+
+/**
  * Reusable Article schema (case studies now; blog/resources later). Author and
  * publisher default to the sitewide org entity (@id graph). `url` is localized to
  * the active locale. Omitted optional fields are simply not emitted.

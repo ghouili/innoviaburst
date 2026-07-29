@@ -17,7 +17,7 @@ import { OfferProofStrip } from "@/components/offer/OfferProofStrip";
 import { FounderNote } from "@/components/offer/FounderNote";
 import { FeatureRow } from "@/components/offer/FeatureRow";
 import { MvpHero } from "@/components/offer/MvpHero";
-import { breadcrumbJsonLd, faqJsonLd, orgJsonLd, serviceJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, faqJsonLd, howToJsonLd, orgJsonLd, serviceJsonLd, websiteJsonLd } from "@/seo/jsonld";
 // Phase 8: pricing comes from the single source of truth (EUR primary + GBP).
 import { OFFERS, priceEUR, priceGBP, priceInline, schemaOffers, SHOW_PRICING } from "@/data/offers";
 
@@ -165,6 +165,21 @@ export default function OfferPage() {
       ])
     : null;
 
+  // HowTo schema for the delivery process — mirrors the visible "how it works"
+  // steps 1:1 (per-offer stages when written, else the generic steps).
+  const processSteps: { title: string; body: string }[] = offer
+    ? offer.howWeBuild?.stages ??
+      (t("offerPage.ui.howItWorks.steps", { returnObjects: true }) as string[]).map((s) => ({ title: "", body: s }))
+    : [];
+  const howToSchema =
+    offer && processSteps.length
+      ? howToJsonLd({
+          name: offer.howWeBuild?.title ?? t("offerPage.ui.howItWorks.title"),
+          description: offer.heroDescription,
+          steps: processSteps.map((s) => ({ name: s.title, text: s.body })),
+        })
+      : null;
+
   if (!offer) {
     return (
       <>
@@ -202,6 +217,7 @@ export default function OfferPage() {
           ...(breadcrumbSchema ? [breadcrumbSchema] : []),
           ...(serviceSchema ? [serviceSchema] : []),
           ...(faqSchema ? [faqSchema] : []),
+          ...(howToSchema ? [howToSchema] : []),
         ]}
       />
 

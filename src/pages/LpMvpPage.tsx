@@ -18,7 +18,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { SeoHead, siteUrl } from "@/components/SeoHead";
-import { orgJsonLd, websiteJsonLd, breadcrumbJsonLd } from "@/seo/jsonld";
+import { orgJsonLd, websiteJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/seo/jsonld";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
 import {
@@ -119,6 +119,9 @@ export default function LpMvpPage() {
             { name: "Home", url: siteUrl },
             { name: "Build your MVP", url: `${siteUrl}/lp/mvp` },
           ]),
+          // The FAQ answers are already on the page; expose them as structured
+          // Q&A so answer engines can extract them.
+          faqJsonLd(faqItems.map((f) => ({ question: f.q, answer: f.a }))),
         ]}
       />
 
@@ -366,7 +369,20 @@ export default function LpMvpPage() {
                       <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:no-underline">
                         {item.q}
                       </AccordionTrigger>
-                      <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                      {/*
+                        forceMount keeps every answer in the served HTML. Radix
+                        unmounts closed content by default, which would leave the
+                        FAQPage schema below declaring answers that are not on
+                        the page: markup for absent content is a structured-data
+                        policy violation, not just a missed rich result. The
+                        answer is hidden from the closed panel via CSS instead,
+                        the same way the offer-page FAQ keeps its answers
+                        crawlable while collapsed.
+                      */}
+                      <AccordionContent
+                        forceMount
+                        className="text-sm leading-relaxed text-muted-foreground [[data-state=closed]_&]:hidden"
+                      >
                         {item.a}
                       </AccordionContent>
                     </AccordionItem>
