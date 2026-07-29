@@ -67,12 +67,6 @@
     <priority>0.40</priority>
   </url>
   <url>
-    <loc>https://innoviaburst.com/en/coming-soon</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.30</priority>
-  </url>
-  <url>
     <loc>https://innoviaburst.com/en/ai-ops-sprint</loc>
     <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -155,12 +149,6 @@
     <lastmod>2026-06-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.40</priority>
-  </url>
-  <url>
-    <loc>https://innoviaburst.com/fr/coming-soon</loc>
-    <lastmod>2026-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.30</priority>
   </url>
   <url>
     <loc>https://innoviaburst.com/fr/ai-ops-sprint</loc>

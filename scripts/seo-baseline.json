@@ -54,11 +54,6 @@
     "canonical": "https://innoviaburst.com/en/terms",
     "description": "Innoviaburst Terms of Service: terms and conditions for using our website and services."
   },
-  "/en/coming-soon": {
-    "title": "Coming Soon | InnoviaBurst",
-    "canonical": "https://innoviaburst.com/en/coming-soon",
-    "description": "We&#x27;re building this page to help you pick the right automation faster."
-  },
   "/en/ai-ops-sprint": {
     "title": "AI Ops Sprint | Innoviaburst",
     "canonical": "https://innoviaburst.com/en/ai-ops-sprint",
@@ -128,11 +123,6 @@
     "title": "Conditions d’utilisation | Innoviaburst",
     "canonical": "https://innoviaburst.com/fr/terms",
     "description": "Conditions d’utilisation d’Innoviaburst — conditions générales d’utilisation de notre site et de nos services."
-  },
-  "/fr/coming-soon": {
-    "title": "Bientôt disponible | InnoviaBurst",
-    "canonical": "https://innoviaburst.com/fr/coming-soon",
-    "description": "Nous construisons cette page pour vous aider à choisir la bonne automatisation plus rapidement."
   },
   "/fr/ai-ops-sprint": {
     "title": "AI Ops Sprint | Innoviaburst",

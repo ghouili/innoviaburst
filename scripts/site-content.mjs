@@ -39,7 +39,9 @@ export const flatRoutes = [
   // Coming-soon listing — noindex (out of sitemap) until real cases exist, but
   // still 301s legacy flat /works -> /en/works (not a newRoute).
   { path: "/works", source: "src/pages/WorkPage.tsx", changefreq: "monthly", priority: 0.7, noindex: true },
-  { path: "/coming-soon", source: "src/pages/ComingSoonPage.tsx", changefreq: "monthly", priority: 0.3 },
+  // Emits noindex,nofollow (it's a placeholder state), so keep it OUT of the
+  // sitemap to match its robots meta — same rule as the case-study routes.
+  { path: "/coming-soon", source: "src/pages/ComingSoonPage.tsx", changefreq: "monthly", priority: 0.3, noindex: true },
   // Campaign landing page — pre-rendered + indexable-ready, but kept OUT of the
   // sitemap (noindex flag) until launch is confirmed. Reached via the /en/ URL.
   { path: "/lp/ai-automation", source: "src/pages/LandingPage.tsx", changefreq: "monthly", priority: 0.5, noindex: true, newRoute: true },

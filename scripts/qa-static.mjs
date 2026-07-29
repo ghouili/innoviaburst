@@ -1,6 +1,7 @@
 // Phase 11 QA — static checks over the pre-rendered (no-JS) build.
 import { readFileSync, existsSync } from "node:fs";
 import path from "node:path";
+import { sitemapRoutes } from "./site-content.mjs";
 
 const ROOT = path.resolve("dist", "client");
 const base = "https://innoviaburst.com";
@@ -68,8 +69,13 @@ if (sm) {
   check("LINKS", "sitemap has /en/ + /fr/ home", sm.includes(`${base}/en/`) && sm.includes(`${base}/fr/`));
   check("LINKS", "sitemap EXCLUDES /lp (noindex)", !sm.includes("/lp/ai-automation"));
   check("LINKS", "sitemap EXCLUDES /404", !sm.includes("/404"));
+  // Exact match against sitemapRoutes(), not a hardcoded floor. The old
+  // `>= 30` had to be hand-maintained every time a route legitimately entered
+  // or left the sitemap, and it silently under-reported: a floor cannot catch
+  // the generator emitting MORE entries than the source of truth declares.
   const locs = (sm.match(/<loc>/g) || []).length;
-  check("LINKS", `sitemap url count (${locs})`, locs >= 30);
+  const expectedLocs = sitemapRoutes().length;
+  check("LINKS", `sitemap url count (${locs}, expected ${expectedLocs})`, locs === expectedLocs);
 }
 const robots = read("robots.txt");
 check("LINKS", "robots.txt exists", !!robots);
