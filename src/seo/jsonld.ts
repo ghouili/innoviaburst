@@ -71,7 +71,7 @@ export const orgJsonLd = () => ({
         },
       }
     : {}),
-  ...(ORG_FACTS.vatId ? { vatID: ORG_FACTS.vatId } : {}),
+  ...(ORG_FACTS.taxId ? { taxID: ORG_FACTS.taxId } : {}),
   areaServed: [
     { "@type": "Country", name: "United Kingdom" },
     { "@type": "Place", name: "European Union" },
@@ -125,7 +125,7 @@ export const websiteJsonLd = () => ({
   "@type": "WebSite",
   "@id": WEBSITE_ID,
   url: siteUrl,
-  name: "Innoviaburst",
+  name: "InnoviaBurst",
   publisher: { "@id": ORG_ID },
   inLanguage: "en",
   // No SearchAction/potentialAction: there is no /search endpoint and the

@@ -195,10 +195,10 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
           >
             {/* Slightly smaller at lg: at 1024px the full-size lockup costs
                 224px of bar, which pushes the longer FR labels into overflow. */}
-            <img src={logo} alt="Innoviaburst - Home" width={256} height={256} className="h-10 lg:h-12 xl:h-16 w-auto " />
+            <img src={logo} alt="InnoviaBurst - Home" width={256} height={256} className="h-10 lg:h-12 xl:h-16 w-auto " />
             <div className="h-full flex items-end ">
 
-            <img src={logoT} alt="Innoviaburst - Home" width={480} height={96} className="h-5 lg:h-6 xl:h-8 w-auto" />
+            <img src={logoT} alt="InnoviaBurst - Home" width={480} height={96} className="h-5 lg:h-6 xl:h-8 w-auto" />
             </div>
           </Link>
 

@@ -103,7 +103,7 @@
       "subAuto": "Clearing in real time",
       "subManual": "Backlog growing",
       "toggleManual": "Without automation",
-      "toggleAuto": "With Innoviaburst",
+      "toggleAuto": "With InnoviaBurst",
       "laneLabel": "Incoming queue",
       "active": "{{count}} active",
       "metricsHead": "Sample metrics",
@@ -864,7 +864,7 @@
       "copyright": "© {{year}} InnoviaBurst. All rights reserved.",
       "privacyNote": "UK/EU-focused. Privacy & security information available in Trust & Compliance."
     },
-    "companyDetails": "Innoviaburst Ltd (Company No. XXXXXXXX), registered in England and Wales",
+    "companyDetails": "InnoviaBurst Ltd (Company No. XXXXXXXX), registered in England and Wales",
     "complianceNote": "Built with focus on UK GDPR & EU compliance readiness.",
     "companyNo": "Company No.",
     "registeredOffice": "Registered office"
@@ -985,7 +985,7 @@
     "title": "Automation",
     "titleHighlight": "Library",
     "subtitle": "Example workflows we build for UK/EU businesses. Each shows delivery time, tools, and expected impact.",
-    "metaTitle": "AI Workflow Automation for UK & EU SMEs | Innoviaburst",
+    "metaTitle": "AI Workflow Automation for UK & EU SMEs | InnoviaBurst",
     "metaDescription": "Browse 10+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts.",
     "backToHome": "Back to home",
     "searchPlaceholder": "Search automations...",
@@ -1894,17 +1894,17 @@
     },
     "a11y": {
       "trustSignals": "Trust signals",
-      "home": "Innoviaburst Home",
+      "home": "InnoviaBurst Home",
       "primaryNav": "Primary"
     }
   },
   "seo": {
     "training": {
-      "title": "AI, Development & Automation Training for Teams | Innoviaburst",
+      "title": "AI, Development & Automation Training for Teams | InnoviaBurst",
       "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
     },
     "home": {
-      "title": "Innoviaburst | AI & Automation for UK/EU SMEs, Delivered in Weeks",
+      "title": "InnoviaBurst | AI & Automation for UK/EU SMEs, Delivered in Weeks",
       "description": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
     },
     "services": {
@@ -1922,11 +1922,11 @@
       }
     },
     "industries": {
-      "title": "Industries We Serve | Innoviaburst",
+      "title": "Industries We Serve | InnoviaBurst",
       "description": "Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
     },
     "works": {
-      "title": "Our Work: Case Studies | Innoviaburst",
+      "title": "Our Work: Case Studies | InnoviaBurst",
       "description": "Real automation projects with measurable outcomes. See how we have helped UK/EU businesses save time, reduce errors, and scale operations."
     },
     "lp": {
@@ -1938,25 +1938,25 @@
       "description": "MVP development for UK/EU startups & SMEs. Go from idea to a live, investor-ready MVP in 6-10 weeks. Free 48-hour scope, fixed price, you own the code & IP, GDPR & EU AI Act-ready."
     },
     "cookies": {
-      "title": "Cookie Policy | Innoviaburst",
-      "description": "Innoviaburst Cookie Policy: how we use cookies and similar technologies."
+      "title": "Cookie Policy | InnoviaBurst",
+      "description": "InnoviaBurst Cookie Policy: how we use cookies and similar technologies."
     },
     "privacy": {
-      "title": "Privacy Policy | Innoviaburst",
-      "description": "Innoviaburst Privacy Policy: how we collect, use, and protect your personal data."
+      "title": "Privacy Policy | InnoviaBurst",
+      "description": "InnoviaBurst Privacy Policy: how we collect, use, and protect your personal data."
     },
     "terms": {
-      "title": "Terms of Service | Innoviaburst",
-      "description": "Innoviaburst Terms of Service: terms and conditions for using our website and services."
+      "title": "Terms of Service | InnoviaBurst",
+      "description": "InnoviaBurst Terms of Service: terms and conditions for using our website and services."
     },
     "subprocessors": {
-      "title": "Sub-Processors | Innoviaburst",
-      "description": "List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling."
+      "title": "Sub-Processors | InnoviaBurst",
+      "description": "List of third-party sub-processors used by InnoviaBurst for service delivery. Full transparency on data handling."
     }
   },
   "offerDetails": {
     "ai-ops-sprint": {
-      "seoTitle": "Workflow Automation Sprint: Automate One Workflow in 10 Days | Innoviaburst",
+      "seoTitle": "Workflow Automation Sprint: Automate One Workflow in 10 Days | InnoviaBurst",
       "seoDescription": "Fixed-scope workflow automation and AI copilots for UK and EU ops teams. Ship one automation live inside your existing tools in 10 business days, GDPR and EU AI Act-ready from day one.",
       "noPriceAnswer": "Pricing is fixed and agreed before any work begins, with no hourly rates or surprises. Scope is locked at kickoff and the Sprint runs over 10 business days. You get the exact figure on a short scoping call, and invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms.",
       "title": "AI Ops Sprint",
@@ -2082,7 +2082,7 @@
       ]
     },
     "automation-build": {
-      "seoTitle": "Automation Build: Production Workflow Automation for UK & EU SMEs | Innoviaburst",
+      "seoTitle": "Automation Build: Production Workflow Automation for UK & EU SMEs | InnoviaBurst",
       "seoDescription": "Production-grade workflow automation connecting 3 to 5 of your tools, with approvals, monitoring, and error handling. Fixed scope, delivered in 4 to 6 weeks, GDPR and EU AI Act-ready.",
       "noPriceAnswer": "Pricing is fixed and agreed before any work begins, set by the number of systems and complexity, with no hourly rates. Scope is locked after the discovery workshop and the build runs over 4 to 6 weeks. You get the exact figure before committing, and invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms.",
       "title": "Automation Build",
@@ -2213,7 +2213,7 @@
     },
     "mvp-launch": {
       "title": "MVP Launch",
-      "seoTitle": "MVP Development: Build an Investor-Ready MVP in Weeks | Innoviaburst",
+      "seoTitle": "MVP Development: Build an Investor-Ready MVP in Weeks | InnoviaBurst",
       "seoDescription": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one.",
       "noPriceAnswer": "Pricing is fixed and agreed before any work begins, set by the scope confirmed in the discovery, with no hourly rates or surprises. You get the exact figure before committing, invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and you own the code and IP on completion.",
       "eyebrow": "MVP Launch: fixed-scope MVP development for European startups & SMEs",
@@ -2836,7 +2836,7 @@
     "sections": {
       "whoWeAre": {
         "title": "1. Who We Are",
-        "body": "Innoviaburst Ltd (\"we\", \"us\", \"our\") is a company registered in England and Wales (Company No. XXXXXXXX). We are the data controller for personal data collected through this website and our services.",
+        "body": "InnoviaBurst Ltd (\"we\", \"us\", \"our\") is a company registered in England and Wales (Company No. XXXXXXXX). We are the data controller for personal data collected through this website and our services.",
         "contact": "Contact: hello@innoviaburst.com"
       },
       "whatWeCollect": {
@@ -2936,7 +2936,7 @@
       },
       "aboutUs": {
         "title": "2. About Us",
-        "body": "Innoviaburst Ltd is a company registered in England and Wales (Company No. XXXXXXXX). Registered office: [Address placeholder]."
+        "body": "InnoviaBurst Ltd is a company registered in England and Wales (Company No. XXXXXXXX). Registered office: [Address placeholder]."
       },
       "services": {
         "title": "3. Services",
@@ -2954,7 +2954,7 @@
       },
       "ip": {
         "title": "5. Intellectual Property",
-        "body": "All content on this website (text, graphics, logos, images) is owned by or licensed to Innoviaburst Ltd. You may not reproduce, distribute, or modify this content without permission."
+        "body": "All content on this website (text, graphics, logos, images) is owned by or licensed to InnoviaBurst Ltd. You may not reproduce, distribute, or modify this content without permission."
       },
       "liability": {
         "title": "6. Limitation of Liability",
@@ -3040,7 +3040,7 @@
   },
   "offerPage": {
     "notFound": {
-      "seoTitle": "Offer Not Found | Innoviaburst",
+      "seoTitle": "Offer Not Found | InnoviaBurst",
       "seoDescription": "The offer you're looking for doesn't exist or may have moved.",
       "heading": "Offer not found",
       "returnHome": "Return to home"
@@ -3150,13 +3150,13 @@
   },
   "about": {
     "seo": {
-      "title": "About Innoviaburst | GDPR-by-design AI automation for UK & EU SMEs",
-      "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
+      "title": "About InnoviaBurst | GDPR-by-design AI automation for UK & EU SMEs",
+      "description": "InnoviaBurst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
     },
     "hero": {
       "eyebrow": "About us",
       "title": "Automation UK and EU SMEs can actually trust",
-      "lede": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for small and mid-sized teams across the UK and EU. Fixed scope, delivered in weeks, with the audit trail built in."
+      "lede": "InnoviaBurst builds GDPR-by-design AI automation, AI copilots and MVPs for small and mid-sized teams across the UK and EU. Fixed scope, delivered in weeks, with the audit trail built in."
     },
     "mission": {
       "title": "Our mission",

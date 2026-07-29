@@ -15,7 +15,7 @@ const STATIC_HEAD = `
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="ANEc-Pb3kIwnJgkroXd99Dc3CcBdDOqzKwR8RrfD86E" />
-    <meta name="author" content="Innoviaburst" />
+    <meta name="author" content="InnoviaBurst" />
     <meta name="twitter:site" content="@Innoviaburst" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

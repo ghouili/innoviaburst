@@ -1,16 +1,16 @@
 {
   "/en/": {
-    "title": "Innoviaburst | AI &amp; Automation for UK/EU SMEs, Delivered in Weeks",
+    "title": "InnoviaBurst | AI &amp; Automation for UK/EU SMEs, Delivered in Weeks",
     "canonical": "https://innoviaburst.com/en/",
     "description": "We help UK/EU SMEs automate workflows, ship AI copilots, and launch MVPs with compliance-ready delivery. Fast delivery in weeks, not months."
   },
   "/en/about": {
-    "title": "About Innoviaburst | GDPR-by-design AI automation for UK &amp; EU SMEs",
+    "title": "About InnoviaBurst | GDPR-by-design AI automation for UK &amp; EU SMEs",
     "canonical": "https://innoviaburst.com/en/about",
-    "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
+    "description": "InnoviaBurst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
   },
   "/en/automations": {
-    "title": "AI Workflow Automation for UK &amp; EU SMEs | Innoviaburst",
+    "title": "AI Workflow Automation for UK &amp; EU SMEs | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/automations",
     "description": "Browse 10+ example automations for Sales, Ops, Support, Finance and Knowledge teams. See workflows, tools, delivery times and KPI impacts."
   },
@@ -20,12 +20,12 @@
     "description": "Practical guides, templates, and checklists for UK/EU teams automating operations and deploying AI responsibly."
   },
   "/en/industries": {
-    "title": "Industries We Serve | Innoviaburst",
+    "title": "Industries We Serve | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/industries",
     "description": "Deep expertise in automation for Professional Services SMEs, B2B SaaS, and more. UK/EU focused delivery with compliance awareness."
   },
   "/en/training": {
-    "title": "AI, Development &amp; Automation Training for Teams | Innoviaburst",
+    "title": "AI, Development &amp; Automation Training for Teams | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/training",
     "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
   },
@@ -35,52 +35,52 @@
     "description": "How InnoviaBurst protects your data: Trust Pack, DPA readiness, sub-processors, SCCs/UK Addendum, retention, incident response, and AI oversight for UK/EU buyers."
   },
   "/en/subprocessors": {
-    "title": "Sub-Processors | Innoviaburst",
+    "title": "Sub-Processors | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/subprocessors",
-    "description": "List of third-party sub-processors used by Innoviaburst for service delivery. Full transparency on data handling."
+    "description": "List of third-party sub-processors used by InnoviaBurst for service delivery. Full transparency on data handling."
   },
   "/en/privacy": {
-    "title": "Privacy Policy | Innoviaburst",
+    "title": "Privacy Policy | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/privacy",
-    "description": "Innoviaburst Privacy Policy: how we collect, use, and protect your personal data."
+    "description": "InnoviaBurst Privacy Policy: how we collect, use, and protect your personal data."
   },
   "/en/cookies": {
-    "title": "Cookie Policy | Innoviaburst",
+    "title": "Cookie Policy | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/cookies",
-    "description": "Innoviaburst Cookie Policy: how we use cookies and similar technologies."
+    "description": "InnoviaBurst Cookie Policy: how we use cookies and similar technologies."
   },
   "/en/terms": {
-    "title": "Terms of Service | Innoviaburst",
+    "title": "Terms of Service | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/terms",
-    "description": "Innoviaburst Terms of Service: terms and conditions for using our website and services."
+    "description": "InnoviaBurst Terms of Service: terms and conditions for using our website and services."
   },
   "/en/ai-ops-sprint": {
-    "title": "Workflow Automation Sprint: Automate One Workflow in 10 Days | Innoviaburst",
+    "title": "Workflow Automation Sprint: Automate One Workflow in 10 Days | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/ai-ops-sprint",
     "description": "Fixed-scope workflow automation and AI copilots for UK and EU ops teams. Ship one automation live inside your existing tools in 10 business days, GDPR and EU AI Act-ready from day one."
   },
   "/en/automation-build": {
-    "title": "Automation Build: Production Workflow Automation for UK &amp; EU SMEs | Innoviaburst",
+    "title": "Automation Build: Production Workflow Automation for UK &amp; EU SMEs | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/automation-build",
     "description": "Production-grade workflow automation connecting 3 to 5 of your tools, with approvals, monitoring, and error handling. Fixed scope, delivered in 4 to 6 weeks, GDPR and EU AI Act-ready."
   },
   "/en/mvp-launch": {
-    "title": "MVP Development: Build an Investor-Ready MVP in Weeks | Innoviaburst",
+    "title": "MVP Development: Build an Investor-Ready MVP in Weeks | InnoviaBurst",
     "canonical": "https://innoviaburst.com/en/mvp-launch",
     "description": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one."
   },
   "/fr/": {
-    "title": "Innoviaburst | IA &amp; Automatisation pour PME UK/EU — Livré en semaines",
+    "title": "InnoviaBurst | IA &amp; Automatisation pour PME UK/EU — Livré en semaines",
     "canonical": "https://innoviaburst.com/fr/",
     "description": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVP avec une livraison conforme. Livraison rapide, en semaines."
   },
   "/fr/about": {
-    "title": "About Innoviaburst | GDPR-by-design AI automation for UK &amp; EU SMEs",
+    "title": "About InnoviaBurst | GDPR-by-design AI automation for UK &amp; EU SMEs",
     "canonical": "https://innoviaburst.com/fr/about",
-    "description": "Innoviaburst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
+    "description": "InnoviaBurst builds GDPR-by-design AI automation, AI copilots and MVPs for UK and EU SMEs. Fixed scope, delivered in weeks, with the audit trail built in."
   },
   "/fr/automations": {
-    "title": "Bibliothèque d&#x27;Automatisations | Innoviaburst",
+    "title": "Bibliothèque d&#x27;Automatisations | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/automations",
     "description": "Parcourez 10+ exemples d&#x27;automatisations pour les équipes Sales, Ops, Support, Finance et Knowledge. Voir workflows, outils, délais et impacts KPI."
   },
@@ -90,12 +90,12 @@
     "description": "Guides pratiques, modèles et checklists pour les équipes UK/EU automatisant leurs opérations et déployant l&#x27;IA de manière responsable."
   },
   "/fr/industries": {
-    "title": "Secteurs que nous servons | Innoviaburst",
+    "title": "Secteurs que nous servons | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/industries",
     "description": "Expertise en automatisation pour les PME de services professionnels, le SaaS B2B et plus. Livraison axée UK/EU, soucieuse de la conformité."
   },
   "/fr/training": {
-    "title": "AI, Development &amp; Automation Training for Teams | Innoviaburst",
+    "title": "AI, Development &amp; Automation Training for Teams | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/training",
     "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
   },
@@ -105,37 +105,37 @@
     "description": "Comment InnoviaBurst protège vos données : Trust Pack, DPA, sous-traitants, SCCs/Avenant UK, rétention, gestion des incidents et supervision IA pour les clients UK/EU."
   },
   "/fr/subprocessors": {
-    "title": "Sous-traitants | Innoviaburst",
+    "title": "Sous-traitants | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/subprocessors",
-    "description": "Liste des sous-traitants tiers utilisés par Innoviaburst pour la prestation de services. Transparence totale sur le traitement des données."
+    "description": "Liste des sous-traitants tiers utilisés par InnoviaBurst pour la prestation de services. Transparence totale sur le traitement des données."
   },
   "/fr/privacy": {
-    "title": "Politique de confidentialité | Innoviaburst",
+    "title": "Politique de confidentialité | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/privacy",
-    "description": "Politique de confidentialité d’Innoviaburst — comment nous collectons, utilisons et protégeons vos données personnelles."
+    "description": "Politique de confidentialité d’InnoviaBurst — comment nous collectons, utilisons et protégeons vos données personnelles."
   },
   "/fr/cookies": {
-    "title": "Politique de cookies | Innoviaburst",
+    "title": "Politique de cookies | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/cookies",
-    "description": "Politique de cookies d’Innoviaburst — comment nous utilisons les cookies et technologies similaires."
+    "description": "Politique de cookies d’InnoviaBurst — comment nous utilisons les cookies et technologies similaires."
   },
   "/fr/terms": {
-    "title": "Conditions d’utilisation | Innoviaburst",
+    "title": "Conditions d’utilisation | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/terms",
-    "description": "Conditions d’utilisation d’Innoviaburst — conditions générales d’utilisation de notre site et de nos services."
+    "description": "Conditions d’utilisation d’InnoviaBurst — conditions générales d’utilisation de notre site et de nos services."
   },
   "/fr/ai-ops-sprint": {
-    "title": "Workflow Automation Sprint: Automate One Workflow in 10 Days | Innoviaburst",
+    "title": "Workflow Automation Sprint: Automate One Workflow in 10 Days | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/ai-ops-sprint",
     "description": "Fixed-scope workflow automation and AI copilots for UK and EU ops teams. Ship one automation live inside your existing tools in 10 business days, GDPR and EU AI Act-ready from day one."
   },
   "/fr/automation-build": {
-    "title": "Automation Build: Production Workflow Automation for UK &amp; EU SMEs | Innoviaburst",
+    "title": "Automation Build: Production Workflow Automation for UK &amp; EU SMEs | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/automation-build",
     "description": "Production-grade workflow automation connecting 3 to 5 of your tools, with approvals, monitoring, and error handling. Fixed scope, delivered in 4 to 6 weeks, GDPR and EU AI Act-ready."
   },
   "/fr/mvp-launch": {
-    "title": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | Innoviaburst",
+    "title": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/mvp-launch",
     "description": "Développement de MVP pour startups et PME : de l&#x27;idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD &amp; règlement IA de l&#x27;UE et analytics dès le premier jour."
   }

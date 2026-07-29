@@ -28,7 +28,7 @@ export default function CookiesPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Cookie Policy",
-            description: "Details on cookie consent, analytics opt-in, and PECR compliance for Innoviaburst.",
+            description: "Details on cookie consent, analytics opt-in, and PECR compliance for InnoviaBurst.",
             url: localizedUrl("/cookies"),
           },
         ]}

@@ -70,7 +70,7 @@ export default function CaseStudyPage() {
   return (
     <>
       <SeoHead
-        title={`${study.title} | Case Study | Innoviaburst`}
+        title={`${study.title} | Case Study | InnoviaBurst`}
         description={`${study.problem.slice(0, 150)}... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations.`}
         canonicalPath={`/work/${slug}`}
         alternates={buildAlternates(`/work/${slug}`)}

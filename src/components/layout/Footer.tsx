@@ -365,7 +365,7 @@ export function Footer({ onBookingClick }: FooterProps = {}) {
           <div className="py-4 border-t border-background/10 mb-4">
             <p className="text-xs text-background/55 text-center">
               {ORG_FACTS.legalName}
-              {ORG_FACTS.vatId ? `, ${t("footer.companyNo")} ${ORG_FACTS.vatId}` : ""}
+              {ORG_FACTS.taxId ? `, ${t("footer.companyNo")} ${ORG_FACTS.taxId}` : ""}
               {hasAddress()
                 ? `, ${t("footer.registeredOffice")}: ${[
                     ORG_FACTS.address.streetAddress,

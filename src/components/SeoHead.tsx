@@ -95,7 +95,7 @@ export function SeoHead({
         <meta property="og:type" content={ogType} />
         <meta property="og:url" content={canonical} />
         <meta property="og:image" content={ogImageUrl} />
-        <meta property="og:site_name" content="Innoviaburst" />
+        <meta property="og:site_name" content="InnoviaBurst" />
         <meta property="og:locale" content={locale} />
 
         {/* Twitter */}

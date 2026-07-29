@@ -43,7 +43,7 @@ export function LpNavbar({ ctaLabel, onCtaClick }: LpNavbarProps) {
             aria-label={t("lpMvp.a11y.home")}
             className="flex shrink-0 items-end gap-0.5 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <img src={logo} alt="Innoviaburst" width={256} height={256} className="h-10 w-auto lg:h-16" />
+            <img src={logo} alt="InnoviaBurst" width={256} height={256} className="h-10 w-auto lg:h-16" />
             <span className="flex h-full items-end">
               <img src={logoT} alt="" aria-hidden="true" width={480} height={96} className="h-5 w-auto lg:h-8" />
             </span>

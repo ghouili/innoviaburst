@@ -101,7 +101,7 @@
       "subAuto": "Traitement en temps réel",
       "subManual": "Le retard s'accumule",
       "toggleManual": "Sans automatisation",
-      "toggleAuto": "Avec Innoviaburst",
+      "toggleAuto": "Avec InnoviaBurst",
       "laneLabel": "File entrante",
       "active": "{{count}} en cours",
       "metricsHead": "Indicateurs d'exemple",
@@ -432,7 +432,7 @@
   },
   "offerDetails": {
     "mvp-launch": {
-      "seoTitle": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | Innoviaburst",
+      "seoTitle": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | InnoviaBurst",
       "seoDescription": "Développement de MVP pour startups et PME : de l'idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD & règlement IA de l'UE et analytics dès le premier jour.",
       "subheading": "Développement de MVP pour startups & PME européennes",
       "summaryFacts": [
@@ -560,7 +560,7 @@
       "copyright": "© {{year}} InnoviaBurst. Tous droits réservés.",
       "privacyNote": "Focus UK/EU — infos confidentialité & sécurité disponibles dans Confiance & Conformité."
     },
-    "companyDetails": "Innoviaburst Ltd (N° XXXXXXXX) — Enregistrée en Angleterre et Pays de Galles",
+    "companyDetails": "InnoviaBurst Ltd (N° XXXXXXXX) — Enregistrée en Angleterre et Pays de Galles",
     "complianceNote": "Conçu avec un focus sur la conformité RGPD UK & EU."
   },
   "solutions": {
@@ -679,7 +679,7 @@
     "title": "Bibliothèque",
     "titleHighlight": "d'Automatisations",
     "subtitle": "Exemples de workflows que nous construisons pour les entreprises UK/EU. Chacun montre le délai, les outils et l'impact attendu.",
-    "metaTitle": "Bibliothèque d'Automatisations | Innoviaburst",
+    "metaTitle": "Bibliothèque d'Automatisations | InnoviaBurst",
     "metaDescription": "Parcourez 10+ exemples d'automatisations pour les équipes Sales, Ops, Support, Finance et Knowledge. Voir workflows, outils, délais et impacts KPI.",
     "backToHome": "Retour à l'accueil",
     "searchPlaceholder": "Rechercher des automatisations...",
@@ -1471,21 +1471,21 @@
     },
     "a11y": {
       "trustSignals": "Signaux de confiance",
-      "home": "Innoviaburst — Accueil",
+      "home": "InnoviaBurst — Accueil",
       "primaryNav": "Navigation principale"
     }
   },
   "seo": {
     "home": {
-      "title": "Innoviaburst | IA & Automatisation pour PME UK/EU — Livré en semaines",
+      "title": "InnoviaBurst | IA & Automatisation pour PME UK/EU — Livré en semaines",
       "description": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVP avec une livraison conforme. Livraison rapide, en semaines."
     },
     "industries": {
-      "title": "Secteurs que nous servons | Innoviaburst",
+      "title": "Secteurs que nous servons | InnoviaBurst",
       "description": "Expertise en automatisation pour les PME de services professionnels, le SaaS B2B et plus. Livraison axée UK/EU, soucieuse de la conformité."
     },
     "works": {
-      "title": "Nos réalisations — Études de cas | Innoviaburst",
+      "title": "Nos réalisations — Études de cas | InnoviaBurst",
       "description": "Des projets d’automatisation réels aux résultats mesurables. Découvrez comment nous aidons les entreprises UK/EU à gagner du temps et à passer à l’échelle."
     },
     "lp": {
@@ -1497,20 +1497,20 @@
       "description": "Développement de MVP pour startups & PME UK/EU. De l’idée à un MVP en ligne, prêt pour les investisseurs, en 6–10 semaines. Cadrage gratuit en 48 h, prix fixe, vous possédez le code & la PI — prêt RGPD & règlement IA de l’UE."
     },
     "cookies": {
-      "title": "Politique de cookies | Innoviaburst",
-      "description": "Politique de cookies d’Innoviaburst — comment nous utilisons les cookies et technologies similaires."
+      "title": "Politique de cookies | InnoviaBurst",
+      "description": "Politique de cookies d’InnoviaBurst — comment nous utilisons les cookies et technologies similaires."
     },
     "privacy": {
-      "title": "Politique de confidentialité | Innoviaburst",
-      "description": "Politique de confidentialité d’Innoviaburst — comment nous collectons, utilisons et protégeons vos données personnelles."
+      "title": "Politique de confidentialité | InnoviaBurst",
+      "description": "Politique de confidentialité d’InnoviaBurst — comment nous collectons, utilisons et protégeons vos données personnelles."
     },
     "terms": {
-      "title": "Conditions d’utilisation | Innoviaburst",
-      "description": "Conditions d’utilisation d’Innoviaburst — conditions générales d’utilisation de notre site et de nos services."
+      "title": "Conditions d’utilisation | InnoviaBurst",
+      "description": "Conditions d’utilisation d’InnoviaBurst — conditions générales d’utilisation de notre site et de nos services."
     },
     "subprocessors": {
-      "title": "Sous-traitants | Innoviaburst",
-      "description": "Liste des sous-traitants tiers utilisés par Innoviaburst pour la prestation de services. Transparence totale sur le traitement des données."
+      "title": "Sous-traitants | InnoviaBurst",
+      "description": "Liste des sous-traitants tiers utilisés par InnoviaBurst pour la prestation de services. Transparence totale sur le traitement des données."
     }
   },
   "offerPage": {

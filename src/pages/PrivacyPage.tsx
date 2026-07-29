@@ -28,7 +28,7 @@ export default function PrivacyPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Privacy Policy",
-            description: "How Innoviaburst collects, uses, and protects personal data with GDPR/UK GDPR readiness.",
+            description: "How InnoviaBurst collects, uses, and protects personal data with GDPR/UK GDPR readiness.",
             url: localizedUrl("/privacy"),
           },
         ]}

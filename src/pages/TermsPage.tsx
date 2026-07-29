@@ -28,7 +28,7 @@ export default function TermsPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             name: "Terms of Service",
-            description: "Terms and conditions for Innoviaburst automation, AI copilot, and MVP services.",
+            description: "Terms and conditions for InnoviaBurst automation, AI copilot, and MVP services.",
             url: localizedUrl("/terms"),
           },
         ]}

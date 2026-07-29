@@ -30,33 +30,39 @@ export interface OrgFacts {
     postalCode: string | null;
     addressCountry: string | null; // ISO-3166-1, e.g. "GB"
   };
-  /** VAT or company-registration number (optional). */
-  vatId: string | null;
+  /**
+   * National fiscal / tax identifier. For Tunisia this is the Matricule Fiscal,
+   * which also serves as the VAT identifier — emitted as schema.org `taxID`
+   * (NOT `vatID`, which would wrongly imply an EU VAT number).
+   */
+  taxId: string | null;
   /** Verified organization profiles only (live links). */
   sameAs: string[];
 }
 
 export const ORG_FACTS: OrgFacts = {
-  name: "Innoviaburst",
-  legalName: null, // TODO(owner): registered company name, e.g. "Innoviaburst Ltd"
-  foundingDate: null, // TODO(owner): ISO year/month the company was founded, e.g. "2023"
+  name: "InnoviaBurst",
+  legalName: "InnoviaBurst",
+  foundingDate: "2023",
   founder: {
-    name: null, // TODO(owner): founder's full name (enables the founder Person node + About section)
-    jobTitle: null, // TODO(owner): e.g. "Founder & CEO"
-    sameAs: [], // TODO(owner): founder's own profile URLs (LinkedIn/X/…)
+    name: "Walid Ghouili",
+    jobTitle: "CEO",
+    sameAs: [], // No public founder profile supplied yet.
   },
   address: {
-    streetAddress: null,
-    addressLocality: null, // TODO(owner): city/town of the registered office
-    addressRegion: null,
-    postalCode: null,
-    addressCountry: null, // TODO(owner): ISO country code, e.g. "GB"
+    // Registered office (siège social), Tunisia.
+    streetAddress: "Rue Habib Thameur, Résidence Haj Dahman, Étage 1",
+    addressLocality: "Jendouba Sud",
+    addressRegion: "Jendouba",
+    postalCode: "8100",
+    addressCountry: "TN",
   },
-  vatId: null, // TODO(owner): VAT/company-registration number (optional)
-  // Verified profiles (already live in the site footer). TODO(owner): add
-  // Crunchbase / X / GitHub / Clutch once the canonical URLs are confirmed.
+  // Tunisian Matricule Fiscal (also the VAT identifier).
+  taxId: "1985775/A/M/000",
+  // Verified, live organization profiles.
   sameAs: [
     "https://www.linkedin.com/company/innoviaburst",
+    "https://www.facebook.com/profile.php?id=61553603638951",
     "https://www.instagram.com/innoviaburst/",
   ],
 };
