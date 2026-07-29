@@ -59,6 +59,36 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
     <section className="relative min-h-[90vh] overflow-hidden bg-gradient-hero pt-20 lg:pt-24">
       <div className="absolute inset-0 bg-gradient-glow pointer-events-none" aria-hidden="true" />
 
+      {/*
+        Blueprint grid backdrop, the one piece of the "Innoviaburst Hero" design
+        file that wasn't already in AutomationLaneVisual. Two soft radial tints
+        plus a 48px rule grid, masked to fade out behind the copy column so it
+        never competes with the headline. Re-skinned to the brand tokens and
+        purely decorative: no motion, so nothing to disable under reduced
+        motion.
+      */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(1200px 600px at 85% -10%, hsl(var(--secondary) / 0.05), transparent 60%)," +
+            "radial-gradient(900px 500px at -5% 110%, hsl(var(--secondary) / 0.035), transparent 55%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, hsl(var(--foreground) / 0.025) 1px, transparent 1px)," +
+            "linear-gradient(to bottom, hsl(var(--foreground) / 0.025) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage: "radial-gradient(900px 700px at 70% 40%, #000, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(900px 700px at 70% 40%, #000, transparent 75%)",
+        }}
+      />
+
       <div className="container mx-auto px-4 lg:px-6 py-10 lg:py-16">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* LEFT — copy */}
