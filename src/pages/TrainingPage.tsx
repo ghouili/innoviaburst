@@ -41,6 +41,7 @@ import {
   serviceJsonLd,
   faqJsonLd,
   howToJsonLd,
+  courseListJsonLd,
 } from "@/seo/jsonld";
 
 interface CopyItem {
@@ -110,8 +111,14 @@ export default function TrainingPage() {
             }),
           ]
         : []),
+      ...(Array.isArray(tracks) && tracks.length
+        ? courseListJsonLd({
+            url: "/training",
+            courses: tracks.map((tr) => ({ name: tr.title, description: tr.description })),
+          })
+        : []),
     ],
-    [t, faq, steps]
+    [t, faq, steps, tracks]
   );
 
   return (

@@ -7,28 +7,17 @@
 //        node scripts/validate-jsonld.mjs <relpaths> (e.g. en/index.html ...)
 import { readFileSync, existsSync } from "node:fs";
 import path from "node:path";
+import { prerenderUrls } from "./site-content.mjs";
 
 const ROOT = path.resolve("dist", "client");
-const DEFAULT_PAGES = [
-  "en/index.html",
-  "en/automations/index.html",
-  "en/trust/index.html",
-  "en/works/index.html",
-  "en/industries/index.html",
-  "en/resources/index.html",
-  "en/ai-ops-sprint/index.html",
-  "en/automation-build/index.html",
-  "en/mvp-launch/index.html",
-  "en/lp/ai-automation/index.html",
-  "en/work/professional-services-client-onboarding/index.html",
-  "en/work/saas-support-ticket-triage/index.html",
-  "en/about/index.html",
-  "en/privacy/index.html",
-  // A couple of /fr pages to confirm localized schema validates too.
-  "fr/index.html",
-  "fr/ai-ops-sprint/index.html",
-  "fr/about/index.html",
-];
+// Every pre-rendered page, derived from the route source rather than a hand
+// written list. The previous hardcoded set had gone stale: /training was added
+// two phases ago and never got added here, so its Course, HowTo and FAQPage
+// nodes were silently never validated, and neither was /lp/mvp's FAQPage. A
+// derived list means a new route is covered the moment it is pre-rendered.
+const DEFAULT_PAGES = prerenderUrls().map(
+  (u) => `${u.replace(/^\//, "").replace(/\/$/, "")}/index.html`.replace(/^\/?index\.html$/, "index.html"),
+);
 const pages = process.argv.slice(2).length ? process.argv.slice(2) : DEFAULT_PAGES;
 
 const types = (node) => (Array.isArray(node?.["@type"]) ? node["@type"] : [node?.["@type"]]).filter(Boolean);

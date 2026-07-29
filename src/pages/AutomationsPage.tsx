@@ -36,7 +36,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, faqJsonLd, localizedUrl } from "@/seo/jsonld";
 
 const categoryKeys = ["all", "sales", "ops", "support", "finance", "knowledge"] as const;
 
@@ -383,6 +383,8 @@ export default function AutomationsPage() {
     [automations, t]
   );
 
+  const faqItems = t("automationsPage.faq.items", { returnObjects: true }) as { q: string; a: string }[];
+
   const baseJsonLd = useMemo(
     () => [
       orgJsonLd(),
@@ -391,8 +393,11 @@ export default function AutomationsPage() {
         { name: "Home", url: siteUrl },
         { name: t("automationsPage.metaTitle"), url: `${siteUrl}/automations` },
       ]),
+      ...(Array.isArray(faqItems) && faqItems.length
+        ? [faqJsonLd(faqItems.map((f) => ({ question: f.q, answer: f.a })))]
+        : []),
     ],
-    [t]
+    [t, faqItems]
   );
 
   return (
@@ -722,6 +727,33 @@ export default function AutomationsPage() {
             </div>
           </div>
         </section> */}
+
+        {/* FAQ — definitional + practical Q&A. Native <details> keeps answers in
+            the DOM even when collapsed, so the FAQPage schema maps 1:1. */}
+        <section className="py-16 lg:py-20 bg-muted/30">
+          <div className="container mx-auto px-4 lg:px-6 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+              {t("automationsPage.faq.heading")}
+            </h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+              {t("automationsPage.faq.intro")}
+            </p>
+            <div className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-card">
+              {Array.isArray(faqItems) &&
+                faqItems.map((item) => (
+                  <details key={item.q} className="group">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-muted/40 [&::-webkit-details-marker]:hidden">
+                      <h3 className="text-[0.95rem] font-semibold text-foreground">{item.q}</h3>
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary/10 text-secondary transition-transform duration-200 group-open:rotate-180">
+                        <ChevronDown className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{item.a}</p>
+                  </details>
+                ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA */}
         <section className="py-16 bg-gradient-hero">

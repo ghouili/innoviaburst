@@ -1,9 +1,9 @@
 {
   "_instructions": "Return native French for every value under en_to_translate (keep the EXACT same key paths) and drop it into src/i18n/fr.json. Also review/replace fr_to_review (FR drafted by the assistant). Do NOT machine-translate. Keep {{price}}/{{lang}} placeholders and the en-dashes/%/& exactly.",
   "_counts": {
-    "keysToTranslate": 484,
+    "keysToTranslate": 500,
     "keysToReview": 116,
-    "enLeaves": 1332,
+    "enLeaves": 1348,
     "frLeaves": 850
   },
   "en_to_translate": {
@@ -40,14 +40,17 @@
       "partnersLabel": "In partnership with",
       "partnerPlaceholder": "Partner logo",
       "partnersNote": "Partner logos are placeholders — accredited training partners will be named here once agreements are signed.",
-      "requestInterest": "Training — AI & automation upskilling for my team"
+      "requestInterest": "Training — AI & automation upskilling for my team",
+      "viewAll": "Explore AI, development and automation training"
     },
     "work": {
       "viewAll": "View all case studies"
     },
     "footer": {
       "links": {
-        "about": "About"
+        "about": "About",
+        "mvp": "MVP development",
+        "training": "Team training"
       },
       "companyNo": "Company No.",
       "registeredOffice": "Registered office"
@@ -169,7 +172,9 @@
             "q": "How much does the AI Ops Sprint cost?",
             "a": "Pricing is fixed and agreed before any work begins: {{price}}. There are no hourly rates or surprises — scope is locked at kickoff. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, and most clients recover the cost within two to four weeks through the hours saved on manual tasks."
           }
-        ]
+        ],
+        "seoTitle": "Workflow Automation Sprint: Automate One Workflow in 10 Days | Innoviaburst",
+        "seoDescription": "Fixed-scope workflow automation and AI copilots for UK and EU ops teams. Ship one automation live inside your existing tools in 10 business days, GDPR and EU AI Act-ready from day one."
       },
       "automation-build": {
         "title": "Automation Build",
@@ -291,7 +296,9 @@
             "q": "How much does the Automation Build cost?",
             "a": "Pricing is fixed and agreed before any work begins: {{price}}, depending on the number of systems and complexity. There are no hourly rates — scope is locked after the discovery workshop. Invoices are issued in EUR or GBP on 50% upfront, 50% on completion terms, with most builds freeing one to two FTE-equivalent of capacity."
           }
-        ]
+        ],
+        "seoTitle": "Automation Build: Production Workflow Automation for UK & EU SMEs | Innoviaburst",
+        "seoDescription": "Production-grade workflow automation connecting 3 to 5 of your tools, with approvals, monitoring, and error handling. Fixed scope, delivered in 4 to 6 weeks, GDPR and EU AI Act-ready."
       },
       "mvp-launch": {
         "title": "MVP Launch",
@@ -1208,11 +1215,11 @@
       },
       "what": {
         "title": "What we do",
-        "body": "We scope, build and ship three things — each as a fixed-price engagement with a clear, measurable outcome:",
+        "body": "We scope, build and ship four things, each scoped and quoted per project, with a clear, measurable outcome:",
         "items": [
           {
             "title": "Workflow automation",
-            "body": "We connect your tools and automate the manual, repetitive steps — with logging, approvals and error handling so it runs reliably in production."
+            "body": "We connect your tools and automate the manual, repetitive steps, with logging, approvals and error handling so it runs reliably in production."
           },
           {
             "title": "AI copilots",
@@ -1220,7 +1227,11 @@
           },
           {
             "title": "MVPs",
-            "body": "We take a product idea to a deployed, production-ready MVP — authentication, core features and analytics — so you can validate quickly."
+            "body": "We take a product idea to a deployed, production-ready MVP (authentication, core features and analytics) so you can validate quickly."
+          },
+          {
+            "title": "Team training",
+            "body": "We run hands-on training, together with our accredited partners, that gets your team using AI, automation and modern development safely inside their real workflows, from half-day workshops to multi-week cohorts."
           }
         ]
       },
@@ -1551,6 +1562,20 @@
       "training": {
         "title": "AI, Development & Automation Training for Teams | Innoviaburst",
         "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
+      },
+      "services": {
+        "automation": {
+          "name": "AI automation and workflow automation",
+          "description": "We connect the tools UK and EU SMEs already use and automate the manual, repetitive steps, with logging, approvals and error handling. Fixed scope, GDPR-by-design, delivered in weeks."
+        },
+        "mvp": {
+          "name": "MVP development",
+          "description": "Fixed-scope MVP development that takes a product idea to a deployed, production-ready MVP in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one."
+        },
+        "training": {
+          "name": "Team training",
+          "description": "Hands-on AI, development and automation training, delivered with accredited partners, from half-day workshops to multi-week cohorts, including AI governance and compliance."
+        }
       }
     },
     "comingSoon": {
@@ -1560,6 +1585,30 @@
         "description": "We're assembling the pieces now. Check back shortly, or browse what's already live.",
         "backCta": "Back to home",
         "bookCta": "Book a 15-min call"
+      }
+    },
+    "automationsPage": {
+      "faq": {
+        "heading": "AI automation, answered",
+        "intro": "Workflow automation connects the tools your team already uses so repetitive steps run without manual handling, with a full audit trail. Here is how we approach it for UK and EU SMEs.",
+        "items": [
+          {
+            "q": "What is workflow automation for SMEs?",
+            "a": "Workflow automation connects the tools you already use, such as your CRM, helpdesk, spreadsheets and email, so repetitive steps run without manual handling. For SMEs it typically removes data re-entry, chasing and status updates, freeing hours of admin time while keeping a full audit trail."
+          },
+          {
+            "q": "How long does it take to automate a workflow?",
+            "a": "A single workflow ships in about 10 business days through the AI Ops Sprint. Production-grade automation across three to five tools takes four to six weeks through the Automation Build. Both are fixed-scope and agreed before any work starts."
+          },
+          {
+            "q": "Which tools can you connect?",
+            "a": "We work with the tools most UK and EU SMEs already run, including HubSpot, Salesforce, Slack, Google Workspace, Microsoft 365, Notion, Zendesk, Xero and Zapier or Make. If your stack is not listed, we scope the integration on a short call."
+          },
+          {
+            "q": "Is AI automation GDPR and EU AI Act ready?",
+            "a": "Yes. Every build is GDPR-by-design with least-privilege access, clear data-retention notes, and an audit trail from day one. Work is scoped to stay clear of prohibited EU AI Act use cases."
+          }
+        ]
       }
     }
   },

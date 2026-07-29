@@ -17,6 +17,8 @@ const footerLinkDefinitions = {
     { labelKey: "footer.links.industries", href: "/industries" }, // Crawlable standalone page
     { labelKey: "footer.links.work", href: "/works" }, // Crawlable standalone page
     { labelKey: "footer.links.automations", href: "/automations" },
+    { labelKey: "footer.links.mvp", href: "/mvp-launch" }, // Dev/MVP pillar — link-equity parity
+    { labelKey: "footer.links.training", href: "/training" }, // Training pillar — was nav-only
   ],
   resources: [
     { labelKey: "footer.links.trust", href: "/trust" },

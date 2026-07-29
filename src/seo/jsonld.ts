@@ -55,7 +55,7 @@ export const orgJsonLd = () => ({
   },
   image: `${base}/og.jpg`,
   description:
-    "GDPR-by-design AI automation, AI copilots and MVPs for UK/EU SMEs — fixed scope, delivered in weeks, with the audit trail built in.",
+    "GDPR-by-design AI automation, AI copilots, MVPs and hands-on team training for UK/EU SMEs — fixed scope, delivered in weeks, with the audit trail built in.",
   email: "hello@innoviaburst.com",
   ...(ORG_FACTS.foundingDate ? { foundingDate: ORG_FACTS.foundingDate } : {}),
   ...(hasFounder() ? { founder: { "@id": FOUNDER_ID } } : {}),
@@ -76,7 +76,19 @@ export const orgJsonLd = () => ({
     { "@type": "Country", name: "United Kingdom" },
     { "@type": "Place", name: "European Union" },
   ],
-  serviceType: ["Workflow automation", "AI copilots", "MVP development"],
+  serviceType: ["Workflow automation", "AI copilots", "MVP development", "Team training"],
+  knowsAbout: [
+    "Workflow automation",
+    "AI copilots",
+    "Retrieval-augmented generation",
+    "AI agents",
+    "MVP development",
+    "Software development",
+    "Corporate AI training",
+    "AI governance",
+    "EU AI Act compliance",
+    "GDPR",
+  ],
   // Verified profiles only — driven by org-facts.ts.
   sameAs: ORG_FACTS.sameAs,
   contactPoint: {
@@ -202,6 +214,32 @@ export const howToJsonLd = (params: {
     text: s.text,
   })),
 });
+
+/**
+ * Course schema for the training tracks — one Course node per track, each
+ * provided by the sitewide org entity. Delivery is request-scheduled (no fixed
+ * dates), so each carries a CourseInstance with courseMode + languages but no
+ * startDate. Returns an ARRAY, spread into the page's jsonLd list.
+ */
+export const courseListJsonLd = (params: {
+  url: string;
+  courses: { name: string; description: string }[];
+  courseMode?: string[];
+  inLanguage?: string[];
+}) =>
+  params.courses.map((c) => ({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: c.name,
+    description: c.description,
+    provider: { "@id": ORG_ID },
+    url: localizeAbs(params.url),
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: params.courseMode ?? ["Onsite", "Online"],
+      inLanguage: params.inLanguage ?? ["en", "fr"],
+    },
+  }));
 
 /**
  * Reusable Article schema (case studies now; blog/resources later). Author and

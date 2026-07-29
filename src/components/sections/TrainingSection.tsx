@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { MonitorPlay, Users, Award, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { UnifiedCard } from "@/components/ui/unified-card";
@@ -142,6 +143,19 @@ export function TrainingSection({ onRequestClick, onBookingClick }: TrainingSect
                   {t("trainingSection.secondaryCta")}
                 </Button>
               </div>
+            </Reveal>
+
+            {/* Crawlable link to the full /training page (the CTAs above open
+                modals, so this is the only real href — keeps the training pillar
+                discoverable and passes link equity with descriptive anchor text). */}
+            <Reveal delay={360}>
+              <Link
+                to="/training"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary hover:text-secondary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 rounded"
+              >
+                {t("trainingSection.viewAll")}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
             </Reveal>
 
             {/* Partner logos — explicit placeholders until accreditations are confirmed */}

@@ -20,7 +20,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { StickyNextStep } from "@/components/StickyNextStep";
 import { SkipLink } from "@/components/SkipLink";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd } from "@/seo/jsonld";
+import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, serviceJsonLd } from "@/seo/jsonld";
 
 const Index = () => {
   const { t } = useTranslation();
@@ -68,6 +68,27 @@ const Index = () => {
           breadcrumbJsonLd([
             { name: "Home", url: siteUrl },
           ]),
+          // Per-pillar Service nodes so the homepage (the most-cited entry point)
+          // exposes a clean service catalog for search + generative engines. Each
+          // is backed by a visible band below (Offers, MVP, Training).
+          serviceJsonLd({
+            name: t("seo.services.automation.name"),
+            description: t("seo.services.automation.description"),
+            url: `${siteUrl}/automations`,
+            serviceType: ["Workflow automation", "AI copilots"],
+          }),
+          serviceJsonLd({
+            name: t("seo.services.mvp.name"),
+            description: t("seo.services.mvp.description"),
+            url: `${siteUrl}/mvp-launch`,
+            serviceType: ["MVP development", "Software development"],
+          }),
+          serviceJsonLd({
+            name: t("seo.services.training.name"),
+            description: t("seo.services.training.description"),
+            url: `${siteUrl}/training`,
+            serviceType: ["Corporate AI training"],
+          }),
         ]}
       />
 

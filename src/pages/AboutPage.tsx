@@ -8,11 +8,11 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Workflow, Bot, Rocket, ShieldCheck, Scale, Eye, Clock } from "lucide-react";
+import { ArrowRight, Workflow, Bot, Rocket, ShieldCheck, Scale, Eye, Clock, GraduationCap } from "lucide-react";
 import { orgJsonLd, websiteJsonLd, founderJsonLd, breadcrumbJsonLd, localizedUrl, ORG_ID } from "@/seo/jsonld";
 import { ORG_FACTS, hasFounder } from "@/seo/org-facts";
 
-const WHAT_ICONS = [Workflow, Bot, Rocket];
+const WHAT_ICONS = [Workflow, Bot, Rocket, GraduationCap];
 const APPROACH_ICONS = [Scale, ShieldCheck, Eye, Clock];
 const stripUrl = (u: string) => u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
@@ -77,7 +77,7 @@ export default function AboutPage() {
           <div className="container mx-auto px-4 lg:px-6 max-w-4xl">
             <h2 className="text-2xl font-bold text-foreground mb-3">{t("about.what.title")}</h2>
             <p className="text-base text-muted-foreground mb-8 max-w-2xl">{t("about.what.body")}</p>
-            <div className="grid sm:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 gap-6">
               {whatItems.map((item, i) => {
                 const Icon = WHAT_ICONS[i] ?? Workflow;
                 return (
