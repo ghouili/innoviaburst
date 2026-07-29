@@ -400,8 +400,10 @@ export function RequestModal({
                       }))
                     }
                     onBlur={() => {
-                      setTouched((prev) => ({ ...prev, email: true }));
-                      validateStep1();
+                      // Live feedback on blur only AFTER a submit attempt (which
+                      // sets `touched`). Otherwise a required-field error would
+                      // appear the moment you leave an empty field on a fresh form.
+                      if (touched.email) validateStep1();
                     }}
                     className={inputClasses(!!errors.email && !!touched.email)}
                     placeholder={t("request.fields.emailPlaceholder")}

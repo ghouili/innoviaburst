@@ -178,7 +178,10 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
   };
 
   const handleBlur = (field: string) => {
-    setTouched(prev => ({ ...prev, [field]: true }));
+    // Only give live feedback on blur AFTER the user has already tried to submit
+    // once. Validating on every blur made required-field errors appear the moment
+    // you left an empty field on a freshly opened form, which reads as broken.
+    if (!touched[field]) return;
     validateStep1();
   };
 
