@@ -533,3 +533,86 @@
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   Missing keyframes for the shared schematic-motion utilities
+   ==========================================================================
+   `.animate-dash-flow` and `.animate-spark` (defined in the utilities layer
+   above) referenced `dashFlow` and `spark`, which were never declared anywhere.
+   An undefined animation-name is not an error, it just silently does nothing,
+   so the connectors in FourTracksVisual and TrainingRoomVisual have never
+   actually flowed and the status dots have never pulsed.
+
+   -24 is two full periods of the "7 5" dash pattern both consumers use, so the
+   loop repeats seamlessly instead of jumping. Both utilities are already
+   disabled in the reduced-motion block in the utilities layer.
+   ========================================================================== */
+@keyframes dashFlow {
+  to { stroke-dashoffset: -24; }
+}
+@keyframes spark {
+  0%, 100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(2.1); opacity: 0; }
+}
+
+/* ==========================================================================
+   Coming-soon illustration
+   ==========================================================================
+   Ported from the Claude Design file "Coming Soon Illustration.dc.html". The
+   design carried these as a <style> block inside the component; here they are
+   real stylesheet rules, because injecting CSS as a React text child is what
+   produced hydration errors (#418/#425) on this SSG site before.
+
+   The trace reuses `.animate-dash-flow` and the pulse ring reuses
+   `.animate-spark`; only the effects with no existing equivalent are new.
+   ========================================================================== */
+@keyframes ibCsSettle {
+  0% { opacity: 0; transform: translateY(-14px); }
+  18%, 86% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-14px); }
+}
+@keyframes ibCsShimmer {
+  0% { transform: translateX(-360px) skewX(-14deg); }
+  100% { transform: translateX(560px) skewX(-14deg); }
+}
+@keyframes ibCsTravel {
+  0% { offset-distance: 0%; opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.ib-cs-settle {
+  animation: ibCsSettle 4.4s cubic-bezier(0.33, 0, 0.2, 1) infinite;
+}
+.ib-cs-shimmer {
+  animation: ibCsShimmer 4.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+/* Only rendered where offset-path is supported. Without the guard the sparks
+   would sit at the origin as two stray orange dots. */
+.ib-cs-spark {
+  display: none;
+}
+@supports (offset-path: path("M 0,0 L 1,1")) {
+  .ib-cs-spark {
+    display: block;
+    offset-rotate: 0deg;
+    animation: ibCsTravel 4.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Static composition: the settled module stays put and fully visible, the
+     travelling spark and the shimmer sweep are removed rather than frozen
+     mid-sweep. */
+  .ib-cs-settle {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ib-cs-shimmer,
+  .ib-cs-spark {
+    display: none !important;
+    animation: none !important;
+  }
+}

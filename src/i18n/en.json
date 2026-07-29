@@ -1220,6 +1220,13 @@
       "subtitle": "Tell us what you're trying to automate and we'll prioritise the right workflows.",
       "primaryLabel": "Book a call",
       "secondaryLabel": "See automations"
+    },
+    "state": {
+      "eyebrow": "In progress",
+      "title": "This section is being wired up",
+      "description": "We're assembling the pieces now. Check back shortly, or browse what's already live.",
+      "backCta": "Back to home",
+      "bookCta": "Book a 15-min call"
     }
   },
   "trustPage": {

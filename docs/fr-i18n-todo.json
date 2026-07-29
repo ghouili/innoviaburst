@@ -1,9 +1,9 @@
 {
   "_instructions": "Return native French for every value under en_to_translate (keep the EXACT same key paths) and drop it into src/i18n/fr.json. Also review/replace fr_to_review (FR drafted by the assistant). Do NOT machine-translate. Keep {{price}}/{{lang}} placeholders and the en-dashes/%/& exactly.",
   "_counts": {
-    "keysToTranslate": 479,
+    "keysToTranslate": 484,
     "keysToReview": 116,
-    "enLeaves": 1327,
+    "enLeaves": 1332,
     "frLeaves": 850
   },
   "en_to_translate": {
@@ -1551,6 +1551,15 @@
       "training": {
         "title": "AI, Development & Automation Training for Teams | Innoviaburst",
         "description": "Hands-on training for UK and EU teams across four tracks: AI and copilots, software development, automation and workflows, and AI governance under the EU AI Act. Workshops and cohorts, on-site or remote, English or French."
+      }
+    },
+    "comingSoon": {
+      "state": {
+        "eyebrow": "In progress",
+        "title": "This section is being wired up",
+        "description": "We're assembling the pieces now. Check back shortly, or browse what's already live.",
+        "backCta": "Back to home",
+        "bookCta": "Book a 15-min call"
       }
     }
   },
