@@ -83,7 +83,7 @@
     "note": "Named client logos and quoted results land here. We're keeping it empty until our first EU pilots agree to be named. No stock logos, no unattributed quotes."
   },
   "hero": {
-    "eyebrow": "AI, automation & MVPs for European SMEs",
+    "eyebrow": "AI, automation & MVPs for SMEs across Europe & Africa",
     "h1Pre": "AI automation your ",
     "h1Accent": "DPO and your board",
     "h1Post": " both sign off on.",
@@ -95,7 +95,7 @@
     "chips": {
       "delivery": "First workflow live in ~10 days",
       "compliance": "GDPR & EU AI Act-ready",
-      "residency": "Your data stays in the EU"
+      "residency": "Client data hosted in the EU"
     },
     "lane": {
       "title": "Sample: automation queue",
@@ -864,10 +864,10 @@
       "copyright": "© {{year}} InnoviaBurst. All rights reserved.",
       "privacyNote": "UK/EU-focused. Privacy & security information available in Trust & Compliance."
     },
-    "companyDetails": "InnoviaBurst Ltd (Company No. XXXXXXXX), registered in England and Wales",
     "complianceNote": "Built with focus on UK GDPR & EU compliance readiness.",
-    "companyNo": "Company No.",
-    "registeredOffice": "Registered office"
+    "companyNo": "Tax ID",
+    "registeredOffice": "Registered office",
+    "alsoAt": "Also at"
   },
   "solutions": {
     "title": "Top",

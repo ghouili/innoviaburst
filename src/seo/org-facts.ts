@@ -11,7 +11,7 @@
  */
 export interface OrgFacts {
   name: string;
-  /** Registered legal name, e.g. "Innoviaburst Ltd". */
+  /** Registered legal name, e.g. "InnoviaBurst" or "Acme Ltd". */
   legalName: string | null;
   /** ISO 8601 — a year ("2023") or year-month ("2023-06") is fine. */
   foundingDate: string | null;
@@ -30,6 +30,14 @@ export interface OrgFacts {
     postalCode: string | null;
     addressCountry: string | null; // ISO-3166-1, e.g. "GB"
   };
+  /** Optional second office, shown alongside the registered address. */
+  secondaryAddress: {
+    streetAddress: string | null;
+    addressLocality: string | null;
+    addressRegion: string | null;
+    postalCode: string | null;
+    addressCountry: string | null;
+  } | null;
   /**
    * National fiscal / tax identifier. For Tunisia this is the Matricule Fiscal,
    * which also serves as the VAT identifier — emitted as schema.org `taxID`
@@ -57,6 +65,14 @@ export const ORG_FACTS: OrgFacts = {
     postalCode: "8100",
     addressCountry: "TN",
   },
+  secondaryAddress: {
+    // Tunis office, shown alongside the registered office.
+    streetAddress: "63 Avenue Habib Bourguiba",
+    addressLocality: "Tunis",
+    addressRegion: "Tunis",
+    postalCode: null,
+    addressCountry: "TN",
+  },
   // Tunisian Matricule Fiscal (also the VAT identifier).
   taxId: "1985775/A/M/000",
   // Verified, live organization profiles.
@@ -73,3 +89,8 @@ export const hasFounder = (): boolean => Boolean(ORG_FACTS.founder.name);
 /** True if any postal-address field is set — gates the PostalAddress node. */
 export const hasAddress = (): boolean =>
   Object.values(ORG_FACTS.address).some((v) => Boolean(v));
+
+/** True if a second office address is set — gates the extra location node/line. */
+export const hasSecondaryAddress = (): boolean =>
+  Boolean(ORG_FACTS.secondaryAddress) &&
+  Object.values(ORG_FACTS.secondaryAddress as Record<string, string | null>).some((v) => Boolean(v));

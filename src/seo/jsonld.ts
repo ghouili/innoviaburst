@@ -1,6 +1,6 @@
 import i18n from "@/i18n";
 import { DEFAULT_LOCALE, isLocale, localizedPath, type Locale } from "@/lib/i18n-routing";
-import { ORG_FACTS, hasFounder, hasAddress } from "@/seo/org-facts";
+import { ORG_FACTS, hasFounder, hasAddress, hasSecondaryAddress } from "@/seo/org-facts";
 
 const siteUrl = import.meta.env.VITE_SITE_URL || "https://innoviaburst.com";
 const base = siteUrl.replace(/\/$/, "");
@@ -8,7 +8,7 @@ const base = siteUrl.replace(/\/$/, "");
 /** Stable @ids for the sitewide entities (referenced across schemas). */
 const ORG_ID = `${base}/#organization`;
 const WEBSITE_ID = `${base}/#website`;
-const FOUNDER_ID = `${base}/#founder`;
+const FOUNDER_ID = `${base}/about#founder`;
 
 const currentLocale = (): Locale => {
   const l = (i18n.language || DEFAULT_LOCALE).slice(0, 2);
@@ -55,7 +55,7 @@ export const orgJsonLd = () => ({
   },
   image: `${base}/og.jpg`,
   description:
-    "GDPR-by-design AI automation, AI copilots, MVPs and hands-on team training for UK/EU SMEs — fixed scope, delivered in weeks, with the audit trail built in.",
+    "GDPR-by-design AI automation, AI copilots, MVPs and hands-on team training for SMEs across the UK, Europe and Africa — fixed scope, delivered in weeks, with the audit trail built in.",
   email: "hello@innoviaburst.com",
   ...(ORG_FACTS.foundingDate ? { foundingDate: ORG_FACTS.foundingDate } : {}),
   ...(hasFounder() ? { founder: { "@id": FOUNDER_ID } } : {}),
@@ -72,9 +72,26 @@ export const orgJsonLd = () => ({
       }
     : {}),
   ...(ORG_FACTS.taxId ? { taxID: ORG_FACTS.taxId } : {}),
+  ...(hasSecondaryAddress()
+    ? {
+        location: {
+          "@type": "Place",
+          address: {
+            "@type": "PostalAddress",
+            ...(ORG_FACTS.secondaryAddress!.streetAddress ? { streetAddress: ORG_FACTS.secondaryAddress!.streetAddress } : {}),
+            ...(ORG_FACTS.secondaryAddress!.addressLocality ? { addressLocality: ORG_FACTS.secondaryAddress!.addressLocality } : {}),
+            ...(ORG_FACTS.secondaryAddress!.addressRegion ? { addressRegion: ORG_FACTS.secondaryAddress!.addressRegion } : {}),
+            ...(ORG_FACTS.secondaryAddress!.postalCode ? { postalCode: ORG_FACTS.secondaryAddress!.postalCode } : {}),
+            ...(ORG_FACTS.secondaryAddress!.addressCountry ? { addressCountry: ORG_FACTS.secondaryAddress!.addressCountry } : {}),
+          },
+        },
+      }
+    : {}),
   areaServed: [
     { "@type": "Country", name: "United Kingdom" },
     { "@type": "Place", name: "European Union" },
+    { "@type": "Country", name: "Tunisia" },
+    { "@type": "Place", name: "Africa" },
   ],
   serviceType: ["Workflow automation", "AI copilots", "MVP development", "Team training"],
   knowsAbout: [
@@ -95,7 +112,7 @@ export const orgJsonLd = () => ({
     "@type": "ContactPoint",
     email: "hello@innoviaburst.com",
     contactType: "sales",
-    areaServed: ["GB", "EU"],
+    areaServed: ["GB", "EU", "TN"],
     availableLanguage: ["en", "fr"],
   },
 });

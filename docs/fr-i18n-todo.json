@@ -1,10 +1,10 @@
 {
   "_instructions": "Return native French for every value under en_to_translate (keep the EXACT same key paths) and drop it into src/i18n/fr.json. Also review/replace fr_to_review (FR drafted by the assistant). Do NOT machine-translate. Keep {{price}}/{{lang}} placeholders and the en-dashes/%/& exactly.",
   "_counts": {
-    "keysToTranslate": 504,
+    "keysToTranslate": 507,
     "keysToReview": 116,
     "enLeaves": 1351,
-    "frLeaves": 850
+    "frLeaves": 849
   },
   "en_to_translate": {
     "nav": {
@@ -52,8 +52,9 @@
         "mvp": "MVP development",
         "training": "Team training"
       },
-      "companyNo": "Company No.",
-      "registeredOffice": "Registered office"
+      "companyNo": "Tax ID",
+      "registeredOffice": "Registered office",
+      "alsoAt": "Also at"
     },
     "offerDetails": {
       "ai-ops-sprint": {
@@ -1642,6 +1643,12 @@
         ]
       },
       "metaTitle": "AI Workflow Automation for UK & EU SMEs | Innoviaburst"
+    },
+    "hero": {
+      "eyebrow": "AI, automation & MVPs for SMEs across Europe & Africa",
+      "chips": {
+        "residency": "Client data hosted in the EU"
+      }
     }
   },
   "fr_to_review": {
@@ -1860,6 +1867,9 @@
       "trainingPage.forms.trackOptions"
     ],
     "why": "Product names stay as-is (Next.js, Postgres, Stripe, Vercel, HubSpot, ...). Everything else under en_to_translate needs native French. trainingPage.forms.trackOptions are submitted as payload values, so keep them identical across locales.",
-    "headlineSplit": "offerDetails.mvp-launch.h1Pre + h1Accent + h1Post concatenate into the single <h1>. Keep the trailing space at the end of h1Pre (and any leading space needed in h1Post) so the joined sentence reads correctly in French."
+    "headlineSplit": "offerDetails.mvp-launch.h1Pre + h1Accent + h1Post concatenate into the single <h1>. Keep the trailing space at the end of h1Pre (and any leading space needed in h1Post) so the joined sentence reads correctly in French.",
+    "removedKeys": [
+      "footer.companyDetails — deleted from en.json and fr.json: it claimed an England and Wales registration with a placeholder company number. The real facts live in src/seo/org-facts.ts and render through footer.companyNo, footer.registeredOffice and footer.alsoAt."
+    ]
   }
 }

@@ -1,5 +1,5 @@
 
-import { Mail, Linkedin, Twitter, Instagram, ShieldCheck, Scale, BadgeCheck, CalendarClock } from "lucide-react";
+import { Mail, Linkedin, Instagram, ShieldCheck, Scale, BadgeCheck, CalendarClock } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { PillBadge } from "@/components/ui/pill-badge";
 import { openCookieSettings } from "@/components/CookieConsent";
 import { NewsletterForm } from "@/components/NewsletterForm";
-import { ORG_FACTS, hasAddress } from "@/seo/org-facts";
+import { ORG_FACTS, hasAddress, hasSecondaryAddress } from "@/seo/org-facts";
 const footerLinkDefinitions = {
   company: [
     { labelKey: "footer.links.about", href: "/about" }, // Crawlable standalone page (Phase 7)
@@ -52,12 +52,6 @@ const socialLinkDefinitions = [
     labelKey: "footer.social.instagram",
     href: "https://www.instagram.com/innoviaburst/",
     Icon: Instagram,
-    external: true,
-  },
-  {
-    labelKey: "footer.social.twitter",
-    href: "https://www.instagram.com/innoviaburst/",
-    Icon: Twitter,
     external: true,
   },
 ];
@@ -373,6 +367,15 @@ export function Footer({ onBookingClick }: FooterProps = {}) {
                     ORG_FACTS.address.addressRegion,
                     ORG_FACTS.address.postalCode,
                     ORG_FACTS.address.addressCountry,
+                  ]
+                    .filter(Boolean)
+                    .join(", ")}`
+                : ""}
+              {hasSecondaryAddress()
+                ? `. ${t("footer.alsoAt")}: ${[
+                    ORG_FACTS.secondaryAddress!.streetAddress,
+                    ORG_FACTS.secondaryAddress!.addressLocality,
+                    ORG_FACTS.secondaryAddress!.addressCountry,
                   ]
                     .filter(Boolean)
                     .join(", ")}`
