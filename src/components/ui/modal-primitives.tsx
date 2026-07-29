@@ -382,6 +382,107 @@ export function RadioCardGroup({
 }
 
 // ============================================================================
+// CheckCardGroup - multi-select sibling of RadioCardGroup
+// ============================================================================
+// Same card affordance as RadioCardGroup so a multi-select group reads as part
+// of the same system, with checkbox semantics instead of radio: a real
+// `role="group"` wrapper (radiogroup implies single-select) and aria-checked on
+// each toggle. Kept here rather than in the form so both modals can use it.
+interface CheckCardOption {
+  value: string;
+  label: string;
+  description?: string;
+  icon?: React.ReactNode;
+}
+
+interface CheckCardGroupProps {
+  /** Accessible name for the group. */
+  name: string;
+  options: CheckCardOption[];
+  values: string[];
+  onToggle: (value: string) => void;
+  columns?: 1 | 2 | 3;
+  className?: string;
+  /** Wired to the group so an error is announced with it. */
+  describedBy?: string;
+  invalid?: boolean;
+}
+
+export function CheckCardGroup({
+  name,
+  options,
+  values,
+  onToggle,
+  columns = 2,
+  className,
+  describedBy,
+  invalid,
+}: CheckCardGroupProps) {
+  const gridCols = {
+    1: "grid-cols-1",
+    2: "grid-cols-1 sm:grid-cols-2",
+    3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+  };
+
+  return (
+    <div
+      role="group"
+      aria-label={name}
+      aria-describedby={describedBy}
+      aria-invalid={invalid || undefined}
+      className={cn("grid gap-3", gridCols[columns], className)}
+    >
+      {options.map((option) => {
+        const isSelected = values.includes(option.value);
+        return (
+          <button
+            key={option.value}
+            type="button"
+            role="checkbox"
+            aria-checked={isSelected}
+            onClick={() => onToggle(option.value)}
+            className={cn(
+              "flex items-center gap-3 p-3 rounded-xl border text-left transition-all min-h-[44px]",
+              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+              isSelected
+                ? "bg-secondary/10 border-secondary text-foreground"
+                : "bg-muted border-border text-muted-foreground hover:border-secondary/50 hover:bg-muted/80"
+            )}
+          >
+            {option.icon && (
+              <div
+                className={cn(
+                  "p-2 rounded-lg shrink-0",
+                  isSelected ? "bg-secondary/20 text-secondary" : "bg-background text-muted-foreground"
+                )}
+              >
+                {option.icon}
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <p className={cn("font-semibold text-sm", isSelected && "text-foreground")}>
+                {option.label}
+              </p>
+              {option.description && (
+                <p className="text-xs text-muted-foreground mt-0.5">{option.description}</p>
+              )}
+            </div>
+            <div
+              className={cn(
+                "w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0",
+                isSelected ? "border-secondary bg-secondary" : "border-border"
+              )}
+            >
+              {isSelected && <Check className="w-3 h-3 text-secondary-foreground" />}
+            </div>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ============================================================================
 // SuccessState - Modal success confirmation
 // ============================================================================
 interface SuccessStateProps {

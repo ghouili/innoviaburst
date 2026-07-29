@@ -1,7 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { CalendarDays, Handshake, Send } from "lucide-react";
+import { CalendarDays, Handshake, Send, Info, Bot, Code2, Workflow, Scale } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -11,10 +11,15 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { FormField, LoadingButton, SuccessState } from "@/components/ui/modal-primitives";
+import {
+  FormField,
+  LoadingButton,
+  SuccessState,
+  CheckCardGroup,
+  TrustBadge,
+} from "@/components/ui/modal-primitives";
 import { useToast } from "@/hooks/use-toast";
 
 /**
@@ -86,6 +91,13 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
   );
   const [form, setForm] = useState(empty);
 
+  // Local calendar date, so "today" matches what the user sees in the picker
+  // rather than a UTC day that can be off by one either side of midnight.
+  const today = useMemo(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }, []);
+
   // Reset whenever the modal opens, or the caller switches mode while open, so
   // a partner application never inherits a half-typed booking.
   useEffect(() => {
@@ -102,6 +114,11 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
   const f = t("trainingPage.forms.fields", { returnObjects: true }) as Record<string, string>;
   const err = t("trainingPage.forms.errors", { returnObjects: true }) as Record<string, string>;
   const trackOptions = t("trainingPage.forms.trackOptions", { returnObjects: true }) as string[];
+  const TRACK_ICONS = [Bot, Code2, Workflow, Scale];
+  const trackCards = trackOptions.map((label, i) => {
+    const TrackIcon = TRACK_ICONS[i] ?? Bot;
+    return { value: label, label, icon: <TrackIcon className="h-4 w-4" aria-hidden="true" /> };
+  });
   const formatOptions = t("trainingPage.forms.formatOptions", { returnObjects: true }) as string[];
 
   // Editing a field clears its error immediately rather than leaving a stale
@@ -182,6 +199,17 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
 
   const Icon = mode === "booking" ? CalendarDays : Handshake;
 
+  // Small uppercase group label with a hairline divider, so a long form reads
+  // as three short ones.
+  const GroupLabel = ({ children }: { children: React.ReactNode }) => (
+    <div className="flex items-center gap-3 pt-1">
+      <span className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        {children}
+      </span>
+      <span className="h-px flex-1 bg-border" aria-hidden="true" />
+    </div>
+  );
+
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto [scrollbar-gutter:stable]">
@@ -201,15 +229,19 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
             description={copy.successBody as string}
             details={copy.successDetails as string[]}
             actions={
-              <Button variant="hero-outline" onClick={onClose}>
-                {t("trainingPage.forms.close")}
-              </Button>
+              <div className="flex w-full flex-col items-center gap-5">
+                <TrustBadge items={(copy.trustBadges as string[]) ?? []} />
+                <Button variant="hero-outline" onClick={onClose}>
+                  {t("trainingPage.forms.close")}
+                </Button>
+              </div>
             }
           />
         ) : (
           <form onSubmit={handleSubmit} noValidate className="space-y-5">
             {mode === "booking" ? (
               <>
+                <GroupLabel>{t("trainingPage.forms.groups.about")}</GroupLabel>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <FormField label={f.name} htmlFor={`${uid}-name`} required error={errors.name} touched={touched.name}>
                     <Input
@@ -243,36 +275,31 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
                   />
                 </FormField>
 
-                {/* Tracks: a real fieldset so the group has an accessible name */}
-                <fieldset>
-                  <legend className="block text-sm font-semibold text-foreground">
+                <GroupLabel>{t("trainingPage.forms.groups.what")}</GroupLabel>
+
+                {/* Multi-select cards rather than bare checkbox rows: same
+                    affordance as RadioCardGroup elsewhere, 44px+ targets. */}
+                <div>
+                  <p className="block text-sm font-semibold text-foreground">
                     {f.tracks}
                     <span className="text-destructive ml-0.5">*</span>
-                  </legend>
-                  <p className="mt-1 text-xs text-muted-foreground">{f.tracksHint}</p>
-                  <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-                    {trackOptions.map((track) => (
-                      <div key={track} className="flex items-center gap-2.5">
-                        <Checkbox
-                          id={`${uid}-track-${track}`}
-                          checked={form.tracks.includes(track)}
-                          onCheckedChange={() => {
-                            toggleTrack(track);
-                            setTouched((p) => ({ ...p, tracks: true }));
-                          }}
-                        />
-                        <Label htmlFor={`${uid}-track-${track}`} className="cursor-pointer font-normal">
-                          {track}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
+                  </p>
+                  <p className="mt-1 mb-3 text-xs text-muted-foreground">{f.tracksHint}</p>
+                  <CheckCardGroup
+                    name={f.tracks}
+                    options={trackCards}
+                    values={form.tracks}
+                    onToggle={toggleTrack}
+                    columns={2}
+                    invalid={!!(errors.tracks && touched.tracks)}
+                    describedBy={errors.tracks && touched.tracks ? `${uid}-tracks-error` : undefined}
+                  />
                   {errors.tracks && touched.tracks && (
                     <p id={`${uid}-tracks-error`} className="mt-2 text-xs text-destructive-strong">
                       {errors.tracks}
                     </p>
                   )}
-                </fieldset>
+                </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
                   <FormField label={f.format} htmlFor={`${uid}-format`}>
@@ -302,11 +329,19 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
                   </FormField>
                 </div>
 
-                {/* Preferred dates: native date inputs, no calendar library */}
-                <fieldset>
-                  <legend className="block text-sm font-semibold text-foreground">{f.dates}</legend>
-                  <p className="mt-1 text-xs text-muted-foreground">{f.datesHint}</p>
-                  <div className="mt-3 grid gap-4 sm:grid-cols-3">
+                <GroupLabel>{t("trainingPage.forms.groups.when")}</GroupLabel>
+
+                {/* Preferred dates: native date inputs, no calendar library.
+                    The request-not-availability caveat is a visible callout
+                    rather than a grey hint, because it sets the expectation the
+                    whole booking model depends on. */}
+                <div>
+                  <p className="block text-sm font-semibold text-foreground">{f.dates}</p>
+                  <div className="mt-2 flex items-start gap-2.5 rounded-xl bg-accent/10 p-3.5">
+                    <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent-strong" aria-hidden="true" />
+                    <p className="text-xs leading-relaxed text-foreground">{f.datesCallout}</p>
+                  </div>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-3">
                     {(
                       [
                         ["dateFirst", f.dateFirst],
@@ -321,13 +356,14 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
                         <Input
                           id={`${uid}-${key}`}
                           type="date"
+                          min={today}
                           value={form[key]}
                           onChange={(e) => set(key, e.target.value)}
                         />
                       </div>
                     ))}
                   </div>
-                </fieldset>
+                </div>
 
                 <FormField label={f.timeframe} htmlFor={`${uid}-timeframe`} hint={f.timeframeHint}>
                   <Input
@@ -348,6 +384,7 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
               </>
             ) : (
               <>
+                <GroupLabel>{t("trainingPage.forms.groups.organisation")}</GroupLabel>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <FormField
                     label={f.organization}
@@ -387,6 +424,8 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
                   />
                 </FormField>
 
+                <GroupLabel>{t("trainingPage.forms.groups.delivery")}</GroupLabel>
+
                 <FormField
                   label={f.delivers}
                   htmlFor={`${uid}-delivers`}
@@ -412,24 +451,17 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
                   />
                 </FormField>
 
-                <fieldset>
-                  <legend className="block text-sm font-semibold text-foreground">{f.coDeliverTracks}</legend>
-                  <p className="mt-1 text-xs text-muted-foreground">{f.tracksHint}</p>
-                  <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-                    {trackOptions.map((track) => (
-                      <div key={track} className="flex items-center gap-2.5">
-                        <Checkbox
-                          id={`${uid}-ptrack-${track}`}
-                          checked={form.tracks.includes(track)}
-                          onCheckedChange={() => toggleTrack(track)}
-                        />
-                        <Label htmlFor={`${uid}-ptrack-${track}`} className="cursor-pointer font-normal">
-                          {track}
-                        </Label>
-                      </div>
-                    ))}
-                  </div>
-                </fieldset>
+                <div>
+                  <p className="block text-sm font-semibold text-foreground">{f.coDeliverTracks}</p>
+                  <p className="mt-1 mb-3 text-xs text-muted-foreground">{f.tracksHint}</p>
+                  <CheckCardGroup
+                    name={f.coDeliverTracks}
+                    options={trackCards}
+                    values={form.tracks}
+                    onToggle={toggleTrack}
+                    columns={2}
+                  />
+                </div>
 
                 <FormField label={f.message} htmlFor={`${uid}-message`} hint={f.messageHint}>
                   <Textarea

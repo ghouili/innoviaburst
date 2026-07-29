@@ -487,19 +487,19 @@
       ]
     },
     "how": {
-      "heading": "How a session works",
+      "heading": "How booking works",
       "steps": [
         {
-          "title": "Scope",
-          "description": "We shape the sessions around your tools, your team's level and the outcomes you want."
+          "title": "Request dates",
+          "description": "Tell us the tracks, the format and two or three dates that suit your team. It takes about two minutes."
         },
         {
-          "title": "Deliver",
-          "description": "Live, hands-on training, on-site or remote, in English or French, run against real examples."
+          "title": "We confirm a slot",
+          "description": "We check trainer availability and email you the slots we can confirm, usually within one business day."
         },
         {
-          "title": "Apply",
-          "description": "Your team leaves with working artefacts and a plan to keep going, not just notes."
+          "title": "Partner delivers",
+          "description": "An accredited partner runs the session on your agreed date, built around your real work and your tools."
         }
       ]
     },
@@ -568,7 +568,8 @@
             "LLM fundamentals for builders",
             "RAG assistants over your own documents",
             "Agents, tool use and evaluation"
-          ]
+          ],
+          "outcome": "Ship a copilot or assistant your team trusts, and judge whether its answers are good enough to use."
         },
         {
           "title": "Software development",
@@ -578,7 +579,8 @@
             "The stack we build on and why",
             "Testing that catches real bugs",
             "Shipping, releases and rollback"
-          ]
+          ],
+          "outcome": "Take a product idea to a tested, deployable build without accumulating a codebase nobody wants to touch."
         },
         {
           "title": "Automation and workflows",
@@ -588,7 +590,8 @@
             "Approvals and human sign-off",
             "Monitoring, alerts and retries",
             "Choosing what to automate first"
-          ]
+          ],
+          "outcome": "Automate a real cross-tool workflow with approvals, alerts and a retry path when it fails."
         },
         {
           "title": "AI governance and compliance",
@@ -598,9 +601,13 @@
             "GDPR-safe AI adoption",
             "Risk assessment and classification",
             "Documentation an auditor accepts"
-          ]
+          ],
+          "outcome": "Classify an AI use case, run the risk assessment and produce documentation your DPO will accept."
         }
-      ]
+      ],
+      "tablistLabel": "Training tracks",
+      "topicsLabel": "What we cover",
+      "outcomeLabel": "You will leave able to"
     },
     "forms": {
       "booking": {
@@ -609,11 +616,16 @@
         "submit": "Send request",
         "submitting": "Sending",
         "successTitle": "Request received",
-        "successBody": "We will send you available slots to confirm your dates.",
+        "successBody": "We will email you within 1 business day with confirmed slot options.",
         "successDetails": [
           "We reply within two working days",
           "Nothing is booked until you confirm",
           "No cost and no obligation"
+        ],
+        "trustBadges": [
+          "No obligation",
+          "Nothing booked until you confirm",
+          "No cost to request"
         ]
       },
       "partner": {
@@ -627,6 +639,11 @@
           "We review applications weekly",
           "We reply whether or not there is a fit",
           "Your details are not shared with third parties"
+        ],
+        "trustBadges": [
+          "Reviewed weekly",
+          "We reply either way",
+          "Details not shared"
         ]
       },
       "fields": {
@@ -641,9 +658,9 @@
         "teamSizeHint": "A rough number is fine",
         "dates": "Preferred dates",
         "datesHint": "Give us two or three options. These are requests, not live availability.",
-        "dateFirst": "First choice",
-        "dateSecond": "Second choice",
-        "dateThird": "Third choice",
+        "dateFirst": "1st choice",
+        "dateSecond": "2nd choice",
+        "dateThird": "3rd choice",
         "timeframe": "Timeframe note",
         "timeframeHint": "Optional. For example, any week in March, or after our product launch.",
         "notes": "Anything else",
@@ -656,7 +673,8 @@
         "accreditations": "Accreditations",
         "accreditationsHint": "Optional. Any accreditation or certification bodies.",
         "message": "Message",
-        "messageHint": "Optional."
+        "messageHint": "Optional.",
+        "datesCallout": "These are requests, not live availability. We check trainer availability and confirm your slot by email before anything is booked."
       },
       "formatOptions": [
         "Live workshop",
@@ -680,7 +698,44 @@
         "deliversRequired": "Please tell us what you deliver"
       },
       "consent": "We use your details only to answer this enquiry. See our Privacy Policy.",
-      "close": "Close"
+      "close": "Close",
+      "groups": {
+        "about": "About you",
+        "what": "What you want",
+        "when": "When",
+        "organisation": "Your organisation",
+        "delivery": "What you deliver"
+      }
+    },
+    "forTeamsEyebrow": "For teams",
+    "forProvidersEyebrow": "For training providers",
+    "partnerLinkPrefix": "Are you a training provider?",
+    "partnerLinkCta": "Become a partner",
+    "partnerStrip": {
+      "heading": "Deliver training with InnoviaBurst",
+      "body": "We co-deliver with accredited training centres and practitioner-led providers across the UK and EU. Tell us what you deliver and we will review it."
+    },
+    "vetting": {
+      "heading": "How we vet partners",
+      "intro": "We have not published partner names yet. Here is the standard every partner has to meet before they appear on this page.",
+      "items": [
+        {
+          "title": "Practitioner-led",
+          "description": "Sessions are run by people who do the work, not career trainers reading a deck."
+        },
+        {
+          "title": "Vetted for delivery quality",
+          "description": "We sit in on a session and review materials before a partner delivers for a client."
+        },
+        {
+          "title": "Named once agreements are signed",
+          "description": "No logo appears here until the agreement is in place and the partner agrees to be named."
+        }
+      ],
+      "compliance": [
+        "Governance track built around the EU AI Act and GDPR",
+        "Board- and DPO-oriented materials"
+      ]
     }
   },
   "work": {
