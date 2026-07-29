@@ -47,7 +47,11 @@ export const flatRoutes = [
   // no legacy 301 (newRoute). The robots meta is emitted by SeoHead in the page.
   { path: "/lp/mvp", source: "src/pages/LpMvpPage.tsx", changefreq: "monthly", priority: 0.5, noindex: true, newRoute: true },
   ...offers.map((o) => ({ path: `/${o.slug}`, source: o.source, changefreq: o.changefreq, priority: o.priority })),
-  ...caseStudies.map((c) => ({ path: `/work/${c.slug}`, source: c.source, changefreq: c.changefreq, priority: c.priority })),
+  // Individual case-study URLs currently render the coming-soon state (real
+  // CaseStudyPage is commented out in App.tsx until cases are written), so they
+  // are noindex and kept OUT of the sitemap to match their robots meta. Flip
+  // noindex off here and restore the App.tsx route when real content ships.
+  ...caseStudies.map((c) => ({ path: `/work/${c.slug}`, source: c.source, changefreq: c.changefreq, priority: c.priority, noindex: true })),
   // Pre-rendered but noindex — served as the real 404 body (nginx error_page).
   { path: "/404", source: "src/pages/NotFound.tsx", changefreq: "yearly", priority: 0.0, noindex: true, newRoute: true },
 ];

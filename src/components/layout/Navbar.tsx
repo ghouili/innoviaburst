@@ -42,7 +42,7 @@ const navItems: NavItem[] = [
       { labelKey: "nav.training", href: "/training" },
     ],
   },
-  { labelKey: "nav.work", href: "/work" },
+  { labelKey: "nav.work", href: "/works" },
   { labelKey: "nav.trust", href: "/trust" },
   { labelKey: "nav.resources", href: "/resources" },
 ];

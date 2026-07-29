@@ -50,9 +50,9 @@ export function ComingSoon({
   const { t } = useTranslation();
 
   return (
-    <section className={`py-16 lg:py-24 ${className}`}>
+    <section className={`py-16 lg:py-10  ${className}`}>
       <div className="container mx-auto px-4 lg:px-6">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-9 rounded-3xl border border-border bg-card px-6 py-12 shadow-card sm:px-12">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-9 rounded-3xl border border-border bg-card px-6 py-12 shadow-card sm:px-12">
           <ComingSoonIllustration />
 
           <div className="flex flex-col items-center gap-3.5 text-center">

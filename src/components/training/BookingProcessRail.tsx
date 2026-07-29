@@ -1,89 +1,65 @@
+import { CalendarPlus, CalendarCheck, GraduationCap, ChevronRight } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 interface Step {
   title: string;
   description: string;
 }
 
+// One icon per booking step, in order: request dates, we confirm a slot,
+// partner delivers. Falls back to the calendar icon if copy ever adds a step.
+const STEP_ICONS: LucideIcon[] = [CalendarPlus, CalendarCheck, GraduationCap];
+
 /**
- * Booking process as a horizontal rail: request dates, we confirm, partner
- * delivers.
+ * Booking process as three icon-led cards on a connector: request dates, we
+ * confirm, partner delivers. Each card carries a gradient icon chip, a large
+ * ghost number, and the step copy; the final card is accented (orange) to mark
+ * the outcome. A chevron sits in the gap between cards on desktop.
  *
- * Node styling follows OfferTimelineRail (numbered nodes on a connector, final
- * node accented) so the two rails on the site read as one component family. The
- * connector uses the existing `.animate-dash-flow` utility, which index.css
- * already disables under prefers-reduced-motion, so the rail renders in its
- * final state with no motion there and needs no JS of its own.
- *
- * Vertical on mobile, horizontal from `md`.
+ * The whole thing is static — no motion — so it renders identically with or
+ * without prefers-reduced-motion and needs no JS of its own. Vertical on
+ * mobile, three columns from `md`.
  */
 export function BookingProcessRail({ steps }: { steps: Step[] }) {
   if (!Array.isArray(steps) || steps.length === 0) return null;
 
   return (
-    <ol className="relative grid gap-8 md:grid-cols-3 md:gap-6">
+    <ol className="relative grid gap-6 md:grid-cols-3 md:gap-5">
       {steps.map((step, i) => {
         const isLast = i === steps.length - 1;
+        const Icon = STEP_ICONS[i] ?? CalendarPlus;
         return (
           <li key={step.title} className="relative min-w-0">
-            <div className="flex items-center gap-3 md:block">
+            {/* Connector to the next card. Decorative, desktop only. */}
+            {!isLast && (
               <span
-                className={`relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm font-bold ring-4 ring-background ${
-                  isLast ? "bg-gradient-cta text-primary-foreground" : "bg-secondary text-secondary-foreground"
-                }`}
+                className="pointer-events-none absolute -right-4 top-9 z-10 hidden md:flex h-7 w-7 items-center justify-center rounded-full border border-border bg-background text-secondary shadow-sm"
+                aria-hidden="true"
               >
-                {String(i + 1).padStart(2, "0")}
+                <ChevronRight className="h-4 w-4" />
               </span>
+            )}
 
-              {/* Connector runs from this node to the next one. Decorative. */}
-              {!isLast && (
-                <>
-                  <span
-                    className="pointer-events-none absolute left-11 right-0 top-[22px] hidden md:block"
-                    aria-hidden="true"
-                  >
-                    <svg width="100%" height="2" viewBox="0 0 100 2" preserveAspectRatio="none" focusable="false">
-                      <line
-                        x1="4"
-                        y1="1"
-                        x2="100"
-                        y2="1"
-                        stroke="hsl(var(--secondary))"
-                        strokeOpacity="0.45"
-                        strokeWidth="2"
-                        strokeDasharray="7 5"
-                        vectorEffect="non-scaling-stroke"
-                        className="animate-dash-flow"
-                      />
-                    </svg>
-                  </span>
-                  <span
-                    className="pointer-events-none absolute left-[21px] top-11 h-8 w-0.5 md:hidden"
-                    aria-hidden="true"
-                  >
-                    <svg width="2" height="100%" viewBox="0 0 2 100" preserveAspectRatio="none" focusable="false">
-                      <line
-                        x1="1"
-                        y1="0"
-                        x2="1"
-                        y2="100"
-                        stroke="hsl(var(--secondary))"
-                        strokeOpacity="0.45"
-                        strokeWidth="2"
-                        strokeDasharray="7 5"
-                        vectorEffect="non-scaling-stroke"
-                        className="animate-dash-flow"
-                      />
-                    </svg>
-                  </span>
-                </>
-              )}
+            <div className="group h-full rounded-2xl border border-border bg-card p-6 shadow-card transition-shadow duration-200 hover:shadow-lg">
+              <div className="flex items-start justify-between">
+                <span
+                  className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
+                    isLast ? "bg-gradient-cta" : "bg-gradient-blue"
+                  }`}
+                >
+                  <Icon className="h-5 w-5 text-primary-foreground" aria-hidden="true" />
+                </span>
+                <span
+                  className="text-[2.75rem] font-bold leading-none text-muted-foreground/25 tabular-nums"
+                  aria-hidden="true"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
 
-              <h3 className="text-base font-semibold text-foreground md:hidden">{step.title}</h3>
+              <h3 className="mt-5 text-base font-semibold text-foreground">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
             </div>
-
-            <h3 className="mt-4 hidden text-base font-semibold text-foreground md:block">{step.title}</h3>
-            <p className="mt-2 pl-14 text-sm leading-relaxed text-muted-foreground md:pl-0">
-              {step.description}
-            </p>
           </li>
         );
       })}

@@ -47,7 +47,7 @@ export function ComingSoonIllustration({ className = "" }: ComingSoonIllustratio
   const barSoft = "hsl(var(--accent) / 0.14)";
 
   return (
-    <div aria-hidden="true" className={`mx-auto w-full max-w-[520px] ${className}`}>
+    <div aria-hidden="true" className={`mx-auto w-full max-w-[640px] ${className}`}>
       <svg
         viewBox="0 104 520 180"
         role="presentation"

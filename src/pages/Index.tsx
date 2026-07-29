@@ -77,7 +77,7 @@ const Index = () => {
         <main id="main-content">
           {/* 1. Hero — Design 1 (Automation lane panel) */}
           <HeroShell
-            visual={<AutomationLaneVisual className="w-full bg-black" />}
+            visual={<AutomationLaneVisual className="w-full" />}
             onScopeClick={() => openRequest()}
             onBookClick={() => setIsBookingOpen(true)}
           />

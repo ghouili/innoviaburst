@@ -187,7 +187,7 @@ const STYLES = `
   --ease: cubic-bezier(.45,.05,.25,1);
   --slot: 88px;
 }
-.ialane.panel{ width:100%; background:white; border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow-md); overflow:hidden; }
+.ialane.panel{ width:100%; background:#fff; border:1px solid hsl(210 24% 87%); border-radius:18px; box-shadow:0 24px 50px -20px hsl(214 60% 28% / .30), 0 6px 16px -8px rgba(29,37,48,.14); overflow:hidden; }
 .ialane .panel-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 17px; border-bottom:1px solid var(--line); background:var(--card); }
 .ialane .ph-left{ display:flex; align-items:center; gap:11px; min-width:0; }
 .ialane .live{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--slate); }
@@ -630,6 +630,51 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       setStatus(doneCard, c().statusDone, false);
       setStatus(idleCard, c().statusQueued, false);
 
+      // Reset the degraded values so switching back from manual is consistent.
+      manualAvgMin = 240;
+      stats.miss = 0;
+      renderStats();
+    }
+
+    /**
+     * Static "manual mode" snapshot for reduced-motion: a small pile of queued
+     * cards with one overdue, and the degraded stats. Built directly (not via
+     * spawn) so it schedules no timers — a calm, motion-free picture.
+     */
+    function renderReducedMotionStaticManual(): void {
+      mode = "manual";
+      lane!.classList.add("manual");
+      foot!.classList.add("manual");
+      phSub!.textContent = c().subManual;
+      footText!.innerHTML = `<b>${esc(c().footManualLead)}</b> ${esc(c().footManualRest)}`;
+      lane!.innerHTML = "";
+      cards = [];
+
+      const build = (d: TaskDef): Card => {
+        const card = makeCard(d);
+        lane!.appendChild(card.el);
+        cards.push(card);
+        return card;
+      };
+      const tasks = c().tasks;
+      build(tasks[0]);
+      build(tasks[1]);
+      const overdue = build(tasks[3]);
+      layout();
+
+      // Mirror goOverdue()'s visuals without its timer/side effects.
+      overdue.el.classList.add("overdue");
+      setStatus(overdue, c().statusOverdue, false);
+      const pre = overdue.el.querySelector<HTMLElement>(".meta-pre");
+      if (pre) {
+        pre.innerHTML =
+          esc(overdue.data.src) +
+          '<span class="meta-sep"></span><span style="color:var(--orange);font-weight:600">' +
+          esc(c().slaBreached) +
+          "</span>";
+      }
+      manualAvgMin = 240;
+      stats.miss = 1;
       renderStats();
     }
 
@@ -648,13 +693,32 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       else startManual();
     };
 
+    // Reduced-motion variant: swap the static snapshot instead of starting the
+    // animated loops, so the toggle is still clickable and responsive.
+    const onToggleClickStatic = (e: MouseEvent): void => {
+      const target = e.target as HTMLElement | null;
+      const btn = target?.closest<HTMLButtonElement>("button");
+      if (!btn) return;
+      const m = btn.getAttribute("data-mode");
+      if (m === mode) return;
+      toggle.querySelectorAll<HTMLButtonElement>("button").forEach((b) => {
+        b.classList.remove("on");
+      });
+      btn.classList.add("on");
+      if (m === "auto") renderReducedMotionStatic();
+      else renderReducedMotionStaticManual();
+    };
+
     const prefersReducedMotion =
       typeof window !== "undefined" &&
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReducedMotion) {
-      // Calm static state, no loops / heartbeat. Toggle stays inert but harmless.
+      // Calm static state, no loops / heartbeat. The toggle still switches
+      // between the two static snapshots on click, so the demo stays interactive
+      // without any continuous motion.
+      toggle.addEventListener("click", onToggleClickStatic);
       renderStats();
       renderReducedMotionStatic();
     } else {
@@ -666,6 +730,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
     /* -------------------------------- cleanup ----------------------------- */
     return () => {
       toggle.removeEventListener("click", onToggleClick);
+      toggle.removeEventListener("click", onToggleClickStatic);
       timers.forEach(clearTimeout);
       timers = [];
       if (driftTimer) clearTimeout(driftTimer);

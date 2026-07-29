@@ -74,16 +74,6 @@
     "canonical": "https://innoviaburst.com/en/mvp-launch",
     "description": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one."
   },
-  "/en/work/professional-services-client-onboarding": {
-    "title": "Professional Services Firm: Client Onboarding | Case Study | Innoviaburst",
-    "canonical": "https://innoviaburst.com/en/work/professional-services-client-onboarding",
-    "description": "Client onboarding was taking 4+ hours per new client. Documents were scattered across email, shared drives, and CRM. Admin staff spent significant tim... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
-  },
-  "/en/work/saas-support-ticket-triage": {
-    "title": "B2B SaaS: Support Ticket Triage | Case Study | Innoviaburst",
-    "canonical": "https://innoviaburst.com/en/work/saas-support-ticket-triage",
-    "description": "Support team spending 2+ hours daily on manual ticket categorisation and routing. First response times were slow, and specialist tickets often went to... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
-  },
   "/fr/": {
     "title": "Innoviaburst | IA &amp; Automatisation pour PME UK/EU — Livré en semaines",
     "canonical": "https://innoviaburst.com/fr/",
@@ -158,15 +148,5 @@
     "title": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | Innoviaburst",
     "canonical": "https://innoviaburst.com/fr/mvp-launch",
     "description": "Développement de MVP pour startups et PME : de l&#x27;idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD &amp; règlement IA de l&#x27;UE et analytics dès le premier jour."
-  },
-  "/fr/work/professional-services-client-onboarding": {
-    "title": "Professional Services Firm: Client Onboarding | Case Study | Innoviaburst",
-    "canonical": "https://innoviaburst.com/fr/work/professional-services-client-onboarding",
-    "description": "Client onboarding was taking 4+ hours per new client. Documents were scattered across email, shared drives, and CRM. Admin staff spent significant tim... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
-  },
-  "/fr/work/saas-support-ticket-triage": {
-    "title": "B2B SaaS: Support Ticket Triage | Case Study | Innoviaburst",
-    "canonical": "https://innoviaburst.com/fr/work/saas-support-ticket-triage",
-    "description": "Support team spending 2+ hours daily on manual ticket categorisation and routing. First response times were slow, and specialist tickets often went to... See how we automated this workflow for UK/EU teams with AI copilots and resilient workflow automations."
   }
 }

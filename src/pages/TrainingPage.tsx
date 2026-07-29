@@ -17,6 +17,7 @@ import {
   Check,
   Handshake,
   BadgeCheck,
+  ChevronDown,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
@@ -291,6 +292,9 @@ export default function TrainingPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-3 max-w-md text-xs leading-relaxed text-muted-foreground">
+              {t("trainingSection.partnersNote")}
+            </p>
 
             <h2 className="mt-10 text-xl font-bold text-foreground">{t("trainingPage.vetting.heading")}</h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
@@ -369,13 +373,18 @@ export default function TrainingPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
               {t("trainingPage.faq.heading")}
             </h2>
-            <div className="space-y-6">
+            <div className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-card">
               {Array.isArray(faq) &&
                 faq.map((item) => (
-                  <div key={item.question} className="pb-6 border-b border-border last:border-0">
-                    <h3 className="text-base font-semibold text-foreground">{item.question}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
-                  </div>
+                  <details key={item.question} className="group">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-muted/40 [&::-webkit-details-marker]:hidden">
+                      <h3 className="text-[0.95rem] font-semibold text-foreground">{item.question}</h3>
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary/10 text-secondary transition-transform duration-200 group-open:rotate-180">
+                        <ChevronDown className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                    </summary>
+                    <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+                  </details>
                 ))}
             </div>
           </div>
