@@ -393,12 +393,13 @@ export function RequestModal({
                     type="email"
                     required
                     value={formData.email}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        email: e.target.value,
-                      }))
-                    }
+                    onChange={(e) => {
+                      const email = e.target.value;
+                      setFormData((prev) => ({ ...prev, email }));
+                      // Once a submit attempt has flagged the field, clear/update
+                      // the error as the user corrects it (matches BookingModal).
+                      if (touched.email) validateStep1();
+                    }}
                     onBlur={() => {
                       // Live feedback on blur only AFTER a submit attempt (which
                       // sets `touched`). Otherwise a required-field error would

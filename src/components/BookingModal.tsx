@@ -122,7 +122,7 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [formData.name, formData.email]);
+  }, [formData.name, formData.email, t]);
 
   const handleNext = () => {
     setTouched({ name: true, email: true });
