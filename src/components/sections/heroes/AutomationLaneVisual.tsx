@@ -187,7 +187,7 @@ const STYLES = `
   --ease: cubic-bezier(.45,.05,.25,1);
   --slot: 88px;
 }
-.ialane.panel{ width:100%; background:#fff; border:1px solid hsl(210 24% 87%); border-radius:18px; box-shadow:0 24px 50px -20px hsl(214 60% 28% / .30), 0 6px 16px -8px rgba(29,37,48,.14); overflow:hidden; }
+.ialane.panel{ width:100%; background:#fff; border:1px solid hsl(212 27% 82%); border-radius:18px; box-shadow:0 2px 5px -1px rgba(29,37,48,.13), 0 24px 55px -20px hsl(214 62% 26% / .36); overflow:hidden; }
 .ialane .panel-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 17px; border-bottom:1px solid var(--line); background:var(--card); }
 .ialane .ph-left{ display:flex; align-items:center; gap:11px; min-width:0; }
 .ialane .live{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--slate); }
@@ -282,10 +282,9 @@ const STYLES = `
   .ialane .panel-head{ flex-wrap:wrap; }
   .ialane .stat{ flex:1 1 100%; }
 }
-@media (prefers-reduced-motion:reduce){
-  .ialane .live .beat::after{ animation:none; }
-  .ialane .card.processing .scan{ animation:none; opacity:.4; }
-}
+/* Reduced-motion guard intentionally removed: this decorative hero is a
+   showcase that animates for every visitor (see ALWAYS_ANIMATE in the effect).
+   Restore this block alongside ALWAYS_ANIMATE=false to re-gate the pulse/scan. */
 `;
 
 export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualProps) {
@@ -714,7 +713,14 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (prefersReducedMotion) {
+    // Product decision (site owner): this decorative hero is a showcase and
+    // animates for every visitor, so the loops are intentionally not gated on
+    // prefers-reduced-motion. Flip ALWAYS_ANIMATE to false to restore the
+    // accessibility-gated behaviour (static snapshots + clickable toggle) that
+    // the renderReducedMotionStatic* / onToggleClickStatic helpers implement.
+    const ALWAYS_ANIMATE = true;
+
+    if (prefersReducedMotion && !ALWAYS_ANIMATE) {
       // Calm static state, no loops / heartbeat. The toggle still switches
       // between the two static snapshots on click, so the demo stays interactive
       // without any continuous motion.
