@@ -187,7 +187,7 @@ const STYLES = `
   --ease: cubic-bezier(.45,.05,.25,1);
   --slot: 88px;
 }
-.ialane.panel{ width:100%; background:#fff; border:1px solid hsl(212 27% 82%); border-radius:18px; box-shadow:0 2px 5px -1px rgba(29,37,48,.13), 0 24px 55px -20px hsl(214 62% 26% / .36); overflow:hidden; }
+.ialane.panel{ width:100%; background:#fff; border:1px solid hsl(210 24% 89%); border-radius:20px; box-shadow:0 1px 3px rgba(29,37,48,.05), 0 18px 40px -22px hsl(214 40% 40% / .22); overflow:hidden; }
 .ialane .panel-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 17px; border-bottom:1px solid var(--line); background:var(--card); }
 .ialane .ph-left{ display:flex; align-items:center; gap:11px; min-width:0; }
 .ialane .live{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--slate); }

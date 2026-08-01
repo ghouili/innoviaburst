@@ -65,7 +65,7 @@ export function SolutionsSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="solutions" className="py-20 lg:py-28 bg-muted/30">
+    <section id="solutions" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-6">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">

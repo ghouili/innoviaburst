@@ -72,8 +72,8 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(1200px 600px at 85% -10%, hsl(var(--secondary) / 0.05), transparent 60%)," +
-            "radial-gradient(900px 500px at -5% 110%, hsl(var(--secondary) / 0.035), transparent 55%)",
+            "radial-gradient(1200px 600px at 85% -10%, hsl(24 95% 53% / 0.06), transparent 60%)," +
+            "radial-gradient(900px 500px at -5% 110%, hsl(var(--secondary) / 0.05), transparent 55%)",
         }}
       />
       <div
@@ -89,8 +89,8 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
         }}
       />
 
-      <div className="container mx-auto px-4 lg:px-6 py-10 lg:py-16">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <div className="container mx-auto px-4 lg:px-6 py-12 lg:py-24">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           {/* LEFT — copy */}
           <div className="order-1 space-y-7 animate-fade-in-up">
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-secondary">
