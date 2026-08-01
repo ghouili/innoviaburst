@@ -109,6 +109,9 @@
        from 4.62:1 to 4.30:1 and fails AA. 38.5% restores it to 4.59:1 while
        keeping the warmer, more saturated hue. Measure before raising it. */
     --gradient-cta: linear-gradient(135deg, hsl(26 96% 38.5%) 0%, hsl(23 95% 37%) 100%);
+    /* Hover: darken the BACKGROUND only (label stays pure white), so white-text
+       contrast rises on hover (~5.3:1) instead of dimming toward the bar. */
+    --gradient-cta-hover: linear-gradient(135deg, hsl(26 96% 34%) 0%, hsl(23 95% 31%) 100%);
     --gradient-blue: linear-gradient(135deg, hsl(192 85% 50%) 0%, hsl(210 70% 45%) 100%);
     --gradient-glow: radial-gradient(ellipse at 50% 0%, hsl(192 85% 50% / 0.15) 0%, transparent 70%);
 
