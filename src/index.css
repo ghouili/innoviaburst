@@ -101,17 +101,14 @@
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(200 22% 99%) 0%, hsl(192 55% 96%) 50%, hsl(200 22% 99%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 30% 99%) 100%);
-    /* Brightest orange that still clears AA with WHITE text. Warmer hue + higher
-       saturation + a lifted bottom stop so it reads vivid, not burnt. A brighter
-       orange would need dark button text.
-       The top stop is 38.5% L, not 40%: HSL lightness is not relative luminance,
-       so moving 24->26deg and 90->96% saturation at a fixed 40% L drops white
-       from 4.62:1 to 4.30:1 and fails AA. 38.5% restores it to 4.59:1 while
-       keeping the warmer, more saturated hue. Measure before raising it. */
-    --gradient-cta: linear-gradient(135deg, hsl(26 96% 38.5%) 0%, hsl(23 95% 37%) 100%);
-    /* Hover: darken the BACKGROUND only (label stays pure white), so white-text
-       contrast rises on hover (~5.3:1) instead of dimming toward the bar. */
-    --gradient-cta-hover: linear-gradient(135deg, hsl(26 96% 34%) 0%, hsl(23 95% 31%) 100%);
+    /* Fully vibrant orange (the old-site look). Paired with DARK button text
+       (see the `hero` button variant) — the only way this brightness clears
+       WCAG AA. White text here is ~3:1 and fails; dark text on the lightest
+       stop is ~6:1. */
+    --gradient-cta: linear-gradient(135deg, hsl(30 97% 55%) 0%, hsl(24 96% 50%) 100%);
+    /* Hover BRIGHTENS the fill: with dark text, a brighter orange raises contrast
+       (and reads as an energetic glow) rather than dimming it. */
+    --gradient-cta-hover: linear-gradient(135deg, hsl(32 98% 61%) 0%, hsl(26 97% 56%) 100%);
     --gradient-blue: linear-gradient(135deg, hsl(192 85% 50%) 0%, hsl(210 70% 45%) 100%);
     --gradient-glow: radial-gradient(ellipse at 50% 0%, hsl(192 85% 50% / 0.15) 0%, transparent 70%);
 
