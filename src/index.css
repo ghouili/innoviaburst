@@ -101,14 +101,15 @@
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(200 22% 99%) 0%, hsl(192 55% 96%) 50%, hsl(200 22% 99%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 30% 99%) 100%);
-    /* Fully vibrant orange (the old-site look). Paired with DARK button text
-       (see the `hero` button variant) — the only way this brightness clears
-       WCAG AA. White text here is ~3:1 and fails; dark text on the lightest
-       stop is ~6:1. */
+    /* Fully vibrant orange (the old-site look), paired with WHITE button text per
+       an explicit owner decision. NOTE: this is a DELIBERATE below-AA exception —
+       white on this orange is ~2.9:1 (WCAG AA wants 4.5:1). A dark label passes;
+       the owner chose the classic white-on-orange look. The label carries a
+       text-shadow for real-world legibility. Everything else on the site is AA. */
     --gradient-cta: linear-gradient(135deg, hsl(30 97% 55%) 0%, hsl(24 96% 50%) 100%);
-    /* Hover BRIGHTENS the fill: with dark text, a brighter orange raises contrast
-       (and reads as an energetic glow) rather than dimming it. */
-    --gradient-cta-hover: linear-gradient(135deg, hsl(32 98% 61%) 0%, hsl(26 97% 56%) 100%);
+    /* Hover DARKENS the fill so white text gains contrast on hover (a standard
+       darken-on-hover) rather than losing it. */
+    --gradient-cta-hover: linear-gradient(135deg, hsl(26 93% 45%) 0%, hsl(22 93% 40%) 100%);
     --gradient-blue: linear-gradient(135deg, hsl(192 85% 50%) 0%, hsl(210 70% 45%) 100%);
     --gradient-glow: radial-gradient(ellipse at 50% 0%, hsl(192 85% 50% / 0.15) 0%, transparent 70%);
 
