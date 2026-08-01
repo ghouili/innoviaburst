@@ -500,7 +500,7 @@ export default function LpMvpPage() {
             {t("lpMvp.sticky.secondary")}
           </Button>
           <Button
-            variant="cta"
+            variant="hero"
             size="default"
             onClick={scrollToForm}
             tabIndex={showSticky ? undefined : -1}

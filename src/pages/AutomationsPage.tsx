@@ -914,7 +914,7 @@ function AutomationCard({
           <div className="flex items-start gap-2">
             <Zap className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
             <div className="min-w-0">
-              <div className="text-[11px] font-semibold tracking-wide text-accent-strong/90">
+              <div className="text-[11px] font-semibold tracking-wide text-accent-strong">
                 {t("automationsPage.card.exampleImpact")}
               </div>
               <div className="text-sm font-semibold text-muted-foreground line-clamp-1">

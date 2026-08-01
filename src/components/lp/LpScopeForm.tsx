@@ -220,7 +220,7 @@ export function LpScopeForm({
 
         <Button
           type="submit"
-          variant="cta"
+          variant="hero"
           size="lg"
           disabled={submitting}
           className="w-full min-h-[52px] text-base"

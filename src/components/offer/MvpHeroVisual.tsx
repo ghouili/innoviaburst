@@ -241,7 +241,7 @@ export function MvpHeroVisual() {
           </div>
 
           {/* Live badge */}
-          <div className="ib-live absolute -bottom-[18px] right-3.5 inline-flex items-center gap-2 rounded-full bg-orange px-3.5 py-2 text-[12.5px] font-bold tracking-wide text-white">
+          <div className="ib-live absolute -bottom-[18px] right-3.5 inline-flex items-center gap-2 rounded-full bg-orange px-3.5 py-2 text-[12.5px] font-bold tracking-wide text-[hsl(22_55%_15%)]">
             <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
               <path d="M3.4 7.4 L5.8 9.8 L10.6 4.4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

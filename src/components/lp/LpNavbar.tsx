@@ -50,7 +50,7 @@ export function LpNavbar({ ctaLabel, onCtaClick }: LpNavbarProps) {
           </Link>
 
           <Button
-            variant="cta"
+            variant="hero"
             size="default"
             onClick={onCtaClick}
             className="min-h-[44px]"

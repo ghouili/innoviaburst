@@ -342,7 +342,7 @@ export function Footer({ onBookingClick }: FooterProps = {}) {
               {t("footer.booking.description")}
             </p>
             <Button
-              variant="cta"
+              variant="hero"
               size="lg"
               onClick={handleBookClick}
               className="mt-4 w-full sm:w-auto"
