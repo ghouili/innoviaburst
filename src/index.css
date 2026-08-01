@@ -102,10 +102,13 @@
     --gradient-hero: linear-gradient(135deg, hsl(200 22% 99%) 0%, hsl(192 55% 96%) 50%, hsl(200 22% 99%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 30% 99%) 100%);
     /* Fully vibrant orange (the old-site look), paired with WHITE button text per
-       an explicit owner decision. NOTE: this is a DELIBERATE below-AA exception —
-       white on this orange is ~2.9:1 (WCAG AA wants 4.5:1). A dark label passes;
-       the owner chose the classic white-on-orange look. The label carries a
-       text-shadow for real-world legibility. Everything else on the site is AA. */
+       an explicit owner decision. NOTE: DELIBERATE below-AA exception — white on
+       this orange measures ~2.44:1 worst-case at rest and ~3.69:1 on the darkened
+       hover (WCAG AA needs 4.5:1 for this ~15px label; the 3:1 large-text bar does
+       not apply). A dark label passes at ~5.44:1; the owner chose the classic
+       white-on-orange look. The label's text-shadow aids real-world legibility but
+       does NOT change the WCAG ratio (contrast is text vs background only).
+       Everything else on the site clears AA. */
     --gradient-cta: linear-gradient(135deg, hsl(30 97% 55%) 0%, hsl(24 96% 50%) 100%);
     /* Hover DARKENS the fill so white text gains contrast on hover (a standard
        darken-on-hover) rather than losing it. */

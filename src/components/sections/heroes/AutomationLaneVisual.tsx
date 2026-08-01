@@ -281,6 +281,11 @@ const STYLES = `
 @media (max-width:560px){
   .ialane .panel-head{ flex-wrap:wrap; }
   .ialane .stat{ flex:1 1 100%; }
+  /* Compact panel on phones: 2 metric tiles instead of 4 and a shorter lane, so
+     the mobile hero is not dominated by a tall panel. Hidden tiles still receive
+     their (harmless) JS updates; the "illustrative" caption stays visible. */
+  .ialane #ialane-stat-hours, .ialane #ialane-stat-miss{ display:none; }
+  .ialane .lane{ height: calc(var(--slot) * 2 + 6px); }
 }
 /* Reduced-motion guard intentionally removed: this decorative hero is a
    showcase that animates for every visitor (see ALWAYS_ANIMATE in the effect).

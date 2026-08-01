@@ -56,7 +56,7 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] overflow-hidden bg-gradient-hero pt-20 lg:pt-24">
+    <section className="relative lg:min-h-[90vh] overflow-hidden bg-gradient-hero pt-20 lg:pt-24">
       <div className="absolute inset-0 bg-gradient-glow pointer-events-none" aria-hidden="true" />
 
       {/*
