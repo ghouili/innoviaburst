@@ -10,6 +10,7 @@ import { AutomationQuickView } from "@/components/AutomationQuickView";
 import { SkipLink } from "@/components/SkipLink";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { Button } from "@/components/ui/button";
+import { FlowText } from "@/components/ui/flow-text";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   ArrowRight,
@@ -871,10 +872,10 @@ function AutomationCard({
         {/* Title + Outcome */}
         <div className="space-y-1">
           <h3 className="text-[17px] font-bold leading-snug text-foreground">
-            {automation.title}
+            <FlowText text={automation.title} />
           </h3>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            {automation.outcome}
+            <FlowText text={automation.outcome} />
           </p>
         </div>
 

@@ -264,7 +264,8 @@ const STYLES = `
    panel reads as "a product view" rather than as a results claim. */
 .ialane .stat-val{ margin-top:4px; font-size:17px; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.1; display:flex; align-items:baseline; gap:6px; }
 .ialane .stat-val .from{ font-size:11.5px; font-weight:500; color:var(--slate); }
-.ialane .stat-val .arrow{ font-size:12px; color:var(--slate); opacity:.65; font-weight:500; }
+.ialane .stat-val .arrow{ display:inline-flex; align-self:center; color:var(--slate); opacity:.65; }
+.ialane .stat-val .arrow svg{ width:13px; height:13px; }
 .ialane .stat.warn{ border-color:hsl(var(--primary) / .4); background:linear-gradient(to bottom, var(--card), var(--orange-soft)); }
 .ialane .stat.warn .stat-val{ color:var(--orange); }
 .ialane .panel-foot{ display:flex; align-items:center; gap:10px; padding:11px 18px; border-top:1px solid var(--line); font-size:11.5px; color:var(--slate); background:var(--card); }
@@ -910,7 +911,11 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
             </div>
             <div className="stat-val">
               <span className="from">4h</span>
-              <span className="arrow">→</span>
+              <span className="arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
               <span id="ialane-v-resp">3m</span>
             </div>
           </div>

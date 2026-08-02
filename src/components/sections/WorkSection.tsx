@@ -1,6 +1,7 @@
 import { ArrowRight, FileText, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { FlowText } from "@/components/ui/flow-text";
 import { Link } from "react-router-dom";
 
 // Case study slugs map to copy under `caseStudies.<slug>.*` in i18n.
@@ -66,7 +67,7 @@ export function WorkSection() {
                   {/* Solution */}
                   <div>
                     <p className="text-xs font-semibold text-secondary uppercase tracking-wide mb-2">{t("workPage.labelSolution")}</p>
-                    <p className="text-sm text-muted-foreground">{t(`caseStudies.${slug}.cardSolution`)}</p>
+                    <p className="text-sm text-muted-foreground"><FlowText text={t(`caseStudies.${slug}.cardSolution`)} /></p>
                   </div>
 
                   {/* Results */}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Zap, Settings, Rocket, Check, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { FlowText } from "@/components/ui/flow-text";
 import { Link } from "react-router-dom";
 import {
   Collapsible,
@@ -269,7 +270,7 @@ export function OffersSection({ onBookingClick }: OffersSectionProps) {
           <CollapsibleContent className="mt-4">
             {/* Scroll hint for mobile users */}
             <p className="text-xs text-muted-foreground text-center mb-2 sm:hidden">
-              {t("offers.swipeHint", "← Swipe to compare →")}
+              <FlowText text={t("offers.swipeHint", "← Swipe to compare →")} decorative />
             </p>
             <div className="overflow-x-auto bg-card rounded-xl border border-border p-4 scrollbar-hide">
               <OffersComparisonTable />

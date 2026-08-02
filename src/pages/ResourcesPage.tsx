@@ -8,6 +8,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { BookingModal } from "@/components/BookingModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
+import { FlowText } from "@/components/ui/flow-text";
 import {
   ArrowLeft,
   ArrowRight,
@@ -1123,7 +1124,7 @@ function ResourcesNewsletterCardMobile() {
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-foreground">{t("resourcesPage.newsletter.mobileSuccessTitle")}</p>
-          <p className="text-xs text-muted-foreground">{t("resourcesPage.newsletter.mobileSuccessSubtitle")}</p>
+          <p className="text-xs text-muted-foreground"><FlowText text={t("resourcesPage.newsletter.mobileSuccessSubtitle")} /></p>
         </div>
       </div>
     );

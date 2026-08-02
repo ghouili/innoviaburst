@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { X, Clock, Zap, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { FlowText } from "@/components/ui/flow-text";
 
 interface Automation {
   title: string;
@@ -97,7 +98,7 @@ export function AutomationQuickView({
               {automation.category}
             </span>
             <h2 id="quickview-title" className="text-xl font-bold text-foreground">
-              {automation.title}
+              <FlowText text={automation.title} />
             </h2>
           </div>
           <button
@@ -114,7 +115,7 @@ export function AutomationQuickView({
           {/* Outcome */}
           <div>
             <h3 className="text-sm font-semibold text-muted-foreground mb-2">{t("automationsPage.quickView.outcome")}</h3>
-            <p className="text-foreground font-medium">{automation.outcome}</p>
+            <p className="text-foreground font-medium"><FlowText text={automation.outcome} /></p>
           </div>
 
           {/* KPIs */}

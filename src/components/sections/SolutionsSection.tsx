@@ -11,6 +11,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { FlowText } from "@/components/ui/flow-text";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 
@@ -126,7 +127,7 @@ export function SolutionsSection() {
                           {t("solutions.exampleKpi")}
                         </p>
                         <p className="text-sm sm:text-base font-semibold text-gradient-orange">
-                          {t(`solutions.items.${workflow.key}.kpi`)}
+                          <FlowText text={t(`solutions.items.${workflow.key}.kpi`)} />
                         </p>
                       </div>
 

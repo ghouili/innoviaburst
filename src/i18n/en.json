@@ -428,7 +428,7 @@
     "points": [
       "MVP build, deploy & analytics dashboard",
       "You own the code & IP",
-      "GDPR & EU AI Act-ready from day one"
+      "GDPR & EU AI Act-ready"
     ],
     "cta": "See how MVP Launch works"
   },
@@ -772,7 +772,7 @@
   "trust": {
     "title": "Trust &",
     "titleHighlight": "Compliance",
-    "subtitle": "Security and compliance aren't afterthoughts. They're built in from day one.",
+    "subtitle": "Security and compliance aren't afterthoughts. They're built in, not bolted on.",
     "downloadPack": "Download Trust Pack (PDF)",
     "viewPage": "View full Trust & Compliance page",
     "viewPolicy": "View full policy",
@@ -818,7 +818,7 @@
   "footer": {
     "tagline": "AI & automation delivered in weeks. UK/EU focused, compliance-ready.",
     "blurb": "AI, automation & MVPs for UK and EU SMEs.",
-    "description": "AI & automation delivered in weeks. Built for UK/EU teams with governance and clarity from day one.",
+    "description": "AI & automation delivered in weeks. Built for UK/EU teams with governance and clarity as standard.",
     "remoteFirst": "Remote-first • UK/EU clients",
     "compliance": {
       "label": "Compliance posture",
@@ -1058,7 +1058,7 @@
       "items": [
         {
           "q": "What is workflow automation for SMEs?",
-          "a": "Workflow automation connects the tools you already use, such as your CRM, helpdesk, spreadsheets and email, so repetitive steps run without manual handling. For SMEs it typically removes data re-entry, chasing and status updates, freeing hours of admin time while keeping a full audit trail."
+          "a": "Workflow automation connects the tools you already use, such as your CRM, helpdesk, spreadsheets and email, so repetitive steps run without manual handling. For SMEs it typically removes data re-entry, chasing and status updates, freeing hours of admin time while keeping every step logged and traceable."
         },
         {
           "q": "How long does it take to automate a workflow?",
@@ -1070,7 +1070,7 @@
         },
         {
           "q": "Is AI automation GDPR and EU AI Act ready?",
-          "a": "Yes. Every build is GDPR-by-design with least-privilege access, clear data-retention notes, and an audit trail from day one. Work is scoped to stay clear of prohibited EU AI Act use cases."
+          "a": "Yes. Every build is GDPR-by-design with least-privilege access, clear data-retention notes, and a complete audit trail. Work is scoped to stay clear of prohibited EU AI Act use cases."
         },
         {
           "q": "AI Ops Sprint vs Automation Build: which do I need?",
@@ -1661,7 +1661,7 @@
           "headlinePre": "Ship an ",
           "headlineAccent": "investor-ready MVP",
           "headlinePost": " before your next raise",
-          "subhead": "A real, working product to put in front of users and investors. Built lean in 6-10 weeks, with analytics from day one. You own 100% of the code and IP.",
+          "subhead": "A real, working product to put in front of users and investors. Built lean in 6-10 weeks, analytics included. You own 100% of the code and IP.",
           "primaryCta": "Get my free 48-hour scope"
         },
         "speed": {
@@ -1744,7 +1744,7 @@
           "body": "Sensible security measures so you can launch with confidence."
         },
         {
-          "title": "Analytics from day one",
+          "title": "Analytics included",
           "body": "Product analytics wired in so you can measure activation immediately."
         },
         {
@@ -1965,7 +1965,7 @@
       "heroDescription": "Get one workflow automated or one AI copilot shipped in just 10 business days. Perfect for proving ROI before larger investments.",
       "summaryFacts": [
         "One workflow live inside your existing tools",
-        "GDPR & EU AI Act-ready from day one"
+        "GDPR & EU AI Act-ready"
       ],
       "deliverables": [
         "1 workflow automated OR 1 AI copilot shipped (scoped to complexity)",
@@ -2091,7 +2091,7 @@
       "heroDescription": "Build production-grade automation that connects multiple systems with proper logging, alerts, and retry strategies.",
       "summaryFacts": [
         "Connects 3-5 of your existing tools",
-        "GDPR & EU AI Act-ready from day one"
+        "GDPR & EU AI Act-ready"
       ],
       "deliverables": [
         "Multi-system workflow connecting 3-5 tools",
@@ -2222,7 +2222,7 @@
       "heroDescription": "We take one validated idea and build it into a live, investor-ready product, with authentication, security and analytics included. You own the code and the IP outright, and it's GDPR and EU AI Act-ready from day one. Fixed scope agreed before we write a line of code.",
       "summaryFacts": [
         "You own the code & IP",
-        "GDPR & EU AI Act-ready from day one"
+        "GDPR & EU AI Act-ready"
       ],
       "deliverables": [
         "Fully functional MVP deployed to production",
@@ -2332,7 +2332,7 @@
       "aeo": [
         {
           "q": "What is MVP Launch?",
-          "a": "MVP Launch is a fixed-scope MVP development service for European startups and SMEs. We build one validated idea into a live, investor-ready product in weeks, with authentication, security and analytics included. You own the code and IP, and it's GDPR and EU AI Act-ready from day one."
+          "a": "MVP Launch is a fixed-scope MVP development service for European startups and SMEs. We build one validated idea into a live, investor-ready product in weeks, with authentication, security and analytics included. You own the code and IP, and it's compliant with GDPR and the EU AI Act on release."
         },
         {
           "q": "How long does it take to build an MVP?",
@@ -3155,7 +3155,7 @@
     "hero": {
       "eyebrow": "About us",
       "title": "Automation UK and EU SMEs can actually trust",
-      "lede": "InnoviaBurst builds GDPR-by-design AI automation, AI copilots and MVPs for small and mid-sized teams across the UK and EU. Fixed scope, delivered in weeks, with the audit trail built in."
+      "lede": "InnoviaBurst builds GDPR-by-design AI automation, AI copilots and MVPs for small and mid-sized teams across the UK and EU. Fixed scope, delivered in weeks, with a full audit trail."
     },
     "mission": {
       "title": "Our mission",
