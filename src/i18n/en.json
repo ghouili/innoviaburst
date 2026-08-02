@@ -2088,7 +2088,7 @@
       "subheading": "Production-grade workflow automation for UK & EU SMEs",
       "timeline": "4-6 weeks",
       "bestFor": "Cross-tool automation with approvals, reporting, and error handling",
-      "heroDescription": "Build robust, production-grade automation that connects multiple systems with proper logging, alerts, and retry strategies.",
+      "heroDescription": "Build production-grade automation that connects multiple systems with proper logging, alerts, and retry strategies.",
       "summaryFacts": [
         "Connects 3-5 of your existing tools",
         "GDPR & EU AI Act-ready from day one"
@@ -2219,7 +2219,7 @@
       "subheading": "MVP development for European startups & SMEs",
       "timeline": "6-10 weeks",
       "bestFor": "Startups & SMEs launching a new product or internal tool",
-      "heroDescription": "We take one validated idea and build it into a live, investor-ready product, with authentication, security and analytics included. You own the code and the IP outright, and it’s GDPR and EU AI Act-ready from day one. Fixed scope agreed before we write a line of code.",
+      "heroDescription": "We take one validated idea and build it into a live, investor-ready product, with authentication, security and analytics included. You own the code and the IP outright, and it's GDPR and EU AI Act-ready from day one. Fixed scope agreed before we write a line of code.",
       "summaryFacts": [
         "You own the code & IP",
         "GDPR & EU AI Act-ready from day one"
@@ -2332,14 +2332,14 @@
       "aeo": [
         {
           "q": "What is MVP Launch?",
-          "a": "MVP Launch is a fixed-scope MVP development service for European startups and SMEs. We build one validated idea into a live, investor-ready product in weeks, with authentication, security and analytics included. You own the code and IP, and it’s GDPR and EU AI Act-ready from day one."
+          "a": "MVP Launch is a fixed-scope MVP development service for European startups and SMEs. We build one validated idea into a live, investor-ready product in weeks, with authentication, security and analytics included. You own the code and IP, and it's GDPR and EU AI Act-ready from day one."
         },
         {
           "q": "How long does it take to build an MVP?",
-          "a": "Most MVP Launch builds go from agreed scope to a live product in a matter of weeks, not months. The exact timeline depends on the number of screens and features, which we fix before starting. You’ll have a firm scope and delivery date within 48 hours of your first call."
+          "a": "Most MVP Launch builds go from agreed scope to a live product in a matter of weeks, not months. The exact timeline depends on the number of screens and features, which we fix before starting. You'll have a firm scope and delivery date within 48 hours of your first call."
         },
         {
-          "q": "What’s included in an MVP build?",
+          "q": "What's included in an MVP build?",
           "a": "Every build includes a fully functional product deployed to production, secure authentication with role-based access, your 5-8 core screens, sensible built-in security, analytics integration and a mobile-responsive interface. You receive full source code, IP ownership and compliance documentation covering data retention and processing."
         },
         {
@@ -2452,7 +2452,7 @@
         "priceLine": "Custom quote per project · EUR / GBP · deposit + milestones",
         "note": "No fixed-price template. You get a scoped quote for your product, not ours. No obligation."
       },
-      "credibilityNote": "We’re a compliance-native product studio: we build MVPs the way European founders actually have to ship them. Data handling, ownership and documentation are treated as first-class from day one, not bolted on before a raise. The standard summed up across our work: AI automation your DPO and your board both sign off on.",
+      "credibilityNote": "We're a compliance-native product studio: we build MVPs the way European founders actually have to ship them. Data handling, ownership and documentation are treated as first-class from day one, not bolted on before a raise. The standard summed up across our work: AI automation your DPO and your board both sign off on.",
       "proofPlaceholder": "Case studies coming soon. Ask for a walkthrough of recent builds on your scoping call.",
       "finalCta": {
         "title": "Ready to see your MVP scoped?",

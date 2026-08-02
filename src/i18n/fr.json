@@ -37,7 +37,7 @@
     "acceptSelected": "Accepter la sélection",
     "rejectAll": "Tout refuser",
     "bannerTitle": "Nous utilisons des cookies",
-    "bannerDesc": "Nous utilisons des cookies pour améliorer votre expérience et analyser l’utilisation du site. Les cookies non essentiels sont désactivés par défaut.",
+    "bannerDesc": "Nous utilisons des cookies pour améliorer votre expérience et analyser l'utilisation du site. Les cookies non essentiels sont désactivés par défaut.",
     "readPolicy": "Lire notre politique de cookies",
     "preferencesTitle": "Préférences de cookies",
     "actions": {
@@ -60,12 +60,12 @@
       },
       "analytics": {
         "title": "Cookies analytiques",
-        "desc": "Nous aident à comprendre comment les visiteurs utilisent le site afin de l’améliorer.",
+        "desc": "Nous aident à comprendre comment les visiteurs utilisent le site afin de l'améliorer.",
         "aria": "Cookies analytiques"
       },
       "marketing": {
         "title": "Cookies marketing",
-        "desc": "Utilisés pour diffuser des publicités pertinentes et mesurer l’efficacité des campagnes.",
+        "desc": "Utilisés pour diffuser des publicités pertinentes et mesurer l'efficacité des campagnes.",
         "aria": "Cookies marketing"
       }
     }
@@ -78,14 +78,14 @@
   "credibility": {
     "label": "Références clients",
     "badge": "Emplacement réservé",
-    "note": "Logos clients nommés et résultats cités viendront ici. Nous le laissons vide tant que nos premiers pilotes européens n'ont pas accepté d'être nommés — pas de logos génériques, pas de citations anonymes."
+    "note": "Logos clients nommés et résultats cités viendront ici. Nous le laissons vide tant que nos premiers pilotes européens n'ont pas accepté d'être nommés, pas de logos génériques, pas de citations anonymes."
   },
   "hero": {
     "eyebrow": "IA, automatisation & MVP pour les PME européennes",
     "h1Pre": "L'automatisation IA que votre ",
     "h1Accent": "DPO et votre direction",
     "h1Post": " approuvent tous les deux.",
-    "lede": "Automatisations de workflows, copilotes IA et MVPs — en production en quelques semaines, avec la piste d'audit intégrée.",
+    "lede": "Automatisations de workflows, copilotes IA et MVPs, en production en quelques semaines, avec la piste d'audit intégrée.",
     "ctaScope": "Obtenez un périmètre fixe en 48h",
     "ctaBook": "Réserver un appel (15 min)",
     "ctaBrowse": "Parcourir la bibliothèque d'automatisations",
@@ -105,13 +105,13 @@
       "laneLabel": "File entrante",
       "active": "{{count}} en cours",
       "metricsHead": "Indicateurs d'exemple",
-      "sampleNote": "Chiffres d'exemple — pas des données clients.",
+      "sampleNote": "Chiffres d'exemple, pas des données clients.",
       "justNow": "à l'instant",
       "slaBreached": "SLA dépassé",
       "footAutoLead": "Rien ne s'accumule.",
       "footAutoRest": "Chaque tâche est étiquetée, routée et clôturée dès son arrivée.",
       "footManualLead": "Le travail s'accumule.",
-      "footManualRest": "Les tâches attendent, dépassent le SLA et deviennent en retard — rien ne se route tout seul.",
+      "footManualRest": "Les tâches attendent, dépassent le SLA et deviennent en retard, rien ne se route tout seul.",
       "status": {
         "queued": "En file",
         "processing": "En cours",
@@ -174,8 +174,8 @@
     }
   },
   "proofStrip": {
-    "roi": "Heures gagnées, mesurées avant et après — par écrit",
-    "tools": "Fonctionne sur votre stack — HubSpot, Slack, Stripe",
+    "roi": "Heures gagnées, mesurées avant et après, par écrit",
+    "tools": "Fonctionne sur votre stack, HubSpot, Slack, Stripe",
     "oversight": "Un humain valide chaque changement"
   },
   "booking": {
@@ -245,7 +245,7 @@
   },
   "request": {
     "title": "Demander un plan d'automatisation",
-    "description": "Dites-nous ce que vous voulez automatiser — nous répondons avec un plan adapté.",
+    "description": "Dites-nous ce que vous voulez automatiser, nous répondons avec un plan adapté.",
     "stepper": {
       "step1": "Vos informations",
       "step2": "Votre objectif"
@@ -259,12 +259,12 @@
       "rolePlaceholder": "Responsable des opérations",
       "primaryGoalLabel": "Quel est votre résultat principal ?",
       "toolsLabel": "Outils que vous utilisez",
-      "toolsHint": "Optionnel — en sélectionner plusieurs",
+      "toolsHint": "Optionnel, en sélectionner plusieurs",
       "timelineLabel": "Délai",
       "timelineHint": "Optionnel",
       "timelinePlaceholder": "Choisissez un délai (optionnel)",
       "notesLabel": "Autre chose ?",
-      "notesHint": "Optionnel — une phrase suffit",
+      "notesHint": "Optionnel, une phrase suffit",
       "notesPlaceholder": "ex. Automatiser le tri des tickets support + brouillon de réponse via Zendesk + Slack.",
       "interestedIn": "Intéressé par : {{topic}}"
     },
@@ -391,7 +391,7 @@
     },
     "build": {
       "title": "Build Automatisation",
-      "timeline": "4–6 semaines",
+      "timeline": "4-6 semaines",
       "bestFor": "Automatisation multi-outils avec validations et reporting",
       "bestForShort": "Workflows complexes",
       "deliverables": [
@@ -404,7 +404,7 @@
     },
     "mvp": {
       "title": "Lancement MVP",
-      "timeline": "6–10 semaines",
+      "timeline": "6-10 semaines",
       "bestFor": "Startups & PME lançant un nouveau produit",
       "bestForShort": "Nouveaux produits",
       "deliverables": [
@@ -415,14 +415,14 @@
       "multiSystem": "Multiple",
       "documentation": "Complète"
     },
-    "noPriceAnswer": "Chaque projet est à prix fixe et cadré en 48 heures, sans mauvaise surprise horaire — nous communiquons le montant exact lors d'un court appel de cadrage.",
+    "noPriceAnswer": "Chaque projet est à prix fixe et cadré en 48 heures, sans mauvaise surprise horaire, nous communiquons le montant exact lors d'un court appel de cadrage.",
     "disclaimer": "Devis sur mesure ; outils et abonnements facturés séparément."
   },
   "mvpSection": {
     "title": "De l'idée à un",
     "titleHighlight": "MVP en production",
     "titleAfter": " en quelques semaines",
-    "subtitle": "Des produits IA/SaaS prêts pour les investisseurs, développés en mode lean — vous êtes propriétaire du code et de la PI, avec conformité et analytics dès le premier jour.",
+    "subtitle": "Des produits IA/SaaS prêts pour les investisseurs, développés en mode lean, vous êtes propriétaire du code et de la PI, avec conformité et analytics dès le premier jour.",
     "points": [
       "Développement, déploiement du MVP & tableau de bord analytics",
       "Vous êtes propriétaire du code et de la PI",
@@ -432,7 +432,7 @@
   },
   "offerDetails": {
     "mvp-launch": {
-      "seoTitle": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | InnoviaBurst",
+      "seoTitle": "Développement de MVP, un MVP prêt pour les investisseurs en quelques semaines | InnoviaBurst",
       "seoDescription": "Développement de MVP pour startups et PME : de l'idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD & règlement IA de l'UE et analytics dès le premier jour.",
       "subheading": "Développement de MVP pour startups & PME européennes",
       "summaryFacts": [
@@ -471,7 +471,7 @@
   "trust": {
     "title": "Confiance &",
     "titleHighlight": "Conformité",
-    "subtitle": "Sécurité et conformité ne sont pas des options — elles sont intégrées dès le départ.",
+    "subtitle": "Sécurité et conformité ne sont pas des options, elles sont intégrées dès le départ.",
     "downloadPack": "Télécharger le Pack Confiance (PDF)",
     "viewPage": "Voir la page Confiance & Conformité",
     "viewPolicy": "Voir la politique complète",
@@ -557,7 +557,7 @@
     },
     "bottom": {
       "copyright": "© {{year}} InnoviaBurst. Tous droits réservés.",
-      "privacyNote": "Focus UK/EU — infos confidentialité & sécurité disponibles dans Confiance & Conformité."
+      "privacyNote": "Focus UK/EU, infos confidentialité & sécurité disponibles dans Confiance & Conformité."
     },
     "complianceNote": "Conçu avec un focus sur la conformité RGPD UK & EU."
   },
@@ -601,7 +601,7 @@
         "title": "Triage IA Support + brouillon de réponse",
         "fixes": "Tickets répétitifs et routage manuel ralentissent l'équipe et cassent les SLAs.",
         "tools": "Zendesk, Slack, OpenAI, Notion",
-        "kpi": "30–60% plus rapide en première réponse"
+        "kpi": "30-60% plus rapide en première réponse"
       },
       "dunning": {
         "title": "Dunning intelligent + sync CRM",
@@ -773,7 +773,7 @@
           "Publication du résumé dans Slack + demande d'approbation pour les cas à risque",
           "Démarrage du suivi SLA + escalade si dépassé"
         ],
-        "kpi": "EXEMPLE : première réponse 30–60% plus rapide"
+        "kpi": "EXEMPLE : première réponse 30-60% plus rapide"
       },
       "stripeDunning": {
         "title": "Paiement Stripe échoué → Relance intelligente + MAJ CRM",
@@ -817,7 +817,7 @@
           "Mise à jour du statut CRM + date de prochaine action",
           "Génération du rapport financier hebdomadaire"
         ],
-        "kpi": "EXEMPLE : économie de 3–8 h/semaine et réduction des factures en retard"
+        "kpi": "EXEMPLE : économie de 3-8 h/semaine et réduction des factures en retard"
       },
       "recruitmentPipeline": {
         "title": "Automatisation Pipeline de Recrutement",
@@ -876,7 +876,7 @@
           "Création de tâches de suivi pour les principaux blocages",
           "Archivage du rapport pour piste d'audit"
         ],
-        "kpi": "EXEMPLE : économie de 2–6 h/semaine de temps de reporting"
+        "kpi": "EXEMPLE : économie de 2-6 h/semaine de temps de reporting"
       },
       "aiKnowledgeBase": {
         "title": "Builder de Base de Connaissances IA (Tickets/Docs → Suggestions FAQ)",
@@ -900,7 +900,7 @@
       "description": "Nous construisons cette page pour vous aider à choisir la bonne automatisation plus rapidement."
     },
     "skipLink": "Aller au contenu principal",
-    "badge": "InnoviaBurst — Livraison hebdomadaire",
+    "badge": "InnoviaBurst, Livraison hebdomadaire",
     "headline": "Cette page est",
     "headlineHighlight": "bientôt disponible",
     "subheadline": "Nous construisons cette section pour vous aider à choisir le bon workflow plus vite. En attendant, découvrez ce que nous pouvons déjà livrer.",
@@ -919,7 +919,7 @@
       },
       "realExamples": {
         "title": "Exemples concrets",
-        "description": "Workflows avec étapes + impact attendu — sans approximation."
+        "description": "Workflows avec étapes + impact attendu, sans approximation."
       },
       "fastScoping": {
         "title": "Cadrage rapide",
@@ -942,7 +942,7 @@
     "badge": "Focus UK/EU",
     "title": "Confiance &",
     "titleHighlight": "Conformité",
-    "subtitle": "Comment nous protégeons vos données et livrons en toute confiance — en langage clair, sans jargon juridique.",
+    "subtitle": "Comment nous protégeons vos données et livrons en toute confiance, en langage clair, sans jargon juridique.",
     "trustPackAvailable": "Nous pouvons partager un Trust Pack (PDF), DPA et liste de sous-traitants sur demande.",
     "primaryCta": "Réserver un appel",
     "downloadTrustPack": "Télécharger le Trust Pack (PDF)",
@@ -1129,14 +1129,14 @@
   },
   "resourcesPage": {
     "seo": {
-      "title": "Ressources — Guides, Modèles & Checklists | InnoviaBurst",
+      "title": "Ressources, Guides, Modèles & Checklists | InnoviaBurst",
       "description": "Guides pratiques, modèles et checklists pour les équipes UK/EU automatisant leurs opérations et déployant l'IA de manière responsable."
     },
     "hero": {
       "backToHome": "Retour à l'accueil",
       "title": "Ressources pour les",
       "titleHighlight": "équipes UK/EU",
-      "subtitle": "Guides pratiques, modèles et checklists pour les opérations, l'IA et la conformité—conçus pour les équipes qui doivent livrer, pas étudier."
+      "subtitle": "Guides pratiques, modèles et checklists pour les opérations, l'IA et la conformité, conçus pour les équipes qui doivent livrer, pas étudier."
     },
     "whatYouFind": {
       "title": "Ce que vous trouverez",
@@ -1196,7 +1196,7 @@
     },
     "newsletter": {
       "title": "Recevez modèles + guides chaque mois",
-      "subtitle": "Nouvelles ressources dans votre boîte mail—outils pratiques pour les équipes ops UK/EU.",
+      "subtitle": "Nouvelles ressources dans votre boîte mail, outils pratiques pour les équipes ops UK/EU.",
       "benefits": [
         "Nouveaux guides + modèles (mensuel)",
         "Opportunités d'automatisation pour ops UK/EU",
@@ -1229,12 +1229,12 @@
     "resources": {
       "roiCalculator": {
         "title": "Outil d'évaluation du ROI d'automatisation",
-        "description": "Quantifiez les économies grâce aux automatisations en utilisant le temps, le volume et les erreurs—conçu pour les PME UK/EU.",
+        "description": "Quantifiez les économies grâce aux automatisations en utilisant le temps, le volume et les erreurs, conçu pour les PME UK/EU.",
         "ctaLabel": "Calculer le ROI"
       },
       "aiChecklist": {
         "title": "Checklist de déploiement Copilote IA",
-        "description": "Une checklist pratique du pilote au monitoring—préparation des données, tests, gouvernance et lancement.",
+        "description": "Une checklist pratique du pilote au monitoring, préparation des données, tests, gouvernance et lancement.",
         "ctaLabel": "Obtenir la checklist"
       },
       "hubspotHygiene": {
@@ -1244,7 +1244,7 @@
       },
       "complianceRoadmap": {
         "title": "Feuille de route conformité IA UK/EU",
-        "description": "Feuille de route en langage simple pour les décisions RGPD + conformité IA—ce qu'il faut vérifier avant de livrer des fonctionnalités IA.",
+        "description": "Feuille de route en langage simple pour les décisions RGPD + conformité IA, ce qu'il faut vérifier avant de livrer des fonctionnalités IA.",
         "ctaLabel": "Ouvrir la feuille de route"
       },
       "apiPlaybook": {
@@ -1254,12 +1254,12 @@
       },
       "ragGuide": {
         "title": "Guide d'implémentation RAG KB",
-        "description": "Comment construire un assistant base de connaissances vraiment utile—préparation des données, structure, gouvernance, déploiement.",
+        "description": "Comment construire un assistant base de connaissances vraiment utile, préparation des données, structure, gouvernance, déploiement.",
         "ctaLabel": "Ouvrir le guide"
       },
       "workflowAudit": {
         "title": "Modèle d'audit d'efficacité des workflows",
-        "description": "Évaluez vos workflows pour identifier les opportunités d'automatisation à fort impact—inclut une matrice de priorisation.",
+        "description": "Évaluez vos workflows pour identifier les opportunités d'automatisation à fort impact, inclut une matrice de priorisation.",
         "ctaLabel": "Obtenir le modèle"
       },
       "dpaReference": {
@@ -1309,109 +1309,109 @@
   },
   "lpMvp": {
     "hero": {
-      "eyebrow": "MVP Launch — pour startups & PME",
-      "headlinePre": "De l’idée à un ",
+      "eyebrow": "MVP Launch, pour startups & PME",
+      "headlinePre": "De l'idée à un ",
       "headlineAccent": "MVP en ligne, prêt pour les investisseurs",
-      "headlinePost": " en 6–10 semaines",
-      "subhead": "Nous concevons, construisons et déployons votre MVP — authentification, sécurité et analytics inclus. Vous possédez le code et la PI, et il est prêt pour le RGPD et le règlement IA de l’UE dès le premier jour.",
+      "headlinePost": " en 6-10 semaines",
+      "subhead": "Nous concevons, construisons et déployons votre MVP, authentification, sécurité et analytics inclus. Vous possédez le code et la PI, et il est prêt pour le RGPD et le règlement IA de l'UE dès le premier jour.",
       "primaryCta": "Obtenir mon cadrage gratuit 48 h",
       "variants": {
         "investor": {
-          "eyebrow": "MVP Launch — prêt pour votre levée en semaines",
+          "eyebrow": "MVP Launch, prêt pour votre levée en semaines",
           "headlinePre": "Lancez un ",
           "headlineAccent": "MVP prêt pour les investisseurs",
           "headlinePost": " avant votre prochaine levée",
-          "subhead": "Un produit réel et fonctionnel à montrer à vos utilisateurs et investisseurs — construit lean en 6–10 semaines, avec analytics dès le premier jour. Vous possédez 100 % du code et de la PI.",
+          "subhead": "Un produit réel et fonctionnel à montrer à vos utilisateurs et investisseurs, construit lean en 6-10 semaines, avec analytics dès le premier jour. Vous possédez 100 % du code et de la PI.",
           "primaryCta": "Obtenir mon cadrage gratuit 48 h"
         },
         "speed": {
-          "eyebrow": "MVP Launch — livré en semaines, pas en trimestres",
-          "headlinePre": "De l’idée à un ",
+          "eyebrow": "MVP Launch, livré en semaines, pas en trimestres",
+          "headlinePre": "De l'idée à un ",
           "headlineAccent": "produit livré",
-          "headlinePost": " en 6–10 semaines",
-          "subhead": "Un MVP à périmètre fixe, en ligne en quelques semaines — authentification, sécurité et analytics inclus. Vous possédez le code et la PI, et c’est prêt RGPD & règlement IA de l’UE dès le premier jour.",
+          "headlinePost": " en 6-10 semaines",
+          "subhead": "Un MVP à périmètre fixe, en ligne en quelques semaines, authentification, sécurité et analytics inclus. Vous possédez le code et la PI, et c'est prêt RGPD & règlement IA de l'UE dès le premier jour.",
           "primaryCta": "Obtenir mon cadrage gratuit 48 h"
         }
       }
     },
     "chips": [
-      "Prêt RGPD & règlement IA de l’UE",
+      "Prêt RGPD & règlement IA de l'UE",
       "Vous possédez le code & la PI",
-      "En ligne en 6–10 semaines"
+      "En ligne en 6-10 semaines"
     ],
     "form": {
       "title": "Obtenez votre cadrage gratuit en 48 h",
-      "subtitle": "Dites-nous ce que vous construisez — nous vous renvoyons un périmètre fixe sous 48 heures. Sans engagement.",
+      "subtitle": "Dites-nous ce que vous construisez, nous vous renvoyons un périmètre fixe sous 48 heures. Sans engagement.",
       "name": "Votre nom",
       "namePlaceholder": "Jean Dupont",
       "email": "Email professionnel",
       "emailPlaceholder": "jean@entreprise.com",
       "building": "Que construisez-vous ?",
-      "buildingPlaceholder": "Une app de réservation pour cliniques, un portail client, un outil interne…",
-      "submitting": "Envoi…",
+      "buildingPlaceholder": "Une app de réservation pour cliniques, un portail client, un outil interne...",
+      "submitting": "Envoi...",
       "secondary": "Ou réservez un appel de 15 min",
-      "consent": "Pas de spam — nous vous écrivons uniquement au sujet de votre cadrage.",
+      "consent": "Pas de spam, nous vous écrivons uniquement au sujet de votre cadrage.",
       "privacyLink": "Politique de confidentialité",
       "errors": {
         "name": "Veuillez indiquer votre nom",
         "email": "Saisissez un email professionnel valide",
         "building": "Dites-nous en un peu plus",
-        "submit": "Une erreur s’est produite — réessayez ou écrivez-nous."
+        "submit": "Une erreur s'est produite, réessayez ou écrivez-nous."
       },
       "success": {
         "title": "Votre cadrage arrive",
-        "body": "Merci — nous vous envoyons votre cadrage fixe sous 48 heures. Envie d’en parler plus tôt ?",
+        "body": "Merci, nous vous envoyons votre cadrage fixe sous 48 heures. Envie d'en parler plus tôt ?",
         "cta": "Réserver un appel de 15 min"
       }
     },
     "proof": {
       "logosLabel": "Conçu pour les équipes qui lancent leur premier produit",
       "logoPlaceholder": "Votre logo",
-      "note": "Emplacement réservé — vrais logos & chiffres ajoutés avant le lancement de la campagne",
+      "note": "Emplacement réservé, vrais logos & chiffres ajoutés avant le lancement de la campagne",
       "stats": [
         { "value": "90 jours", "label": "de support correctifs inclus" },
-        { "value": "5–8", "label": "écrans clés, cadrés avec vous" },
+        { "value": "5-8", "label": "écrans clés, cadrés avec vous" },
         { "value": "Chaque sem.", "label": "des livraisons à valider" }
       ]
     },
     "whatYouGet": {
       "eyebrow": "Ce que vous obtenez",
-      "title": "Tout pour lancer — rien de superflu",
+      "title": "Tout pour lancer, rien de superflu",
       "items": [
         { "title": "MVP en production", "body": "Un produit pleinement fonctionnel, déployé en production et prêt pour de vrais utilisateurs." },
         { "title": "Auth & rôles", "body": "Authentification des utilisateurs et accès par rôles intégrés dès le départ." },
-        { "title": "Vos fonctionnalités clés", "body": "Les 5 à 8 écrans qui valident votre idée — cadrés avec vous, prêts à livrer." },
+        { "title": "Vos fonctionnalités clés", "body": "Les 5 à 8 écrans qui valident votre idée, cadrés avec vous, prêts à livrer." },
         { "title": "Socle de sécurité", "body": "Des mesures de sécurité raisonnables pour lancer en confiance." },
-        { "title": "Analytics dès le jour 1", "body": "Analytics produit en place pour mesurer l’activation immédiatement." },
-        { "title": "Responsive mobile", "body": "Un rendu et un fonctionnement impeccables sur toutes les tailles d’écran, d’emblée." }
+        { "title": "Analytics dès le jour 1", "body": "Analytics produit en place pour mesurer l'activation immédiatement." },
+        { "title": "Responsive mobile", "body": "Un rendu et un fonctionnement impeccables sur toutes les tailles d'écran, d'emblée." }
       ]
     },
     "how": {
       "eyebrow": "Comment ça marche",
       "title": "Trois étapes vers un produit en ligne",
       "steps": [
-        { "title": "Cadrage gratuit 48 h", "body": "Dites-nous ce que vous construisez. Nous renvoyons un périmètre fixe et un plan sous 48 heures — sans engagement." },
+        { "title": "Cadrage gratuit 48 h", "body": "Dites-nous ce que vous construisez. Nous renvoyons un périmètre fixe et un plan sous 48 heures, sans engagement." },
         { "title": "Conception & développement", "body": "Nous concevons, développons et itérons en livraisons hebdomadaires, avec votre revue à chaque étape." },
-        { "title": "Lancement & propriété", "body": "Nous déployons en production et vous transférons 100 % du code et de la PI. C’est à vous." }
+        { "title": "Lancement & propriété", "body": "Nous déployons en production et vous transférons 100 % du code et de la PI. C'est à vous." }
       ]
     },
     "timeline": {
       "eyebrow": "Calendrier",
-      "title": "Votre parcours de 6–10 semaines jusqu’au lancement",
+      "title": "Votre parcours de 6-10 semaines jusqu'au lancement",
       "steps": [
-        { "week": "Semaines 1–2", "label": "Découverte & design" },
-        { "week": "Semaines 3–4", "label": "Développement du cœur & auth" },
-        { "week": "Semaines 5–6", "label": "Fonctionnalités & UI" },
-        { "week": "Semaines 7–8", "label": "Tests & sécurité" },
-        { "week": "Semaines 9–10", "label": "Recette & lancement" }
+        { "week": "Semaines 1-2", "label": "Découverte & design" },
+        { "week": "Semaines 3-4", "label": "Développement du cœur & auth" },
+        { "week": "Semaines 5-6", "label": "Fonctionnalités & UI" },
+        { "week": "Semaines 7-8", "label": "Tests & sécurité" },
+        { "week": "Semaines 9-10", "label": "Recette & lancement" }
       ]
     },
     "risk": {
       "eyebrow": "Une façon sûre de démarrer",
       "title": "Le risque est pour nous, pas pour vous",
       "items": [
-        { "title": "Cadrage gratuit 48 h", "body": "Voyez exactement ce que nous construirions et à quel prix — avant d’engager le moindre euro." },
-        { "title": "Périmètre & prix fixes", "body": "Convenus par écrit à l’avance. Pas de taux horaire, pas de facture surprise." },
+        { "title": "Cadrage gratuit 48 h", "body": "Voyez exactement ce que nous construirions et à quel prix, avant d'engager le moindre euro." },
+        { "title": "Périmètre & prix fixes", "body": "Convenus par écrit à l'avance. Pas de taux horaire, pas de facture surprise." },
         { "title": "Vous possédez le code & la PI", "body": "Pleine propriété transférée à la livraison. Aucun verrouillage, jamais." }
       ]
     },
@@ -1419,17 +1419,17 @@
       "eyebrow": "Questions",
       "title": "Les réponses avant vos questions",
       "items": [
-        { "q": "Combien ça coûte ?", "a": "Chaque MVP est à périmètre et prix fixes, convenus lors de votre cadrage gratuit 48 h avant tout démarrage — pas de taux horaire, pas de surprise. Vous connaissez le prix exact avant de vous engager." },
-        { "q": "Combien de temps ça prend ?", "a": "La plupart des MVP passent de l’idée au lancement en 6–10 semaines : découverte et design en semaines 1–2, cœur en 3–4, fonctionnalités et UI en 5–6, tests et sécurité en 7–8, puis recette et lancement en 9–10." },
-        { "q": "Suis-je propriétaire du code et de la PI ?", "a": "Oui — à 100 %. Vous obtenez la pleine propriété et l’accès au code à la livraison. Aucun verrouillage, aucune licence à payer." },
-        { "q": "Et si le périmètre change ?", "a": "Nous prévoyons de la flexibilité. Les petits ajustements sont absorbés au fil de l’eau ; tout changement important est re-cadré en toute transparence, vous gardez la main sur le coût et le délai." }
+        { "q": "Combien ça coûte ?", "a": "Chaque MVP est à périmètre et prix fixes, convenus lors de votre cadrage gratuit 48 h avant tout démarrage, pas de taux horaire, pas de surprise. Vous connaissez le prix exact avant de vous engager." },
+        { "q": "Combien de temps ça prend ?", "a": "La plupart des MVP passent de l'idée au lancement en 6-10 semaines : découverte et design en semaines 1-2, cœur en 3-4, fonctionnalités et UI en 5-6, tests et sécurité en 7-8, puis recette et lancement en 9-10." },
+        { "q": "Suis-je propriétaire du code et de la PI ?", "a": "Oui, à 100 %. Vous obtenez la pleine propriété et l'accès au code à la livraison. Aucun verrouillage, aucune licence à payer." },
+        { "q": "Et si le périmètre change ?", "a": "Nous prévoyons de la flexibilité. Les petits ajustements sont absorbés au fil de l'eau ; tout changement important est re-cadré en toute transparence, vous gardez la main sur le coût et le délai." }
       ]
     },
     "details": {
-      "title": "Les détails — hors périmètre & ce que nous attendons de vous",
-      "notIncludedTitle": "Ce qui n’est pas inclus",
+      "title": "Les détails, hors périmètre & ce que nous attendons de vous",
+      "notIncludedTitle": "Ce qui n'est pas inclus",
       "notIncluded": [
-        "Applications mobiles natives (nous construisons d’abord pour le web)",
+        "Applications mobiles natives (nous construisons d'abord pour le web)",
         "Certifications de sécurité avancées",
         "Périmètre de fonctionnalités illimité",
         "Développement de fonctionnalités après le lancement"
@@ -1445,15 +1445,15 @@
     "finalCta": {
       "eyebrow": "Quand vous voulez",
       "title": "Encore hésitant ? Commencez par le cadrage.",
-      "subtitle": "Gratuit, à périmètre fixe et sans engagement — vous recevez votre cadrage 48 h par email."
+      "subtitle": "Gratuit, à périmètre fixe et sans engagement, vous recevez votre cadrage 48 h par email."
     },
     "sticky": {
-      "message": "De l’idée à un MVP en ligne en 6–10 semaines.",
+      "message": "De l'idée à un MVP en ligne en 6-10 semaines.",
       "primary": "Mon cadrage gratuit",
       "secondary": "Réserver un appel"
     },
     "footer": {
-      "tagline": "Développement de MVP pour startups & PME UK/EU — périmètre fixe, vous possédez le code & la PI."
+      "tagline": "Développement de MVP pour startups & PME UK/EU, périmètre fixe, vous possédez le code & la PI."
     },
     "preview": {
       "appName": "votremvp.app",
@@ -1469,13 +1469,13 @@
     },
     "a11y": {
       "trustSignals": "Signaux de confiance",
-      "home": "InnoviaBurst — Accueil",
+      "home": "InnoviaBurst, Accueil",
       "primaryNav": "Navigation principale"
     }
   },
   "seo": {
     "home": {
-      "title": "InnoviaBurst | IA & Automatisation pour PME UK/EU — Livré en semaines",
+      "title": "InnoviaBurst | IA & Automatisation pour PME UK/EU, Livré en semaines",
       "description": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVP avec une livraison conforme. Livraison rapide, en semaines."
     },
     "industries": {
@@ -1483,28 +1483,28 @@
       "description": "Expertise en automatisation pour les PME de services professionnels, le SaaS B2B et plus. Livraison axée UK/EU, soucieuse de la conformité."
     },
     "works": {
-      "title": "Nos réalisations — Études de cas | InnoviaBurst",
-      "description": "Des projets d’automatisation réels aux résultats mesurables. Découvrez comment nous aidons les entreprises UK/EU à gagner du temps et à passer à l’échelle."
+      "title": "Nos réalisations, Études de cas | InnoviaBurst",
+      "description": "Des projets d'automatisation réels aux résultats mesurables. Découvrez comment nous aidons les entreprises UK/EU à gagner du temps et à passer à l'échelle."
     },
     "lp": {
-      "title": "Automatisation IA pour les PME européennes — conforme par conception | InnoviaBurst",
-      "description": "Automatisations IA, copilotes et MVP à périmètre fixe pour les PME européennes — en production en semaines, prêts RGPD & règlement IA de l’UE."
+      "title": "Automatisation IA pour les PME européennes, conforme par conception | InnoviaBurst",
+      "description": "Automatisations IA, copilotes et MVP à périmètre fixe pour les PME européennes, en production en semaines, prêts RGPD & règlement IA de l'UE."
     },
     "lpMvp": {
-      "title": "Créez votre MVP en 6–10 semaines — périmètre fixe, la PI est à vous | InnoviaBurst",
-      "description": "Développement de MVP pour startups & PME UK/EU. De l’idée à un MVP en ligne, prêt pour les investisseurs, en 6–10 semaines. Cadrage gratuit en 48 h, prix fixe, vous possédez le code & la PI — prêt RGPD & règlement IA de l’UE."
+      "title": "Créez votre MVP en 6-10 semaines, périmètre fixe, la PI est à vous | InnoviaBurst",
+      "description": "Développement de MVP pour startups & PME UK/EU. De l'idée à un MVP en ligne, prêt pour les investisseurs, en 6-10 semaines. Cadrage gratuit en 48 h, prix fixe, vous possédez le code & la PI, prêt RGPD & règlement IA de l'UE."
     },
     "cookies": {
       "title": "Politique de cookies | InnoviaBurst",
-      "description": "Politique de cookies d’InnoviaBurst — comment nous utilisons les cookies et technologies similaires."
+      "description": "Politique de cookies d'InnoviaBurst, comment nous utilisons les cookies et technologies similaires."
     },
     "privacy": {
       "title": "Politique de confidentialité | InnoviaBurst",
-      "description": "Politique de confidentialité d’InnoviaBurst — comment nous collectons, utilisons et protégeons vos données personnelles."
+      "description": "Politique de confidentialité d'InnoviaBurst, comment nous collectons, utilisons et protégeons vos données personnelles."
     },
     "terms": {
-      "title": "Conditions d’utilisation | InnoviaBurst",
-      "description": "Conditions d’utilisation d’InnoviaBurst — conditions générales d’utilisation de notre site et de nos services."
+      "title": "Conditions d'utilisation | InnoviaBurst",
+      "description": "Conditions d'utilisation d'InnoviaBurst, conditions générales d'utilisation de notre site et de nos services."
     },
     "subprocessors": {
       "title": "Sous-traitants | InnoviaBurst",
@@ -1515,7 +1515,7 @@
     "ui": {
       "bookCall": "Réserver un appel (15 min)",
       "billing": {
-        "bodyNoPrice": "Missions à prix fixe, facturées en EUR ou GBP — un acompte pour démarrer, puis des paiements par jalons."
+        "bodyNoPrice": "Missions à prix fixe, facturées en EUR ou GBP, un acompte pour démarrer, puis des paiements par jalons."
       },
       "summary": {
         "label": "Résumé de l'offre",

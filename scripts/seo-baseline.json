@@ -70,7 +70,7 @@
     "description": "Fixed-scope MVP development for UK and EU startups. Ship a live, investor-ready product in weeks. You own the code and IP, GDPR and EU AI Act-ready from day one."
   },
   "/fr/": {
-    "title": "InnoviaBurst | IA &amp; Automatisation pour PME UK/EU — Livré en semaines",
+    "title": "InnoviaBurst | IA &amp; Automatisation pour PME UK/EU, Livré en semaines",
     "canonical": "https://innoviaburst.com/fr/",
     "description": "Nous aidons les PME UK/EU à automatiser leurs workflows, déployer des copilotes IA et lancer des MVP avec une livraison conforme. Livraison rapide, en semaines."
   },
@@ -85,7 +85,7 @@
     "description": "Parcourez 10+ exemples d&#x27;automatisations pour les équipes Sales, Ops, Support, Finance et Knowledge. Voir workflows, outils, délais et impacts KPI."
   },
   "/fr/resources": {
-    "title": "Ressources — Guides, Modèles &amp; Checklists | InnoviaBurst",
+    "title": "Ressources, Guides, Modèles &amp; Checklists | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/resources",
     "description": "Guides pratiques, modèles et checklists pour les équipes UK/EU automatisant leurs opérations et déployant l&#x27;IA de manière responsable."
   },
@@ -112,17 +112,17 @@
   "/fr/privacy": {
     "title": "Politique de confidentialité | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/privacy",
-    "description": "Politique de confidentialité d’InnoviaBurst — comment nous collectons, utilisons et protégeons vos données personnelles."
+    "description": "Politique de confidentialité d&#x27;InnoviaBurst, comment nous collectons, utilisons et protégeons vos données personnelles."
   },
   "/fr/cookies": {
     "title": "Politique de cookies | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/cookies",
-    "description": "Politique de cookies d’InnoviaBurst — comment nous utilisons les cookies et technologies similaires."
+    "description": "Politique de cookies d&#x27;InnoviaBurst, comment nous utilisons les cookies et technologies similaires."
   },
   "/fr/terms": {
-    "title": "Conditions d’utilisation | InnoviaBurst",
+    "title": "Conditions d&#x27;utilisation | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/terms",
-    "description": "Conditions d’utilisation d’InnoviaBurst — conditions générales d’utilisation de notre site et de nos services."
+    "description": "Conditions d&#x27;utilisation d&#x27;InnoviaBurst, conditions générales d&#x27;utilisation de notre site et de nos services."
   },
   "/fr/ai-ops-sprint": {
     "title": "Workflow Automation Sprint: Automate One Workflow in 10 Days | InnoviaBurst",
@@ -135,7 +135,7 @@
     "description": "Production-grade workflow automation connecting 3 to 5 of your tools, with approvals, monitoring, and error handling. Fixed scope, delivered in 4 to 6 weeks, GDPR and EU AI Act-ready."
   },
   "/fr/mvp-launch": {
-    "title": "Développement de MVP — un MVP prêt pour les investisseurs en quelques semaines | InnoviaBurst",
+    "title": "Développement de MVP, un MVP prêt pour les investisseurs en quelques semaines | InnoviaBurst",
     "canonical": "https://innoviaburst.com/fr/mvp-launch",
     "description": "Développement de MVP pour startups et PME : de l&#x27;idée à un MVP en production, prêt pour les investisseurs, en quelques semaines. Vous êtes propriétaire du code et de la PI, avec conformité RGPD &amp; règlement IA de l&#x27;UE et analytics dès le premier jour."
   }
