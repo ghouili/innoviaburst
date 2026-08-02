@@ -91,8 +91,14 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
 
       <div className="container mx-auto px-4 lg:px-6 py-12 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          {/*
+            min-w-0 on both columns: grid items default to min-width:auto, so the
+            track cannot shrink below its content's min-content width. At 320px
+            that pushed the track to 314px inside a 288px container and the right
+            edge was clipped by the html overflow-x:clip.
+          */}
           {/* LEFT — copy */}
-          <div className="order-1 space-y-7 animate-fade-in-up">
+          <div className="order-1 min-w-0 space-y-7 animate-fade-in-up">
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-secondary">
               <span className="h-1.5 w-1.5 rounded-full bg-secondary" aria-hidden="true" />
               {t("hero.eyebrow")}
@@ -121,7 +127,7 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
                   variant="hero"
                   size="lg"
                   onClick={handleScope}
-                  className="min-h-[48px] gap-2 text-sm sm:text-base"
+                  className="min-h-[48px] gap-2 whitespace-normal text-sm sm:whitespace-nowrap sm:text-base"
                 >
                   {t("hero.ctaScope")}
                   <ArrowRight className="h-4 w-4" />
@@ -130,7 +136,7 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
                   variant="hero-outline"
                   size="lg"
                   onClick={handleBook}
-                  className="min-h-[48px] gap-2 text-sm sm:text-base"
+                  className="min-h-[48px] gap-2 whitespace-normal text-sm sm:whitespace-nowrap sm:text-base"
                 >
                   <Calendar className="h-4 w-4" />
                   {t("hero.ctaBook")}
@@ -160,7 +166,7 @@ export function HeroShell({ visual, onScopeClick, onBookClick }: HeroShellProps)
           </div>
 
           {/* RIGHT — configurable visual */}
-          <div className="order-2 w-full">{visual}</div>
+          <div className="order-2 w-full min-w-0">{visual}</div>
         </div>
       </div>
     </section>
