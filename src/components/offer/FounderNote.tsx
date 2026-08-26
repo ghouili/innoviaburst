@@ -46,6 +46,15 @@ export function FounderNote({ note, placeholder }: { note: string; placeholder: 
           </p>
           <p className="text-base text-muted-foreground leading-relaxed">{note}</p>
 
+          {/* Signed — a named, accountable person, not an anonymous studio */}
+          <p className="mt-3 text-sm font-semibold text-foreground">
+            {t("offerPage.ui.founderName")}
+            <span className="font-normal text-muted-foreground">
+              {" · "}
+              {t("offerPage.ui.founderRole")}
+            </span>
+          </p>
+
           {/* Clearly-marked placeholder — swapped for a real case study later */}
           <div className="mt-5 rounded-xl border border-dashed border-border bg-muted/30 p-4">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">

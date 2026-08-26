@@ -291,7 +291,7 @@ export default function TrainingPage() {
 
         {/* Partners: two honest placeholder slots plus the standard every
             partner has to meet. No stars, no logo wall, no named quotes. */}
-        <section className="py-16 lg:py-20">
+        {/* <section className="py-16 lg:py-20">
           <div className="container mx-auto px-4 lg:px-6 max-w-4xl">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               {t("trainingSection.partnersLabel")}
@@ -346,7 +346,7 @@ export default function TrainingPage() {
                 ))}
             </ul>
           </div>
-        </section>
+        </section> */}
 
         {/* Partner journey: one visually distinct strip, kept away from the
             booking CTA so the two audiences never compete. */}

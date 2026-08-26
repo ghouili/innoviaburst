@@ -15,6 +15,7 @@ import { OfferComparisonCard } from "@/components/offer/OfferComparisonCard";
 import { OfferTimelineRail } from "@/components/offer/OfferTimelineRail";
 import { OfferProofStrip } from "@/components/offer/OfferProofStrip";
 import { FounderNote } from "@/components/offer/FounderNote";
+import { RepresentativeBuilds } from "@/components/offer/RepresentativeBuilds";
 import { FeatureRow } from "@/components/offer/FeatureRow";
 import { MvpHero } from "@/components/offer/MvpHero";
 import { breadcrumbJsonLd, faqJsonLd, howToJsonLd, orgJsonLd, serviceJsonLd, websiteJsonLd } from "@/seo/jsonld";
@@ -47,6 +48,11 @@ interface OfferContent {
   stickyCard: { label: string; line1: string; line2: string; priceLine: string; note: string } | null;
   credibilityNote: string;
   proofPlaceholder: string;
+  representativeBuilds: {
+    heading: string;
+    disclaimer: string;
+    items: { tag: string; desc: string; scope: string; timeline: string }[];
+  } | null;
   finalCta: { title: string; body: string; trustLine: string } | null;
   proofStack: { headline: string; items: string[] } | null;
   timeline: string;
@@ -98,6 +104,11 @@ export default function OfferPage() {
         stickyCard: optional<{ label: string; line1: string; line2: string; priceLine: string; note: string }>("stickyCard"),
         credibilityNote: t(`offerDetails.${slug}.credibilityNote`, { defaultValue: "" }),
         proofPlaceholder: t(`offerDetails.${slug}.proofPlaceholder`, { defaultValue: "" }),
+        representativeBuilds: optional<{
+          heading: string;
+          disclaimer: string;
+          items: { tag: string; desc: string; scope: string; timeline: string }[];
+        }>("representativeBuilds"),
         finalCta: optional<{ title: string; body: string; trustLine: string }>("finalCta"),
         proofStack: optional<{ headline: string; items: string[] }>("proofStack"),
         // Empty default: an offer without spec-approved eyebrow copy renders no
@@ -488,6 +499,13 @@ export default function OfferPage() {
               {offer.credibilityNote && (
                 <section className="py-12 lg:py-16 border-b border-border">
                   <FounderNote note={offer.credibilityNote} placeholder={offer.proofPlaceholder} />
+                </section>
+              )}
+
+              {/* Representative (illustrative) builds — not named case studies */}
+              {offer.representativeBuilds && (
+                <section className="py-12 lg:py-16 border-b border-border">
+                  <RepresentativeBuilds data={offer.representativeBuilds} />
                 </section>
               )}
 

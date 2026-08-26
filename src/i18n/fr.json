@@ -92,8 +92,8 @@
     "chipsLabel": "Gages de confiance",
     "chips": {
       "delivery": "Premier workflow en production en ~10 jours",
-      "compliance": "Prêt RGPD & règlement IA de l'UE",
-      "residency": "Vos données restent dans l'UE"
+      "compliance": "Conçu pour le RGPD et le règlement IA de l'UE",
+      "residency": "Hébergement en UE disponible"
     },
     "lane": {
       "title": "Exemple : file d'automatisation",

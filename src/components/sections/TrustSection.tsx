@@ -23,7 +23,7 @@ export function TrustSection() {
   };
 
   return (
-    <section id="trust" className="py-20 lg:py-28 bg-background">
+    <section id="trust" className="py-20 lg:py-28 bg-background border-2">
       <div className="container mx-auto px-4 lg:px-6">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">

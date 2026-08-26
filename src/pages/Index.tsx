@@ -4,13 +4,13 @@ import { useLocation } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroShell } from "@/components/sections/heroes/HeroShell";
 import { AutomationLaneVisual } from "@/components/sections/heroes/AutomationLaneVisual";
-import { CredibilityStrip } from "@/components/sections/CredibilityStrip";
+// import { CredibilityStrip } from "@/components/sections/CredibilityStrip";
 import { ProofStrip } from "@/components/sections/ProofStrip";
 import { OffersSection } from "@/components/sections/OffersSection";
 import { MvpSection } from "@/components/sections/MvpSection";
 import { TrainingSection } from "@/components/sections/TrainingSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
-import { WorkSection } from "@/components/sections/WorkSection";
+// import { WorkSection } from "@/components/sections/WorkSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/layout/Footer";
@@ -104,7 +104,7 @@ const Index = () => {
           />
 
           {/* 1b. Reserved slot for real client proof — labelled placeholder */}
-          <CredibilityStrip />
+          {/* <CredibilityStrip /> */}
 
           {/* 2. Proof bar */}
           <ProofStrip />
@@ -122,7 +122,7 @@ const Index = () => {
           />
 
           {/* 4. Top Workflows (6 cards + link) */}
-          <SolutionsSection />
+          {/* <SolutionsSection /> */}
           
           {/* 5. Work teaser (2 case studies + link) */}
           {/* <WorkSection /> */}

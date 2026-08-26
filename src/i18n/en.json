@@ -94,8 +94,8 @@
     "chipsLabel": "Trust signals",
     "chips": {
       "delivery": "First workflow live in ~10 days",
-      "compliance": "GDPR & EU AI Act-ready",
-      "residency": "Client data hosted in the EU"
+      "compliance": "Built for GDPR & the EU AI Act",
+      "residency": "EU data residency available"
     },
     "lane": {
       "title": "Sample: automation queue",
@@ -752,7 +752,8 @@
       "compliance": [
         "Governance track built around the EU AI Act and GDPR",
         "Board- and DPO-oriented materials"
-      ]
+      ],
+      "reassurance": "You will meet your lead trainer on the scoping call, before anything is booked."
     }
   },
   "work": {
@@ -2242,7 +2243,7 @@
       "successMetrics": [
         {
           "metric": "Time-to-market",
-          "example": "8 weeks average"
+          "example": "~8 weeks typical"
         },
         {
           "metric": "User activation rate",
@@ -2403,6 +2404,10 @@
           {
             "title": "You own all of it.",
             "body": "Full source code and IP transferred to you. No lock-in, no licence to us."
+          },
+          {
+            "title": "90 days of bug-fix support, included.",
+            "body": "If something we built breaks in the first three months after launch, we fix it. New features are a separate, optional engagement, never a surprise invoice."
           }
         ]
       },
@@ -2453,7 +2458,7 @@
         "note": "No fixed-price template. You get a scoped quote for your product, not ours. No obligation."
       },
       "credibilityNote": "We're a compliance-native product studio: we build MVPs the way European founders actually have to ship them. Data handling, ownership and documentation are treated as first-class from day one, not bolted on before a raise. The standard summed up across our work: AI automation your DPO and your board both sign off on.",
-      "proofPlaceholder": "Case studies coming soon. Ask for a walkthrough of recent builds on your scoping call.",
+      "proofPlaceholder": "Named case studies land here once our first pilots agree to be named. The representative builds below show the scope and shape of what we deliver.",
       "finalCta": {
         "title": "Ready to see your MVP scoped?",
         "body": "Tell us the idea. Within 48 hours you'll have a fixed scope, a timeline and a clear quote, with no obligation and no open-ended estimates. If it's not the right fit, we'll say so and point you somewhere better.",
@@ -2470,7 +2475,31 @@
       },
       "h1Pre": "Ship an investor-ready MVP in weeks, with the ",
       "h1Accent": "compliance already built in",
-      "h1Post": "."
+      "h1Post": ".",
+      "representativeBuilds": {
+        "heading": "Representative builds",
+        "disclaimer": "Illustrative — representative of the scope and shape of MVPs we build, not named client engagements. Ask for a live walkthrough on your scoping call.",
+        "items": [
+          {
+            "tag": "B2B SaaS · Operations dashboard",
+            "desc": "A team-facing analytics and workflow dashboard: secure login with role-based access, live data import, and reporting a board can actually read.",
+            "scope": "6-8 core screens · auth · analytics",
+            "timeline": "~8 weeks"
+          },
+          {
+            "tag": "Marketplace · Two-sided MVP",
+            "desc": "A lean two-sided marketplace: listings, matching, Stripe payments and in-app messaging: enough to prove demand with real users.",
+            "scope": "7-9 screens · payments · auth",
+            "timeline": "8-10 weeks"
+          },
+          {
+            "tag": "AI product · Copilot MVP",
+            "desc": "A domain copilot over your own documents: a RAG assistant with secure auth and usage analytics, ready to demo to design partners and investors.",
+            "scope": "5-7 screens · RAG · analytics",
+            "timeline": "6-8 weeks"
+          }
+        ]
+      }
     }
   },
   "caseStudies": {
@@ -3107,7 +3136,9 @@
         "gdpr": "GDPR by design",
         "aiAct": "EU AI Act-ready",
         "ip": "Own your IP"
-      }
+      },
+      "founderName": "Walid Ghouili",
+      "founderRole": "Founder & CEO, InnoviaBurst"
     }
   },
   "notFound": {

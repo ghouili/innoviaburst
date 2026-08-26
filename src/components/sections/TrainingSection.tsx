@@ -159,7 +159,7 @@ export function TrainingSection({ onRequestClick, onBookingClick }: TrainingSect
             </Reveal>
 
             {/* Partner logos — explicit placeholders until accreditations are confirmed */}
-            <Reveal delay={400}>
+            {/* <Reveal delay={400}>
               <div className="mt-12 pt-8 border-t border-border max-w-xl">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                   {t("trainingSection.partnersLabel")}
@@ -184,7 +184,7 @@ export function TrainingSection({ onRequestClick, onBookingClick }: TrainingSect
                   {t("trainingSection.partnersNote")}
                 </p>
               </div>
-            </Reveal>
+            </Reveal> */}
           </div>
 
           {/* ── Illustration column ─────────────────────────────────────── */}
