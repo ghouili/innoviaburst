@@ -9,6 +9,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { RequestModal } from "@/components/RequestModal";
 import { SkipLink } from "@/components/SkipLink";
 import { Button } from "@/components/ui/button";
+
 import { ArrowLeft, ArrowRight, Check, Clock, ChevronDown, ChevronUp, CreditCard, ShieldCheck, Scale, Lock, CalendarClock, Search, Wrench, Rocket, ClipboardCheck } from "lucide-react";
 import { OfferProductVisual } from "@/components/offer/OfferProductVisual";
 import { OfferComparisonCard } from "@/components/offer/OfferComparisonCard";
