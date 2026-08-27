@@ -112,35 +112,37 @@ log "Building app"
 npm run build
 
 #############################################
-# RUNNING PM2 (SERVE STATIC BUILD)
+# RESOLVE WEB ROOT
 #############################################
-# log "Reloading PM2"
-# cd "$APP_DIR"
-
-# # Ensure ecosystem file exists (see ecosystem.config.cjs below)
-# if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
-#   log "Restarting existing PM2 process: $PM2_APP"
-#   pm2 restart "$PM2_APP"
-# else
-#   log "Starting PM2 process fresh"
-#   pm2 start ecosystem.config.cjs
-# fi
-
-# pm2 save
-# log "Deployment completed successfully 🎉"
+# Vike pre-renders the servable site into "$BUILD_DIR/client"; "$BUILD_DIR"
+# itself only holds that folder plus a server-side asset manifest. A plain Vite
+# SPA build puts index.html directly in "$BUILD_DIR". Detect which one we got so
+# the same script keeps working either way.
+if [[ -f "$APP_DIR/$BUILD_DIR/client/index.html" ]]; then
+  SERVE_DIR="$BUILD_DIR/client"
+elif [[ -f "$APP_DIR/$BUILD_DIR/index.html" ]]; then
+  SERVE_DIR="$BUILD_DIR"
+else
+  log "ERROR: no index.html under $APP_DIR/$BUILD_DIR — build produced nothing servable."
+  exit 1
+fi
+log "Web root: $APP_DIR/$SERVE_DIR"
 
 #############################################
 # RUNNING PM2 (SERVE STATIC BUILD)
 #############################################
 log "Reloading PM2"
 
-# If it's already running, restart it.
+# `pm2 restart` replays the args the process was first created with, so it would
+# keep serving the old web root forever. Recreate it instead — nginx serves the
+# static files directly, so this process is not on the critical path.
 if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
-  log "Restarting existing PM2 process"
-  pm2 restart "$PM2_APP"
-else
-  log "Starting PM2 static server"
-  pm2 serve "$BUILD_DIR" "$APP_PORT" --spa --name "$PM2_APP"
+  log "Removing existing PM2 process so it picks up $SERVE_DIR"
+  pm2 delete "$PM2_APP"
 fi
 
+log "Starting PM2 static server on $SERVE_DIR:$APP_PORT"
+pm2 serve "$SERVE_DIR" "$APP_PORT" --name "$PM2_APP"
+
 pm2 save
+log "Deployment completed successfully 🎉"
