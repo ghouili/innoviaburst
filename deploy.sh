@@ -114,16 +114,20 @@ npm run build
 #############################################
 # RESOLVE WEB ROOT
 #############################################
-# Vike pre-renders the servable site into "$BUILD_DIR/client"; "$BUILD_DIR"
-# itself only holds that folder plus a server-side asset manifest. A plain Vite
-# SPA build puts index.html directly in "$BUILD_DIR". Detect which one we got so
-# the same script keeps working either way.
-if [[ -f "$APP_DIR/$BUILD_DIR/client/index.html" ]]; then
+# Vike pre-renders the servable site into "$BUILD_DIR/client" and its SSR bundle
+# into "$BUILD_DIR/server"; a plain Vite SPA build writes straight into
+# "$BUILD_DIR". Detect which one we got so the same script keeps working either
+# way. Do NOT test for a root index.html: "/" is a locale negotiation handled by
+# nginx, so the pre-render starts at en/index.html and fr/index.html and there is
+# no index.html at the web root.
+if [[ -d "$APP_DIR/$BUILD_DIR/client" ]]; then
   SERVE_DIR="$BUILD_DIR/client"
-elif [[ -f "$APP_DIR/$BUILD_DIR/index.html" ]]; then
-  SERVE_DIR="$BUILD_DIR"
 else
-  log "ERROR: no index.html under $APP_DIR/$BUILD_DIR — build produced nothing servable."
+  SERVE_DIR="$BUILD_DIR"
+fi
+
+if [[ -z "$(find "$APP_DIR/$SERVE_DIR" -name '*.html' -print -quit 2>/dev/null)" ]]; then
+  log "ERROR: no HTML documents under $APP_DIR/$SERVE_DIR — build produced nothing servable."
   exit 1
 fi
 log "Web root: $APP_DIR/$SERVE_DIR"
