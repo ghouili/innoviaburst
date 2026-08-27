@@ -158,6 +158,8 @@ export function TrainingSection({ onRequestClick, onBookingClick }: TrainingSect
               </Link>
             </Reveal>
 
+
+
             {/* Partner logos — explicit placeholders until accreditations are confirmed */}
             {/* <Reveal delay={400}>
               <div className="mt-12 pt-8 border-t border-border max-w-xl">
