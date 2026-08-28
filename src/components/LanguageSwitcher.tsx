@@ -32,12 +32,18 @@ export function LanguageSwitcher() {
 
   const isEN = current === "en";
 
-  // Remember an explicit language choice so a later visit to "/" resolves to it
-  // (read server-side by the nginx locale-negotiation map). Progressive
-  // enhancement: the switch is a real <a> and still works without JS — "/" just
-  // falls back to Accept-Language when no cookie is set.
+  // Remember an explicit language choice so a later visit to "/" resolves to it:
+  // the cookie is read server-side (nginx locale-negotiation map), the
+  // localStorage key by the inline script of the pre-rendered root shell
+  // (pages/root/redirect-script.ts). This only RECORDS the choice — nothing here
+  // redirects on load; the switch is a real <a> and still works without JS.
   const remember = (loc: Locale) => {
     document.cookie = `locale=${loc}; path=/; max-age=31536000; samesite=Lax`;
+    try {
+      window.localStorage.setItem("lang", loc);
+    } catch {
+      // Storage can be unavailable (private mode) — the cookie already covers it.
+    }
   };
 
   return (
