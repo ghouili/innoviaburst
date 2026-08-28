@@ -20,7 +20,12 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { StickyNextStep } from "@/components/StickyNextStep";
 import { SkipLink } from "@/components/SkipLink";
 import { SeoHead, buildAlternates, siteUrl } from "@/components/SeoHead";
-import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, serviceJsonLd } from "@/seo/jsonld";
+import {
+  breadcrumbJsonLd,
+  orgJsonLd,
+  websiteJsonLd,
+  serviceJsonLd,
+} from "@/seo/jsonld";
 
 const Index = () => {
   const { t } = useTranslation();
@@ -29,7 +34,9 @@ const Index = () => {
   // Seeds the request form's notes field so a scope request arriving from a
   // specific band (e.g. Training) says what it's about. Cleared for the
   // generic entry points.
-  const [requestInterest, setRequestInterest] = useState<string | undefined>(undefined);
+  const [requestInterest, setRequestInterest] = useState<string | undefined>(
+    undefined,
+  );
   const location = useLocation();
 
   const openRequest = (interest?: string) => {
@@ -49,7 +56,7 @@ const Index = () => {
           element.scrollIntoView({ behavior: "smooth" });
         }
       }, 100);
-      
+
       // Clear the state to prevent re-scrolling on subsequent renders
       window.history.replaceState({}, document.title);
     }
@@ -65,9 +72,7 @@ const Index = () => {
         jsonLd={[
           orgJsonLd(),
           websiteJsonLd(),
-          breadcrumbJsonLd([
-            { name: "Home", url: siteUrl },
-          ]),
+          breadcrumbJsonLd([{ name: "Home", url: siteUrl }]),
           // Per-pillar Service nodes so the homepage (the most-cited entry point)
           // exposes a clean service catalog for search + generative engines. Each
           // is backed by a visible band below (Offers, MVP, Training).
@@ -103,12 +108,13 @@ const Index = () => {
             onBookClick={() => setIsBookingOpen(true)}
           />
 
+          {/* test  */}
           {/* 1b. Reserved slot for real client proof — labelled placeholder */}
           {/* <CredibilityStrip /> */}
 
           {/* 2. Proof bar */}
           <ProofStrip />
-          
+
           {/* 3. Productised Offers */}
           <OffersSection onBookingClick={() => openRequest()} />
 
@@ -117,19 +123,21 @@ const Index = () => {
 
           {/* 3c. Training band — partner-delivered AI & automation upskilling */}
           <TrainingSection
-            onRequestClick={() => openRequest(t("trainingSection.requestInterest"))}
+            onRequestClick={() =>
+              openRequest(t("trainingSection.requestInterest"))
+            }
             onBookingClick={() => setIsBookingOpen(true)}
           />
 
           {/* 4. Top Workflows (6 cards + link) */}
           {/* <SolutionsSection /> */}
-          
+
           {/* 5. Work teaser (2 case studies + link) */}
           {/* <WorkSection /> */}
-          
+
           {/* 6. Trust teaser (3 bullets + link) */}
           <TrustSection />
-          
+
           {/* 7. Final CTA */}
           <ContactSection onBookingClick={() => openRequest()} />
         </main>
@@ -137,19 +145,22 @@ const Index = () => {
       </div>
 
       {/* Modals */}
-      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
       <RequestModal
         isOpen={isRequestOpen}
         onClose={() => setIsRequestOpen(false)}
         prefilledInterest={requestInterest}
       />
-      
+
       {/* Sticky Next Step bar */}
-      <StickyNextStep 
+      <StickyNextStep
         onRequestClick={() => openRequest()}
         onBookClick={() => setIsBookingOpen(true)}
       />
-      
+
       <CookieConsent />
     </>
   );
