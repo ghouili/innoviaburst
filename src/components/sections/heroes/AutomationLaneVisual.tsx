@@ -187,7 +187,13 @@ const STYLES = `
   --ease: cubic-bezier(.45,.05,.25,1);
   --slot: 88px;
 }
-.ialane.panel{ width:100%; background:#fff; border:1px solid hsl(210 24% 89%); border-radius:20px; box-shadow:0 1px 3px rgba(29,37,48,.05), 0 18px 40px -22px hsl(214 40% 40% / .22); overflow:hidden; }
+/* position/z-index are load-bearing, not cosmetic: the hero section layers three
+   decorative overlays (glow, radial tint, blueprint grid) as position:absolute
+   siblings of the content column. A static panel paints BELOW them, so its white
+   surface came out washed in cyan/mint. Promoting the panel into the positioned
+   layer keeps the background truly #fff while the overlays still tint the hero
+   around it. */
+.ialane.panel{ position:relative; z-index:1; width:100%; background:#fff; border:1px solid hsl(210 24% 89%); border-radius:20px; box-shadow:0 1px 3px rgba(29,37,48,.05), 0 18px 40px -22px hsl(214 40% 40% / .22); overflow:hidden; }
 .ialane .panel-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 17px; border-bottom:1px solid var(--line); background:var(--card); }
 .ialane .ph-left{ display:flex; align-items:center; gap:11px; min-width:0; }
 .ialane .live{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--slate); }
@@ -814,7 +820,7 @@ export function AutomationLaneVisual({ className = "" }: AutomationLaneVisualPro
     // the hero copy, so it's aria-hidden (keeps its animated micro-labels out of
     // the a11y tree / contrast audits). The demo toggle below is tabIndex={-1}
     // so there's no focusable element inside an aria-hidden subtree.
-    <div ref={rootRef} aria-hidden="true" className={`ialane panel ${className}`.trim()}>
+    <div ref={rootRef} aria-hidden="true" className={`bg-white ialane panel ${className}`.trim()}>
       {/* CSS injected raw — a JSX text child gets HTML-escaped (content:"" -> &quot;),
           which mismatches the client on hydration (#425). */}
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
