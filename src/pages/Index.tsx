@@ -161,6 +161,8 @@ const Index = () => {
         onBookClick={() => setIsBookingOpen(true)}
       />
 
+      
+
       <CookieConsent />
     </>
   );
