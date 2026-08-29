@@ -71,7 +71,7 @@ export function StickyNextStep({
   if (cookiesOpen) return null;
   return (
     <div
-      className={`fixed left-0 right-0 z-sticky bg-card/95 backdrop-blur-md border-t border-border shadow-lg animate-fade-in transition-all duration-300 ${bottomOffset}`}
+      className={`fixed left-0 right-0 z-[80] bg-card/95 backdrop-blur-md border-t border-border shadow-lg animate-fade-in transition-all duration-300 ${bottomOffset}`}
       role="navigation"
       aria-label={t("stickyBar.label")}
     >

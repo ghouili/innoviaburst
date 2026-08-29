@@ -481,7 +481,7 @@ export default function LpMvpPage() {
         role="region"
         aria-label={t("lpMvp.sticky.message")}
         aria-hidden={!showSticky}
-        className={`fixed inset-x-0 bottom-0 z-sticky border-t border-border bg-card/95 backdrop-blur-md transition-transform duration-300 ${
+        className={`fixed inset-x-0 bottom-0 z-[80] border-t border-border bg-card/95 backdrop-blur-md transition-transform duration-300 ${
           showSticky ? "translate-y-0" : "pointer-events-none translate-y-full"
         }`}
         style={{ paddingBottom: "max(0px, env(safe-area-inset-bottom))" }}

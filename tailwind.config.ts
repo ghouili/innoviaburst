@@ -100,18 +100,25 @@ export default {
         "3xl": "var(--radius-2xl)",
         full: "var(--radius-full)",
       },
-      // One documented stacking ladder. Overlay layers must sit ABOVE the
-      // navbar and consent banner; menus that open INSIDE a modal must sit
-      // above the modal.
-      zIndex: {
-        sticky: "80",
-        navbar: "90",
-        consent: "100",
-        modal: "120",
-        popover: "130",
-        toast: "150",
-        skiplink: "200",
-      },
+      // NOTE: the app's stacking ladder is deliberately NOT tokenised here.
+      //
+      //   80  sticky CTA bars      120  modals / sheets / drawers
+      //   90  navbar               130  popover / select / dropdown / tooltip
+      //  100  cookie consent       150  toasts        200  skip link
+      //
+      // It is written as arbitrary values (z-[90], z-[120], ...) at each call
+      // site instead. Two reasons, both learned the hard way:
+      //
+      //  1. A named key only exists once Tailwind has re-read THIS file. A dev
+      //     server that was already running when the key was added emits no
+      //     rule, so the class resolves to `z-index: auto` with no error and
+      //     the navbar silently falls behind the hero. Arbitrary values are
+      //     generated from the class string, so they cannot vanish that way.
+      //  2. tailwind-merge does not recognise custom z-index names:
+      //     twMerge("z-modal","z-50") keeps BOTH classes, while
+      //     twMerge("z-[120]","z-50") correctly resolves to "z-50".
+      //     cn(variants(), className) in DialogContent/SheetContent relies on
+      //     that dedupe working.
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

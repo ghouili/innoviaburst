@@ -30,7 +30,7 @@ export function LpNavbar({ ctaLabel, onCtaClick }: LpNavbarProps) {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-navbar transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-[90] transition-all duration-300 ${
         isScrolled
           ? "bg-card/95 backdrop-blur-md shadow-card border-b border-border"
           : "bg-transparent"

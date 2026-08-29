@@ -361,7 +361,7 @@ export default function OfferPage() {
         {/* Sticky CTA for mobile — safe-area aware, carries the PRIMARY action.
             Pure CSS `fixed`; nothing measures the viewport, so it pre-renders
             identically at SSG time and needs no JS to appear. */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-card/95 backdrop-blur-sm border-t border-border z-sticky pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-card/95 backdrop-blur-sm border-t border-border z-[80] pb-[max(0.75rem,env(safe-area-inset-bottom))]">
           <div className="flex gap-2">
             <Button variant="hero" className="flex-1 min-h-[48px]" onClick={() => setRequestOpen(true)}>
               {t("offerPage.ui.ctaPrimary")}
