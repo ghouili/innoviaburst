@@ -20,7 +20,7 @@ interface FourTracksVisualProps {
 export function FourTracksVisual({ className = "" }: FourTracksVisualProps) {
   return (
     <div
-      className={`relative rounded-3xl border border-border bg-card/80 shadow-card p-6 sm:p-7 ${className}`}
+      className={`relative rounded-2xl border border-border bg-card/80 shadow-card p-6 sm:p-7 ${className}`}
       aria-hidden="true"
     >
       <div className="pointer-events-none absolute -top-12 -right-12 w-44 h-44 rounded-full bg-accent/10 blur-2xl" />

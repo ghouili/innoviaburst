@@ -69,8 +69,8 @@ export function MvpAppPreview({ className = "" }: MvpAppPreviewProps) {
           <div className="space-y-4 p-4 sm:p-5">
             <div className="flex items-center justify-between">
               <div className="space-y-1.5">
-                <div className="h-2.5 w-28 rounded bg-foreground/75" />
-                <div className="h-2 w-16 rounded bg-muted-foreground/30" />
+                <div className="h-2.5 w-28 rounded-sm bg-foreground/75" />
+                <div className="h-2 w-16 rounded-sm bg-muted-foreground/30" />
               </div>
               <div className="h-8 w-8 rounded-full bg-gradient-to-br from-accent to-secondary" />
             </div>
@@ -96,7 +96,7 @@ export function MvpAppPreview({ className = "" }: MvpAppPreviewProps) {
                 {bars.map((h, i) => (
                   <div
                     key={i}
-                    className="flex-1 rounded-t bg-gradient-to-t from-secondary/70 to-accent/70"
+                    className="flex-1 rounded-t-sm bg-gradient-to-t from-secondary/70 to-accent/70"
                     style={{ height: `${h}%` }}
                   />
                 ))}
@@ -105,7 +105,7 @@ export function MvpAppPreview({ className = "" }: MvpAppPreviewProps) {
 
             {/* Footer row + CTA */}
             <div className="flex items-center justify-between pt-0.5">
-              <div className="h-2 w-24 rounded bg-muted-foreground/20" />
+              <div className="h-2 w-24 rounded-sm bg-muted-foreground/20" />
               <span className="rounded-lg bg-gradient-cta px-3 py-1.5 text-xs font-semibold text-white shadow-sm">
                 {t("lpMvp.preview.ctaLabel")}
               </span>

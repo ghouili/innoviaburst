@@ -249,7 +249,7 @@ export function LpScopeForm({
           <button
             type="button"
             onClick={onBookCall}
-            className="rounded text-sm font-semibold text-secondary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-sm text-sm font-semibold text-secondary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {t("lpMvp.form.secondary")}
           </button>

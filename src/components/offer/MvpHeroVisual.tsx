@@ -50,7 +50,7 @@ export function MvpHeroVisual() {
       <div className="ib-frame relative" style={{ animationDelay: "0.1s" }}>
         {/* Soft glow behind the frame */}
         <div
-          className="pointer-events-none absolute -inset-x-[6%] -top-[8%] -bottom-[14%] rounded-[34px] blur-[6px]"
+          className="pointer-events-none absolute -inset-x-[6%] -top-[8%] -bottom-[14%] rounded-2xl blur-[6px]"
           style={{
             background:
               "radial-gradient(60% 60% at 50% 40%, hsl(var(--accent) / 0.2), hsl(var(--accent) / 0) 70%)",
@@ -91,7 +91,7 @@ export function MvpHeroVisual() {
             {/* Sidebar */}
             <div className="flex w-[68px] shrink-0 flex-col items-center gap-3 border-r border-border bg-muted/30 py-4">
               <span
-                className="ib-pop h-[30px] w-[30px] rounded-[9px] bg-gradient-blue shadow-md"
+                className="ib-pop h-[30px] w-[30px] rounded-md bg-gradient-blue shadow-md"
                 style={{ animationDelay: "1.5s" }}
                 aria-hidden="true"
               />
@@ -137,7 +137,7 @@ export function MvpHeroVisual() {
 
               {/* Chart panel */}
               <div
-                className="ib-pop relative min-h-0 flex-1 overflow-hidden rounded-[13px] border border-border bg-muted/20 px-3.5 pt-3"
+                className="ib-pop relative min-h-0 flex-1 overflow-hidden rounded-xl border border-border bg-muted/20 px-3.5 pt-3"
                 style={{ animationDelay: "2.2s" }}
               >
                 <div className="flex items-center justify-between gap-2.5">

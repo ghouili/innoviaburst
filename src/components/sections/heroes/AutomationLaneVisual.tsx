@@ -181,7 +181,6 @@ const STYLES = `
      (not hsl(var(--primary))) because --primary is now logo blue. */
   --orange: hsl(24 95% 53%);
   --orange-soft: hsl(24 95% 53% / 0.12);
-  --radius: 12px;
   --shadow-sm: 0 1px 2px rgba(29,37,48,.05), 0 1px 1px rgba(29,37,48,.03);
   --shadow-md: 0 10px 30px -12px rgba(29,37,48,.18), 0 2px 6px rgba(29,37,48,.05);
   --ease: cubic-bezier(.45,.05,.25,1);
@@ -193,7 +192,7 @@ const STYLES = `
    surface came out washed in cyan/mint. Promoting the panel into the positioned
    layer keeps the background truly #fff while the overlays still tint the hero
    around it. */
-.ialane.panel{ position:relative; z-index:1; width:100%; background:#fff; border:1px solid hsl(210 24% 89%); border-radius:20px; box-shadow:0 1px 3px rgba(29,37,48,.05), 0 18px 40px -22px hsl(214 40% 40% / .22); overflow:hidden; }
+.ialane.panel{ position:relative; z-index:1; width:100%; background:#fff; border:1px solid hsl(210 24% 89%); border-radius:var(--radius-2xl); box-shadow:0 1px 3px rgba(29,37,48,.05), 0 18px 40px -22px hsl(214 40% 40% / .22); overflow:hidden; }
 .ialane .panel-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 17px; border-bottom:1px solid var(--line); background:var(--card); }
 .ialane .ph-left{ display:flex; align-items:center; gap:11px; min-width:0; }
 .ialane .live{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:var(--slate); }
@@ -202,22 +201,22 @@ const STYLES = `
 @keyframes ialane-beat{ 0%{transform:scale(1);opacity:.5} 70%,100%{transform:scale(2.6);opacity:0} }
 .ialane .ph-title{ font-size:13.5px; font-weight:600; }
 .ialane .ph-titlerow{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-.ialane .ill-tag{ font-size:9.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); background:var(--bg); border:1px solid var(--line); border-radius:999px; padding:2px 7px; }
+.ialane .ill-tag{ font-size:9.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--slate); background:var(--bg); border:1px solid var(--line); border-radius:var(--radius-full); padding:2px 7px; }
 /* Sample-data caption sitting directly above the metric tiles. Deliberately the
    quietest text in the column — it qualifies the numbers without shouting. */
 .ialane .mc-note{ font-size:10.5px; line-height:1.35; color:var(--slate); font-weight:500; margin:-6px 0 1px; }
 .ialane .ph-sub{ font-size:11.5px; color:var(--slate); margin-top:1px; }
-.ialane .toggle{ display:inline-flex; background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:3px; gap:2px; flex:none; }
-.ialane .toggle button{ font-family:inherit; font-size:11.5px; font-weight:550; border:none; background:transparent; color:var(--slate); padding:6px 11px; border-radius:7px; cursor:pointer; transition:color .2s, background .2s; white-space:nowrap; }
+.ialane .toggle{ display:inline-flex; background:var(--bg); border:1px solid var(--line); border-radius:var(--radius-lg); padding:3px; gap:2px; flex:none; }
+.ialane .toggle button{ font-family:inherit; font-size:11.5px; font-weight:550; border:none; background:transparent; color:var(--slate); padding:6px 11px; border-radius:var(--radius-md); cursor:pointer; transition:color .2s, background .2s; white-space:nowrap; }
 .ialane .toggle button.on{ background:var(--card); color:var(--ink); box-shadow:var(--shadow-sm); }
 .ialane .toggle button.on[data-mode="manual"]{ color:var(--orange); }
 .ialane .panel-body{ display:grid; grid-template-columns:minmax(0,1fr) 248px; }
 .ialane .lane-col{ padding:18px 18px 20px; border-right:1px solid var(--line); position:relative; }
 .ialane .lane-label{ display:flex; align-items:center; justify-content:space-between; font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--slate); margin-bottom:12px; }
-.ialane .lane-label .count{ color:var(--ink); background:var(--bg); border:1px solid var(--line); padding:2px 8px; border-radius:999px; letter-spacing:0; text-transform:none; font-size:11px; font-weight:600; }
+.ialane .lane-label .count{ color:var(--ink); background:var(--bg); border:1px solid var(--line); padding:2px 8px; border-radius:var(--radius-full); letter-spacing:0; text-transform:none; font-size:11px; font-weight:600; }
 .ialane .lane{ position:relative; height:calc(var(--slot) * 4 + 6px); overflow:hidden; -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 7%, #000 90%, transparent 100%); mask-image:linear-gradient(to bottom, transparent 0, #000 7%, #000 90%, transparent 100%); }
 .ialane .lane.manual{ -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 6%, #000 82%, transparent 100%); mask-image:linear-gradient(to bottom, transparent 0, #000 6%, #000 82%, transparent 100%); }
-.ialane .card{ position:absolute; left:2px; right:2px; top:0; height:calc(var(--slot) - 12px); background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:12px 14px; display:flex; flex-direction:column; justify-content:center; gap:7px; overflow:hidden; transition:transform .55s var(--ease), opacity .5s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease); }
+.ialane .card{ position:absolute; left:2px; right:2px; top:0; height:calc(var(--slot) - 12px); background:var(--card); border:1px solid var(--line); border-radius:var(--radius-xl); box-shadow:var(--shadow-sm); padding:12px 14px; display:flex; flex-direction:column; justify-content:center; gap:7px; overflow:hidden; transition:transform .55s var(--ease), opacity .5s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease); }
 .ialane .card.processing{ border-color:hsl(var(--secondary) / .5); box-shadow:0 8px 22px -12px hsl(var(--secondary) / .5), 0 0 0 1px hsl(var(--secondary) / .18); }
 .ialane .card.done{ border-color:hsl(160 84% 39% / .5); box-shadow:0 8px 22px -12px hsl(160 84% 39% / .4), 0 0 0 1px hsl(160 84% 39% / .16); animation:ialane-doneflash .55s var(--ease); }
 @keyframes ialane-doneflash{ 0%{background:var(--green-soft);} 100%{background:var(--card);} }
@@ -230,7 +229,7 @@ const STYLES = `
 .ialane .card.done .tdot{ background:var(--green); }
 .ialane .card.overdue .tdot{ background:var(--orange); }
 .ialane .card .ttl{ font-size:14px; font-weight:550; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; min-width:0; }
-.ialane .status{ flex:none; display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px; background:var(--bg); color:var(--slate); transition:background .3s, color .3s; }
+.ialane .status{ flex:none; display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:3px 9px; border-radius:var(--radius-full); background:var(--bg); color:var(--slate); transition:background .3s, color .3s; }
 .ialane .card.processing .status{ background:var(--blue-soft); color:var(--blue); }
 .ialane .card.done .status{ background:var(--green-soft); color:var(--green); }
 .ialane .card.overdue .status{ background:var(--orange-soft); color:var(--orange); }
@@ -250,7 +249,7 @@ const STYLES = `
 .ialane .meta-sep{ width:2.5px; height:2.5px; border-radius:50%; background:var(--slate); opacity:.55; flex:none; }
 .ialane .meta-auto{ display:inline-flex; align-items:center; gap:6px; white-space:nowrap; opacity:0; transform:translateX(-4px); transition:opacity .4s var(--ease) .05s, transform .4s var(--ease) .05s; }
 .ialane .card.processing .meta-auto, .ialane .card.done .meta-auto{ opacity:1; transform:none; }
-.ialane .tag{ font-weight:600; color:var(--blue); background:var(--blue-soft); padding:2px 7px; border-radius:6px; font-size:11px; }
+.ialane .tag{ font-weight:600; color:var(--blue); background:var(--blue-soft); padding:2px 7px; border-radius:var(--radius-md); font-size:11px; }
 .ialane .route{ display:inline-flex; align-items:center; gap:4px; color:var(--ink); font-weight:500; }
 .ialane .route svg{ width:11px; height:11px; color:var(--slate); }
 .ialane .scan{ position:absolute; left:0; right:0; top:0; height:2px; background:linear-gradient(90deg, transparent, var(--blue), transparent); box-shadow:0 0 10px 1px hsl(var(--secondary) / .45); opacity:0; pointer-events:none; }
@@ -259,7 +258,7 @@ const STYLES = `
 .ialane .card.exit{ opacity:0 !important; }
 .ialane .mc{ padding:18px 18px 20px; display:flex; flex-direction:column; gap:13px; }
 .ialane .mc-head{ font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--slate); margin-bottom:1px; }
-.ialane .stat{ border:1px solid var(--line); border-radius:var(--radius); padding:12px 13px; background:var(--card); transition:border-color .35s, background .35s; }
+.ialane .stat{ border:1px solid var(--line); border-radius:var(--radius-xl); padding:12px 13px; background:var(--card); transition:border-color .35s, background .35s; }
 .ialane .stat-top{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
 .ialane .stat-label{ font-size:11.5px; color:var(--slate); font-weight:500; }
 .ialane .stat-trend{ display:inline-flex; align-items:center; gap:3px; font-size:10.5px; font-weight:600; color:var(--green); }

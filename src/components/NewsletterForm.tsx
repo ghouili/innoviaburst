@@ -252,7 +252,7 @@ export function NewsletterForm({
               checked={formData.consent}
               onChange={(e) => setFormData((prev) => ({ ...prev, consent: e.target.checked }))}
               disabled={isLoading}
-              className="mt-1 w-4 h-4 rounded border-background/30 bg-background/10 text-primary focus:ring-2 focus:ring-background/60 focus:ring-offset-0 disabled:opacity-50"
+              className="mt-1 w-4 h-4 rounded-sm border-background/30 bg-background/10 text-primary focus:ring-2 focus:ring-background/60 focus:ring-offset-0 disabled:opacity-50"
             />
             <label htmlFor={consentId} className="text-xs text-background/70 leading-relaxed">
               {consentText}{" "}
@@ -282,7 +282,7 @@ export function NewsletterForm({
                   disabled={isLoading}
                   className={[
                     "h-4 w-4",
-                    "rounded border border-background/30 bg-background/10",
+                    "rounded-sm border border-background/30 bg-background/10",
                     "text-primary",
                     "focus:outline-none focus:ring-0 focus:ring-background/60 focus:ring-offset-0",
                     "disabled:opacity-50",
@@ -402,7 +402,7 @@ export function NewsletterForm({
               checked={formData.consent}
               onChange={(e) => setFormData((prev) => ({ ...prev, consent: e.target.checked }))}
               disabled={isLoading}
-              className="mt-1 w-4 h-4 rounded border-border bg-muted text-primary focus:ring-2 focus:ring-accent focus:ring-offset-0 focus:ring-offset-background disabled:opacity-50"
+              className="mt-1 w-4 h-4 rounded-sm border-border bg-muted text-primary focus:ring-2 focus:ring-accent focus:ring-offset-0 focus:ring-offset-background disabled:opacity-50"
             />
             <label htmlFor={consentId} className="text-xs text-muted-foreground leading-relaxed">
               {consentText}{" "}

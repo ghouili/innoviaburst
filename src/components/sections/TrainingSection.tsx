@@ -151,7 +151,7 @@ export function TrainingSection({ onRequestClick, onBookingClick }: TrainingSect
             <Reveal delay={360}>
               <Link
                 to="/training"
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary hover:text-secondary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 rounded"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary hover:text-secondary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 rounded-sm"
               >
                 {t("trainingSection.viewAll")}
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -173,7 +173,7 @@ export function TrainingSection({ onRequestClick, onBookingClick }: TrainingSect
                       className="h-14 rounded-xl border border-dashed border-border bg-muted/40 flex items-center justify-center gap-2 px-3"
                     >
                       <span
-                        className="w-4 h-4 rounded bg-accent/15 shrink-0"
+                        className="w-4 h-4 rounded-sm bg-accent/15 shrink-0"
                         aria-hidden="true"
                       />
                       <span className="text-[11px] font-semibold text-muted-foreground truncate">

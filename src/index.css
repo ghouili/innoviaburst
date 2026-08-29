@@ -86,7 +86,21 @@
     --input: 200 25% 90%;
     --ring: 192 85% 50%;
 
-    --radius: 1rem;
+    /* Radius scale — explicit tokens, not calc()-derived.
+       sm  focus-ring shaping, checkboxes, tiny swatches, chart keys
+       md  inputs, selects, textareas, menu items, non-pill badges
+       lg  buttons, list rows, toasts, icon tiles, close buttons
+       xl  cards, modal panels, accordions, popovers
+       2xl hero panels, drawers, large feature surfaces
+       full pills, dots, avatars, spinners — never a rectangular container */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+    --radius-2xl: 16px;
+    --radius-full: 9999px;
+    /* Legacy alias kept so stock shadcn conventions keep resolving. */
+    --radius: var(--radius-lg);
 
     /* Custom brand tokens */
     --cyan: 192 85% 50%;
@@ -308,7 +322,7 @@
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(148, 163, 184, 0.35); /* slate-ish */
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   border: 3px solid transparent;
   background-clip: padding-box;
 }

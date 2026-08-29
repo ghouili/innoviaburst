@@ -941,7 +941,7 @@ function ResourcesNewsletterCard() {
           </div>
           <button
             onClick={handleReset}
-            className="text-sm text-secondary hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded px-2"
+            className="text-sm text-secondary hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded-sm px-2"
           >
             {t("resourcesPage.newsletter.successReset")}
           </button>
@@ -1012,7 +1012,7 @@ function ResourcesNewsletterCard() {
               if (error && e.target.checked) setError(null);
             }}
             disabled={isLoading}
-            className="-mt-2.5 w-4 h-4 rounded border-border bg-muted text-primary focus:ring-2 focus:ring-secondary focus:ring-offset-0 disabled:opacity-50"
+            className="-mt-2.5 w-4 h-4 rounded-sm border-border bg-muted text-primary focus:ring-2 focus:ring-secondary focus:ring-offset-0 disabled:opacity-50"
           />
           <label htmlFor={consentId} className="text-xs text-muted-foreground leading-relaxed cursor-pointer">
             {t("resourcesPage.newsletter.consent")}{" "}

@@ -187,7 +187,7 @@ export default function TrainingPage() {
                     <button
                       type="button"
                       onClick={() => setTrainingModal("partner")}
-                      className="inline-flex items-center gap-1 font-semibold text-secondary underline underline-offset-4 hover:text-deep-blue-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+                      className="inline-flex items-center gap-1 font-semibold text-secondary underline underline-offset-4 hover:text-deep-blue-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                     >
                       {t("trainingPage.partnerLinkCta")}
                       <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -302,7 +302,7 @@ export default function TrainingPage() {
                   key={i}
                   className="h-14 rounded-xl border border-dashed border-border bg-muted/40 flex items-center justify-center gap-2 px-3"
                 >
-                  <span className="w-4 h-4 rounded bg-accent/15 shrink-0" aria-hidden="true" />
+                  <span className="w-4 h-4 rounded-sm bg-accent/15 shrink-0" aria-hidden="true" />
                   <span className="text-[11px] font-semibold text-muted-foreground truncate">
                     {t("trainingSection.partnerPlaceholder")}
                   </span>

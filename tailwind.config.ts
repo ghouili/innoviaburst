@@ -88,11 +88,15 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 4px)",
-        sm: "calc(var(--radius) - 8px)",
-        xl: "calc(var(--radius) + 8px)",
-        "2xl": "calc(var(--radius) + 16px)",
+        sm: "var(--radius-sm)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+        "2xl": "var(--radius-2xl)",
+        // Aliased to 2xl: Tailwind default 3xl (1.5rem) would otherwise render
+        // SMALLER than 2xl and identical to xl.
+        "3xl": "var(--radius-2xl)",
+        full: "var(--radius-full)",
       },
       keyframes: {
         "accordion-down": {

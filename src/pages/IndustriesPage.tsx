@@ -131,7 +131,7 @@ export default function IndustriesPage() {
                       <h4 className="text-sm font-semibold text-accent-strong uppercase tracking-wide mb-3">{t("industriesPage.toolsHeading")}</h4>
                       <div className="flex flex-wrap gap-2">
                         {industry.toolStacks.map((tool, i) => (
-                          <span key={i} className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
+                          <span key={i} className="text-xs px-2 py-1 bg-muted rounded-sm text-muted-foreground">
                             {tool}
                           </span>
                         ))}
@@ -190,7 +190,7 @@ export default function IndustriesPage() {
                   <p className="text-sm text-muted-foreground mb-4">{industry.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {industry.typicalWorkflows.slice(0, 3).map((workflow, i) => (
-                      <span key={i} className="text-xs px-2 py-1 bg-muted rounded text-muted-foreground">
+                      <span key={i} className="text-xs px-2 py-1 bg-muted rounded-sm text-muted-foreground">
                         {workflow}
                       </span>
                     ))}

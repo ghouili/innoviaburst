@@ -21,7 +21,7 @@ export function LpFooter() {
   ];
 
   const linkClasses =
-    "text-sm text-background/70 transition-colors hover:text-background hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground rounded";
+    "text-sm text-background/70 transition-colors hover:text-background hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-2 focus-visible:ring-offset-foreground rounded-sm";
 
   return (
     <footer className="bg-foreground pb-24 pt-14 text-background">

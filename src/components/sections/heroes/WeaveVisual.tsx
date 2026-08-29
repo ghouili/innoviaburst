@@ -100,7 +100,7 @@ const STYLES = `
   position:relative;
   background:linear-gradient(180deg,var(--panel) 0%,var(--bg) 100%);
   border:1px solid var(--line-soft);
-  border-radius:16px;
+  border-radius:var(--radius-2xl);
   box-shadow:0 24px 60px -42px rgba(29,37,48,.5),0 1px 0 rgba(255,255,255,.6) inset;
   overflow:hidden;
   aspect-ratio:16/11;
@@ -122,7 +122,7 @@ const STYLES = `
 .iaweave .stat{
   display:flex; align-items:center; gap:8px;
   background:rgba(252,254,255,.82); backdrop-filter:blur(6px);
-  border:1px solid var(--line-soft); border-radius:999px;
+  border:1px solid var(--line-soft); border-radius:var(--radius-full);
   padding:7px 13px 7px 11px; font-size:0.74rem; font-weight:550; color:var(--ink);
   opacity:0; transform:translateY(6px);
   transition:opacity .6s ease, transform .6s ease; white-space:nowrap;

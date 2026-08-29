@@ -653,7 +653,7 @@ export default function AutomationsPage() {
                   ))}
                 <button
                   onClick={clearAll}
-                  className="text-sm text-accent-strong hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded px-2 min-h-[32px]"
+                  className="text-sm text-accent-strong hover:underline focus:outline-none focus:ring-2 focus:ring-ring rounded-sm px-2 min-h-[32px]"
                 >
                   {t("automationsPage.clearAll")}
                 </button>
