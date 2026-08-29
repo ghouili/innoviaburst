@@ -186,6 +186,14 @@
   },
   "booking": {
     "title": "Réservez votre appel",
+    "embed": {
+      "title": "Calendrier de réservation",
+      "loading": "Chargement du calendrier…",
+      "failedTitle": "Le calendrier ne s'est pas chargé",
+      "failedBody": "Votre navigateur ou une extension le bloque peut-être. Vous pouvez réserver directement ou nous écrire.",
+      "openDirect": "Ouvrir la page de réservation",
+      "emailInstead": "Nous écrire plutôt"
+    },
     "description": "Appel de 25 minutes pour cartographier vos opportunités d'automatisation.",
     "fallbackTitle": "Demander un appel",
     "fallbackDesc": "Laissez vos coordonnées et nous organiserons un créneau.",

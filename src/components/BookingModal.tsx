@@ -26,11 +26,21 @@ import {
   SuccessState,
   TrustBadge,
 } from "@/components/ui/modal-primitives";
+import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 import { useToast } from "@/hooks/use-toast";
+import { trackLpConversion } from "@/lib/lp-tracking";
 import { cn } from "@/lib/utils";
 
-// Placeholder URL - replace with actual Calendly/Cal.com URL
-const BOOKING_URL = "";
+/**
+ * Scheduling link (Calendly / Cal.com). Set VITE_BOOKING_URL in .env to a bare
+ * link such as https://calendly.com/innoviaburst/15min.
+ *
+ * Empty or unset falls back to the in-house form below. `??` (not `||`) so an
+ * explicit empty value means "disabled", matching lib/meta-pixel.ts.
+ *
+ * Vite inlines this at BUILD time, so changing it needs a rebuild + redeploy.
+ */
+const BOOKING_URL = (import.meta.env.VITE_BOOKING_URL as string | undefined) ?? "";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -195,6 +205,15 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
     onClose();
   };
 
+  /**
+   * A booking that actually happened, reported by the Calendly frame. This is
+   * the only conversion on the site backed by a record outside the browser —
+   * the in-house form below is still a stub, which is why it reports nothing.
+   */
+  const handleScheduled = useCallback(() => {
+    trackLpConversion("booking_completed", { source: "booking_modal" });
+  }, []);
+
   const invalid = (hasError: boolean) => cn(hasError && "border-destructive");
 
   const stepFields =
@@ -330,11 +349,17 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
               title={t("booking.title")}
               description={t("booking.description")}
             />
+            {/* The panel is a grid whose middle row takes the leftover height, so
+                h-full sizes the frame to exactly that row (border-box: the row's
+                height already accounts for pb-6). Calendly then scrolls itself —
+                no second scrollbar. min-h is a floor for very short viewports,
+                where DialogBody's own overflow-y-auto takes over so the bottom of
+                the calendar stays reachable instead of being clipped. */}
             <DialogBody className="pb-6">
-              <iframe
-                src={BOOKING_URL}
-                className="h-[500px] w-full rounded-lg border border-border"
-                title={t("booking.title")}
+              <CalendlyEmbed
+                url={BOOKING_URL}
+                onScheduled={handleScheduled}
+                className="h-full min-h-[420px]"
               />
             </DialogBody>
           </>

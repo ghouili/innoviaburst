@@ -188,6 +188,14 @@
   },
   "booking": {
     "title": "Book your call",
+    "embed": {
+      "title": "Booking calendar",
+      "loading": "Loading calendar…",
+      "failedTitle": "The calendar didn't load",
+      "failedBody": "Your browser or an extension may be blocking it. You can still book directly or email us.",
+      "openDirect": "Open the booking page",
+      "emailInstead": "Email us instead"
+    },
     "description": "25-minute call to map your automation opportunities.",
     "fallbackTitle": "Request a call",
     "fallbackDesc": "Leave your details and we'll arrange a convenient time.",
@@ -3054,6 +3062,12 @@
         "dataCategories": "Application code, static assets",
         "location": "Global CDN (EU primary)",
         "notes": "SOC 2 Type II certified"
+      },
+      "calendly": {
+        "purpose": "Meeting scheduling (the \"book a call\" embed)",
+        "dataCategories": "Name, email, meeting details, IP address",
+        "location": "USA (SCCs / DPF)",
+        "notes": "Loaded only when you open the booking dialog"
       },
       "googleWorkspace": {
         "purpose": "Email & document collaboration",

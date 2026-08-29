@@ -51,20 +51,23 @@ function readConsent(): ConsentPrefs | null {
 }
 
 /** The conversions this landing page can report. */
-export type LpConversion = "lead_submit" | "booking_click";
+export type LpConversion = "lead_submit" | "booking_click" | "booking_completed";
 
 /**
  * Map our internal conversion names to the vendor-standard event names.
  *  - lead_submit  → "Lead": a completed scope-request form submit.
- *  - booking_click → "Contact": an INTENT signal fired when the visitor opens
- *    the "book a call" flow. We deliberately use "Contact" (not "Schedule")
- *    because the booking modal is a stub — no appointment is actually booked —
- *    so reporting "Schedule" would train ad optimization on intent, not a real
- *    booking. Move this to a completed-booking handler once booking is live.
+ *  - booking_click → "Contact": an INTENT signal, fired when the visitor OPENS
+ *    the "book a call" flow. Deliberately not "Schedule" — opening the modal is
+ *    not an appointment.
+ *  - booking_completed → "Schedule": a REAL booking. Fired only from the
+ *    Calendly embed's `calendly.event_scheduled` postMessage, i.e. after the
+ *    invitee has actually picked a slot and Calendly has stored it. This is the
+ *    only conversion here backed by a record outside the browser.
  */
 const META_EVENT: Record<LpConversion, string> = {
   lead_submit: "Lead",
   booking_click: "Contact",
+  booking_completed: "Schedule",
 };
 
 /**

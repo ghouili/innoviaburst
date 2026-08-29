@@ -20,6 +20,7 @@ const subprocessors = [
   { name: "Stripe", key: "stripe" },
   { name: "Vercel", key: "vercel" },
   { name: "Google Workspace", key: "googleWorkspace" },
+  { name: "Calendly", key: "calendly" },
 ];
 
 export default function SubprocessorsPage() {
