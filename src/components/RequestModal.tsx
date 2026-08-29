@@ -12,14 +12,18 @@ import {
 } from "lucide-react";
 import {
   Dialog,
+  DialogBody,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import {
   Stepper,
+  ModalHeader,
   FormField,
   NavigationButtons,
   SuccessState,
@@ -308,301 +312,311 @@ export function RequestModal({
     onClose();
   };
 
-  const inputClasses = (hasError: boolean) =>
-    cn(
-      "w-full px-4 py-3 rounded-xl bg-muted border text-foreground placeholder:text-muted-foreground",
-      "focus:outline-none focus:ring-2 focus:ring-ring min-h-[48px] transition-colors",
-      hasError ? "border-destructive" : "border-border"
-    );
+  const invalid = (hasError: boolean) => cn(hasError && "border-destructive");
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="sm:max-w-2xl max-h-[85vh] mt-8 overflow-y-auto p-0 [scrollbar-gutter:stable]">
+      <DialogContent
+        size="lg"
+        onOpenAutoFocus={(event) => {
+          // Land on the first field rather than the close button.
+          if (step === 1 && emailInputRef.current) {
+            event.preventDefault();
+            emailInputRef.current.focus();
+          }
+        }}
+      >
         {step === "success" ? (
-          <div className="p-6 lg:p-8">
-            <SuccessState
-              title={t("request.success.title")}
-              description={t("request.success.description")}
-              details={successDetails}
-              actions={
-                <>
-                  <Button
-                    variant="hero"
-                    size="lg"
-                    className="min-h-[48px]"
-                    onClick={() => {
-                      handleClose();
-                      // Trigger booking modal if available
-                      window.dispatchEvent(new CustomEvent("openBookingModal"));
-                    }}
-                  >
-                    <CalendarPlus className="w-4 h-4 mr-2" />
-                    {t("request.cta.bookCall")}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="min-h-[48px]"
-                    onClick={handleClose}
-                  >
-                    {t("request.cta.backToSite")}
-                  </Button>
-                </>
-              }
-            />
-          </div>
-        ) : (
-          <div className="p-6 lg:p-8">
-            {/* Header */}
-            <DialogHeader className="mb-4">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2.5 rounded-xl bg-secondary/20">
-                  <FileText className="w-6 h-6 text-secondary" />
-                </div>
-                <DialogTitle className="text-xl sm:text-2xl font-bold">
-                  {t("request.title")}
-                </DialogTitle>
-              </div>
-              <DialogDescription className="text-muted-foreground">
-                {t("request.description")}
-              </DialogDescription>
+          <>
+            <DialogHeader className="sr-only">
+              <DialogTitle>{t("request.success.title")}</DialogTitle>
             </DialogHeader>
+            <DialogBody>
+              <SuccessState
+                title={t("request.success.title")}
+                description={t("request.success.description")}
+                details={successDetails}
+              />
+            </DialogBody>
+            <DialogFooter>
+              <Button variant="outline" size="lg" onClick={handleClose}>
+                {t("request.cta.backToSite")}
+              </Button>
+              <Button
+                variant="hero"
+                size="lg"
+                onClick={() => {
+                  handleClose();
+                  // Trigger booking modal if available
+                  window.dispatchEvent(new CustomEvent("openBookingModal"));
+                }}
+              >
+                <CalendarPlus className="mr-2 h-4 w-4" />
+                {t("request.cta.bookCall")}
+              </Button>
+            </DialogFooter>
+          </>
+        ) : (
+          <>
+            <ModalHeader
+              icon={<FileText className="h-6 w-6 text-secondary" />}
+              title={t("request.title")}
+              description={t("request.description")}
+            />
 
-            {/* Stepper */}
-            <div className="mb-6">
+            <DialogBody className="space-y-6">
               <Stepper
                 currentStep={step as number}
                 totalSteps={2}
                 labels={[t("request.stepper.step1"), t("request.stepper.step2")]}
               />
-            </div>
 
-            {step === 1 ? (
-              /* Step 1: Contact Info */
-              <div className="space-y-5">
-                <FormField
-                  label={t("request.fields.emailLabel")}
-                  htmlFor="request-email"
-                  required
-                  error={errors.email}
-                  touched={touched.email}
-                >
-                  <input
-                    ref={emailInputRef}
-                    id="request-email"
-                    type="email"
+              {step === 1 ? (
+                /* Step 1: Contact Info */
+                <div className="space-y-5">
+                  <FormField
+                    label={t("request.fields.emailLabel")}
+                    htmlFor="request-email"
                     required
-                    value={formData.email}
-                    onChange={(e) => {
-                      const email = e.target.value;
-                      setFormData((prev) => ({ ...prev, email }));
-                      // Once a submit attempt has flagged the field, clear/update
-                      // the error as the user corrects it (matches BookingModal).
-                      if (touched.email) validateStep1();
-                    }}
-                    onBlur={() => {
-                      // Live feedback on blur only AFTER a submit attempt (which
-                      // sets `touched`). Otherwise a required-field error would
-                      // appear the moment you leave an empty field on a fresh form.
-                      if (touched.email) validateStep1();
-                    }}
-                    className={inputClasses(!!errors.email && !!touched.email)}
-                    placeholder={t("request.fields.emailPlaceholder")}
-                    aria-invalid={
-                      errors.email && touched.email ? "true" : "false"
-                    }
-                    aria-describedby={
-                      errors.email ? "request-email-error" : undefined
-                    }
-                  />
-                </FormField>
+                    error={errors.email}
+                    touched={touched.email}
+                  >
+                    <Input
+                      ref={emailInputRef}
+                      id="request-email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => {
+                        const email = e.target.value;
+                        setFormData((prev) => ({ ...prev, email }));
+                        // Once a submit attempt has flagged the field, clear/update
+                        // the error as the user corrects it (matches BookingModal).
+                        if (touched.email) validateStep1();
+                      }}
+                      onBlur={() => {
+                        // Live feedback on blur only AFTER a submit attempt (which
+                        // sets `touched`). Otherwise a required-field error would
+                        // appear the moment you leave an empty field on a fresh form.
+                        if (touched.email) validateStep1();
+                      }}
+                      className={invalid(!!errors.email && !!touched.email)}
+                      placeholder={t("request.fields.emailPlaceholder")}
+                      aria-invalid={
+                        errors.email && touched.email ? "true" : "false"
+                      }
+                      aria-describedby={
+                        errors.email ? "request-email-error" : undefined
+                      }
+                    />
+                  </FormField>
 
-                <FormField
-                  label={t("request.fields.companyLabel")}
-                  htmlFor="request-company"
-                  hint={t("common.optional")}
-                >
-                  <input
-                    id="request-company"
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        company: e.target.value,
-                      }))
-                    }
-                    className={inputClasses(false)}
-                    placeholder={t("request.fields.companyPlaceholder")}
-                  />
-                </FormField>
+                  <FormField
+                    label={t("request.fields.companyLabel")}
+                    htmlFor="request-company"
+                    hint={t("common.optional")}
+                  >
+                    <Input
+                      id="request-company"
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          company: e.target.value,
+                        }))
+                      }
+                      placeholder={t("request.fields.companyPlaceholder")}
+                    />
+                  </FormField>
 
-                <FormField
-                  label={t("request.fields.roleLabel")}
-                  htmlFor="request-role"
-                  hint={t("common.optional")}
-                >
-                  <input
-                    id="request-role"
-                    type="text"
-                    value={formData.role}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, role: e.target.value }))
-                    }
-                    className={inputClasses(false)}
-                    placeholder={t("request.fields.rolePlaceholder")}
-                  />
-                </FormField>
+                  <FormField
+                    label={t("request.fields.roleLabel")}
+                    htmlFor="request-role"
+                    hint={t("common.optional")}
+                  >
+                    <Input
+                      id="request-role"
+                      type="text"
+                      value={formData.role}
+                      onChange={(e) =>
+                        setFormData((prev) => ({ ...prev, role: e.target.value }))
+                      }
+                      placeholder={t("request.fields.rolePlaceholder")}
+                    />
+                  </FormField>
 
-                {prefilledInterest && (
-                  <div className=" ">
+                  {prefilledInterest && (
                     <p className="text-sm font-medium text-secondary">
                       {t("request.fields.interestedIn", {
                         topic: prefilledInterest,
                       })}
                     </p>
-                  </div>
-                )}
+                  )}
 
+                  {/* Trust indicators */}
+                  <TrustBadge items={trustBadges} />
+                </div>
+              ) : (
+                /* Step 2: Goal Selection */
+                <div className="space-y-6">
+                  {/* Primary outcome (keep as the only "required" big choice) */}
+                  <FormField
+                    label={t("request.fields.primaryGoalLabel")}
+                    required
+                    error={errors.primaryGoal}
+                    touched={touched.primaryGoal}
+                  >
+                    <RadioCardGroup
+                      name="primary-goal"
+                      options={goalOptions}
+                      value={formData.primaryGoal}
+                      onChange={(value) => {
+                        setFormData((prev) => ({ ...prev, primaryGoal: value }));
+                        setTouched((prev) => ({ ...prev, primaryGoal: true }));
+                      }}
+                      // calmer density on mobile, still 2 cols on desktop
+                      columns={1}
+                      className="sm:[&_[data-card]]:max-w-none sm:[&_[data-grid]]:grid-cols-2"
+                    />
+                  </FormField>
+
+                  {/* Advanced (optional) — collapsible so Step 2 feels smaller */}
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="rounded-lg border border-border bg-muted/20"
+                  >
+                    <AccordionItem value="optional" className="border-none">
+                      <AccordionTrigger className="px-4 py-3 text-sm font-semibold">
+                        {t("request.accordion.optionalDetails")}
+                      </AccordionTrigger>
+
+                      <AccordionContent className="space-y-5 px-4 pb-4">
+                        {/* Tools (chips, but visually lighter) */}
+                        <FormField
+                          label={t("request.fields.toolsLabel")}
+                          hint={t("request.fields.toolsHint")}
+                        >
+                          <div className="flex flex-wrap gap-2">
+                            {localizedTools.map((tool) => {
+                              const active = formData.tools.includes(tool.value);
+                              return (
+                                <button
+                                  key={tool.value}
+                                  type="button"
+                                  onClick={() => toggleTool(tool.value)}
+                                  className={cn(
+                                    "h-9 rounded-full border px-3 text-xs font-medium transition-colors",
+                                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                    active
+                                      ? "border-accent/30 bg-accent/15 text-foreground"
+                                      : "border-border bg-background/40 text-muted-foreground hover:border-accent/40 hover:text-foreground"
+                                  )}
+                                  aria-pressed={active}
+                                >
+                                  {tool.label}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </FormField>
+
+                        {/* Timeline (dropdown = less visual noise) */}
+                        <FormField
+                          label={t("request.fields.timelineLabel")}
+                          hint={t("request.fields.timelineHint")}
+                        >
+                          <Select
+                            value={formData.timeline || "none"}
+                            onValueChange={(val) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                timeline: val === "none" ? "" : val,
+                              }))
+                            }
+                          >
+                            <SelectTrigger className="h-11 bg-background/40">
+                              <SelectValue
+                                placeholder={t("request.fields.timelinePlaceholder")}
+                              />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="none">
+                                {t("request.timelineOptions.none")}
+                              </SelectItem>
+                              {localizedTimelineOptions.map((timelineOption) => (
+                                <SelectItem
+                                  key={timelineOption.value}
+                                  value={timelineOption.value}
+                                >
+                                  {timelineOption.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormField>
+
+                        {/* Notes (still optional, but calmer) */}
+                        <FormField
+                          label={t("request.fields.notesLabel")}
+                          htmlFor="request-notes"
+                          hint={t("request.fields.notesHint")}
+                        >
+                          <Textarea
+                            id="request-notes"
+                            value={formData.notes}
+                            onChange={(e) =>
+                              setFormData((prev) => ({
+                                ...prev,
+                                notes: e.target.value,
+                              }))
+                            }
+                            rows={3}
+                            className="min-h-[96px] resize-none"
+                            placeholder={t("request.fields.notesPlaceholder")}
+                          />
+                        </FormField>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              )}
+
+              {/* What happens next - visible on both steps */}
+              <div className="border-t border-border pt-6">
+                <h3 className="mb-4 text-sm font-semibold text-foreground">
+                  {t("request.whatNext.title")}
+                </h3>
+                <div className="flex flex-col gap-4 sm:flex-row">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/20">
+                      <Clock className="h-4 w-4 text-accent" />
+                    </div>
+                    <span className="text-sm text-muted-foreground">
+                      {whatNextItems[0]}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/20">
+                      <Shield className="h-4 w-4 text-accent" />
+                    </div>
+                    <span className="text-sm text-muted-foreground">
+                      {whatNextItems[1]}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </DialogBody>
+
+            <DialogFooter>
+              {step === 1 ? (
                 <NavigationButtons
                   onNext={handleNext}
                   showBack={false}
                   nextLabel={t("request.cta.continue")}
                 />
-
-                {/* Trust indicators */}
-                <div className="pt-4">
-                  <TrustBadge items={trustBadges} />
-                </div>
-              </div>
-            ) : (
-              /* Step 2: Goal Selection */
-
-              <div className="space-y-6">
-                {/* Primary outcome (keep as the only “required” big choice) */}
-                <FormField
-                  label={t("request.fields.primaryGoalLabel")}
-                  required
-                  error={errors.primaryGoal}
-                  touched={touched.primaryGoal}
-                >
-                  <RadioCardGroup
-                    name="primary-goal"
-                    options={goalOptions}
-                    value={formData.primaryGoal}
-                    onChange={(value) => {
-                      setFormData((prev) => ({ ...prev, primaryGoal: value }));
-                      setTouched((prev) => ({ ...prev, primaryGoal: true }));
-                    }}
-                    // calmer density on mobile, still 2 cols on desktop
-                    columns={1}
-                    className="sm:[&_[data-card]]:max-w-none sm:[&_[data-grid]]:grid-cols-2"
-                  />
-                </FormField>
-
-                {/* Advanced (optional) — collapsible so Step 2 feels smaller */}
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="rounded-2xl border border-border bg-muted/20"
-                >
-                  <AccordionItem value="optional" className="border-none">
-                    <AccordionTrigger className="px-4 py-3 text-sm font-semibold">
-                      {t("request.accordion.optionalDetails")}
-                    </AccordionTrigger>
-
-                    <AccordionContent className="px-4 pb-4 space-y-5">
-                      {/* Tools (chips, but visually lighter) */}
-                      <FormField
-                        label={t("request.fields.toolsLabel")}
-                        hint={t("request.fields.toolsHint")}
-                      >
-                        <div className="flex flex-wrap gap-2">
-                          {localizedTools.map((tool) => {
-                            const active = formData.tools.includes(tool.value);
-                            return (
-                              <button
-                                key={tool.value}
-                                type="button"
-                                onClick={() => toggleTool(tool.value)}
-                                className={cn(
-                                  "h-9 px-3 rounded-full text-xs font-medium border transition-colors",
-                                  "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                                  active
-                                    ? "bg-accent/15 text-foreground border-accent/30"
-                                    : "bg-background/40 text-muted-foreground border-border hover:border-accent/40 hover:text-foreground"
-                                )}
-                                aria-pressed={active}
-                              >
-                                {tool.label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </FormField>
-
-                      {/* Timeline (dropdown = less visual noise) */}
-                      <FormField
-                        label={t("request.fields.timelineLabel")}
-                        hint={t("request.fields.timelineHint")}
-                      >
-                        <Select
-                          value={formData.timeline || "none"}
-                          onValueChange={(val) =>
-                            setFormData((prev) => ({
-                              ...prev,
-                              timeline: val === "none" ? "" : val,
-                            }))
-                          }
-                        >
-                          <SelectTrigger className="h-11 rounded-xl bg-background/40">
-                            <SelectValue
-                              placeholder={t("request.fields.timelinePlaceholder")}
-                            />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="none">
-                              {t("request.timelineOptions.none")}
-                            </SelectItem>
-                            {localizedTimelineOptions.map((timelineOption) => (
-                              <SelectItem
-                                key={timelineOption.value}
-                                value={timelineOption.value}
-                              >
-                                {timelineOption.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </FormField>
-
-                      {/* Notes (still optional, but calmer) */}
-                      <FormField
-                        label={t("request.fields.notesLabel")}
-                        htmlFor="request-notes"
-                        hint={t("request.fields.notesHint")}
-                      >
-                        <textarea
-                          id="request-notes"
-                          value={formData.notes}
-                          onChange={(e) =>
-                            setFormData((prev) => ({
-                              ...prev,
-                              notes: e.target.value,
-                            }))
-                          }
-                          rows={3}
-                          className={cn(
-                            inputClasses(false),
-                            "resize-none min-h-[96px]"
-                          )}
-                          placeholder={t("request.fields.notesPlaceholder")}
-                        />
-                      </FormField>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-
+              ) : (
                 <NavigationButtons
                   onBack={handleBack}
                   onSubmit={handleSubmit}
@@ -612,34 +626,9 @@ export function RequestModal({
                   backLabel={t("request.cta.back")}
                   submitLabel={t("request.cta.submit")}
                 />
-              </div>
-            )}
-
-            {/* What happens next - visible on both steps */}
-            <div className="mt-8 pt-6 border-t border-border">
-              <h3 className="text-sm font-semibold text-foreground mb-4">
-                {t("request.whatNext.title")}
-              </h3>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
-                    <Clock className="w-4 h-4 text-accent" />
-                  </div>
-                  <span className="text-sm text-muted-foreground">
-                    {whatNextItems[0]}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center shrink-0">
-                    <Shield className="w-4 h-4 text-accent" />
-                  </div>
-                  <span className="text-sm text-muted-foreground">
-                    {whatNextItems[1]}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+              )}
+            </DialogFooter>
+          </>
         )}
       </DialogContent>
     </Dialog>

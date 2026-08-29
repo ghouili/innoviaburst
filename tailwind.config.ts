@@ -98,6 +98,18 @@ export default {
         "3xl": "var(--radius-2xl)",
         full: "var(--radius-full)",
       },
+      // One documented stacking ladder. Overlay layers must sit ABOVE the
+      // navbar and consent banner; menus that open INSIDE a modal must sit
+      // above the modal.
+      zIndex: {
+        sticky: "80",
+        navbar: "90",
+        consent: "100",
+        modal: "120",
+        popover: "130",
+        toast: "150",
+        skiplink: "200",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

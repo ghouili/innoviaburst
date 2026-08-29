@@ -2,18 +2,13 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { CalendarDays, Handshake, Send, Info, Bot, Code2, Workflow, Scale } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { Dialog, DialogBody, DialogContent, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
+  ModalHeader,
   FormField,
   LoadingButton,
   SuccessState,
@@ -63,6 +58,7 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
   const { toast } = useToast();
   const uid = useId();
   const firstFieldRef = useRef<HTMLInputElement>(null);
+  const wasOpen = useRef(false);
 
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -101,13 +97,18 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
   // Reset whenever the modal opens, or the caller switches mode while open, so
   // a partner application never inherits a half-typed booking.
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      wasOpen.current = false;
+      return;
+    }
     setForm(empty);
     setErrors({});
     setTouched({});
     setDone(false);
-    const id = window.setTimeout(() => firstFieldRef.current?.focus(), 80);
-    return () => window.clearTimeout(id);
+    // Opening is handled by Radix (onOpenAutoFocus). This only moves focus when
+    // the caller switches mode while the modal is already open.
+    if (wasOpen.current) firstFieldRef.current?.focus();
+    wasOpen.current = true;
   }, [isOpen, mode, empty]);
 
   const copy = t(`trainingPage.forms.${mode}`, { returnObjects: true }) as Record<string, string | string[]>;
@@ -212,33 +213,43 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-y-auto [scrollbar-gutter:stable]">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2.5">
-            <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-blue">
-              <Icon className="h-4 w-4 text-primary-foreground" aria-hidden="true" />
-            </span>
-            {copy.title as string}
-          </DialogTitle>
-          <DialogDescription>{copy.description as string}</DialogDescription>
-        </DialogHeader>
+      <DialogContent
+        size="lg"
+        onOpenAutoFocus={(event) => {
+          // Land on the first field rather than the close button.
+          if (firstFieldRef.current) {
+            event.preventDefault();
+            firstFieldRef.current.focus();
+          }
+        }}
+      >
+        <ModalHeader
+          icon={<Icon className="h-6 w-6 text-accent" aria-hidden="true" />}
+          title={copy.title as string}
+          description={copy.description as string}
+        />
 
         {done ? (
-          <SuccessState
-            title={copy.successTitle as string}
-            description={copy.successBody as string}
-            details={copy.successDetails as string[]}
-            actions={
-              <div className="flex w-full flex-col items-center gap-5">
-                <TrustBadge items={(copy.trustBadges as string[]) ?? []} />
-                <Button variant="hero-outline" onClick={onClose}>
-                  {t("trainingPage.forms.close")}
-                </Button>
-              </div>
-            }
-          />
+          <>
+            <DialogBody className="space-y-5 py-2">
+              <SuccessState
+                title={copy.successTitle as string}
+                description={copy.successBody as string}
+                details={copy.successDetails as string[]}
+              />
+              <TrustBadge items={(copy.trustBadges as string[]) ?? []} />
+            </DialogBody>
+            <DialogFooter>
+              <Button variant="hero-outline" onClick={onClose}>
+                {t("trainingPage.forms.close")}
+              </Button>
+            </DialogFooter>
+          </>
         ) : (
-          <form onSubmit={handleSubmit} noValidate className="space-y-5">
+          // `contents` lets the form keep its semantics while DialogBody and
+          // DialogFooter stay direct children of the panel grid.
+          <form onSubmit={handleSubmit} noValidate className="contents">
+            <DialogBody className="space-y-5">
             {mode === "booking" ? (
               <>
                 <GroupLabel>{t("trainingPage.forms.groups.about")}</GroupLabel>
@@ -480,8 +491,9 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
                 {t("footer.links.privacy")}
               </Link>
             </p>
+            </DialogBody>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+            <DialogFooter>
               <Button type="button" variant="hero-outline" onClick={onClose} className="sm:w-auto">
                 {t("trainingPage.forms.close")}
               </Button>
@@ -493,7 +505,7 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
               >
                 {copy.submit as string}
               </LoadingButton>
-            </div>
+            </DialogFooter>
           </form>
         )}
       </DialogContent>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ArrowLeft, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // ============================================================================
 // Stepper - Step indicator for multi-step forms
@@ -71,21 +72,13 @@ interface ModalHeaderProps {
 
 export function ModalHeader({ icon, title, description, className }: ModalHeaderProps) {
   return (
-    <div className={cn("space-y-2", className)}>
+    <DialogHeader className={className}>
       <div className="flex items-center gap-3">
-        {icon && (
-          <div className="p-2.5 rounded-xl bg-accent/20 shrink-0">
-            {icon}
-          </div>
-        )}
-        <h2 className="text-xl sm:text-2xl font-bold text-foreground leading-tight">
-          {title}
-        </h2>
+        {icon && <div className="shrink-0 rounded-lg bg-accent/20 p-2.5">{icon}</div>}
+        <DialogTitle>{title}</DialogTitle>
       </div>
-      {description && (
-        <p className="text-sm text-muted-foreground">{description}</p>
-      )}
-    </div>
+      {description && <DialogDescription>{description}</DialogDescription>}
+    </DialogHeader>
   );
 }
 
@@ -98,11 +91,7 @@ interface ModalFooterProps {
 }
 
 export function ModalFooter({ children, className }: ModalFooterProps) {
-  return (
-    <div className={cn("flex flex-col-reverse sm:flex-row gap-3 pt-4", className)}>
-      {children}
-    </div>
-  );
+  return <DialogFooter className={className}>{children}</DialogFooter>;
 }
 
 // ============================================================================
@@ -199,7 +188,7 @@ export function LoadingButton({
   ...props
 }: LoadingButtonProps) {
   const baseStyles = cn(
-    "inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+    "inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
   );
 
   const variantStyles = {
@@ -265,7 +254,7 @@ export function NavigationButtons({
   className,
 }: NavigationButtonsProps) {
   return (
-    <div className={cn("flex gap-3 pt-4", className)}>
+    <div className={cn("flex w-full gap-3", className)}>
       {showBack && onBack && (
         <LoadingButton
           type="button"
@@ -341,8 +330,8 @@ export function RadioCardGroup({
             aria-checked={isSelected}
             onClick={() => onChange(option.value)}
             className={cn(
-              "flex items-start gap-3 p-4 rounded-xl border text-left transition-all min-h-[52px]",
-              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+              "flex items-start gap-3 p-4 rounded-lg border text-left transition-all min-h-[52px]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isSelected
                 ? "bg-secondary/10 border-secondary text-foreground"
                 : "bg-muted border-border text-muted-foreground hover:border-secondary/50 hover:bg-muted/80"
@@ -351,7 +340,7 @@ export function RadioCardGroup({
             {option.icon && (
               <div
                 className={cn(
-                  "p-2 rounded-lg shrink-0",
+                  "p-2 rounded-md shrink-0",
                   isSelected ? "bg-secondary/20 text-secondary" : "bg-background text-muted-foreground"
                 )}
               >
@@ -442,8 +431,8 @@ export function CheckCardGroup({
             aria-checked={isSelected}
             onClick={() => onToggle(option.value)}
             className={cn(
-              "flex items-center gap-3 p-3 rounded-xl border text-left transition-all min-h-[44px]",
-              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+              "flex items-center gap-3 p-3 rounded-lg border text-left transition-all min-h-[44px]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isSelected
                 ? "bg-secondary/10 border-secondary text-foreground"
                 : "bg-muted border-border text-muted-foreground hover:border-secondary/50 hover:bg-muted/80"
@@ -452,7 +441,7 @@ export function CheckCardGroup({
             {option.icon && (
               <div
                 className={cn(
-                  "p-2 rounded-lg shrink-0",
+                  "p-2 rounded-md shrink-0",
                   isSelected ? "bg-secondary/20 text-secondary" : "bg-background text-muted-foreground"
                 )}
               >
