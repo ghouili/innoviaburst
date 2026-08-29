@@ -191,7 +191,7 @@ export function Navbar({ onBookingClick }: NavbarProps = {}) {
           {/* Logo */}
           <Link 
             to="/" 
-            className="flex items-end gap-0.5 shrink-0 focus:outline-none focus:ring-0 focus:ring-ring rounded-lg"
+            className="flex items-end gap-0.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg"
           >
             {/* Slightly smaller at lg: at 1024px the full-size lockup costs
                 224px of bar, which pushes the longer FR labels into overflow. */}

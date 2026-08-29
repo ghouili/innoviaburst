@@ -74,7 +74,11 @@ const LandingPage = () => {
       </div>
 
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
-      <RequestModal isOpen={isRequestOpen} onClose={() => setIsRequestOpen(false)} />
+      <RequestModal
+        isOpen={isRequestOpen}
+        onClose={() => setIsRequestOpen(false)}
+        onBookCall={() => setIsBookingOpen(true)}
+      />
       <CookieConsent />
     </>
   );

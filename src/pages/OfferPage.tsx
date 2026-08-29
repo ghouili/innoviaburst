@@ -670,6 +670,7 @@ export default function OfferPage() {
         isOpen={requestOpen}
         onClose={() => setRequestOpen(false)}
         prefilledInterest={offer.title}
+        onBookCall={() => setBookingOpen(true)}
       />
     </>
   );

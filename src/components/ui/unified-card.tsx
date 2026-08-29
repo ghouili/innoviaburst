@@ -8,7 +8,8 @@ const unifiedCardVariants = cva(
     variants: {
       variant: {
         default: "shadow-card border-border",
-        interactive: "shadow-card border-border hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer",
+        interactive:
+          "shadow-card border-border hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         highlight: "shadow-card border-accent/30 bg-gradient-to-b from-card to-muted/30",
         ghost: "border-transparent bg-transparent shadow-none",
       },

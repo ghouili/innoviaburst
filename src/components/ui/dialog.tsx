@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { useTranslation } from "react-i18next";
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 
@@ -53,18 +54,21 @@ interface DialogContentProps
     VariantProps<typeof dialogContentVariants> {}
 
 const DialogContent = React.forwardRef<React.ElementRef<typeof DialogPrimitive.Content>, DialogContentProps>(
-  ({ className, children, size, ...props }, ref) => (
-    <DialogPortal>
+  ({ className, children, size, ...props }, ref) => {
+    const { t } = useTranslation();
+    return (
+      <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Content ref={ref} className={cn(dialogContentVariants({ size }), className)} {...props}>
         {children}
         <DialogPrimitive.Close className="absolute right-4 top-4 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none">
           <X className="h-5 w-5" />
-          <span className="sr-only">Close</span>
+          <span className="sr-only">{t("common.close")}</span>
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
-    </DialogPortal>
-  ),
+      </DialogPortal>
+    );
+  },
 );
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 

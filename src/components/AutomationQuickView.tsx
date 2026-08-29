@@ -73,7 +73,7 @@ export function AutomationQuickView({
           {/* KPIs */}
           <div className="flex flex-col gap-4">
             <div className="flex w-fit items-center gap-2 rounded-lg bg-accent/10 px-3 py-1">
-              <Zap className="w-4 h-10 text-accent" />
+              <Zap className="h-4 w-4 text-accent" />
               <span className="text-sm font-medium text-foreground">{automation.kpi}</span>
             </div>
             <div className="flex w-fit items-center gap-2 rounded-lg bg-secondary/10 px-3 py-2">

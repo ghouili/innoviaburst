@@ -22,7 +22,13 @@
     "contactUs": "Nous contacter",
     "backToHome": "Retour à l'accueil",
     "fixedPriceNote": "Cadré en 48 h",
-    "optional": "facultatif"
+    "optional": "facultatif",
+    "close": "Fermer",
+    "back": "Retour",
+    "continue": "Continuer",
+    "submit": "Envoyer",
+    "sending": "Envoi en cours...",
+    "loading": "Chargement..."
   },
   "cookies": {
     "title": "Nous respectons votre vie privée",

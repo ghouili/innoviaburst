@@ -153,6 +153,7 @@ const Index = () => {
         isOpen={isRequestOpen}
         onClose={() => setIsRequestOpen(false)}
         prefilledInterest={requestInterest}
+        onBookCall={() => setIsBookingOpen(true)}
       />
 
       {/* Sticky Next Step bar */}

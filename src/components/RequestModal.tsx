@@ -50,6 +50,12 @@ interface RequestModalProps {
   isOpen: boolean;
   onClose: () => void;
   prefilledInterest?: string;
+  /**
+   * Handles the "book a call" CTA on the success step. When omitted the CTA is
+   * not rendered: it previously dispatched an `openBookingModal` event that had
+   * no listener anywhere, so the button was a dead end.
+   */
+  onBookCall?: () => void;
   source?: string;
 }
 
@@ -136,6 +142,7 @@ export function RequestModal({
   isOpen,
   onClose,
   prefilledInterest,
+  onBookCall,
   source,
 }: RequestModalProps) {
   const { t } = useTranslation();
@@ -342,18 +349,19 @@ export function RequestModal({
               <Button variant="outline" size="lg" onClick={handleClose}>
                 {t("request.cta.backToSite")}
               </Button>
-              <Button
-                variant="hero"
-                size="lg"
-                onClick={() => {
-                  handleClose();
-                  // Trigger booking modal if available
-                  window.dispatchEvent(new CustomEvent("openBookingModal"));
-                }}
-              >
-                <CalendarPlus className="mr-2 h-4 w-4" />
-                {t("request.cta.bookCall")}
-              </Button>
+              {onBookCall && (
+                <Button
+                  variant="hero"
+                  size="lg"
+                  onClick={() => {
+                    handleClose();
+                    onBookCall();
+                  }}
+                >
+                  <CalendarPlus className="mr-2 h-4 w-4" />
+                  {t("request.cta.bookCall")}
+                </Button>
+              )}
             </DialogFooter>
           </>
         ) : (

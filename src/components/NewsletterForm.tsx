@@ -284,7 +284,7 @@ export function NewsletterForm({
                     "h-4 w-4",
                     "rounded-sm border border-background/30 bg-background/10",
                     "text-primary",
-                    "focus:outline-none focus:ring-0 focus:ring-background/60 focus:ring-offset-0",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/60 focus-visible:ring-offset-0",
                     "disabled:opacity-50",
                   ].join(" ")}
                 />

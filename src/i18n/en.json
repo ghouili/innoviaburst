@@ -24,7 +24,13 @@
     "backToHome": "Back to home",
     "skipLink": "Skip to main content",
     "fixedPriceNote": "Scoped in 48h",
-    "optional": "optional"
+    "optional": "optional",
+    "close": "Close",
+    "back": "Back",
+    "continue": "Continue",
+    "submit": "Submit",
+    "sending": "Sending...",
+    "loading": "Loading..."
   },
   "cookies": {
     "title": "We value your privacy",

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ArrowLeft, ArrowRight, Check, Loader2, AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -245,14 +246,15 @@ export function NavigationButtons({
   onBack,
   onNext,
   onSubmit,
-  backLabel = "Back",
-  nextLabel = "Continue",
-  submitLabel = "Submit",
+  backLabel,
+  nextLabel,
+  submitLabel,
   loading = false,
   showBack = true,
   isLastStep = false,
   className,
 }: NavigationButtonsProps) {
+  const { t } = useTranslation();
   return (
     <div className={cn("flex w-full gap-3", className)}>
       {showBack && onBack && (
@@ -263,7 +265,7 @@ export function NavigationButtons({
           icon={<ArrowLeft className="w-4 h-4" />}
           iconPosition="left"
         >
-          {backLabel}
+          {backLabel ?? t("common.back")}
         </LoadingButton>
       )}
       <LoadingButton
@@ -271,11 +273,11 @@ export function NavigationButtons({
         variant="primary"
         onClick={isLastStep ? onSubmit : onNext}
         loading={loading}
-        loadingText={isLastStep ? "Sending..." : "Loading..."}
+        loadingText={isLastStep ? t("common.sending") : t("common.loading")}
         icon={!isLastStep ? <ArrowRight className="w-4 h-4" /> : undefined}
         className="flex-1"
       >
-        {isLastStep ? submitLabel : nextLabel}
+        {isLastStep ? submitLabel ?? t("common.submit") : nextLabel ?? t("common.continue")}
       </LoadingButton>
     </div>
   );
