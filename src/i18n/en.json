@@ -196,7 +196,7 @@
       "openDirect": "Open the booking page",
       "emailInstead": "Email us instead"
     },
-    "description": "25-minute call to map your automation opportunities.",
+    "description": "15-minute call to map your automation opportunities.",
     "fallbackTitle": "Request a call",
     "fallbackDesc": "Leave your details and we'll arrange a convenient time.",
     "fields": {
@@ -222,7 +222,7 @@
       "step2": "Optional info"
     },
     "benefits": {
-      "duration": "25 min call",
+      "duration": "15 min call",
       "timezone": "UK/EU timezone",
       "privacy": "No spam, ever"
     },
@@ -234,7 +234,7 @@
     },
     "success": {
       "title": "You're booked!",
-      "description": "We've received your request and will confirm your 25-minute call shortly.",
+      "description": "We've received your request and will confirm your 15-minute call shortly.",
       "checklist": [
         "Check your inbox for confirmation",
         "We'll send a calendar invite",

@@ -194,7 +194,7 @@
       "openDirect": "Ouvrir la page de réservation",
       "emailInstead": "Nous écrire plutôt"
     },
-    "description": "Appel de 25 minutes pour cartographier vos opportunités d'automatisation.",
+    "description": "Appel de 15 minutes pour cartographier vos opportunités d'automatisation.",
     "fallbackTitle": "Demander un appel",
     "fallbackDesc": "Laissez vos coordonnées et nous organiserons un créneau.",
     "fields": {
@@ -220,7 +220,7 @@
       "step2": "Infos optionnelles"
     },
     "benefits": {
-      "duration": "Appel de 25 min",
+      "duration": "Appel de 15 min",
       "timezone": "Fuseau UK/EU",
       "privacy": "Pas de spam"
     },
@@ -232,7 +232,7 @@
     },
     "success": {
       "title": "Réservation reçue !",
-      "description": "Nous confirmons votre appel de 25 minutes dans quelques instants.",
+      "description": "Nous confirmons votre appel de 15 minutes dans quelques instants.",
       "checklist": [
         "Vérifiez votre email de confirmation",
         "Nous envoyons une invitation calendrier",
