@@ -12,7 +12,7 @@
  *
  * A non-VITE_ key there is either a secret in the wrong place, or dead weight
  * Vite never exposes. Both are worth failing on. Server-side configuration
- * belongs in server/.env, which is gitignored.
+ * does not belong in this file at all.
  */
 
 import fs from "node:fs";
@@ -42,7 +42,7 @@ console.error(
   `\n✖ Non-VITE_ keys found in the repo-root .env:\n\n${list}\n\n` +
     `  That file is COMMITTED to git, and Vite inlines its VITE_ values into the\n` +
     `  public JS bundle. A credential there is published twice over.\n\n` +
-    `  Move these to server/.env (gitignored) and re-run.\n` +
+    `  Move these to the environment of whatever consumes them; they do not belong here.\n` +
     `  If any of them is a real credential, revoke and regenerate it — it has\n` +
     `  already been written to a tracked file.\n`,
 );

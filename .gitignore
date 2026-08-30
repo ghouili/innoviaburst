@@ -29,3 +29,6 @@ reports/seo-verification.*
 
 # Stale FUSE editor temp copies
 .fuse_hidden*
+
+# esbuild temp bundles of vite.config.ts; survive a crashed run
+vite.config.ts.timestamp-*

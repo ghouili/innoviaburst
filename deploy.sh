@@ -76,27 +76,11 @@ else
 fi
 
 #############################################
-# ENSURE .env EXISTS + SET OWNER
+# ENSURE .env EXISTS
 #############################################
-OWNER="${OWNER:-}"
-
-# Create .env if missing (even if no payload was uploaded)
+# .env is tracked, so `git reset --hard` above always restores it. This is
+# only a guard for a first-ever clone that somehow lacks it.
 touch "$ENV_FILE"
-
-# If a payload replaced the file, ensure it still exists
-if [[ ! -f "$ENV_FILE" ]]; then
-  touch "$ENV_FILE"
-fi
-
-# If OWNER is provided, upsert it (remove old line then append)
-if [[ -n "$OWNER" ]]; then
-  log "Setting OWNER in .env"
-  # Remove existing OWNER lines (safe on Linux)
-  sed -i '/^OWNER=/d' "$ENV_FILE"
-  printf "OWNER=%s\n" "$OWNER" >> "$ENV_FILE"
-else
-  log "OWNER not provided (skipped)"
-fi
 
 
 #############################################
