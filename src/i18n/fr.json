@@ -228,15 +228,15 @@
       "continue": "Continuer",
       "submit": "Réserver mon appel",
       "back": "Retour au site",
-      "addToCalendar": "Ajouter au calendrier"
+      "pickTime": "Choisir un créneau"
     },
     "success": {
-      "title": "Réservation reçue !",
-      "description": "Nous confirmons votre appel de 15 minutes dans quelques instants.",
+      "title": "Demande reçue",
+      "description": "Merci — nous avons vos coordonnées. Choisissez un créneau maintenant, ou nous vous écrivons sous 24 h.",
       "checklist": [
-        "Vérifiez votre email de confirmation",
-        "Nous envoyons une invitation calendrier",
-        "Préparez vos questions"
+        "Choisissez un créneau, ou attendez notre email",
+        "Vous recevrez une invitation dans les deux cas",
+        "Venez avec un workflow en tête"
       ]
     },
     "toast": {

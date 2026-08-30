@@ -230,15 +230,15 @@
       "continue": "Continue",
       "submit": "Book my call",
       "back": "Back to site",
-      "addToCalendar": "Add to calendar"
+      "pickTime": "Pick a time"
     },
     "success": {
-      "title": "You're booked!",
-      "description": "We've received your request and will confirm your 15-minute call shortly.",
+      "title": "Request received",
+      "description": "Thanks — we have your details. Pick a time now, or we'll email you within 24 hours.",
       "checklist": [
-        "Check your inbox for confirmation",
-        "We'll send a calendar invite",
-        "Come with questions ready"
+        "Pick a slot now, or wait for our email",
+        "You'll get a calendar invite either way",
+        "Come with one workflow in mind"
       ]
     },
     "toast": {
@@ -3067,7 +3067,7 @@
         "purpose": "Meeting scheduling (the \"book a call\" embed)",
         "dataCategories": "Name, email, meeting details, IP address",
         "location": "USA (SCCs / DPF)",
-        "notes": "Loaded only when you open the booking dialog"
+        "notes": "Only if you choose to book a slot after enquiring; never embedded in our pages"
       },
       "googleWorkspace": {
         "purpose": "Email & document collaboration",

@@ -26,22 +26,24 @@ import {
   SuccessState,
   TrustBadge,
 } from "@/components/ui/modal-primitives";
-import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 import { useToast } from "@/hooks/use-toast";
 import { submitLead } from "@/lib/submit-lead";
 import { trackLpConversion } from "@/lib/lp-tracking";
 import { cn } from "@/lib/utils";
 
 /**
- * Scheduling link (Calendly / Cal.com). Set VITE_BOOKING_URL in .env to a bare
- * link such as https://calendly.com/innoviaburst/15min.
+ * Scheduling link, offered on the success screen AFTER the enquiry is sent.
  *
- * Empty or unset falls back to the in-house form below. `??` (not `||`) so an
- * explicit empty value means "disabled", matching lib/meta-pixel.ts.
+ * It is deliberately NOT embedded. An iframe brings the vendor's layout, type
+ * and focus rings into the middle of our modal, and no amount of configuration
+ * fixes that: Calendly's free embed exposes one colour knob, and Cal.com's
+ * Atoms — the only product that would have matched — is closed to new
+ * customers. So the scheduler is a destination, never a frame.
  *
- * Vite inlines this at BUILD time, so changing it needs a rebuild + redeploy.
+ * Empty or unset simply hides the button; the form still works and we reply by
+ * email. Vite inlines this at BUILD time, so changing it needs a redeploy.
  */
-const BOOKING_URL = (import.meta.env.VITE_BOOKING_URL as string | undefined) ?? "";
+const SCHEDULING_URL = (import.meta.env.VITE_SCHEDULING_URL as string | undefined) ?? "";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -219,12 +221,12 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
   };
 
   /**
-   * A booking that actually happened, reported by the Calendly frame. This is
-   * the only conversion on the site backed by a record outside the browser —
-   * the in-house form below is still a stub, which is why it reports nothing.
+   * The visitor clicked through to the scheduler. This is INTENT, not a booking
+   * — without the embed we never learn whether they picked a slot, so nothing
+   * here may report "Schedule".
    */
-  const handleScheduled = useCallback(() => {
-    trackLpConversion("booking_completed", { source: "booking_modal" });
+  const handlePickTime = useCallback(() => {
+    trackLpConversion("booking_click", { source: "booking_modal" });
   }, []);
 
   const invalid = (hasError: boolean) => cn(hasError && "border-destructive");
@@ -347,34 +349,20 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
               <Button variant="outline" size="lg" onClick={handleClose}>
                 {t("booking.cta.back")}
               </Button>
-              <Button variant="hero" size="lg" asChild>
-                <a href="mailto:hello@innoviaburst.com">
-                  <CalendarPlus className="mr-2 h-4 w-4" />
-                  {t("booking.cta.addToCalendar")}
-                </a>
-              </Button>
+              {SCHEDULING_URL && (
+                <Button variant="hero" size="lg" asChild>
+                  <a
+                    href={SCHEDULING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handlePickTime}
+                  >
+                    <CalendarPlus className="mr-2 h-4 w-4" />
+                    {t("booking.cta.pickTime")}
+                  </a>
+                </Button>
+              )}
             </DialogFooter>
-          </>
-        ) : BOOKING_URL ? (
-          <>
-            <ModalHeader
-              icon={<Calendar className="h-6 w-6 text-accent" />}
-              title={t("booking.title")}
-              description={t("booking.description")}
-            />
-            {/* The panel is a grid whose middle row takes the leftover height, so
-                h-full sizes the frame to exactly that row (border-box: the row's
-                height already accounts for pb-6). Calendly then scrolls itself —
-                no second scrollbar. min-h is a floor for very short viewports,
-                where DialogBody's own overflow-y-auto takes over so the bottom of
-                the calendar stays reachable instead of being clipped. */}
-            <DialogBody className="pb-6">
-              <CalendlyEmbed
-                url={BOOKING_URL}
-                onScheduled={handleScheduled}
-                className="h-full min-h-[420px]"
-              />
-            </DialogBody>
           </>
         ) : (
           <>
