@@ -47,20 +47,50 @@ function loadEnvFile(file) {
 loadEnvFile(path.join(HERE, ".env"));
 
 const PORT = Number(process.env.PORT || 3000);
-const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
-const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
-const SMTP_USER = process.env.SMTP_USER || "";
-const SMTP_PASS = process.env.SMTP_PASS || "";
-const LEAD_TO = process.env.LEAD_TO || SMTP_USER;
-const LEAD_FROM_NAME = process.env.LEAD_FROM_NAME || "InnoviaBurst website";
+
+const MAIL_HOST = process.env.MAIL_HOST || "smtp.gmail.com";
+const MAIL_PORT = Number(process.env.MAIL_PORT || 587);
+
+/**
+ * Implicit TLS. Port 465 is secure from the first byte; 587 is STARTTLS, which
+ * connects in the clear and upgrades. Setting this true on 587 makes the
+ * connection hang, so when unset it is derived from the port rather than
+ * guessed.
+ */
+const MAIL_SECURE =
+  process.env.MAIL_SECURE !== undefined && process.env.MAIL_SECURE !== ""
+    ? /^(1|true|yes|on)$/i.test(process.env.MAIL_SECURE.trim())
+    : MAIL_PORT === 465;
+
+const MAIL_USER = process.env.MAIL_USER || "";
+const MAIL_PASS = process.env.MAIL_PASS || "";
+
+/**
+ * Gmail rewrites From: to the authenticated account unless the address is a
+ * verified alias on it ("Settings → Accounts → Send mail as"). Defaults to
+ * MAIL_USER so the header matches what actually gets sent.
+ */
+const MAIL_FROM_ADDRESS = process.env.MAIL_FROM_ADDRESS || MAIL_USER;
+const MAIL_FROM_NAME = process.env.MAIL_FROM_NAME || "InnoviaBurst website";
+
+/**
+ * Optional override. Left EMPTY (recommended) the reply-to is the address the
+ * visitor typed, so hitting Reply in your inbox answers the lead directly. Set
+ * it only if every reply should instead go to one fixed mailbox.
+ */
+const MAIL_REPLY_TO = process.env.MAIL_REPLY_TO || "";
+
+/** Where notifications are delivered. Defaults to the sending account. */
+const MAIL_TO = process.env.MAIL_TO || MAIL_USER;
+
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGIN || "")
   .split(",")
   .map((o) => o.trim())
   .filter(Boolean);
 
-if (!SMTP_USER || !SMTP_PASS) {
+if (!MAIL_USER || !MAIL_PASS) {
   console.error(
-    "[lead-api] SMTP_USER and SMTP_PASS are required. Copy server/.env.example " +
+    "[lead-api] MAIL_USER and MAIL_PASS are required. Copy server/.env.example " +
       "to server/.env and fill it in. Refusing to start — silently not sending " +
       "is how leads got lost in the first place.",
   );
@@ -70,12 +100,10 @@ if (!SMTP_USER || !SMTP_PASS) {
 /* ------------------------------------------------------------------- mailer */
 
 const transporter = nodemailer.createTransport({
-  host: SMTP_HOST,
-  port: SMTP_PORT,
-  // 587 is STARTTLS: connect in the clear, then upgrade. `secure: true` is for
-  // implicit TLS on 465 and will hang on 587.
-  secure: SMTP_PORT === 465,
-  auth: { user: SMTP_USER, pass: SMTP_PASS },
+  host: MAIL_HOST,
+  port: MAIL_PORT,
+  secure: MAIL_SECURE,
+  auth: { user: MAIL_USER, pass: MAIL_PASS },
 });
 
 /* -------------------------------------------------------------- rate limit */
@@ -284,12 +312,11 @@ const server = http.createServer(async (req, res) => {
 
   try {
     await transporter.sendMail({
-      // Gmail rewrites From: to the authenticated account regardless, so claim
-      // it honestly rather than letting the header be silently rewritten.
-      from: { name: LEAD_FROM_NAME, address: SMTP_USER },
-      to: LEAD_TO,
-      // Reply goes to the person who filled the form, not to this mailbox.
-      replyTo: lead.email,
+      from: { name: MAIL_FROM_NAME, address: MAIL_FROM_ADDRESS },
+      to: MAIL_TO,
+      // Unless overridden, reply goes to the person who filled the form rather
+      // than to this mailbox — that is the whole point of the notification.
+      replyTo: MAIL_REPLY_TO || lead.email,
       subject,
       text,
       html,
@@ -305,5 +332,8 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, "127.0.0.1", () => {
-  console.log(`[lead-api] listening on 127.0.0.1:${PORT}, delivering to ${LEAD_TO}`);
+  console.log(
+    `[lead-api] listening on 127.0.0.1:${PORT} — ${MAIL_HOST}:${MAIL_PORT} ` +
+      `(secure=${MAIL_SECURE}) delivering to ${MAIL_TO}`,
+  );
 });
