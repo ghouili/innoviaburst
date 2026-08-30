@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "node server/index.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
-    "prebuild": "node scripts/generate-sitemap.mjs",
+    "prebuild": "node scripts/check-env-secrets.mjs && node scripts/generate-sitemap.mjs",
     "postbuild": "node scripts/verify-static-assets.mjs && node scripts/strip-modulepreload.mjs",
     "generate:hero-images": "node scripts/generate-hero-images.mjs",
     "verify:seo": "node scripts/verify-seo.mjs",
