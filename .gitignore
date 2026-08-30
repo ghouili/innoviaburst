@@ -29,9 +29,3 @@ reports/seo-verification.*
 
 # Stale FUSE editor temp copies
 .fuse_hidden*
-
-# SERVER-SIDE SECRETS. server/.env holds the SMTP credentials (Gmail App
-# Password) and must NEVER be committed. This is the opposite of the root
-# .env, which is tracked on purpose because VITE_ values are public anyway.
-server/.env
-server/node_modules

@@ -3,36 +3,33 @@
  *
  * Every form on the site used to hand-roll its own submit, which is why they
  * drifted apart — three input styles, two email regexes, one form with no
- * consent checkbox, and all six resolving a `setTimeout` and then claiming
+ * consent checkbox, and all of them resolving a `setTimeout` and then claiming
  * success. This is the single transport they now share.
  *
- * There are two transports, and which one runs is decided by configuration:
+ * Transport is EmailJS. The site is a static bundle with no backend, and a
+ * browser cannot open an SMTP connection, so the send is brokered: EmailJS
+ * holds an OAuth connection to the Gmail account (set up once in their
+ * dashboard) and relays through it. The mail genuinely comes from that account,
+ * and no credential of ours exists in this bundle — which is the point. There
+ * is no App Password to leak, because there is no App Password.
  *
- *  1. DEFAULT — our own /api/leads on the VPS (server/index.mjs), proxied by
- *     nginx. It holds the SMTP credentials and sends through Gmail. This is
- *     the only way the mail can come from our own account: a browser cannot
- *     open an SMTP connection, and any credential given to a VITE_ variable
- *     is inlined into this bundle for anyone to read.
+ * The three VITE_EMAILJS_* values ARE public, deliberately: the public key can
+ * only trigger the template we defined, with the content we defined. What
+ * actually stops another site spending our quota is the origin allowlist in the
+ * EmailJS dashboard, under Domains. Set it.
  *
- *  2. FALLBACK — Web3Forms, used only when VITE_FORMS_ACCESS_KEY is set. No
- *     server required. Its access key is public by design (it identifies a
- *     form, not an account), which is why that one key may live in a VITE_
- *     variable when nothing else may.
- *
- * The payload keys match the `leads` schema in docs/lovable-input.json. Our
- * own endpoint receives them as-is and does the email formatting server-side;
- * the Web3Forms path has to relabel them here, because that service renders
- * whatever keys it receives directly into the email body.
+ * The email body is built HERE rather than in an EmailJS template, and passed
+ * as a single `message` variable. Their templates are flat variable
+ * substitution, and our four lead types carry different field sets — one
+ * pre-rendered block keeps all of them legible without needing a template per
+ * type (the free plan allows two).
  */
 
-const OWN_ENDPOINT = (import.meta.env.VITE_LEAD_ENDPOINT as string | undefined) || "/api/leads";
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+import emailjs from "@emailjs/browser";
 
-const ACCESS_KEY = (import.meta.env.VITE_FORMS_ACCESS_KEY as string | undefined) ?? "";
-
-/** Web3Forms only when a key is configured; our own endpoint otherwise. */
-const useWeb3Forms = ACCESS_KEY !== "";
-const ENDPOINT = useWeb3Forms ? WEB3FORMS_ENDPOINT : OWN_ENDPOINT;
+const SERVICE_ID = (import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined) ?? "";
+const TEMPLATE_ID = (import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined) ?? "";
+const PUBLIC_KEY = (import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined) ?? "";
 
 export type LeadType = "booking" | "request" | "training" | "newsletter";
 
@@ -59,7 +56,7 @@ export type LeadFailure = "not_configured" | "network" | "server";
 
 /**
  * Never throws, and never reports success it cannot verify. `not_configured`
- * exists so a missing key surfaces as a visible error instead of the silent
+ * exists so missing keys surface as a visible error instead of the silent
  * fake-success the newsletter hook used to do.
  *
  * Deliberately a flat shape rather than a discriminated union: this project
@@ -73,7 +70,7 @@ export interface LeadResult {
   status?: number;
 }
 
-/** Reads better than `booking` in a Gmail subject line. */
+/** Reads better than `booking` in an inbox subject line. */
 const TYPE_LABEL: Record<LeadType, string> = {
   booking: "booking request",
   request: "scope request",
@@ -81,13 +78,6 @@ const TYPE_LABEL: Record<LeadType, string> = {
   newsletter: "newsletter signup",
 };
 
-/**
- * Web3Forms renders whatever keys it receives, verbatim, as the email body. So
- * the keys ARE the email's field labels — `sourcePath` would reach the inbox as
- * "sourcePath". This maps the structured payload onto readable labels at the
- * transport boundary only: LeadPayload and every call site keep the machine
- * names, which is what keeps a later swap to /api/leads a one-line change.
- */
 const FIELD_LABEL: Record<string, string> = {
   type: "Type",
   name: "Name",
@@ -121,78 +111,69 @@ function humanise(key: string): string {
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 }
 
-/**
- * Our own endpoint gets the structured payload untouched — server/index.mjs
- * owns the labelling, so the wire format stays machine-readable.
- * `_gotcha` is a honeypot the server checks; a real form never fills it.
- */
-function buildOwnBody(payload: LeadPayload): Record<string, unknown> {
-  return {
-    ...payload,
-    sourcePath: typeof window !== "undefined" ? window.location.pathname : "",
-    _gotcha: "",
-  };
-}
-
-function buildWeb3FormsBody(payload: LeadPayload): Record<string, unknown> {
+/** The readable block the template prints as {{message}}. */
+function buildMessage(payload: LeadPayload): string {
   const { extra, ...fields } = payload;
-
-  const body: Record<string, unknown> = {
-    access_key: ACCESS_KEY,
-    // Scannable in a Gmail list view: what it is, then who it is from.
-    subject: `New ${TYPE_LABEL[payload.type]} — ${payload.name || payload.email}`,
-    from_name: "InnoviaBurst website",
-    // Reserved Web3Forms field. Without it, hitting Reply in Gmail replies to
-    // Web3Forms rather than to the person who filled the form. It defaults to
-    // whatever `email` holds, but set it explicitly so that cannot drift.
-    replyto: payload.email,
+  const rows: Array<[string, string]> = [];
+  const push = (k: string, v: unknown) => {
+    if (v === undefined || v === null || v === "") return;
+    rows.push([FIELD_LABEL[k] ?? humanise(k), String(v)]);
   };
 
-  const put = (key: string, value: unknown) => {
-    if (value === undefined || value === null || value === "") return;
-    body[FIELD_LABEL[key] ?? humanise(key)] = value;
-  };
+  for (const [k, v] of Object.entries(fields)) push(k, v);
+  if (extra) for (const [k, v] of Object.entries(extra)) push(k, v);
+  push("sourcePath", typeof window !== "undefined" ? window.location.pathname : "");
+  rows.push(["Received", new Date().toISOString()]);
 
-  for (const [k, v] of Object.entries(fields)) put(k, v);
-  if (extra) for (const [k, v] of Object.entries(extra)) put(k, v);
-
-  // Context last, so the human fields lead.
-  put("sourcePath", typeof window !== "undefined" ? window.location.pathname : "");
-  body["Submitted"] = new Date().toISOString();
-
-  return body;
+  const width = Math.max(...rows.map(([l]) => l.length));
+  return rows.map(([l, v]) => `${l.padEnd(width)}  ${v}`).join("\n");
 }
 
 export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
-
-  let response: Response;
-  try {
-    response = await fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(useWeb3Forms ? buildWeb3FormsBody(payload) : buildOwnBody(payload)),
-    });
-  } catch {
-    // Offline, DNS failure, blocked by an extension.
-    return { ok: false, reason: "network" };
+  if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+    // Loud in dev, silent in prod — but either way the caller shows an error
+    // rather than a success screen.
+    if (import.meta.env.DEV) {
+      console.warn(
+        "[submitLead] VITE_EMAILJS_SERVICE_ID / _TEMPLATE_ID / _PUBLIC_KEY are not " +
+          "all set — the lead was NOT sent.",
+      );
+    }
+    return { ok: false, reason: "not_configured" };
   }
 
-  if (!response.ok) return { ok: false, reason: "server", status: response.status };
+  /**
+   * Template variables. Keep these names in sync with the EmailJS template:
+   * {{subject}}, {{from_name}}, {{reply_to}}, {{lead_type}}, {{message}}.
+   * `reply_to` is the one that matters day to day — it makes Reply in your
+   * inbox answer the person who filled the form.
+   */
+  const params = {
+    subject: `New ${TYPE_LABEL[payload.type]} — ${payload.name || payload.email}`,
+    from_name: payload.name || payload.email,
+    reply_to: payload.email,
+    lead_type: payload.type,
+    message: buildMessage(payload),
+  };
 
-  // A 200 alone is not sufficient: both transports report failures in the body
-  // (Web3Forms as `success`, ours as `ok`).
-  const data = (await response.json().catch(() => null)) as
-    | { success?: boolean; ok?: boolean }
-    | null;
-  const accepted = useWeb3Forms ? data?.success : data?.ok;
-  if (!accepted) return { ok: false, reason: "server", status: response.status };
-
-  return { ok: true };
+  try {
+    const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, params, {
+      publicKey: PUBLIC_KEY,
+    });
+    // The SDK rejects on failure, so reaching here with a 2xx is a real send.
+    if (response.status >= 200 && response.status < 300) return { ok: true };
+    return { ok: false, reason: "server", status: response.status };
+  } catch (err) {
+    // EmailJSResponseStatus carries a numeric status; a genuine network failure
+    // does not. Distinguishing them keeps the caller's message honest.
+    const status = (err as { status?: number })?.status;
+    if (typeof status === "number" && status > 0) {
+      return { ok: false, reason: "server", status };
+    }
+    return { ok: false, reason: "network" };
+  }
 }
 
-/**
- * Whether a transport exists at all. Our own endpoint is always considered
- * configured — if it is not deployed the POST 404s and the caller shows an
- * error, which is the honest outcome.
- */
-export const isLeadCaptureConfigured = (): boolean => true;
+/** True when all three EmailJS values are present. */
+export const isLeadCaptureConfigured = (): boolean =>
+  SERVICE_ID !== "" && TEMPLATE_ID !== "" && PUBLIC_KEY !== "";
