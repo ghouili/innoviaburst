@@ -44,6 +44,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
 
 interface RequestModalProps {
@@ -291,8 +292,22 @@ export function RequestModal({
         })
       );
 
-      // Simulate API call (replace with actual endpoint)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await submitLead({
+        type: "request",
+        email: formData.email.trim(),
+        company: formData.company.trim() || undefined,
+        role: formData.role.trim() || undefined,
+        goal: formData.primaryGoal,
+        interestedIn: prefilledInterest,
+        message: formData.notes.trim() || undefined,
+        source: source || "request_modal",
+        extra: {
+          tools: formData.tools.join(", ") || undefined,
+          timeline: formData.timeline || undefined,
+        },
+      });
+
+      if (!result.ok) throw new Error(result.reason);
 
       setStep("success");
     } catch {

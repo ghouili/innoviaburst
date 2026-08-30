@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FormField, SuccessState } from "@/components/ui/modal-primitives";
 import { cn } from "@/lib/utils";
 import { trackLpConversion } from "@/lib/lp-tracking";
+import { submitLead } from "@/lib/submit-lead";
 
 interface LpScopeFormProps {
   /** Primary submit label (campaign-driven). */
@@ -84,9 +85,23 @@ export function LpScopeForm({
     setSubmitError(false);
     setSubmitting(true);
     try {
-      // Simulate the scope-request API (stubbed like the rest of the site).
-      await new Promise((resolve) => setTimeout(resolve, 900));
-      // Consent-gated conversion — fires only AFTER a successful submit.
+      const result = await submitLead({
+        type: "request",
+        name: values.name.trim(),
+        email: values.email.trim(),
+        goal: values.building.trim(),
+        source: `lp_scope_${placement}`,
+        extra: { variant },
+      });
+
+      if (!result.ok) {
+        setSubmitError(true);
+        return;
+      }
+
+      // Consent-gated conversion. This now fires on a CONFIRMED submission —
+      // it previously fired after a setTimeout, reporting a Meta Lead for a
+      // lead that was never stored anywhere.
       trackLpConversion("lead_submit", { variant, placement });
       setDone(true);
     } catch {

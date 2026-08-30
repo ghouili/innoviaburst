@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/modal-primitives";
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 import { useToast } from "@/hooks/use-toast";
+import { submitLead } from "@/lib/submit-lead";
 import { trackLpConversion } from "@/lib/lp-tracking";
 import { cn } from "@/lib/utils";
 
@@ -171,8 +172,20 @@ export function BookingModal({ isOpen, onClose, prefilledAutomation }: BookingMo
         })
       );
 
-      // Simulate API call (replace with actual endpoint)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await submitLead({
+        type: "booking",
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        company: formData.company.trim() || undefined,
+        role: formData.role.trim() || undefined,
+        goal: formData.goal.trim() || undefined,
+        interestedIn: prefilledAutomation,
+        source: "booking_modal",
+      });
+
+      // Only claim success once the lead is actually accepted. This used to
+      // resolve a setTimeout and show "You're booked!" regardless.
+      if (!result.ok) throw new Error(result.reason);
 
       setStep("success");
     } catch {

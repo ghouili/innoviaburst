@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { submitLead } from "@/lib/submit-lead";
 
 // Consent configuration - update version when consent text changes
 export const NEWSLETTER_CONSENT_VERSION = "1.0";
@@ -131,60 +132,35 @@ export function useNewsletterSignup({
       sourcePath: location.pathname,
     };
 
-    try {
-      // TODO: Replace with actual API endpoint
-      // For now, simulate API call
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submitData),
-      });
+    const result = await submitLead({
+      type: "newsletter",
+      email: submitData.email.trim(),
+      name: submitData.name?.trim() || undefined,
+      consent: submitData.consent,
+      consentVersion: submitData.consentVersion,
+      consentText: submitData.consentText,
+      source: submitData.placement,
+      extra: { leadMagnet: submitData.leadMagnet, sourcePath: submitData.sourcePath },
+    });
 
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        throw new Error(data.error || "server_error");
-      }
-
-      // const result = await response.json();
-      
+    if (result.ok) {
       setIsSuccess(true);
       fireAnalyticsEvent("newsletter_form_success", {
         placement,
         requiresConfirmation: true, // Assuming double opt-in
       });
-    } catch (err) {
-      // For demo: simulate success since API doesn't exist yet
-      // Remove this block when API is implemented
-      if (err instanceof TypeError && err.message.includes("fetch")) {
-        // Network error / no API - simulate success for development
-        console.log("[Newsletter] Simulated success (API not implemented)", submitData);
-        setIsSuccess(true);
-        fireAnalyticsEvent("newsletter_form_success", {
-          placement,
-          requiresConfirmation: true,
-        });
-        return;
-      }
-
-      const errorMessage = err instanceof Error ? err.message : "server_error";
-      
-      let userMessage = t("newsletter.errors.generic");
-      if (errorMessage === "already_subscribed") {
-        userMessage = t("newsletter.errors.alreadySubscribed");
-      } else if (errorMessage === "invalid_email") {
-        userMessage = t("newsletter.errors.emailInvalid");
-      }
-      
-      setError(userMessage);
-      setErrorType(errorMessage);
-      
+    } else {
+      // Every failure is shown. This used to fake success on a network error,
+      // which meant a subscriber who never subscribed saw a confirmation.
+      setError(t("newsletter.errors.generic"));
+      setErrorType(result.reason);
       fireAnalyticsEvent("newsletter_form_error", {
         placement,
-        errorType: errorMessage,
+        errorType: result.reason,
       });
-    } finally {
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
   }, [formData, validate, placement, leadMagnet, consentText, location.pathname, t]);
 
   return {

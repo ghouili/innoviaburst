@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { breadcrumbJsonLd, orgJsonLd, websiteJsonLd, localizedUrl } from "@/seo/jsonld";
+import { submitLead } from "@/lib/submit-lead";
 
 type CategoryKey = "all" | "roi" | "ai" | "crm" | "ops" | "compliance";
 type ResourceKey = "roiCalculator" | "aiChecklist" | "hubspotHygiene" | "complianceRoadmap" | "apiPlaybook" | "ragGuide" | "workflowAudit" | "dpaReference" | "euAiAct" | "icoFairness" | "vendorSecurity" | "monitoringPlaybook" | "revopsScorecard" | "businessCase";
@@ -901,20 +902,25 @@ function ResourcesNewsletterCard() {
       })
     );
 
-    // Simulate API call
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+    const result = await submitLead({
+      type: "newsletter",
+      email: email.trim(),
+      consent,
+      source: "resources-hero",
+    });
+
+    if (result.ok) {
       setIsSuccess(true);
       window.dispatchEvent(
         new CustomEvent("analytics", {
           detail: { event: "newsletter_form_success", placement: "resources-hero" },
         })
       );
-    } catch {
+    } else {
       setError(t("resourcesPage.newsletter.errorGeneric"));
-    } finally {
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
   };
 
   const handleReset = () => {
@@ -1077,7 +1083,13 @@ function ResourcesNewsletterCardMobile() {
   const formId = useId();
   const emailId = `${formId}-email-mobile`;
 
+  const consentId = `${formId}-consent-mobile`;
+  const errorId = `${formId}-error-mobile`;
+
   const [email, setEmail] = useState("");
+  // This card used to collect an email with NO consent record, while its
+  // desktop twin and the footer both required one.
+  const [consent, setConsent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -1096,6 +1108,10 @@ function ResourcesNewsletterCardMobile() {
       setError(emailError);
       return;
     }
+    if (!consent) {
+      setError(t("resourcesPage.newsletter.errorConsent"));
+      return;
+    }
 
     setError(null);
     setIsLoading(true);
@@ -1106,14 +1122,20 @@ function ResourcesNewsletterCardMobile() {
       })
     );
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    const result = await submitLead({
+      type: "newsletter",
+      email: email.trim(),
+      consent,
+      source: "resources-hero-mobile",
+    });
+
+    if (result.ok) {
       setIsSuccess(true);
-    } catch {
+    } else {
       setError(t("resourcesPage.newsletter.errorRetry"));
-    } finally {
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
   };
 
   if (isSuccess) {
@@ -1151,6 +1173,8 @@ function ResourcesNewsletterCardMobile() {
               }}
               placeholder={t("resourcesPage.newsletter.emailPlaceholder")}
               disabled={isLoading}
+              aria-invalid={error ? "true" : "false"}
+              aria-describedby={error ? errorId : undefined}
               className={`w-full px-3 py-2.5 rounded-lg border text-sm bg-muted placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary min-h-[44px] ${
                 error ? "border-destructive" : "border-border"
               }`}
@@ -1167,8 +1191,36 @@ function ResourcesNewsletterCardMobile() {
           </Button>
         </div>
         
+        {/* Consent is required here now, matching the desktop card and the
+            footer form. This card previously collected an email with no
+            consent record at all. */}
+        <div className="flex flex-row items-start gap-2">
+          <input
+            id={consentId}
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => {
+              setConsent(e.target.checked);
+              if (error && e.target.checked) setError(null);
+            }}
+            disabled={isLoading}
+            className="mt-0.5 w-4 h-4 shrink-0 rounded-sm border-border bg-muted text-primary focus:ring-2 focus:ring-secondary focus:ring-offset-0 disabled:opacity-50"
+          />
+          <label htmlFor={consentId} className="text-xs text-muted-foreground leading-relaxed cursor-pointer">
+            {t("resourcesPage.newsletter.consent")}{" "}
+            <Link to="/privacy" className="underline underline-offset-2 hover:text-foreground">
+              {t("resourcesPage.newsletter.consentLink")}
+            </Link>{" "}
+            {t("resourcesPage.newsletter.consentEnd")}
+          </label>
+        </div>
+
         {error && (
-          <p className="text-xs text-destructive flex items-center gap-1">
+          <p
+            id={errorId}
+            role="alert"
+            className="text-xs text-destructive flex items-center gap-1"
+          >
             <AlertCircle className="w-3 h-3" />
             {error}
           </p>

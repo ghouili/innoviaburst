@@ -16,6 +16,7 @@ import {
   TrustBadge,
 } from "@/components/ui/modal-primitives";
 import { useToast } from "@/hooks/use-toast";
+import { submitLead } from "@/lib/submit-lead";
 
 /**
  * Training enquiry modal, one component in two modes.
@@ -178,8 +179,28 @@ export function TrainingRequestModal({ isOpen, mode, onClose }: Props) {
         }),
       );
 
-      // Same stubbed call the other modals use until a real endpoint exists.
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await submitLead({
+        type: "training",
+        name: form.name.trim(),
+        email: form.email.trim(),
+        company: (form.company || form.organization).trim() || undefined,
+        message: form.message.trim() || form.notes.trim() || undefined,
+        source:
+          mode === "booking" ? "training_booking_request" : "training_partner_application",
+        extra: {
+          tracks: form.tracks.join(", ") || undefined,
+          format: form.format || undefined,
+          teamSize: form.teamSize || undefined,
+          timeframe: form.timeframe || undefined,
+          preferredDates:
+            [form.dateFirst, form.dateSecond, form.dateThird].filter(Boolean).join(", ") ||
+            undefined,
+          delivers: form.delivers.trim() || undefined,
+          accreditations: form.accreditations.trim() || undefined,
+        },
+      });
+
+      if (!result.ok) throw new Error(result.reason);
       setDone(true);
     } catch {
       toast({
