@@ -245,22 +245,6 @@ export function NewsletterForm({
           </div>
 
           {/* Consent checkbox */}
-          {/* <div className="flex items-start gap-3">
-            <input
-              id={consentId}
-              type="checkbox"
-              checked={formData.consent}
-              onChange={(e) => setFormData((prev) => ({ ...prev, consent: e.target.checked }))}
-              disabled={isLoading}
-              className="mt-1 w-4 h-4 rounded-sm border-background/30 bg-background/10 text-primary focus:ring-2 focus:ring-background/60 focus:ring-offset-0 disabled:opacity-50"
-            />
-            <label htmlFor={consentId} className="text-xs text-background/70 leading-relaxed">
-              {consentText}{" "}
-              <Link to="/privacy" className="underline underline-offset-2 hover:text-background">
-                Privacy Policy
-              </Link>
-            </label>
-          </div> */}
           {/* Consent checkbox */}
           <div className="pt-1">
             <label
@@ -395,22 +379,6 @@ export function NewsletterForm({
           </div>
 
           {/* Consent checkbox */}
-          {/* <div className="flex items-start gap-3">
-            <input
-              id={consentId}
-              type="checkbox"
-              checked={formData.consent}
-              onChange={(e) => setFormData((prev) => ({ ...prev, consent: e.target.checked }))}
-              disabled={isLoading}
-              className="mt-1 w-4 h-4 rounded-sm border-border bg-muted text-primary focus:ring-2 focus:ring-accent focus:ring-offset-0 focus:ring-offset-background disabled:opacity-50"
-            />
-            <label htmlFor={consentId} className="text-xs text-muted-foreground leading-relaxed">
-              {consentText}{" "}
-              <Link to="/privacy" className="text-secondary hover:underline underline-offset-2">
-                Privacy Policy
-              </Link>
-            </label>
-          </div> */}
 
           {/* Error message */}
           {error && (

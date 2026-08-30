@@ -139,17 +139,6 @@ export default function TrustPage() {
     };
   }, [sectionIds]);
 
-  // const handleTocClick = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
-  //   event.preventDefault();
-  //   const el = document.getElementById(id);
-  //   if (el) {
-  //     el.scrollIntoView({ behavior: "smooth", block: "start" });
-  //     setActiveSection(id);
-  //   }
-  //   if (window.innerWidth < 1024) {
-  //     setMobileTocOpen(false);
-  //   }
-  // };
 
   const getScrollableParent = (node: HTMLElement | null) => {
   let el: HTMLElement | null = node;

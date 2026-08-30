@@ -8,7 +8,6 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { RequestModal } from "@/components/RequestModal";
 import { AutomationQuickView } from "@/components/AutomationQuickView";
 import { SkipLink } from "@/components/SkipLink";
-import { NewsletterForm } from "@/components/NewsletterForm";
 import { Button } from "@/components/ui/button";
 import { FlowText } from "@/components/ui/flow-text";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -19,16 +18,9 @@ import {
   Zap,
   ArrowLeft,
   ChevronDown,
-  ChevronUp,
   SlidersHorizontal,
   Eye,
-  EyeOff,
 } from "lucide-react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 import {
   Drawer,
   DrawerContent,
@@ -716,19 +708,6 @@ export default function AutomationsPage() {
         </section>
 
         {/* Newsletter Banner */}
-        {/* <section className="py-12 lg:py-16 bg-card border-y border-border">
-          <div className="container mx-auto px-4 lg:px-6">
-            <div className="max-w-2xl mx-auto">
-              <NewsletterForm
-                placement="library"
-                headline="Get new automations in your inbox"
-                description="We publish new workflow templates monthly. Subscribe to get notified, plus early access to pilot programmes."
-                buttonText="Subscribe"
-                shortConsent
-              />
-            </div>
-          </div>
-        </section> */}
 
         {/* FAQ — definitional + practical Q&A. Native <details> keeps answers in
             the DOM even when collapsed, so the FAQPage schema maps 1:1. */}
@@ -808,7 +787,6 @@ function AutomationCard({
   onQuickView: () => void;
 }) {
   const { t } = useTranslation();
-  const [stepsOpen, setStepsOpen] = useState(false);
 
   const handleCardClick = () => {
     onQuickView();

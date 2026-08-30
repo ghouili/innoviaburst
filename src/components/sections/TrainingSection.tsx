@@ -13,7 +13,6 @@ const FORMAT_ICONS = [MonitorPlay, Users, Award];
 // Partner logos are not signed off yet — render five obvious placeholders rather
 // than invent accreditations (same honesty rule as the "case studies coming
 // soon" listing). Swap for real logo images once partners are confirmed.
-const PARTNER_PLACEHOLDER_COUNT = 5;
 
 interface Format {
   title: string;
@@ -161,32 +160,6 @@ export function TrainingSection({ onRequestClick, onBookingClick }: TrainingSect
 
 
             {/* Partner logos — explicit placeholders until accreditations are confirmed */}
-            {/* <Reveal delay={400}>
-              <div className="mt-12 pt-8 border-t border-border max-w-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                  {t("trainingSection.partnersLabel")}
-                </p>
-                <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3 list-none p-0">
-                  {Array.from({ length: PARTNER_PLACEHOLDER_COUNT }).map((_, i) => (
-                    <li
-                      key={i}
-                      className="h-14 rounded-xl border border-dashed border-border bg-muted/40 flex items-center justify-center gap-2 px-3"
-                    >
-                      <span
-                        className="w-4 h-4 rounded-sm bg-accent/15 shrink-0"
-                        aria-hidden="true"
-                      />
-                      <span className="text-[11px] font-semibold text-muted-foreground truncate">
-                        {t("trainingSection.partnerPlaceholder")}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                  {t("trainingSection.partnersNote")}
-                </p>
-              </div>
-            </Reveal> */}
           </div>
 
           {/* ── Illustration column ─────────────────────────────────────── */}

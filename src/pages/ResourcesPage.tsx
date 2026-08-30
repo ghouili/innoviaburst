@@ -30,7 +30,6 @@ import {
   BarChart3,
   FileSpreadsheet,
   BookOpen,
-  FileCheck,
   CheckCircle,
   Loader2,
   AlertCircle,
@@ -234,117 +233,6 @@ const resourcesData: Resource[] = [
   },
 ];
 
-// const resources: Resource[] = [
-//   {
-//     icon: Calculator,
-//     title: "Automation ROI Calculator",
-//     description:
-//       "Estimate time and cost savings from automating your workflows. Input your current process metrics and see potential ROI.",
-//     type: "Calculator",
-//     category: "roi",
-//     featured: true,
-//     tags: ["roi", "calculator", "savings", "finance"],
-//     updatedAt: "2024-12-01",
-//     timeToComplete: "5 min",
-//     usefulness: 9,
-//     ctaLabel: "Use calculator",
-//     href: "#contact",
-//   },
-//   {
-//     icon: CheckSquare,
-//     title: "AI Copilot Rollout Checklist",
-//     description:
-//       "Step-by-step guide to deploying AI assistants in your organisation. Covers data prep, training, testing, and launch.",
-//     type: "Checklist",
-//     category: "ai",
-//     featured: true,
-//     tags: ["ai", "copilot", "rollout", "checklist"],
-//     updatedAt: "2025-01-05",
-//     timeToComplete: "7 min",
-//     usefulness: 10,
-//     ctaLabel: "Get checklist",
-//     href: "#contact",
-//   },
-//   {
-//     icon: RefreshCw,
-//     title: "HubSpot Hygiene Checklist",
-//     description: "Keep your CRM clean and your automation running smoothly. Monthly maintenance tasks for data quality.",
-//     type: "Checklist",
-//     category: "crm",
-//     tags: ["crm", "hubspot", "data"],
-//     updatedAt: "2024-11-20",
-//     timeToComplete: "6 min",
-//     usefulness: 7,
-//     ctaLabel: "Get checklist",
-//     href: "#contact",
-//   },
-//   {
-//     icon: Shield,
-//     title: "UK/EU Compliance Basics for AI",
-//     description: "Plain-English guide to GDPR, AI Act, and data handling requirements for AI projects. Updated for 2024 regulations.",
-//     type: "Guide",
-//     category: "compliance",
-//     featured: true,
-//     tags: ["gdpr", "ai act", "compliance", "guide"],
-//     updatedAt: "2024-12-15",
-//     timeToComplete: "10 min",
-//     usefulness: 9,
-//     ctaLabel: "Open guide",
-//     href: "#contact",
-//   },
-//   {
-//     icon: Plug,
-//     title: "Integration Playbook",
-//     description: "Common patterns for Zapier, Make, and custom API integrations. Includes error handling and monitoring best practices.",
-//     type: "Playbook",
-//     category: "ops",
-//     tags: ["integration", "api", "playbook", "ops"],
-//     updatedAt: "2024-10-02",
-//     timeToComplete: "12 min",
-//     usefulness: 8,
-//     ctaLabel: "Open playbook",
-//     href: "#contact",
-//   },
-//   {
-//     icon: Brain,
-//     title: "Knowledge Base AI Guide",
-//     description: "How to build an AI assistant that actually knows your business. From data preparation to deployment.",
-//     type: "Guide",
-//     category: "ai",
-//     tags: ["knowledge base", "rag", "ai", "guide"],
-//     updatedAt: "2024-12-05",
-//     timeToComplete: "9 min",
-//     usefulness: 8,
-//     ctaLabel: "Open guide",
-//     href: "#contact",
-//   },
-//   {
-//     icon: Settings,
-//     title: "Workflow Audit Template",
-//     description: "Identify automation opportunities in your current processes. Includes scoring matrix for prioritisation.",
-//     type: "Template",
-//     category: "ops",
-//     tags: ["template", "audit", "ops"],
-//     updatedAt: "2024-09-18",
-//     timeToComplete: "8 min",
-//     usefulness: 7,
-//     ctaLabel: "Get template",
-//     href: "#contact",
-//   },
-//   {
-//     icon: FileText,
-//     title: "DPA Quick Reference",
-//     description: "Key points to look for in Data Processing Agreements. Checklist for reviewing vendor contracts.",
-//     type: "Reference",
-//     category: "compliance",
-//     tags: ["dpa", "privacy", "compliance"],
-//     updatedAt: "2024-11-10",
-//     timeToComplete: "4 min",
-//     usefulness: 8,
-//     ctaLabel: "Open reference",
-//     href: "#contact",
-//   },
-// ];
 
 export default function ResourcesPage() {
   const { t, i18n } = useTranslation();
@@ -825,18 +713,6 @@ export default function ResourcesPage() {
         </section>
 
         {/* CTA */}
-        {/* <section className="py-16 bg-gradient-hero">
-          <div className="container mx-auto px-4 lg:px-6 text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Ready to automate?</h2>
-            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Let's discuss how automation can save your team time and reduce errors.
-            </p>
-            <Button variant="hero" size="lg" onClick={() => setBookingOpen(true)}>
-              Book a 15-min call
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-        </section> */}
       </main>
 
       <Footer />

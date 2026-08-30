@@ -14,9 +14,7 @@ import {
   Cog,
   Code2,
   Rocket,
-  Check,
   Handshake,
-  BadgeCheck,
   ChevronDown,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -62,9 +60,6 @@ const TRACK_ICONS: LucideIcon[] = [Bot, Code2, Workflow, Scale];
 const FORMAT_ICONS: LucideIcon[] = [MonitorPlay, Users, Award];
 const AUDIENCE_ICONS: LucideIcon[] = [Cog, Code2, Rocket, ShieldCheck];
 
-// Two honest "named once signed" slots. The other three former slots became
-// the vetting statements below, which are true today.
-const PARTNER_PLACEHOLDER_COUNT = 2;
 
 export default function TrainingPage() {
   const { t } = useTranslation();
@@ -77,8 +72,6 @@ export default function TrainingPage() {
   const audience = t("trainingPage.audience.items", { returnObjects: true }) as CopyItem[];
   const steps = t("trainingPage.how.steps", { returnObjects: true }) as CopyItem[];
   const faq = t("trainingPage.faq.items", { returnObjects: true }) as FaqItem[];
-  const vetting = t("trainingPage.vetting.items", { returnObjects: true }) as CopyItem[];
-  const compliance = t("trainingPage.vetting.compliance", { returnObjects: true }) as string[];
 
   const jsonLd = useMemo(
     () => [
@@ -291,62 +284,6 @@ export default function TrainingPage() {
 
         {/* Partners: two honest placeholder slots plus the standard every
             partner has to meet. No stars, no logo wall, no named quotes. */}
-        {/* <section className="py-16 lg:py-20">
-          <div className="container mx-auto px-4 lg:px-6 max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              {t("trainingSection.partnersLabel")}
-            </p>
-            <ul className="mt-4 grid grid-cols-2 gap-3 list-none p-0 sm:max-w-sm">
-              {Array.from({ length: PARTNER_PLACEHOLDER_COUNT }).map((_, i) => (
-                <li
-                  key={i}
-                  className="h-14 rounded-xl border border-dashed border-border bg-muted/40 flex items-center justify-center gap-2 px-3"
-                >
-                  <span className="w-4 h-4 rounded-sm bg-accent/15 shrink-0" aria-hidden="true" />
-                  <span className="text-[11px] font-semibold text-muted-foreground truncate">
-                    {t("trainingSection.partnerPlaceholder")}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-3 max-w-md text-xs leading-relaxed text-muted-foreground">
-              {t("trainingSection.partnersNote")}
-            </p>
-
-            <h2 className="mt-10 text-xl font-bold text-foreground">{t("trainingPage.vetting.heading")}</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              {t("trainingPage.vetting.intro")}
-            </p>
-
-            <ul className="mt-6 grid gap-5 sm:grid-cols-3">
-              {Array.isArray(vetting) &&
-                vetting.map((item) => (
-                  <li key={item.title} className="flex items-start gap-3">
-                    <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-secondary/10">
-                      <BadgeCheck className="h-4 w-4 text-secondary" aria-hidden="true" />
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
-                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                    </div>
-                  </li>
-                ))}
-            </ul>
-
-            <ul className="mt-8 flex flex-wrap gap-2.5">
-              {Array.isArray(compliance) &&
-                compliance.map((chip) => (
-                  <li
-                    key={chip}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-2 text-sm font-medium text-muted-foreground"
-                  >
-                    <ShieldCheck className="h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                    {chip}
-                  </li>
-                ))}
-            </ul>
-          </div>
-        </section> */}
 
         {/* Partner journey: one visually distinct strip, kept away from the
             booking CTA so the two audiences never compete. */}

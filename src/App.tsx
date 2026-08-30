@@ -58,9 +58,7 @@ export function AppShell() {
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/automations" element={<AutomationsPage />} />
-            {/* <Route path="/works" element={<WorkPage />} /> */}
             <Route path="/works" element={<ComingSoonPage />} />
-            {/* <Route path="/work/:slug" element={<CaseStudyPage />} /> */}
             <Route path="/work/:slug" element={<ComingSoonPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/industries" element={<IndustriesPage />} />
