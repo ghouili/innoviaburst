@@ -48,6 +48,14 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8000,
+    // In production nginx proxies /api/ to the lead API. Mirror that here so
+    // form submissions are testable in local dev instead of 404ing.
+    proxy: {
+      "/api": {
+        target: `http://127.0.0.1:${process.env.API_PORT || 3000}`,
+        changeOrigin: false,
+      },
+    },
   },
   plugins: [rootLocaleRedirect(), react(), vike()],
   resolve: {

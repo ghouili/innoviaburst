@@ -6,19 +6,33 @@
  * consent checkbox, and all six resolving a `setTimeout` and then claiming
  * success. This is the single transport they now share.
  *
- * Transport is Web3Forms: the site is a static bundle served by nginx with no
- * backend, so the POST goes straight from the browser to the service, which
- * emails the lead. The access key is public by design (it identifies a form,
- * not an account), which is the only reason it can live in a VITE_ variable.
+ * There are two transports, and which one runs is decided by configuration:
  *
- * The payload keys deliberately match the `leads` schema in
- * docs/lovable-input.json, so pointing this at a first-party /api/leads later
- * is a one-line change to ENDPOINT.
+ *  1. DEFAULT — our own /api/leads on the VPS (server/index.mjs), proxied by
+ *     nginx. It holds the SMTP credentials and sends through Gmail. This is
+ *     the only way the mail can come from our own account: a browser cannot
+ *     open an SMTP connection, and any credential given to a VITE_ variable
+ *     is inlined into this bundle for anyone to read.
+ *
+ *  2. FALLBACK — Web3Forms, used only when VITE_FORMS_ACCESS_KEY is set. No
+ *     server required. Its access key is public by design (it identifies a
+ *     form, not an account), which is why that one key may live in a VITE_
+ *     variable when nothing else may.
+ *
+ * The payload keys match the `leads` schema in docs/lovable-input.json. Our
+ * own endpoint receives them as-is and does the email formatting server-side;
+ * the Web3Forms path has to relabel them here, because that service renders
+ * whatever keys it receives directly into the email body.
  */
 
-const ENDPOINT = "https://api.web3forms.com/submit";
+const OWN_ENDPOINT = (import.meta.env.VITE_LEAD_ENDPOINT as string | undefined) || "/api/leads";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 const ACCESS_KEY = (import.meta.env.VITE_FORMS_ACCESS_KEY as string | undefined) ?? "";
+
+/** Web3Forms only when a key is configured; our own endpoint otherwise. */
+const useWeb3Forms = ACCESS_KEY !== "";
+const ENDPOINT = useWeb3Forms ? WEB3FORMS_ENDPOINT : OWN_ENDPOINT;
 
 export type LeadType = "booking" | "request" | "training" | "newsletter";
 
@@ -107,7 +121,20 @@ function humanise(key: string): string {
   return spaced.charAt(0).toUpperCase() + spaced.slice(1);
 }
 
-function buildBody(payload: LeadPayload): Record<string, unknown> {
+/**
+ * Our own endpoint gets the structured payload untouched — server/index.mjs
+ * owns the labelling, so the wire format stays machine-readable.
+ * `_gotcha` is a honeypot the server checks; a real form never fills it.
+ */
+function buildOwnBody(payload: LeadPayload): Record<string, unknown> {
+  return {
+    ...payload,
+    sourcePath: typeof window !== "undefined" ? window.location.pathname : "",
+    _gotcha: "",
+  };
+}
+
+function buildWeb3FormsBody(payload: LeadPayload): Record<string, unknown> {
   const { extra, ...fields } = payload;
 
   const body: Record<string, unknown> = {
@@ -137,21 +164,13 @@ function buildBody(payload: LeadPayload): Record<string, unknown> {
 }
 
 export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
-  if (!ACCESS_KEY) {
-    // Loud in dev, silent in prod — but either way the caller shows an error
-    // rather than a success screen.
-    if (import.meta.env.DEV) {
-      console.warn("[submitLead] VITE_FORMS_ACCESS_KEY is not set — the lead was NOT sent.");
-    }
-    return { ok: false, reason: "not_configured" };
-  }
 
   let response: Response;
   try {
     response = await fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(buildBody(payload)),
+      body: JSON.stringify(useWeb3Forms ? buildWeb3FormsBody(payload) : buildOwnBody(payload)),
     });
   } catch {
     // Offline, DNS failure, blocked by an extension.
@@ -160,12 +179,20 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
 
   if (!response.ok) return { ok: false, reason: "server", status: response.status };
 
-  // A 200 is not sufficient — Web3Forms reports validation failures in the body.
-  const data = (await response.json().catch(() => null)) as { success?: boolean } | null;
-  if (!data?.success) return { ok: false, reason: "server", status: response.status };
+  // A 200 alone is not sufficient: both transports report failures in the body
+  // (Web3Forms as `success`, ours as `ok`).
+  const data = (await response.json().catch(() => null)) as
+    | { success?: boolean; ok?: boolean }
+    | null;
+  const accepted = useWeb3Forms ? data?.success : data?.ok;
+  if (!accepted) return { ok: false, reason: "server", status: response.status };
 
   return { ok: true };
 }
 
-/** True when a key is configured, for callers that want to hide a dead form. */
-export const isLeadCaptureConfigured = (): boolean => ACCESS_KEY !== "";
+/**
+ * Whether a transport exists at all. Our own endpoint is always considered
+ * configured — if it is not deployed the POST 404s and the caller shows an
+ * error, which is the honest outcome.
+ */
+export const isLeadCaptureConfigured = (): boolean => true;

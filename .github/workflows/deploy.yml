@@ -73,9 +73,26 @@ jobs:
           scp -P "$SSH_PORT" deploy.sh "$SSH_USERNAME@$SSH_HOST:/tmp/deploy.sh"
 
       # ----------------------------
-      # OPTIONAL: Upload env payload (commented)
-      # Only needed if your Vite app needs a .env on the server.
-      # If you enable this, create a secret in Environment "deploy" called INNOVIABURST_ENV
+      # Lead-API secrets (SMTP / Gmail App Password).
+      #
+      # These MUST travel this way rather than in the repo's .env: that file is
+      # tracked, and its VITE_ values are inlined into the public JS bundle. A
+      # Gmail App Password there would be published twice over.
+      #
+      # Create a secret in Environment "deploy" named INNOVIABURST_SERVER_ENV
+      # containing the contents of server/.env.example with real values.
+      # deploy.sh moves it to server/.env (chmod 600) before starting the API.
+      # ----------------------------
+      - name: Upload lead-api env payload
+        run: |
+          printf "%s" "${{ secrets.INNOVIABURST_SERVER_ENV }}" > server.env.payload
+          scp -P "$SSH_PORT" server.env.payload "$SSH_USERNAME@$SSH_HOST:/tmp/innoviaburst.server.env"
+          rm server.env.payload
+
+      # ----------------------------
+      # OPTIONAL: client .env payload (still commented).
+      # The tracked .env already ships every VITE_ value, so this is only needed
+      # if you ever want them to differ per environment.
       # ----------------------------
       # - name: Upload env payload
       #   run: |
@@ -92,7 +109,10 @@ jobs:
             NVM_DIR='${{ vars.NVM_DIR }}' \
             BUILD_DIR='${BUILD_DIR}' \
             ENV_PAYLOAD_PATH='/tmp/innoviaburst.env' \
+            API_ENV_PAYLOAD_PATH='/tmp/innoviaburst.server.env' \
             PM2_APP='${{ vars.PM2_APP }}' \
             APP_PORT='${{ vars.APP_PORT }}' \
+            API_PM2_APP='innoviaburst-api' \
+            API_PORT='3000' \
             bash /tmp/deploy.sh \
           "
