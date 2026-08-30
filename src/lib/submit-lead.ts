@@ -59,29 +59,80 @@ export interface LeadResult {
   status?: number;
 }
 
+/** Reads better than `booking` in a Gmail subject line. */
+const TYPE_LABEL: Record<LeadType, string> = {
+  booking: "booking request",
+  request: "scope request",
+  training: "training enquiry",
+  newsletter: "newsletter signup",
+};
+
+/**
+ * Web3Forms renders whatever keys it receives, verbatim, as the email body. So
+ * the keys ARE the email's field labels — `sourcePath` would reach the inbox as
+ * "sourcePath". This maps the structured payload onto readable labels at the
+ * transport boundary only: LeadPayload and every call site keep the machine
+ * names, which is what keeps a later swap to /api/leads a one-line change.
+ */
+const FIELD_LABEL: Record<string, string> = {
+  type: "Type",
+  name: "Name",
+  email: "Email",
+  company: "Company",
+  role: "Role",
+  goal: "What they want to automate",
+  interestedIn: "Came from",
+  message: "Message",
+  source: "Form",
+  consent: "Marketing consent",
+  consentVersion: "Consent version",
+  consentText: "Consent text shown",
+  sourcePath: "Page",
+  leadMagnet: "Lead magnet",
+  tools: "Tools they use",
+  timeline: "Timeline",
+  tracks: "Tracks",
+  format: "Format",
+  teamSize: "Team size",
+  timeframe: "Timeframe",
+  preferredDates: "Preferred dates",
+  delivers: "What they deliver",
+  accreditations: "Accreditations",
+  variant: "A/B variant",
+};
+
+/** Fallback for any key without an explicit label: camelCase -> Sentence case. */
+function humanise(key: string): string {
+  const spaced = key.replace(/([a-z0-9])([A-Z])/g, "$1 $2").toLowerCase();
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+}
+
 function buildBody(payload: LeadPayload): Record<string, unknown> {
   const { extra, ...fields } = payload;
+
   const body: Record<string, unknown> = {
     access_key: ACCESS_KEY,
-    // What lands in the inbox subject line — the type up front so the six
-    // forms stay distinguishable at a glance.
-    subject: `[${payload.type}] ${payload.name || payload.email}`,
+    // Scannable in a Gmail list view: what it is, then who it is from.
+    subject: `New ${TYPE_LABEL[payload.type]} — ${payload.name || payload.email}`,
     from_name: "InnoviaBurst website",
-    // Honeypot: Web3Forms drops the submission if this is filled, which only a
-    // bot would do.
-    botcheck: "",
-    submittedAt: new Date().toISOString(),
-    sourcePath: typeof window !== "undefined" ? window.location.pathname : "",
+    // Reserved Web3Forms field. Without it, hitting Reply in Gmail replies to
+    // Web3Forms rather than to the person who filled the form. It defaults to
+    // whatever `email` holds, but set it explicitly so that cannot drift.
+    replyto: payload.email,
   };
 
-  for (const [k, v] of Object.entries(fields)) {
-    if (v !== undefined && v !== "") body[k] = v;
-  }
-  if (extra) {
-    for (const [k, v] of Object.entries(extra)) {
-      if (v !== undefined && v !== "") body[k] = v;
-    }
-  }
+  const put = (key: string, value: unknown) => {
+    if (value === undefined || value === null || value === "") return;
+    body[FIELD_LABEL[key] ?? humanise(key)] = value;
+  };
+
+  for (const [k, v] of Object.entries(fields)) put(k, v);
+  if (extra) for (const [k, v] of Object.entries(extra)) put(k, v);
+
+  // Context last, so the human fields lead.
+  put("sourcePath", typeof window !== "undefined" ? window.location.pathname : "");
+  body["Submitted"] = new Date().toISOString();
+
   return body;
 }
 
